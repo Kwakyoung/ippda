@@ -1,14 +1,21 @@
-package com.example.ipdda;
+package com.example.ipdda.profile;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import com.example.ipdda.databinding.ActivityProfileBinding;
+
 public class ProfileActivity extends AppCompatActivity {
+
+    ActivityProfileBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        binding= ActivityProfileBinding.inflate(getLayoutInflater());
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+        setContentView(binding.getRoot());
+
+
     }
 }

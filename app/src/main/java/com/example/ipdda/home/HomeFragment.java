@@ -1,10 +1,8 @@
 package com.example.ipdda.home;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -14,6 +12,7 @@ import android.view.ViewGroup;
 
 import com.example.ipdda.R;
 import com.example.ipdda.databinding.FragmentHomeBinding;
+import com.example.ipdda.delivery.DeliveryFragment;
 
 
 import java.util.ArrayList;
@@ -38,6 +37,17 @@ public class HomeFragment extends Fragment {
 
         binding.recvStyleRecommend.setAdapter(new HomeStyleRecommendAdapter(GetStyleRecommendList(), getContext()));
         binding.recvStyleRecommend.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+
+        binding.imgvDelivery.setOnClickListener(v -> {
+            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+            DeliveryFragment deliveryFragment = new DeliveryFragment();
+            transaction.replace(R.id.container , deliveryFragment);
+            transaction.commit();
+
+        });
+
+
+
 
         return binding.getRoot();
     }

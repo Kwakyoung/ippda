@@ -1,8 +1,10 @@
-package com.example.ipdda;
+package com.example.ipdda.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.ipdda.R;
 
 public class SignUpActivity extends AppCompatActivity {
 

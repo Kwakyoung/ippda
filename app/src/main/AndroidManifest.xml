@@ -13,13 +13,10 @@
         android:theme="@style/Theme.IPDDA"
         tools:targetApi="31">
         <activity
-            android:name=".SignUpActivity"
+            android:name=".login.SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".FindpwActivity"
-            android:exported="false" />
-        <activity
-            android:name=".FindidActivity"
+            android:name=".login.FindActivity"
             android:exported="false" />
         <activity
             android:name=".profile.SubActivity"
@@ -31,7 +28,7 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".login.LoginActivity"
             android:exported="false" />
         <activity
             android:name=".SplashActivity"

@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="350dp"
     android:layout_height="match_parent"
-    tools:context=".FindpwActivity"
+    tools:context=".login.FindpwActivity"
     android:layout_gravity="center"
     android:orientation="vertical">
 
@@ -41,7 +41,7 @@
             <TextView
                 android:textStyle="bold"
                 android:id="@+id/tv_find_pw"
-                android:textSize="18dp"
+                android:textSize="20dp"
                 android:text=" 비밀번호 찾기"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -137,14 +137,14 @@
         </RelativeLayout>
 
 
-            <Button
-                android:layout_marginTop="35dp"
-                android:background="@drawable/button_radius"
-                android:layout_gravity="center"
-                android:textColor="#0E0E0E"
-                android:text="다음"
-                android:layout_width="350dp"
-                android:layout_height="50dp"/>
+        <Button
+            android:layout_marginTop="35dp"
+            android:background="@drawable/button_radius"
+            android:layout_gravity="center"
+            android:textColor="#0E0E0E"
+            android:text="다음"
+            android:layout_width="350dp"
+            android:layout_height="50dp"/>
 
 
     </LinearLayout>

@@ -1,4 +1,4 @@
-package com.example.ipdda;
+package com.example.ipdda.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
@@ -6,8 +6,8 @@ import androidx.fragment.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.ipdda.MainActivity;
 import com.example.ipdda.databinding.ActivityLoginBinding;
-import com.example.ipdda.home.HomeFragment;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -27,7 +27,7 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         binding.tvFind.setOnClickListener(v -> {
-            Intent intent = new Intent(this, FindidActivity.class);
+            Intent intent = new Intent(this, FindActivity.class);
             startActivity(intent);
         });
 

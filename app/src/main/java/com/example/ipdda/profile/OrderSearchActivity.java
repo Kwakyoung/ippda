@@ -5,17 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.ipdda.R;
-import com.example.ipdda.databinding.ActivitySettingBinding;
+import com.example.ipdda.databinding.ActivityOrderSearchBinding;
 
-public class SettingActivity extends AppCompatActivity {
-    ActivitySettingBinding binding;
+public class OrderSearchActivity extends AppCompatActivity {
+    ActivityOrderSearchBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        binding = ActivitySettingBinding.inflate(getLayoutInflater());
+        binding = ActivityOrderSearchBinding.inflate(getLayoutInflater());
         super.onCreate(savedInstanceState);
         setContentView(binding.getRoot());
-
-        binding.btnBack.setOnClickListener(v -> this.finish());
     }
 }

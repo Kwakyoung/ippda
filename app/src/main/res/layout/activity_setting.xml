@@ -7,13 +7,13 @@
     android:layout_height="match_parent"
     tools:context=".profile.SettingActivity"
     android:orientation="vertical"
-    android:paddingTop="10dp">
+    android:padding="10dp">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp">
         <TextView
-            android:layout_width="100dp"
+            android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:gravity="center"
@@ -22,84 +22,69 @@
             android:layout_centerHorizontal="true"
             android:fontFamily="@font/truckin"/>
         <ImageButton
+            android:id="@+id/btn_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/img_back"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="0dp"
             android:backgroundTint="@color/black"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="20dp"/>
+            android:src="@drawable/img_back" />
     </RelativeLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingRight="30dp"
-        android:paddingLeft="30dp"
-        android:orientation="vertical"
-        android:layout_gravity="center">
+            android:orientation="vertical">
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="42dp"
-        android:background="@drawable/right_radius"
-        android:text="공지사항"
-        android:textColor="@color/black"
-        android:textSize="15dp"
-        android:gravity="left|center"
-        android:layout_marginBottom="16dp"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="42dp"
-        android:background="@drawable/right_radius"
-        android:text="서비스 이용약관"
-        android:textColor="@color/black"
-        android:textSize="15dp"
-        android:gravity="left|center"
-        android:layout_marginBottom="16dp"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="42dp"
-        android:background="@drawable/right_radius"
-        android:text="개인정보 처리방침"
-        android:textColor="@color/black"
-        android:textSize="15dp"
-        android:gravity="left|center"
-        android:layout_marginBottom="16dp"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="42dp"
-        android:background="@drawable/right_radius"
-        android:text="개인정보 제공 내용"
-        android:textColor="@color/black"
-        android:textSize="15dp"
-        android:gravity="left|center"
-        android:layout_marginBottom="16dp"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="42dp"
-        android:background="@drawable/right_radius"
-        android:text="팝업 알림 설정                              ON"
-        android:textColor="@color/black"
-        android:textSize="15dp"
-        android:gravity="left|center"
-        android:layout_marginBottom="16dp"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="42dp"
-        android:background="@drawable/right_radius"
-        android:text="SMS서비스 설정                           ON"
-        android:textColor="@color/black"
-        android:textSize="15dp"
-        android:gravity="left|center"
-        android:layout_marginBottom="16dp"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="42dp"
-        android:background="@drawable/right_radius"
-        android:text="탈퇴하기"
-        android:textColor="#FF0000"
-        android:textSize="15dp"
-        android:gravity="left|center"
-        android:layout_marginBottom="16dp"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="공지사항"
+            android:textColor="@color/black"
+            android:textSize="17dp"
+            android:gravity="left|center"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="서비스 이용약관"
+            android:textColor="@color/black"
+            android:textSize="17dp"
+            android:gravity="left|center"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="개인정보 처리방침"
+            android:textColor="@color/black"
+            android:textSize="17dp"
+            android:gravity="left|center"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="개인정보 제공 내용"
+            android:textColor="@color/black"
+            android:textSize="17dp"
+            android:gravity="left|center"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="팝업 알림 설정                                 ON"
+            android:textColor="@color/black"
+            android:textSize="17dp"
+            android:gravity="left|center"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="SMS서비스 설정                              ON"
+            android:textColor="@color/black"
+            android:textSize="17dp"
+            android:gravity="left|center"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="탈퇴하기"
+            android:textColor="#FF0000"
+            android:textSize="17dp"
+            android:gravity="left|center"/>
     </LinearLayout>
 </LinearLayout>

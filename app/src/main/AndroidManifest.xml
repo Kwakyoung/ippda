@@ -13,7 +13,19 @@
         android:theme="@style/Theme.IPDDA"
         tools:targetApi="31">
         <activity
-            android:name=".login.SignUpActivity"
+            android:name=".profile.EditInfoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".profile.InquiryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".profile.QnAActivity"
+            android:exported="false" />
+        <activity
+            android:name=".profile.OrderSearchActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SignUpActivity"
             android:exported="false" />
         <activity
             android:name=".login.FindActivity"

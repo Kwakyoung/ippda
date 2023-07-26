@@ -23,10 +23,12 @@
             android:fontFamily="@font/truckin"/>
 <!--        장바구니,좋아요, 즐겨찾기, 공지사항 한번에 다 쓰는 activity-->
         <ImageButton
+            android:id="@+id/btn_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
             android:layout_marginTop="5dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginEnd="0dp"
             android:backgroundTint="@color/black"
             android:src="@drawable/img_back" />
     </RelativeLayout>

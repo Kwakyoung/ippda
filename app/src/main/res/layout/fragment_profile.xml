@@ -8,7 +8,8 @@
     android:padding="10dp">
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:scrollbars="none">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -19,17 +20,19 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp">
                 <TextView
-                    android:layout_width="100dp"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
                     android:layout_height="50dp"
                     android:gravity="center"
                     android:text="IPPDA"
                     android:textSize="30dp"
                     android:fontFamily="@font/truckin"/>
                 <ImageView
+                    android:id="@+id/btn_setting"
                     android:layout_width="28dp"
                     android:layout_height="28dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="220dp"
+                    android:layout_marginLeft="250dp"
                     android:src="@drawable/img_setting"
                     />
 
@@ -75,6 +78,7 @@
                                 android:textSize="11dp"/>
                         </LinearLayout>
                         <Button
+                            android:id="@+id/edit_info"
                             android:layout_marginTop="5dp"
                             android:layout_width="80dp"
                             android:layout_height="40dp"
@@ -106,6 +110,7 @@
                             android:layout_height="match_parent"
                             android:src="#D7D7D7"/>
                         <TextView
+                            android:id="@+id/tv_coupon"
                             android:gravity="center"
                             android:layout_weight="1"
                             android:layout_width="0dp"
@@ -124,18 +129,19 @@
 
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recv_trackDelivery"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
-            <!--    <androidx.cardview.widget.CardView-->
-            <!--        android:layout_marginTop="30dp"-->
-            <!--        android:layout_width="wrap_content"-->
-            <!--        android:layout_height="wrap_content"-->
-            <!--        app:cardCornerRadius="100dp">-->
-            <!--        <ImageButton-->
-            <!--            android:layout_width="80dp"-->
-            <!--            android:layout_height="80dp"-->
-            <!--            android:background="@drawable/ic_launcher_foreground"/>-->
-            <!--    </androidx.cardview.widget.CardView>-->
+<!--                <androidx.cardview.widget.CardView-->
+<!--                    android:layout_marginTop="30dp"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    app:cardCornerRadius="100dp">-->
+<!--                    <ImageButton-->
+<!--                        android:layout_width="80dp"-->
+<!--                        android:layout_height="80dp"-->
+<!--                        android:background="@drawable/ic_launcher_foreground"/>-->
+<!--                </androidx.cardview.widget.CardView>-->
 
             <TextView
                 android:layout_width="wrap_content"
@@ -144,13 +150,16 @@
                 android:textColor="@color/gray"
                 android:textSize="11dp"
                 android:layout_gravity="right"
-                android:layout_marginRight="15dp"/>
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="15dp"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/radius"
                 android:padding="10dp">
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recv_userActions"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 
@@ -161,6 +170,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <Button
+                    android:id="@+id/btn_qna"
                     android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
@@ -170,6 +180,7 @@
                     android:backgroundTint="@color/green"
                     android:layout_marginRight="15dp"/>
                 <Button
+                    android:id="@+id/btn_inquiry"
                     android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
@@ -196,8 +207,10 @@
                 android:textColor="@color/gray"
                 android:textSize="14dp"
                 android:layout_marginRight="15dp"/>
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="wrap_content"
+            <GridView
+                android:numColumns="2"
+                android:id="@+id/gridv_viewed"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
             <TextView

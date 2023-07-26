@@ -5,15 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.ipdda.R;
-import com.example.ipdda.databinding.ActivitySubBinding;
 
-public class SubActivity extends AppCompatActivity {
-    ActivitySubBinding binding;
+public class EditInfoActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        binding = ActivitySubBinding.inflate(getLayoutInflater());
         super.onCreate(savedInstanceState);
-        setContentView(binding.getRoot());
+        setContentView(R.layout.activity_edit_info);
     }
 }

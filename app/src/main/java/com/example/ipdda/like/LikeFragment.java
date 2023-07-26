@@ -9,14 +9,19 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.ipdda.R;
+import com.example.ipdda.databinding.FragmentLikeBinding;
 
 
 public class LikeFragment extends Fragment {
 
+    FragmentLikeBinding binding;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_like, container, false);
+        binding = FragmentLikeBinding.inflate(inflater,container,false);
+
+        binding.grid.setAdapter(new LikeAdapter(inflater));
+
+        return binding.getRoot();
     }
 }

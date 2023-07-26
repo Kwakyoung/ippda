@@ -8,9 +8,9 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import com.example.ipdda.databinding.ActivitySplashBinding;
+import com.example.ipdda.login.LoginActivity;
 
 public class SplashActivity extends AppCompatActivity {
-
     ActivitySplashBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

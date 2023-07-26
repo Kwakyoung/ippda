@@ -15,18 +15,15 @@
         android:layout_height="0dp"
         android:layout_weight="1">
 
-
     </FrameLayout>
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         style="@style/Widget.MaterialComponents.BottomNavigationView.Colored"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/black"
+        android:background="#353535"
         app:labelVisibilityMode="unlabeled"
         app:menu="@menu/btm_mainact_menu" />
-
-
 
 
 </LinearLayout>

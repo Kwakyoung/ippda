@@ -82,8 +82,9 @@
     </LinearLayout>
 
     <RelativeLayout
+        android:layout_gravity="center_horizontal"
         android:layout_margin="5dp"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content">
 
         <TextView
@@ -120,7 +121,8 @@
 
 
     <RelativeLayout
-        android:layout_width="match_parent"
+        android:layout_gravity="center"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         >
 

@@ -22,7 +22,10 @@
             android:name=".FindidActivity"
             android:exported="false" />
         <activity
-            android:name=".profile.ProfileActivity"
+            android:name=".profile.SubActivity"
+            android:exported="false" />
+        <activity
+            android:name=".profile.SettingActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

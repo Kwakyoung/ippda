@@ -1,16 +1,13 @@
 package com.example.ipdda;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.ipdda.databinding.ActivityMainBinding;
 import com.example.ipdda.home.HomeFragment;
 import com.example.ipdda.like.LikeFragment;
-import com.example.ipdda.profile.ProfileActivity;
 import com.example.ipdda.profile.ProfileFragment;
 import com.example.ipdda.search.SearchFragment;
 

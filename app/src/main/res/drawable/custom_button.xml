@@ -15,4 +15,7 @@
     <corners
         android:radius="100dp"/>
 
+    <padding
+        android:bottom="@android:dimen/thumbnail_width"/>
+
 </shape>

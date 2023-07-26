@@ -21,5 +21,15 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(intent);
 
         });
+
+        binding.tvFind.setOnClickListener(v -> {
+            Intent intent = new Intent(this, FindidActivity.class);
+            startActivity(intent);
+        });
+
+        binding.tvSignUp.setOnClickListener(v -> {
+            Intent intent = new Intent(this, SignUpActivity.class);
+            startActivity(intent);
+        });
     }
 }

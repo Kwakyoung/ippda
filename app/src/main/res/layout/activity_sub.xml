@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".profile.SubActivity"
+    android:orientation="vertical"
+    android:padding="10dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="장바구니"
+            android:textSize="30dp"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/truckin"/>
+<!--        장바구니,좋아요, 즐겨찾기, 공지사항 한번에 다 쓰는 activity-->
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:backgroundTint="@color/black"
+            android:src="@drawable/img_back" />
+    </RelativeLayout>
+    <LinearLayout
+        android:id="@+id/layout_review"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="20dp">
+        <Button
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/left_radius"
+            android:text="리뷰 작성"
+            android:textColor="@color/black"
+            />
+
+        <Button
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/right_radius"
+            android:text="리뷰 내용"
+            android:textColor="@color/black"
+            />
+    </LinearLayout>
+    <LinearLayout
+    android:id="@+id/layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginBottom="20dp">
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_gravity="center"
+        android:id="@+id/recv_transaction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"/>
+
+</LinearLayout>
+
+
+
+    <LinearLayout
+        android:id="@+id/layout_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal"
+        android:visibility="gone">
+        <TextView
+            android:id="@+id/tv_num"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="좋아요 1개"
+            android:textSize="12dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="보기 방식 변경"
+            android:textSize="12dp"
+            style="@style/Hyperlink"
+            />
+
+    </LinearLayout>
+    <ScrollView
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/radius"
+        android:scrollbars="none">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:orientation="vertical"
+            android:padding="15dp">
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+
+    </ScrollView>
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="10dp"
+        android:layout_gravity="center|bottom"
+        android:gravity="center|bottom"
+        android:text="IPPDA"
+        android:textSize="30dp"
+        android:fontFamily="@font/truckin"/>
+</LinearLayout>

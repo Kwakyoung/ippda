@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp">
         <TextView
+            android:id="@+id/tv_title"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_gravity="center"
@@ -37,7 +38,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginBottom="20dp">
+        android:layout_marginBottom="20dp"
+        android:visibility="gone">
         <Button
             android:layout_weight="1"
             android:layout_width="0dp"
@@ -67,7 +69,8 @@
         android:id="@+id/recv_transaction"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="gone"/>
+        android:visibility="gone"
+        />
 
 </LinearLayout>
 
@@ -80,7 +83,7 @@
         android:gravity="center"
         android:layout_marginBottom="5dp"
         android:orientation="horizontal"
-        android:visibility="gone">
+        >
         <TextView
             android:id="@+id/tv_num"
             android:layout_weight="1"
@@ -91,6 +94,7 @@
             android:textSize="12dp"
             />
         <TextView
+            android:id="@+id/tv_see"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="보기 방식 변경"
@@ -114,7 +118,7 @@
             android:padding="15dp">
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="500dp"/>
 
         </LinearLayout>
 

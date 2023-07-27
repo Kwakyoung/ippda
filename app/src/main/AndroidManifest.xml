@@ -25,7 +25,6 @@
             android:name=".profile.OrderSearchActivity"
             android:exported="false" />
         <activity
-            android:name=".SignUpActivity"
             android:name=".login.SignUpActivity"
             android:exported="false" />
         <activity

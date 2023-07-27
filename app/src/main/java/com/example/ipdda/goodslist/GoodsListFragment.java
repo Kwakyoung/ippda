@@ -1,5 +1,6 @@
 package com.example.ipdda.goodslist;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 import com.example.ipdda.R;
 import com.example.ipdda.databinding.FragmentGoodsListBinding;
 import com.example.ipdda.delivery.DeliveryTopCategoryDTO;
+import com.example.ipdda.goodsboard.GoodsBoardActivity;
 
 import java.util.ArrayList;
 
@@ -33,6 +35,12 @@ public class GoodsListFragment extends Fragment {
 
         binding.recvGoodsList.setAdapter(new GoodsListAdapter(GetGoodsListCateogry(),getContext()));
         binding.recvGoodsList.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        binding.imgvLogo.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), GoodsBoardActivity.class);
+            startActivity(intent);
+
+        });
 
         return binding.getRoot();
     }

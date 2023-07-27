@@ -13,6 +13,9 @@
         android:theme="@style/Theme.IPDDA"
         tools:targetApi="31">
         <activity
+            android:name=".goodsboard.GoodsBoardActivity"
+            android:exported="false" />
+        <activity
             android:name=".profile.EditInfoActivity"
             android:exported="false" />
         <activity

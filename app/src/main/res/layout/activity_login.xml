@@ -21,6 +21,10 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -31,9 +35,11 @@
             app:boxCornerRadiusBottomStart="10dp"
             app:boxCornerRadiusTopEnd="10dp"
             app:boxCornerRadiusTopStart="10dp"
-            android:layout_marginBottom="15dp">
+            android:layout_marginBottom="15dp"
+            >
 
             <com.google.android.material.textfield.TextInputEditText
+                android:maxLength="30"
                 android:id="@+id/edt_id"
                 android:inputType="textMultiLine|textNoSuggestions"
                 android:hint="아이디"
@@ -42,6 +48,7 @@
                 />
 
         </com.google.android.material.textfield.TextInputLayout>
+        </RelativeLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"

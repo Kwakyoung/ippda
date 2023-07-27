@@ -27,6 +27,8 @@ public class SubActivity extends AppCompatActivity {
             binding.recvTransaction.setVisibility(View.GONE);
             binding.layoutReview.setVisibility(View.GONE);
             binding.layout.setVisibility(View.GONE);
+
+
         }else if(receivedValue==1){
             binding.tvTitle.setText("좋아요");
             binding.tvTitle.setVisibility(View.VISIBLE);
@@ -36,6 +38,8 @@ public class SubActivity extends AppCompatActivity {
             binding.recvTransaction.setVisibility(View.GONE);
             binding.layoutReview.setVisibility(View.GONE);
             binding.layout.setVisibility(View.GONE);
+
+
         }else if(receivedValue==2){
             binding.tvTitle.setText("즐겨찾기");
             binding.tvTitle.setVisibility(View.VISIBLE);
@@ -45,6 +49,8 @@ public class SubActivity extends AppCompatActivity {
             binding.recvTransaction.setVisibility(View.GONE);
             binding.layoutReview.setVisibility(View.GONE);
             binding.layout.setVisibility(View.GONE);
+
+
         }else if(receivedValue==3){
             binding.tvTitle.setText("리뷰");
             binding.layoutText.setVisibility(View.GONE);
@@ -52,6 +58,8 @@ public class SubActivity extends AppCompatActivity {
             binding.recvTransaction.setVisibility(View.GONE);
             binding.layoutReview.setVisibility(View.VISIBLE);
             binding.layout.setVisibility(View.GONE);
+
+
         }
         binding.btnBack.setOnClickListener(v -> this.finish());
     }

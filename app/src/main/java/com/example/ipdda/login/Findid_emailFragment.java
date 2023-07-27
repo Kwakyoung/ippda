@@ -34,8 +34,8 @@ public class Findid_emailFragment extends Fragment {
         });
 
         binding.btnNext.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), ResultidActivity.class);
-            startActivity(intent);
+            activity = (FindActivity) getActivity();
+            activity.changeFragment(7, new ResultFragment());
         });
 
         return binding.getRoot();

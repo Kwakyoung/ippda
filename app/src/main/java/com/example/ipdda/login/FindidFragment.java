@@ -17,6 +17,7 @@ import com.example.ipdda.databinding.FragmentFindidBinding;
 public class FindidFragment extends Fragment {
     FragmentFindidBinding binding;
 
+    FindActivity activity;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -24,18 +25,18 @@ public class FindidFragment extends Fragment {
         binding = FragmentFindidBinding.inflate(inflater,container,false);
 
         binding.tvFindPw.setOnClickListener(v -> {
-            FindActivity activity = (FindActivity) getActivity();
+            activity = (FindActivity) getActivity();
             activity.changeFragment(1, new FindpwFragment());
         });
 
         binding.checkEmail.setOnClickListener(v -> {
-            FindActivity activity = (FindActivity) getActivity();
+            activity = (FindActivity) getActivity();
             activity.changeFragment(3, new Findid_emailFragment());
         });
 
         binding.btnNext.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), ResultidActivity.class);
-            startActivity(intent);
+            activity = (FindActivity) getActivity();
+            activity.changeFragment(7, new ResultFragment());
         });
         return binding.getRoot();
     }

@@ -23,6 +23,7 @@ public class FindActivity extends AppCompatActivity {
 
         FragmentManager manager = getSupportFragmentManager();
         manager.beginTransaction().replace(R.id.container, new FindidFragment()).commit();
+
     }
 
     int backPressed = 0;

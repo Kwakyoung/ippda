@@ -13,9 +13,6 @@
         android:theme="@style/Theme.IPDDA"
         tools:targetApi="31">
         <activity
-            android:name=".login.ResultidActivity"
-            android:exported="false" />
-        <activity
             android:name=".login.SignUpActivity"
             android:exported="false" />
         <activity

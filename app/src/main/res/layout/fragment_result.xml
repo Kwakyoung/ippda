@@ -42,12 +42,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-       <TextView
-           android:textSize="18dp"
-           android:gravity="center"
-           android:text="회원님의 정보로 \n가입된 아이디가 있습니다."
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"/>
+        <TextView
+            android:textSize="18dp"
+            android:gravity="center"
+            android:text="회원님의 정보로 \n가입된 아이디가 있습니다."
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 
     <RelativeLayout
@@ -72,6 +72,7 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/find_pw"
         android:layout_gravity="center"
         android:layout_marginTop="50dp"
         android:layout_marginBottom="15dp"
@@ -88,14 +89,14 @@
             android:layout_height="wrap_content"/>
     </RelativeLayout>
 
-        <Button
-            android:id="@+id/btn_activitylogin"
-            android:layout_gravity="center"
-            android:background="@drawable/button_radius"
-            android:textColor="#0E0E0E"
-            android:text="로그인 하러가기"
-            android:layout_width="350dp"
-            android:layout_height="50dp"/>
+    <Button
+        android:id="@+id/btn_activitylogin"
+        android:layout_gravity="center"
+        android:background="@drawable/button_radius"
+        android:textColor="#0E0E0E"
+        android:text="로그인 하러가기"
+        android:layout_width="350dp"
+        android:layout_height="50dp"/>
 
 
 </LinearLayout>

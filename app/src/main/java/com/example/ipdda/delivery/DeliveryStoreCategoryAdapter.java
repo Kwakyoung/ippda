@@ -35,7 +35,7 @@ public class DeliveryStoreCategoryAdapter extends RecyclerView.Adapter<DeliveryS
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

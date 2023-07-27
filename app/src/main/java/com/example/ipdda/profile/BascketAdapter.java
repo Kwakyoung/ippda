@@ -63,18 +63,17 @@ public class BascketAdapter extends RecyclerView.Adapter<BascketAdapter.ViewHold
 
         h.binding.imgGoodsList.setImageResource(list.get(i).getImgGoodsList());
         h.binding.goodsName.setText(list.get(i).getGoodsName());
-        h.binding.choiceNum.setText(list.get(i).getChoiceNum());
-        if (list.get(i).getGoodsPrice()>=0){
+        if (list.get(i).getGoodsPrice()<=0){
             h.binding.goodsPrice.setText("매진");
             h.binding.goodsPrice.setTextColor(Color.parseColor("#FF0000"));
         }else{
-            h.binding.goodsPrice.setText(list.get(i).getGoodsPrice());
+            h.binding.goodsPrice.setText(list.get(i).getGoodsPrice()+"원");
         }
         if(list.get(i).getGoodsCnt()!=0){
             h.binding.goodsCnt.setText(list.get(i).getGoodsCnt()+"개 남음");
         }
         if(list.get(i).getChoiceNum()!=0){
-            h.binding.goodsCnt.setText("수량 "+list.get(i).getGoodsCnt()+"개");
+            h.binding.goodsCnt.setText(list.get(i).getGoodsCnt()+"개");
         }
 
     }

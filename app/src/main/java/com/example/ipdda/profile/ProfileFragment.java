@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import com.example.ipdda.R;
 import com.example.ipdda.databinding.FragmentHomeBinding;
 import com.example.ipdda.databinding.FragmentProfileBinding;
+import com.example.ipdda.goodslist.GoodsListDTO;
 import com.example.ipdda.home.HomeGoodsRecommendDTO;
 
 import java.lang.reflect.Array;
@@ -33,20 +34,8 @@ public class ProfileFragment extends Fragment {
         binding.recvUserActions.setAdapter(new UserActionAdepter(getUserAction(),getContext()));
         binding.recvUserActions.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL , false));
 
-        binding.gridvViewed.setAdapter(new ViewedAdepter(ViewedList(),getContext()));
+        binding.gridvViewed.setAdapter(new ViewedAdepter(GoodsList(),getContext()));
         binding.gridvViewed.setLayoutManager(new LinearLayoutManager(getContext()));
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -84,13 +73,11 @@ public class ProfileFragment extends Fragment {
         return list;
     }
 
-    ArrayList<ViewedDTO> ViewedList(){
-        ArrayList<ViewedDTO> list = new ArrayList<>();
-        list.add(new ViewedDTO(R.drawable.ic_launcher_background, "20000원","나이키|후드",R.drawable.ic_launcher_background, "20000원","나이키|후드"));
-        list.add(new ViewedDTO(R.drawable.ic_launcher_background, "20000원","나이키|후드",R.drawable.ic_launcher_background, "20000원","나이키|후드"));
-        list.add(new ViewedDTO(R.drawable.ic_launcher_background, "20000원","나이키|후드",R.drawable.ic_launcher_background, "20000원","나이키|후드"));
-
-
+    ArrayList<GoodsListDTO> GoodsList(){
+        ArrayList<GoodsListDTO> list = new ArrayList<>();
+        list.add(new GoodsListDTO(R.drawable.ic_home, R.drawable.ic_home, 49000,50000, "입다 화정점", "입다 맨투맨", "입다 농성점", "입다 니트"));
+        list.add(new GoodsListDTO(R.drawable.ic_home, R.drawable.ic_home, 49000,50000, "입다 화정점", "입다 맨투맨", "입다 농성점", "입다 니트"));
+        list.add(new GoodsListDTO(R.drawable.ic_home, R.drawable.ic_home, 49000,50000, "입다 화정점", "입다 맨투맨", "입다 농성점", "입다 니트"));
         return list;
     }
 }

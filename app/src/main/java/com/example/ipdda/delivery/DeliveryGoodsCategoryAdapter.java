@@ -1,19 +1,29 @@
 package com.example.ipdda.delivery;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.ipdda.MainActivity;
+import com.example.ipdda.R;
 import com.example.ipdda.databinding.ItemDeliveryGoodsCategoryBinding;
+import com.example.ipdda.databinding.ItemDeliveryStoreCategoryBinding;
+import com.example.ipdda.goodslist.GoodsListFragment;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-public class DeliveryGoodsCategoryAdapter extends RecyclerView.Adapter<DeliveryGoodsCategoryAdapter.ViewHolder> {
+public class DeliveryGoodsCategoryAdapter extends RecyclerView.Adapter<DeliveryGoodsCategoryAdapter.ViewHolder>{
+
 
     ItemDeliveryGoodsCategoryBinding binding;
 
@@ -31,7 +41,7 @@ public class DeliveryGoodsCategoryAdapter extends RecyclerView.Adapter<DeliveryG
     @Override
     public DeliveryGoodsCategoryAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        binding  = ItemDeliveryGoodsCategoryBinding.inflate(inflater,parent,false);
+        binding = ItemDeliveryGoodsCategoryBinding.inflate(inflater,parent,false);
         return new ViewHolder(binding);
     }
 
@@ -47,14 +57,17 @@ public class DeliveryGoodsCategoryAdapter extends RecyclerView.Adapter<DeliveryG
         h.binding.tvGoodsCategory3.setText(list.get(i).getCategoryName3());
         h.binding.tvGoodsCategory4.setText(list.get(i).getCategoryName4());
 
+
+
     }
 
     @Override
     public int getItemCount() {
+        
         return list.size();
     }
 
-    public class  ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         ItemDeliveryGoodsCategoryBinding binding;
 
@@ -64,4 +77,8 @@ public class DeliveryGoodsCategoryAdapter extends RecyclerView.Adapter<DeliveryG
             this.binding = binding;
         }
     }
+
+
+
+
 }

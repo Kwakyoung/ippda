@@ -58,6 +58,7 @@
 
         </LinearLayout>
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recv_opten_question"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
@@ -80,6 +81,7 @@
 
         </LinearLayout>
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recv_my_question"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 

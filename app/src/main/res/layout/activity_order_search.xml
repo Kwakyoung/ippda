@@ -56,9 +56,11 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center">
+
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recv_trackDelivery"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
     <LinearLayout

@@ -45,7 +45,7 @@ public class GoodsListAdapter extends RecyclerView.Adapter<GoodsListAdapter.View
         h.binding.tvGoodsName1.setText(list.get(i).getGoodsName1());
         h.binding.tvGoodsName2.setText(list.get(i).getGoodsName2());
         h.binding.tvGoodsPrice1.setText(list.get(i).getGoodsPrice1()+"원");
-        h.binding.tvGoodsPrice1.setText(list.get(i).getGoodsPrice1()+"원");
+        h.binding.tvGoodsPrice2.setText(list.get(i).getGoodsPrice1()+"원");
     }
 
     @Override

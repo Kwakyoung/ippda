@@ -11,32 +11,33 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.ipdda.R;
-import com.example.ipdda.databinding.FragmentFindidBinding;
+import com.example.ipdda.databinding.FragmentFindidEmailBinding;
 
+public class Findid_emailFragment extends Fragment {
 
-public class FindidFragment extends Fragment {
-    FragmentFindidBinding binding;
+    FindActivity activity;
 
+    FragmentFindidEmailBinding binding;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        binding = FragmentFindidBinding.inflate(inflater,container,false);
+        binding = FragmentFindidEmailBinding.inflate(inflater,container,false);
 
         binding.tvFindPw.setOnClickListener(v -> {
-            FindActivity activity = (FindActivity) getActivity();
-            activity.changeFragment(1, new FindpwFragment());
+            activity = (FindActivity) getActivity();
+            activity.changeFragment(1,new FindpwFragment());
         });
 
-        binding.checkEmail.setOnClickListener(v -> {
-            FindActivity activity = (FindActivity) getActivity();
-            activity.changeFragment(3, new Findid_emailFragment());
+        binding.checkPhone.setOnClickListener(v -> {
+            activity = (FindActivity) getActivity();
+            activity.changeFragment(2, new FindidFragment());
         });
 
         binding.btnNext.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), ResultidActivity.class);
             startActivity(intent);
         });
+
         return binding.getRoot();
     }
 }

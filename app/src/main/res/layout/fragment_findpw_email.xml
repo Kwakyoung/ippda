@@ -28,7 +28,8 @@
             android:orientation="horizontal">
 
             <TextView
-                android:textStyle="bold"
+                android:textColor="#8A8A8A"
+                android:id="@+id/tv_find_id"
                 android:textSize="20dp"
                 android:text="아이디 찾기 "
                 android:layout_width="wrap_content"
@@ -39,7 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView
-                android:textColor="#8A8A8A"
+                android:textStyle="bold"
                 android:id="@+id/tv_find_pw"
                 android:textSize="20dp"
                 android:text=" 비밀번호 찾기"
@@ -47,7 +48,6 @@
                 android:layout_height="wrap_content"/>
         </LinearLayout>
     </RelativeLayout>
-
 
     <LinearLayout
         android:layout_marginTop="10dp"
@@ -58,9 +58,8 @@
 
         <CheckBox
             android:id="@+id/check_phone"
-            android:checked="true"
             android:buttonTint="@color/white"
-            android:button="@drawable/checked"
+            android:button="@drawable/unchecked"
             android:layout_marginRight="30dp"
             android:textColor="@color/white"
             android:text="\t휴대폰 번호로 찾기"
@@ -68,22 +67,33 @@
             android:layout_height="wrap_content"/>
 
         <CheckBox
+            android:checked="true"
             android:id="@+id/check_email"
             android:buttonTint="@color/white"
-            android:button="@drawable/unchecked"
+            android:button="@drawable/checked"
             android:textColor="@color/white"
             android:text="\t이메일 주소로 찾기"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
     </LinearLayout>
-
-
     <LinearLayout
         android:layout_gravity="center"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
+        <EditText
+            android:layout_marginBottom="20dp"
+            android:paddingLeft="10dp"
+            android:inputType="textMultiLine|textNoSuggestions"
+            android:background="@drawable/radius"
+            android:maxLines="1"
+            android:maxLength="30"
+            android:textColorHint="#75000000"
+            android:hint="아이디"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"/>
 
         <EditText
             android:paddingLeft="10dp"
@@ -108,7 +118,7 @@
                 android:maxLines="1"
                 android:maxLength="15"
                 android:textColorHint="#75000000"
-                android:hint="휴대폰 번호"
+                android:hint="이메일"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"/>
 
@@ -120,7 +130,7 @@
                 android:textSize="12dp"
                 android:textColor="#0E0E0E"
                 android:layout_alignParentRight="true"
-                android:text="인증번호 발송"
+                android:text="인증 요청"
                 android:layout_width="110dp"
                 android:layout_height="35dp"/>
 
@@ -157,14 +167,14 @@
 
 
         <Button
-            android:id="@+id/btn_next"
-            android:layout_gravity="center"
+            android:layout_marginTop="35dp"
             android:background="@drawable/button_radius"
+            android:layout_gravity="center"
             android:textColor="#0E0E0E"
             android:text="다음"
-            android:layout_marginTop="105dp"
             android:layout_width="350dp"
             android:layout_height="50dp"/>
+
 
     </LinearLayout>
 

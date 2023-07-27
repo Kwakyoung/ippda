@@ -58,9 +58,8 @@
 
         <CheckBox
             android:id="@+id/check_phone"
-            android:checked="true"
             android:buttonTint="@color/white"
-            android:button="@drawable/checked"
+            android:button="@drawable/unchecked"
             android:layout_marginRight="30dp"
             android:textColor="@color/white"
             android:text="\t휴대폰 번호로 찾기"
@@ -68,9 +67,10 @@
             android:layout_height="wrap_content"/>
 
         <CheckBox
+            android:checked="true"
             android:id="@+id/check_email"
             android:buttonTint="@color/white"
-            android:button="@drawable/unchecked"
+            android:button="@drawable/checked"
             android:textColor="@color/white"
             android:text="\t이메일 주소로 찾기"
             android:layout_width="wrap_content"
@@ -108,7 +108,7 @@
                 android:maxLines="1"
                 android:maxLength="15"
                 android:textColorHint="#75000000"
-                android:hint="휴대폰 번호"
+                android:hint="이메일"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"/>
 
@@ -120,7 +120,7 @@
                 android:textSize="12dp"
                 android:textColor="#0E0E0E"
                 android:layout_alignParentRight="true"
-                android:text="인증번호 발송"
+                android:text="인증 요청"
                 android:layout_width="110dp"
                 android:layout_height="35dp"/>
 

@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 import com.example.ipdda.R;
 import com.example.ipdda.databinding.FragmentFindpwBinding;
+import com.example.ipdda.databinding.FragmentFindpwEmailBinding;
 
 
 public class FindpwFragment extends Fragment {
@@ -25,6 +26,10 @@ public class FindpwFragment extends Fragment {
             activity.changeFragment(2,new FindidFragment());
         });
 
+        binding.checkEmail.setOnClickListener(v -> {
+            FindActivity activity = (FindActivity) getActivity();
+            activity.changeFragment(6, new Findpw_emailFragment());
+        });
 
 
         return binding.getRoot();

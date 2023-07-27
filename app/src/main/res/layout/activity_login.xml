@@ -26,6 +26,7 @@
             android:layout_height="wrap_content"
             app:startIconDrawable="@drawable/user_id"
             app:boxBackgroundColor="@color/white"
+            app:boxStrokeColor="#000"
             app:boxCornerRadiusBottomEnd="10dp"
             app:boxCornerRadiusBottomStart="10dp"
             app:boxCornerRadiusTopEnd="10dp"
@@ -34,7 +35,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edt_id"
-                android:inputType="text"
+                android:inputType="textMultiLine|textNoSuggestions"
                 android:hint="아이디"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -99,20 +100,20 @@
             android:text="아이디 로그인"
             android:layout_marginTop="60dp"
             android:layout_marginBottom="13dp"
-            android:layout_width="200dp"
+            android:layout_width="205dp"
             android:layout_height="48dp"/>
 
         <ImageView
             android:layout_marginBottom="10dp"
             android:layout_gravity="center"
             android:src="@drawable/kakao_login_medium_narrow"
-            android:layout_width="200dp"
+            android:layout_width="205dp"
             android:layout_height="50dp"/>
 
         <com.navercorp.nid.oauth.view.NidOAuthLoginButton
             android:layout_gravity="center"
             android:layout_alignParentRight="true"
-            android:layout_width="200dp"
+            android:layout_width="205dp"
             android:layout_height="50dp"/>
 
 

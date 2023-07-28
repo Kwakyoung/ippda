@@ -22,6 +22,9 @@
             android:name=".profile.ChangeInfoActivity"
             android:exported="false" />
         <activity
+            android:name=".profile.CouponActivity"
+            android:exported="false" />
+        <activity
             android:name=".login.SignUpFirstActivity"
             android:exported="false" />
         <activity

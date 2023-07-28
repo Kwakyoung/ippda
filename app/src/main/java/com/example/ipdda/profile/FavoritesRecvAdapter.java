@@ -9,43 +9,34 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.ipdda.R;
-import com.example.ipdda.databinding.ActivitySubBinding;
-import com.example.ipdda.databinding.ItemGoodsListBinding;
-import com.example.ipdda.databinding.ItemSubBinding;
-import com.example.ipdda.goodslist.GoodsListAdapter;
-import com.example.ipdda.goodslist.GoodsListDTO;
+import com.example.ipdda.databinding.ItemSubRecvBinding;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
-public class BascketAdapter extends RecyclerView.Adapter<BascketAdapter.ViewHolder> {
+public class FavoritesRecvAdapter extends RecyclerView.Adapter<FavoritesRecvAdapter.ViewHolder> {
 
-    ItemSubBinding binding;
+    ItemSubRecvBinding binding;
 
     ArrayList<SubDTO> list;
     String saveDate;
 
     Context context;
-    public BascketAdapter(ArrayList<SubDTO> list, Context context) {
+    public FavoritesRecvAdapter(ArrayList<SubDTO> list, Context context) {
         this.list = list;
         this.context = context;
     }
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public FavoritesRecvAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        binding = ItemSubBinding.inflate(inflater,parent,false);
-        return new BascketAdapter.ViewHolder(binding);
+        binding = ItemSubRecvBinding.inflate(inflater,parent,false);
+        return new FavoritesRecvAdapter.ViewHolder(binding);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull BascketAdapter.ViewHolder h, int i) {
-        h.binding.btnStar.setVisibility(View.GONE);
+    public void onBindViewHolder(@NonNull FavoritesRecvAdapter.ViewHolder h, int i) {
+        h.binding.btnStar.setVisibility(View.VISIBLE);
         h.binding.btnHart.setVisibility(View.GONE);
 
         h.binding.insertDate.setText(list.get(i).getInsertDate());
@@ -63,18 +54,14 @@ public class BascketAdapter extends RecyclerView.Adapter<BascketAdapter.ViewHold
 
         h.binding.imgGoodsList.setImageResource(list.get(i).getImgGoodsList());
         h.binding.goodsName.setText(list.get(i).getGoodsName());
-        h.binding.choiceNum.setText(list.get(i).getChoiceNum());
-        if (list.get(i).getGoodsPrice()>=0){
+        h.binding.goodsCnt.setVisibility(View.GONE);
+        h.binding.choiceNum.setVisibility(View.GONE);
+
+        if (list.get(i).getGoodsPrice()<=0){
             h.binding.goodsPrice.setText("매진");
             h.binding.goodsPrice.setTextColor(Color.parseColor("#FF0000"));
         }else{
-            h.binding.goodsPrice.setText(list.get(i).getGoodsPrice());
-        }
-        if(list.get(i).getGoodsCnt()!=0){
-            h.binding.goodsCnt.setText(list.get(i).getGoodsCnt()+"개 남음");
-        }
-        if(list.get(i).getChoiceNum()!=0){
-            h.binding.goodsCnt.setText("수량 "+list.get(i).getGoodsCnt()+"개");
+            h.binding.goodsPrice.setText(list.get(i).getGoodsPrice()+"원");
         }
 
     }
@@ -88,10 +75,10 @@ public class BascketAdapter extends RecyclerView.Adapter<BascketAdapter.ViewHold
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        ItemSubBinding binding;
+        ItemSubRecvBinding binding;
 
 
-        public ViewHolder(@NonNull ItemSubBinding binding) {
+        public ViewHolder(@NonNull ItemSubRecvBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
         }

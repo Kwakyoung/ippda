@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.example.ipdda.R;
+import com.example.ipdda.databinding.ActivityChangeInfoBinding;
 import com.example.ipdda.databinding.FragmentHomeBinding;
 import com.example.ipdda.databinding.FragmentProfileBinding;
 import com.example.ipdda.home.HomeGoodsRecommendDTO;
@@ -36,7 +37,10 @@ public class ProfileFragment extends Fragment {
         binding.gridvViewed.setAdapter(new ViewedAdepter(ViewedList(),getContext()));
         binding.gridvViewed.setLayoutManager(new LinearLayoutManager(getContext()));
 
-
+        binding.editInfo.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), ChangeInfoActivity.class);
+            startActivity(intent);
+        });
 
 
 

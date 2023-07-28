@@ -20,7 +20,7 @@ public class LikeAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return 10;
+        return 9;
     }
 
     @Override

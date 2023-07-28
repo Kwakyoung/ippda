@@ -113,9 +113,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"/>
 
-            <Button
-                android:layout_marginRight="5dp"
+            <com.google.android.material.button.MaterialButton
                 android:background="@drawable/custom_button"
+                android:layout_marginRight="5dp"
                 android:layout_centerVertical="true"
                 android:backgroundTint="#C8C8C8"
                 android:textSize="12dp"

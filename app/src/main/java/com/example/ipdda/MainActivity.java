@@ -7,7 +7,6 @@ import androidx.fragment.app.FragmentManager;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.example.ipdda.R;
 import com.example.ipdda.databinding.ActivityMainBinding;
 import com.example.ipdda.home.HomeFragment;
 import com.example.ipdda.like.LikeFragment;

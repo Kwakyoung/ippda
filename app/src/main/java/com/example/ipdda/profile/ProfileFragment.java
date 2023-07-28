@@ -9,15 +9,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import com.example.ipdda.R;
-import com.example.ipdda.databinding.FragmentHomeBinding;
 import com.example.ipdda.databinding.FragmentProfileBinding;
 import com.example.ipdda.goodslist.GoodsListDTO;
-import com.example.ipdda.home.HomeGoodsRecommendDTO;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class ProfileFragment extends Fragment {
@@ -53,6 +49,10 @@ public class ProfileFragment extends Fragment {
             startActivity(intent);
         });
 
+        binding.tvCoupon.setOnClickListener(v -> {
+            Intent intent =new Intent(requireContext(), CouponActivity.class);
+            startActivity(intent);
+        });
         return binding.getRoot();
     }
 

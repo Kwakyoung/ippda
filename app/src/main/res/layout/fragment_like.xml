@@ -17,7 +17,7 @@
         <TextView
             android:textSize="25dp"
             android:layout_centerInParent="true"
-            android:text="찜"
+            android:text="좋아요"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <ImageView
@@ -37,6 +37,7 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:layout_marginHorizontal="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 

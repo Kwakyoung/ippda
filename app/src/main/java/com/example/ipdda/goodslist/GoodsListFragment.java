@@ -37,9 +37,8 @@ public class GoodsListFragment extends Fragment {
         binding.recvGoodsList.setLayoutManager(new LinearLayoutManager(getContext()));
 
         binding.imgvLogo.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), GoodsBoardActivity.class);
+            Intent intent = new Intent(getActivity() , GoodsBoardActivity.class);
             startActivity(intent);
-
         });
 
         return binding.getRoot();

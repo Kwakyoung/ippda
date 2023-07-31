@@ -7,7 +7,7 @@
         <item name="android:statusBarColor">#000</item>
         <item name="colorPrimary">#02FEB2</item>
 <!--        <item name="android:elevation">0dp</item>-->
-
+        <item name="android:navigationBarColor">#353535</item>
 
 
 

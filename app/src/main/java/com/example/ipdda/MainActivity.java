@@ -29,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager manager = getSupportFragmentManager();
         manager.beginTransaction().replace(R.id.container, new HomeFragment()).commit();
 
+
+
         binding.bottomNavigation.setOnItemSelectedListener(item -> {
             Fragment fragment = null;
         if(item.getItemId() == R.id.page_1){

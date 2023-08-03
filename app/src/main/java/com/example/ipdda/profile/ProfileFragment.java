@@ -66,7 +66,8 @@ public class ProfileFragment extends Fragment {
             list.add(new RecvCircleDTO(R.drawable.ic_launcher_background,"입금/결제"));
             list.add(new RecvCircleDTO(R.drawable.ic_launcher_background,"배송 준비중"));
             list.add(new RecvCircleDTO(R.drawable.ic_launcher_background,"배송중"));
-            list.add(new RecvCircleDTO(R.drawable.ic_launcher_background, "취소,교환,환불"));
+            list.add(new RecvCircleDTO(R.drawable.ic_launcher_background,"배송완료"));
+            //list.add(new RecvCircleDTO(R.drawable.ic_launcher_background, "취소,교환,환불"));
         return list;
     }
     ArrayList<RecvCircleDTO> getUserAction(){

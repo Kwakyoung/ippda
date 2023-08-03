@@ -1,6 +1,7 @@
 package com.example.ipdda.profile;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -33,6 +34,11 @@ public class TrackDeliveryAdepter extends RecyclerView.Adapter<TrackDeliveryAdep
     @Override
     public void onBindViewHolder(@NonNull TrackDeliveryAdepter.ViewHolder h, int i) {
         h.binding.imgvImg.setImageResource(list.get(i).getImgv_img());
+        h.binding.imgvImg.setOnClickListener(v -> {
+            Intent intent = new Intent(context,TrackDeliveryActivity.class);
+            intent.putExtra("key", i);
+            context.startActivity(intent);
+        });
         h.binding.tvText.setText(list.get(i).getTv_text());
 
     }

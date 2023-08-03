@@ -1,53 +1,41 @@
 package com.example.ipdda.goodslist;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import com.example.ipdda.R;
+import com.example.ipdda.databinding.ActivityGoodsListBinding;
 import com.example.ipdda.databinding.FragmentGoodsListBinding;
-import com.example.ipdda.delivery.DeliveryTopCategoryDTO;
 import com.example.ipdda.goodsboard.GoodsBoardActivity;
 
 import java.util.ArrayList;
 
+public class GoodsListActivity extends AppCompatActivity {
 
-public class GoodsListFragment extends Fragment {
-
-    FragmentGoodsListBinding binding;
+    ActivityGoodsListBinding binding;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        binding = FragmentGoodsListBinding.inflate(inflater, container, false);
-
-        binding.recvMainCategory.setAdapter(new GoodsListMainCategoryAdapter(GetGoodsMainCateogry(),getContext()));
-        binding.recvMainCategory.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL, false));
-
-        binding.recvSubCategory.setAdapter(new GoodsListSubCategoryAdapter(GetGoodsSubCateogry(),getContext()));
-        binding.recvSubCategory.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
-
-        binding.recvGoodsList.setAdapter(new GoodsListAdapter(GetGoodsListCateogry(),getContext()));
-        binding.recvGoodsList.setLayoutManager(new LinearLayoutManager(getContext()));
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        binding = ActivityGoodsListBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
 
+        binding.recvMainCategory.setAdapter(new GoodsListMainCategoryAdapter(GetGoodsMainCateogry(),this));
+        binding.recvMainCategory.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL, false));
+
+        binding.recvSubCategory.setAdapter(new GoodsListSubCategoryAdapter(GetGoodsSubCateogry(),this));
+        binding.recvSubCategory.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
+
+        binding.recvGoodsList.setAdapter(new GoodsListAdapter(GetGoodsListCateogry(),this));
+        binding.recvGoodsList.setLayoutManager(new LinearLayoutManager(this));
 
 
-        binding.imgvLogo.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity() , GoodsBoardActivity.class);
-            startActivity(intent);
-        });
 
-        return binding.getRoot();
     }
-
-
     public ArrayList<GoodsListMainCategoryDTO> GetGoodsMainCateogry(){
         ArrayList<GoodsListMainCategoryDTO> list = new ArrayList<>();
         list.add(new GoodsListMainCategoryDTO("상의"));
@@ -98,5 +86,6 @@ public class GoodsListFragment extends Fragment {
 
         return list;
     }
+
 
 }

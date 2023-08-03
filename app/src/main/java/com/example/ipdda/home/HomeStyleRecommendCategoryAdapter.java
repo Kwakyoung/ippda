@@ -2,7 +2,6 @@ package com.example.ipdda.home;
 
 import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -20,9 +19,12 @@ public class HomeStyleRecommendCategoryAdapter extends RecyclerView.Adapter<Home
 
     Context context;
 
-    public HomeStyleRecommendCategoryAdapter(ArrayList<HomeGoodsRecommendCategoryDTO> list, Context context) {
+    HomeFragment homeFragment;
+
+    public HomeStyleRecommendCategoryAdapter(ArrayList<HomeGoodsRecommendCategoryDTO> list, Context context, HomeFragment homeFragment) {
         this.list = list;
         this.context = context;
+        this.homeFragment = homeFragment;
     }
 
     @NonNull
@@ -37,6 +39,16 @@ public class HomeStyleRecommendCategoryAdapter extends RecyclerView.Adapter<Home
     public void onBindViewHolder(@NonNull HomeStyleRecommendCategoryAdapter.ViewHolder h, int i) {
         h.binding.imgvCategory.setImageResource(list.get(i).getImgv_category());
         h.binding.tvCategory.setText(list.get(i).getTv_category());
+
+        if(i == 0){
+            homeFragment.onClickStyle(list.get(0));
+        }
+
+        h.binding.imgvCategory.setOnClickListener(v -> {
+            homeFragment.onClickStyle(list.get(i));
+
+        });
+
     }
 
     @Override

@@ -1,18 +1,23 @@
 package com.example.ipdda.home;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.ipdda.R;
 import com.example.ipdda.databinding.FragmentHomeBinding;
 import com.example.ipdda.delivery.DeliveryFragment;
+import com.example.ipdda.packaging.PackagingFragment;
+import com.example.ipdda.search.SearchFragment;
 
 
 import java.util.ArrayList;
@@ -26,22 +31,37 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
 
-        binding.recvGoodsRecommendCategory.setAdapter(new HomeGoodsRecommendCategoryAdapter(GetGoodsCategoryList(), getContext()));
+        binding.recvGoodsRecommendCategory.setAdapter(new HomeGoodsRecommendCategoryAdapter(GetGoodsCategoryList(), getContext() , this));
         binding.recvGoodsRecommendCategory.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
 
-        binding.recvGoodsRecommend.setAdapter(new HomeGoodsRecommendAdapter(GetGoodsRecommendList(), getContext()));
-        binding.recvGoodsRecommend.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-
-        binding.recvStyleRecommendCategory.setAdapter(new HomeStyleRecommendCategoryAdapter(GetStyleCategoryList(), getContext()));
+        binding.recvStyleRecommendCategory.setAdapter(new HomeStyleRecommendCategoryAdapter(GetStyleCategoryList(), getContext(), this));
         binding.recvStyleRecommendCategory.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL , false));
 
-        binding.recvStyleRecommend.setAdapter(new HomeStyleRecommendAdapter(GetStyleRecommendList(), getContext()));
-        binding.recvStyleRecommend.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+
+
+
+
+
+        binding.lnSearch.setOnClickListener(v -> {
+            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+            SearchFragment searchFragment = new SearchFragment();
+            transaction.replace(R.id.container , searchFragment);
+            transaction.commit();
+        });
+
 
         binding.imgvDelivery.setOnClickListener(v -> {
             FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
             DeliveryFragment deliveryFragment = new DeliveryFragment();
             transaction.replace(R.id.container , deliveryFragment);
+            transaction.commit();
+
+        });
+
+        binding.imgvPackaging.setOnClickListener(v -> {
+            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+            PackagingFragment packagingFragment = new PackagingFragment();
+            transaction.replace(R.id.container , packagingFragment);
             transaction.commit();
 
         });
@@ -67,17 +87,24 @@ public class HomeFragment extends Fragment {
         return list;
     }
 
-    public ArrayList<HomeGoodsRecommendDTO> GetGoodsRecommendList(){
+    public ArrayList<HomeGoodsRecommendDTO> GetGoodsRecommendList(HomeGoodsRecommendCategoryDTO homeGoodsRecommendCategoryDTO){
         ArrayList<HomeGoodsRecommendDTO> list = new ArrayList<>();
-        list.add(new HomeGoodsRecommendDTO(R.drawable.ic_home, R.drawable.ic_home));
-        list.add(new HomeGoodsRecommendDTO(R.drawable.ic_home, R.drawable.ic_home));
-        list.add(new HomeGoodsRecommendDTO(R.drawable.ic_home, R.drawable.ic_home));
-        list.add(new HomeGoodsRecommendDTO(R.drawable.ic_home, R.drawable.ic_home));
-        list.add(new HomeGoodsRecommendDTO(R.drawable.ic_home, R.drawable.ic_home));
-        list.add(new HomeGoodsRecommendDTO(R.drawable.ic_home, R.drawable.ic_home));
-        list.add(new HomeGoodsRecommendDTO(R.drawable.ic_home, R.drawable.ic_home));
-        list.add(new HomeGoodsRecommendDTO(R.drawable.ic_home, R.drawable.ic_home));
-        list.add(new HomeGoodsRecommendDTO(R.drawable.ic_home, R.drawable.ic_home));
+        if (homeGoodsRecommendCategoryDTO.getTv_category().equals("상의")){
+            list.add(new HomeGoodsRecommendDTO(R.drawable.ic_home, R.drawable.ic_home));
+            list.add(new HomeGoodsRecommendDTO(R.drawable.ic_home, R.drawable.ic_home));
+            list.add(new HomeGoodsRecommendDTO(R.drawable.ic_home, R.drawable.ic_home));
+            list.add(new HomeGoodsRecommendDTO(R.drawable.ic_home, R.drawable.ic_home));
+            list.add(new HomeGoodsRecommendDTO(R.drawable.ic_home, R.drawable.ic_home));
+            list.add(new HomeGoodsRecommendDTO(R.drawable.ic_home, R.drawable.ic_home));
+
+        } else if (homeGoodsRecommendCategoryDTO.getTv_category().equals("아우터")) {
+            list.add(new HomeGoodsRecommendDTO(R.drawable.img_setting, R.drawable.img_setting));
+            list.add(new HomeGoodsRecommendDTO(R.drawable.img_setting, R.drawable.img_setting));
+            list.add(new HomeGoodsRecommendDTO(R.drawable.img_setting, R.drawable.img_setting));
+            list.add(new HomeGoodsRecommendDTO(R.drawable.img_setting, R.drawable.img_setting));
+            list.add(new HomeGoodsRecommendDTO(R.drawable.img_setting, R.drawable.img_setting));
+
+        }
 
         return list;
     }
@@ -99,19 +126,45 @@ public class HomeFragment extends Fragment {
     }
 
 
-    public ArrayList<HomeGoodsRecommendDTO> GetStyleRecommendList(){
+    public ArrayList<HomeGoodsRecommendDTO> GetStyleRecommendList(HomeGoodsRecommendCategoryDTO homeGoodsRecommendCategoryDTO){
         ArrayList<HomeGoodsRecommendDTO> list = new ArrayList<>();
-        list.add(new HomeGoodsRecommendDTO(R.drawable.ic_home, R.drawable.ic_home));
-        list.add(new HomeGoodsRecommendDTO(R.drawable.ic_home, R.drawable.ic_home));
-        list.add(new HomeGoodsRecommendDTO(R.drawable.ic_home, R.drawable.ic_home));
-        list.add(new HomeGoodsRecommendDTO(R.drawable.ic_home, R.drawable.ic_home));
-        list.add(new HomeGoodsRecommendDTO(R.drawable.ic_home, R.drawable.ic_home));
-        list.add(new HomeGoodsRecommendDTO(R.drawable.ic_home, R.drawable.ic_home));
-        list.add(new HomeGoodsRecommendDTO(R.drawable.ic_home, R.drawable.ic_home));
-        list.add(new HomeGoodsRecommendDTO(R.drawable.ic_home, R.drawable.ic_home));
-        list.add(new HomeGoodsRecommendDTO(R.drawable.ic_home, R.drawable.ic_home));
+        if (homeGoodsRecommendCategoryDTO.getTv_category().equals("캐쥬얼")){
+            list.add(new HomeGoodsRecommendDTO(R.drawable.ic_home, R.drawable.ic_home));
+            list.add(new HomeGoodsRecommendDTO(R.drawable.ic_home, R.drawable.ic_home));
+            list.add(new HomeGoodsRecommendDTO(R.drawable.ic_home, R.drawable.ic_home));
+            list.add(new HomeGoodsRecommendDTO(R.drawable.ic_home, R.drawable.ic_home));
+            list.add(new HomeGoodsRecommendDTO(R.drawable.ic_home, R.drawable.ic_home));
+            list.add(new HomeGoodsRecommendDTO(R.drawable.ic_home, R.drawable.ic_home));
+
+        } else if (homeGoodsRecommendCategoryDTO.getTv_category().equals("스트릿")) {
+            list.add(new HomeGoodsRecommendDTO(R.drawable.img_setting, R.drawable.img_setting));
+            list.add(new HomeGoodsRecommendDTO(R.drawable.img_setting, R.drawable.img_setting));
+            list.add(new HomeGoodsRecommendDTO(R.drawable.img_setting, R.drawable.img_setting));
+            list.add(new HomeGoodsRecommendDTO(R.drawable.img_setting, R.drawable.img_setting));
+            list.add(new HomeGoodsRecommendDTO(R.drawable.img_setting, R.drawable.img_setting));
+
+        }
+
 
         return list;
     }
+
+
+
+
+    public void onClickGoods(HomeGoodsRecommendCategoryDTO homeGoodsRecommendCategoryDTO){
+        //조회 로직 넣고 리사이클러뷰 상품부분 내용 다시 조회함.
+        ArrayList<HomeGoodsRecommendDTO> list = GetGoodsRecommendList(homeGoodsRecommendCategoryDTO);
+        binding.recvGoodsRecommend.setAdapter(new HomeGoodsRecommendAdapter(list, getContext()));
+        binding.recvGoodsRecommend.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+    }
+
+    public void onClickStyle(HomeGoodsRecommendCategoryDTO homeGoodsRecommendCategoryDTO){
+        ArrayList<HomeGoodsRecommendDTO> list = GetStyleRecommendList(homeGoodsRecommendCategoryDTO);
+        binding.recvStyleRecommend.setAdapter(new HomeStyleRecommendAdapter(list, getContext()));
+        binding.recvStyleRecommend.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+    }
+
+
 
 }

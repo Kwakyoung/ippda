@@ -2,7 +2,6 @@ package com.example.ipdda.home;
 
 import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -19,6 +18,7 @@ public class HomeGoodsRecommendAdapter extends RecyclerView.Adapter<HomeGoodsRec
     ArrayList<HomeGoodsRecommendDTO> list;
 
     Context context;
+
 
     public HomeGoodsRecommendAdapter(ArrayList<HomeGoodsRecommendDTO> list, Context context) {
         this.list = list;
@@ -37,6 +37,9 @@ public class HomeGoodsRecommendAdapter extends RecyclerView.Adapter<HomeGoodsRec
     public void onBindViewHolder(@NonNull HomeGoodsRecommendAdapter.ViewHolder h, int i) {
         h.binding.imgvGoodsTop.setImageResource(list.get(i).getImgv_goods_top());
         h.binding.imgvGoodsBottom.setImageResource(list.get(i).getImgv_goods_bottom());
+
+
+
     }
 
     @Override

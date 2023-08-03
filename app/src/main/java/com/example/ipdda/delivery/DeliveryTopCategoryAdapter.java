@@ -22,6 +22,8 @@ public class DeliveryTopCategoryAdapter extends RecyclerView.Adapter<DeliveryTop
 
     Context context;
 
+    DeliveryFragment fragment;
+
     public DeliveryTopCategoryAdapter(ArrayList<DeliveryTopCategoryDTO> list, Context context) {
         this.list = list;
         this.context = context;

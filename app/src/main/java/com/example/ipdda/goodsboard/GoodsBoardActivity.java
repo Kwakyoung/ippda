@@ -24,6 +24,10 @@ public class GoodsBoardActivity extends AppCompatActivity {
         binding.recvReview.setAdapter(new GoodsBoardReviewAdapter(GetGoodsBoardReview(),this));
         binding.recvReview.setLayoutManager(new LinearLayoutManager(this));
 
+        binding.imgvBack.setOnClickListener(v -> {
+            finish();
+        });
+
         setContentView(binding.getRoot());
     }
 

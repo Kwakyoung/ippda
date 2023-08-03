@@ -17,7 +17,6 @@ public class HaveCouponAdapter extends RecyclerView.Adapter<HaveCouponAdapter.Vi
     ItemCouponBinding binding;
 
     ArrayList<CouponDTO> list;
-    String saveDate;
 
     Context context;
     public HaveCouponAdapter(ArrayList<CouponDTO> list, Context context) {

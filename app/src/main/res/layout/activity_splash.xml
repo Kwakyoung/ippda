@@ -8,11 +8,13 @@
     tools:context=".SplashActivity"
     android:background="@color/black">
 
-    <ImageView
+    <TextView
+        android:textSize="52dp"
+        android:text="IPPDA"
+        android:fontFamily="@font/truckin"
         android:layout_centerInParent="true"
-        android:src="@drawable/logo"
-        android:layout_width="300dp"
-        android:layout_height="300dp"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
 
 </RelativeLayout>

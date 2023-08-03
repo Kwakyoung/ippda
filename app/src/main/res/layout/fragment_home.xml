@@ -13,14 +13,18 @@
         android:layout_height="wrap_content">
 
         <RelativeLayout
+            android:layout_marginBottom="10dp"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="50dp"
             android:layout_weight="1">
 
-            <ImageView
-                android:layout_width="120dp"
-                android:layout_height="100dp"
-                android:src="@drawable/logo1" />
+            <TextView
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="IPPDA"
+                android:textSize="31dp"
+                android:fontFamily="@font/truckin"/>
 
             <TextView
                 android:layout_marginRight="40dp"

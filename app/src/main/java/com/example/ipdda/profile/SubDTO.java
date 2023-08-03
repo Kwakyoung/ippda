@@ -71,4 +71,12 @@ public class SubDTO {
         this.choiceNum = choiceNum;
         this.insertDate = insertDate;
     }
+    public SubDTO(int imgGoodsList, int goodsPrice, String storeName, String goodsName, int choiceNum, String insertDate) {
+        this.imgGoodsList = imgGoodsList;
+        this.goodsPrice = goodsPrice;
+        this.storeName = storeName;
+        this.goodsName = goodsName;
+        this.choiceNum = choiceNum;
+        this.insertDate = insertDate;
+    }
 }

@@ -39,7 +39,6 @@ public class UsedCouponAdapter extends RecyclerView.Adapter<UsedCouponAdapter.Vi
         binding.couponTitle.setText(list.get(i).getCoupon_title());
         binding.couponDeadlineDate.setTextColor(Color.GREEN);
         binding.couponDeadlineDate.setText("~"+list.get(i).getDeadline_date()+"/ 사용완료");
-
         binding.layout.setOnClickListener(v -> {
 
         });

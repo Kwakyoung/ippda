@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ipdda.databinding.ItemGoodsListBinding;
-import com.example.ipdda.goodslist.GoodsListDTO;
+import com.example.ipdda.home.goodslist.GoodsListDTO;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.example.ipdda.goodslist;
+package com.example.ipdda.home.goodslist;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.ipdda.databinding.ItemDeliveryGoodsCategoryBinding;
 import com.example.ipdda.databinding.ItemGoodsSubCategoryBinding;
 
 import java.util.ArrayList;

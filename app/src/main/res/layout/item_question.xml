@@ -3,12 +3,59 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="horizontal">
+    android:orientation="vertical">
 
     <TextView
+        android:id="@+id/text"
+        android:paddingLeft="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="판매자가 사기를 쳤을때 대처 방법"/>
+        android:text="판매자가 사기를 쳤을때 복수 방법"
+        android:layout_marginBottom="3dp"/>
+    <ImageView
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/white"/>
+<!--    <TextView-->
+<!--        android:paddingLeft="10dp"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="바가지를 씌웠을때 대처 방법"/>-->
+<!--    <ImageView-->
+<!--        android:layout_marginTop="3dp"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="1dp"-->
+<!--        android:background="@color/white"/>-->
+<!--    <TextView-->
+<!--        android:paddingLeft="10dp"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="판매자가 탈북인인 상황에서의 대처방법 알려주세요"/>-->
+<!--    <ImageView-->
+<!--        android:layout_marginTop="3dp"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="1dp"-->
+<!--        android:background="@color/white"/>-->
+<!--    <TextView-->
+<!--        android:paddingLeft="10dp"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="키우는 애완동물이 모르고 구매하기를 눌렀을때는 어떻게 해야하나요?"/>-->
+<!--    <ImageView-->
+<!--        android:layout_marginTop="3dp"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="1dp"-->
+<!--        android:background="@color/white"/>-->
+<!--    <TextView-->
+<!--        android:paddingLeft="10dp"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="구매한 옷이 5년간 도착하지 않았을때는 어떻게 해야하나요?"/>-->
+<!--    <ImageView-->
+<!--        android:layout_marginTop="3dp"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="1dp"/>-->
 
 
 </LinearLayout>

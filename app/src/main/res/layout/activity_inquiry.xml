@@ -27,7 +27,7 @@
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="QnA"
+                android:text="문의하기"
                 android:gravity="left"
                 android:padding="10dp"/>
             <ImageButton

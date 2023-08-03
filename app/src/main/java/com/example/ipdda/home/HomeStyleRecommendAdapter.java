@@ -2,7 +2,6 @@ package com.example.ipdda.home;
 
 import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -10,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ipdda.databinding.ItemHomeRecommendRecvBinding;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class HomeStyleRecommendAdapter extends RecyclerView.Adapter<HomeStyleRecommendAdapter.ViewHolder> {
@@ -37,6 +35,7 @@ public class HomeStyleRecommendAdapter extends RecyclerView.Adapter<HomeStyleRec
     public void onBindViewHolder(@NonNull HomeStyleRecommendAdapter.ViewHolder h, int i) {
         h.binding.imgvGoodsTop.setImageResource(list.get(i).getImgv_goods_top());
         h.binding.imgvGoodsBottom.setImageResource(list.get(i).getImgv_goods_bottom());
+
     }
 
     @Override

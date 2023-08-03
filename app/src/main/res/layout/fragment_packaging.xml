@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".packaging.PackagingFragment">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="100dp">
+
+            <TextView
+                android:id="@+id/tv_delivery"
+                android:textStyle="bold"
+                android:layout_centerVertical="true"
+                android:text="포장"
+                android:textSize="40dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:layout_marginRight="40dp"
+                android:textStyle="bold"
+                android:textSize="16dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="서구 경열로 3" />
+
+            <ImageView
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/ic_alarm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="120dp">
+
+            <ImageView
+                android:background="@color/green"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="광고 or 이벤트"
+                android:textColor="@color/black"
+                android:textSize="50dp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recv_delivery_top_category"
+            android:padding="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"/>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:padding="10dp"
+            android:id="@+id/recv_delivery_goods_category"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="370dp">
+
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recv_delivery_store_category"
+            android:padding="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

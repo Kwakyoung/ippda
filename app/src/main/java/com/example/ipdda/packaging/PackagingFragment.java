@@ -1,37 +1,34 @@
-package com.example.ipdda.delivery;
+package com.example.ipdda.packaging;
 
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.ipdda.R;
-import com.example.ipdda.databinding.FragmentDeliveryBinding;
-import com.example.ipdda.goodslist.GoodsListFragment;
-import com.example.ipdda.home.HomeGoodsRecommendCategoryDTO;
+import com.example.ipdda.databinding.FragmentPackagingBinding;
+import com.example.ipdda.delivery.DeliveryGoodsCategoryAdapter;
+import com.example.ipdda.delivery.DeliveryGoodsCategoryDTO;
+import com.example.ipdda.delivery.DeliveryStoreCategoryAdapter;
+import com.example.ipdda.delivery.DeliveryStoreCategoryDTO;
+import com.example.ipdda.delivery.DeliveryTopCategoryAdapter;
+import com.example.ipdda.delivery.DeliveryTopCategoryDTO;
 
 import java.util.ArrayList;
 
 
-public class DeliveryFragment extends Fragment {
+public class PackagingFragment extends Fragment {
 
-
-
-    FragmentDeliveryBinding binding;
-
-
+    FragmentPackagingBinding binding;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentDeliveryBinding.inflate(inflater, container, false);
+        binding = FragmentPackagingBinding.inflate(inflater, container, false);
 
         binding.recvDeliveryTopCategory.setAdapter(new DeliveryTopCategoryAdapter(GetTopCategoryList(),getContext()));
         binding.recvDeliveryTopCategory.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
@@ -43,12 +40,8 @@ public class DeliveryFragment extends Fragment {
         binding.recvDeliveryStoreCategory.setLayoutManager(new LinearLayoutManager(getContext()));
 
 
-
-
         return binding.getRoot();
     }
-
-
     public ArrayList<DeliveryTopCategoryDTO> GetTopCategoryList(){
         ArrayList<DeliveryTopCategoryDTO> list = new ArrayList<>();
         list.add(new DeliveryTopCategoryDTO(R.drawable.ic_home));
@@ -79,7 +72,5 @@ public class DeliveryFragment extends Fragment {
         list.add(new DeliveryStoreCategoryDTO(R.drawable.ic_home, R.drawable.ic_home, R.drawable.ic_home,3000,20,10,"입다화정점"));
         return list;
     }
-
-
 
 }

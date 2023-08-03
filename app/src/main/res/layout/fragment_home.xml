@@ -67,23 +67,89 @@
         android:layout_height="230dp"
         android:orientation="horizontal">
 
-        <ImageView
-            android:id="@+id/imgv_delivery"
-            android:backgroundTint="@color/green"
-            android:layout_marginRight="10dp"
-            android:layout_weight="1"
-            android:background="@drawable/radius"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"/>
 
-        <ImageView
-            android:id="@+id/imgv_packaging"
-            android:backgroundTint="@color/pink"
-            android:layout_marginLeft="10dp"
-            android:layout_weight="1"
-            android:background="@drawable/radius"
+        <RelativeLayout
             android:layout_width="0dp"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+
+            <ImageView
+                android:id="@+id/imgv_delivery"
+                android:backgroundTint="@color/green"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/radius"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:layout_margin="10dp"
+                android:textStyle="bold"
+                android:textSize="40dp"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="배달"/>
+
+            <TextView
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="2시간 안에 배송을 \n원한다면"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+
+            <ImageView
+                android:id="@+id/imgv_packaging"
+                android:backgroundTint="@color/pink"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/radius"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:textStyle="bold"
+                android:textSize="40dp"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="포장"/>
+
+            <TextView
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="10dp"
+                android:text="1km 이내 매장에서 \n가져가길 원한다면"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+
+        </RelativeLayout>
+
+
+
+
 
     </LinearLayout>
 

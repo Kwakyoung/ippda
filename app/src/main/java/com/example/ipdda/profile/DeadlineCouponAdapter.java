@@ -17,7 +17,6 @@ public class DeadlineCouponAdapter extends RecyclerView.Adapter<DeadlineCouponAd
     ItemCouponBinding binding;
 
     ArrayList<CouponDTO> list;
-    String saveDate;
 
     Context context;
     public DeadlineCouponAdapter(ArrayList<CouponDTO> list, Context context) {

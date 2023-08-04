@@ -44,15 +44,4 @@ public class HomeController {
 	}
 	
 	
-	
-	
-	@Autowired MemberDAO dao;
-	@RequestMapping(value = "/member" , produces = "text/html;charset=utf-8")
-	public String list() {
-		MemberVO vo = dao.list();
-		return new Gson().toJson(vo);
-	}
-	
-	
-	
 }

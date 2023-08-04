@@ -13,9 +13,14 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Base64;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.ipdda.MainActivity;
+import com.example.ipdda.common.CommonConn;
+import com.example.ipdda.common.CommonVar;
 import com.example.ipdda.databinding.ActivityLoginBinding;
+import com.example.ipdda.member.MemberVO;
+import com.google.gson.Gson;
 import com.kakao.sdk.auth.model.OAuthToken;
 import com.kakao.sdk.common.KakaoSdk;
 import com.kakao.sdk.user.UserApi;
@@ -49,8 +54,28 @@ public class LoginActivity extends AppCompatActivity {
 
 
         binding.btnLogin.setOnClickListener(v -> {
-            Intent intent = new Intent(this, MainActivity.class);
+            if(binding.edtId.getText().toString().length() < 1
+                    || binding.edtPw.getText().toString().length() < 1){
+                Toast.makeText(this, "아이디 또는 패스워드를 입력하세요.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
+
+//            CommonConn conn = new CommonConn(this,"member/login");
+//            conn.addParamMap("member_id",binding.edtId.getText().toString());
+//            conn.addParamMap("member_pw",binding.edtPw.getText().toString());
+//            conn.onExcute((isResult, data) -> {
+//                if (isResult) {
+//                    CommonVar.loginInfo = new Gson().fromJson(data, MemberVO.class);
+//                    if (CommonVar.loginInfo == null) {                                       // CommonVar.loginInfo = vo;
+//                        Toast.makeText(this, "아이디 또는 비밀번호를 확인", Toast.LENGTH_SHORT).show();
+//                    } else {
+//
+//                    }
+//                }
+//            });
 
         });
 

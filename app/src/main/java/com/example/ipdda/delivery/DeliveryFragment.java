@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 
 import com.example.ipdda.R;
 import com.example.ipdda.databinding.FragmentDeliveryBinding;
-import com.example.ipdda.home.goodslist.GoodsListFragment;
 import com.example.ipdda.goodslist.GoodsListFragment;
 
 

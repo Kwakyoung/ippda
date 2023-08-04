@@ -1,4 +1,4 @@
-package com.example.ipdda.home.goodslist;
+package com.example.ipdda.goodslist;
 
 import android.content.Context;
 import android.view.LayoutInflater;

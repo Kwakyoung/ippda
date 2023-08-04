@@ -1,4 +1,4 @@
-package com.example.ipdda.home.goodslist;
+package com.example.ipdda.goodslist;
 
 public class GoodsListDTO {
     private int ImgGoodsList1, ImgGoodsList2, GoodsPrice1, GoodsPrice2 ;

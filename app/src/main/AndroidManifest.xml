@@ -15,6 +15,9 @@
         android:theme="@style/Theme.IPDDA"
         tools:targetApi="31">
         <activity
+            android:name=".profile.QNA2Activity"
+            android:exported="false" />
+        <activity
             android:name=".profile.TrackDeliveryActivity"
             android:exported="false" />
         <activity

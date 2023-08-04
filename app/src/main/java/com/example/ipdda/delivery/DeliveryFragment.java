@@ -86,7 +86,6 @@ public class DeliveryFragment extends Fragment {
             transaction.replace(R.id.container , goodsListFragment);
             transaction.commit();
 
-
         } else if (deliveryGoodsCategoryDTO.getCategoryName1().equals("스커트")) {
             FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
             GoodsListFragment goodsListFragment = new GoodsListFragment();

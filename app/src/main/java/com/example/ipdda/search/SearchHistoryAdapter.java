@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.ipdda.databinding.FragmentSearchBinding;
 import com.example.ipdda.databinding.ItemSearchHistoryBinding;
 
 import java.util.ArrayList;

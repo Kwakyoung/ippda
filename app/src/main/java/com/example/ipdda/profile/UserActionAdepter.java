@@ -2,6 +2,7 @@ package com.example.ipdda.profile;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -42,7 +43,7 @@ public class UserActionAdepter  extends RecyclerView.Adapter<UserActionAdepter.V
         });
 
         h.binding.tvText.setText(list.get(i).getTv_text());
-        h.binding.tvText.setTextColor(R.color.black);
+        h.binding.tvText.setTextColor(Color.BLACK);
     }
 
 

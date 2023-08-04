@@ -6,8 +6,11 @@
     android:orientation="horizontal">
 
     <TextView
+        android:gravity="center"
+        android:maxLines="1"
+        android:layout_marginRight="3dp"
+        android:padding="6dp"
         android:id="@+id/tv_history"
-        android:padding="10dp"
         android:background="@drawable/radius"
         android:textColor="@color/black"
         android:text="반팔티"

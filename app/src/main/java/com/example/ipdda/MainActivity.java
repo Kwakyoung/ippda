@@ -35,8 +35,10 @@ public class MainActivity extends AppCompatActivity {
             Fragment fragment = null;
         if(item.getItemId() == R.id.page_1){
             fragment = homeFragment;
+            backPressed=1;
         }else if (item.getItemId() == R.id.page_2) {
             fragment = searchFragment;
+            backPressed=2;
         }else if (item.getItemId() == R.id.page_3) {
             fragment = likeFragment;
         } else if (item.getItemId() == R.id.page_4) {
@@ -56,8 +58,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    int backPressed = 0;
+    public void changeFragment(int backPressed, Fragment fragment){
+        this.backPressed = backPressed;
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
+    }
 
-
+    public void onBackPressed() {
+        if(backPressed==1){
+            changeFragment(0 , homeFragment );
+        }else if (backPressed==2){
+            changeFragment(1 , searchFragment );
+        }else if (backPressed==3) {
+            changeFragment(2 , likeFragment );
+        }else if(backPressed==4){
+            changeFragment(3,profileFragment);
+        }else {
+            finish();
+        }
+    }
 
 
 }

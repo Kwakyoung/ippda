@@ -33,6 +33,7 @@ public class SearchHistoryAdapter extends RecyclerView.Adapter<SearchHistoryAdap
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.binding.tvHistory.setText(list.get(position).getTxt());
+
     }
 
     @Override
@@ -47,6 +48,7 @@ public class SearchHistoryAdapter extends RecyclerView.Adapter<SearchHistoryAdap
         public ViewHolder(@NonNull ItemSearchHistoryBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
+
 
         }
     }

@@ -15,7 +15,7 @@ import android.view.ViewGroup;
 import com.example.ipdda.R;
 import com.example.ipdda.databinding.FragmentDeliveryBinding;
 import com.example.ipdda.goodslist.GoodsListFragment;
-import com.example.ipdda.home.HomeGoodsRecommendCategoryDTO;
+
 
 import java.util.ArrayList;
 
@@ -42,7 +42,12 @@ public class DeliveryFragment extends Fragment {
         binding.recvDeliveryStoreCategory.setAdapter(new DeliveryStoreCategoryAdapter(GetStoreCategoryList(), getContext()));
         binding.recvDeliveryStoreCategory.setLayoutManager(new LinearLayoutManager(getContext()));
 
-
+        binding.tvDelivery.setOnClickListener(v -> {
+            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+            GoodsListFragment goodsListFragment = new GoodsListFragment();
+            transaction.replace(R.id.container , goodsListFragment);
+            transaction.commit();
+        });
 
 
         return binding.getRoot();
@@ -64,8 +69,8 @@ public class DeliveryFragment extends Fragment {
     public ArrayList<DeliveryGoodsCategoryDTO> GetGoodsCategoryList(){
         ArrayList<DeliveryGoodsCategoryDTO> list = new ArrayList<>();
         list.add(new DeliveryGoodsCategoryDTO(R.drawable.ic_home, R.drawable.ic_home , R.drawable.ic_home, R.drawable.ic_home , "상의" , "아우터", "하의", "원피스"));
-        list.add(new DeliveryGoodsCategoryDTO(R.drawable.ic_home, R.drawable.ic_home , R.drawable.ic_home, R.drawable.ic_home , "상의" , "아우터", "하의", "원피스"));
-        list.add(new DeliveryGoodsCategoryDTO(R.drawable.ic_home, R.drawable.ic_home , R.drawable.ic_home, R.drawable.ic_home , "상의" , "아우터", "하의", ""));
+        list.add(new DeliveryGoodsCategoryDTO(R.drawable.ic_home, R.drawable.ic_home , R.drawable.ic_home, R.drawable.ic_home , "스커트" , "신발", "가방", "악세사리"));
+        list.add(new DeliveryGoodsCategoryDTO(R.drawable.ic_home, R.drawable.ic_home , R.drawable.ic_home, R.drawable.ic_home , "양말" , "시계", "", ""));
         return list;
     }
 

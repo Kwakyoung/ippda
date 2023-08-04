@@ -1,17 +1,24 @@
 package com.example.ipdda.home;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.ipdda.R;
 import com.example.ipdda.databinding.ItemHomeCategoryRecvBinding;
 
 import java.util.ArrayList;
 
 public class HomeStyleRecommendCategoryAdapter extends RecyclerView.Adapter<HomeStyleRecommendCategoryAdapter.ViewHolder> {
+
+    TextView lastClickedMenu;
 
     ItemHomeCategoryRecvBinding binding;
 
@@ -46,8 +53,10 @@ public class HomeStyleRecommendCategoryAdapter extends RecyclerView.Adapter<Home
 
         h.binding.imgvCategory.setOnClickListener(v -> {
             homeFragment.onClickStyle(list.get(i));
-
+            changeTextColor(h.binding.tvCategory);
         });
+
+
 
     }
 
@@ -65,6 +74,15 @@ public class HomeStyleRecommendCategoryAdapter extends RecyclerView.Adapter<Home
             this.binding = binding;
         }
     }
-
+    public void changeTextColor(View view) {
+        if (lastClickedMenu != null) {
+            lastClickedMenu.setTextColor(Color.WHITE);
+            lastClickedMenu.setTextSize(14);
+        }
+        TextView textView = (TextView) view;
+        textView.setTextSize(18);
+        textView.setTextColor(Color.rgb(2,254,178));
+        lastClickedMenu = textView;
+    }
 
 }

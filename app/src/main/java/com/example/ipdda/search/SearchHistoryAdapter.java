@@ -32,8 +32,7 @@ public class SearchHistoryAdapter extends RecyclerView.Adapter<SearchHistoryAdap
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.binding.tvHistory.setText(list.get(position).getTxt());
-
+        holder.binding.tvHistory.setText(list.get(position).getTxt().trim());
     }
 
     @Override

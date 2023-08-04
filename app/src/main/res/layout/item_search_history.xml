@@ -3,17 +3,17 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:layout_marginRight="5dp">
 
     <TextView
         android:gravity="center"
         android:maxLines="1"
-        android:layout_marginRight="3dp"
-        android:padding="6dp"
+        android:padding="10dp"
         android:id="@+id/tv_history"
         android:background="@drawable/radius"
         android:textColor="@color/black"
-        android:text="반팔티"
+        android:text="이렇게하면 깔끔한데말이죠"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 

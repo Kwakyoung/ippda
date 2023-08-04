@@ -3,10 +3,8 @@ package com.example.ipdda.delivery;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,8 +12,7 @@ import android.view.ViewGroup;
 
 import com.example.ipdda.R;
 import com.example.ipdda.databinding.FragmentDeliveryBinding;
-import com.example.ipdda.goodslist.GoodsListFragment;
-import com.example.ipdda.home.HomeGoodsRecommendCategoryDTO;
+import com.example.ipdda.home.goodslist.GoodsListFragment;
 
 import java.util.ArrayList;
 

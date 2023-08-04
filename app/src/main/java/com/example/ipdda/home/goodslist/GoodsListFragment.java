@@ -1,4 +1,4 @@
-package com.example.ipdda.goodslist;
+package com.example.ipdda.home.goodslist;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 
 import com.example.ipdda.R;
 import com.example.ipdda.databinding.FragmentGoodsListBinding;
-import com.example.ipdda.delivery.DeliveryTopCategoryDTO;
 import com.example.ipdda.goodsboard.GoodsBoardActivity;
 
 import java.util.ArrayList;

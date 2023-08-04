@@ -1,4 +1,4 @@
-package com.example.ipdda.goodslist;
+package com.example.ipdda.home.goodslist;
 
 public class GoodsListSubCategoryDTO {
     private String GoodsSubCategory;

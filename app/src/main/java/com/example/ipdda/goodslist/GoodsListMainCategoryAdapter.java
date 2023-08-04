@@ -1,8 +1,13 @@
 package com.example.ipdda.goodslist;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,15 +19,21 @@ import java.util.ArrayList;
 
 public class GoodsListMainCategoryAdapter extends RecyclerView.Adapter<GoodsListMainCategoryAdapter.ViewHolder> {
 
+
+    TextView lastClickedMenu;
+
     ItemGoodsMainCategoryBinding binding;
 
     ArrayList<GoodsListMainCategoryDTO> list;
 
     Context context;
 
-    public GoodsListMainCategoryAdapter(ArrayList<GoodsListMainCategoryDTO> list, Context context) {
+    GoodsListFragment goodsListFragment;
+
+    public GoodsListMainCategoryAdapter(ArrayList<GoodsListMainCategoryDTO> list, Context context, GoodsListFragment goodsListFragment) {
         this.list = list;
         this.context = context;
+        this.goodsListFragment = goodsListFragment;
     }
 
 
@@ -37,6 +48,17 @@ public class GoodsListMainCategoryAdapter extends RecyclerView.Adapter<GoodsList
     @Override
     public void onBindViewHolder(@NonNull GoodsListMainCategoryAdapter.ViewHolder h, int i) {
         h.binding.tvGoodsMainCategory.setText(list.get(i).getGoodsMainCategory());
+
+            if(i == 0){
+                goodsListFragment.onClickGoodsList(list.get(0));
+            }
+
+        h.binding.tvGoodsMainCategory.setOnClickListener(v -> {
+            changeTextColor(h.binding.tvGoodsMainCategory);
+            goodsListFragment.onClickGoodsList(list.get(i));
+
+        });
+
     }
 
     @Override
@@ -56,4 +78,17 @@ public class GoodsListMainCategoryAdapter extends RecyclerView.Adapter<GoodsList
         }
 
     }
+
+    public void changeTextColor(View view) {
+        if (lastClickedMenu != null) {
+            lastClickedMenu.setTextColor(Color.WHITE);
+            lastClickedMenu.setTextSize(18);
+        }
+        TextView textView = (TextView) view;
+        textView.setTextSize(20);
+        textView.setTextColor(Color.rgb(2,254,178));
+        lastClickedMenu = textView;
+    }
+
+
 }

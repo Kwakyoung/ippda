@@ -14,6 +14,8 @@ import java.util.ArrayList;
 
 public class GoodsListAdapter extends RecyclerView.Adapter<GoodsListAdapter.ViewHolder> {
 
+    int key;
+
     ItemGoodsListBinding binding;
 
     ArrayList<GoodsListDTO> list;
@@ -63,6 +65,7 @@ public class GoodsListAdapter extends RecyclerView.Adapter<GoodsListAdapter.View
             this.binding = binding;
         }
     }
+
 
 
 }

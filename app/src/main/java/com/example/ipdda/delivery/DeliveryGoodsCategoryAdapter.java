@@ -2,6 +2,7 @@ package com.example.ipdda.delivery;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,7 +24,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class DeliveryGoodsCategoryAdapter extends RecyclerView.Adapter<DeliveryGoodsCategoryAdapter.ViewHolder>{
-
+    Bundle bundle;
 
     ItemDeliveryGoodsCategoryBinding binding;
 
@@ -31,10 +32,12 @@ public class DeliveryGoodsCategoryAdapter extends RecyclerView.Adapter<DeliveryG
 
     Context context;
 
+    DeliveryFragment deliveryFragment;
 
-    public DeliveryGoodsCategoryAdapter(ArrayList<DeliveryGoodsCategoryDTO> list, Context context) {
+    public DeliveryGoodsCategoryAdapter(ArrayList<DeliveryGoodsCategoryDTO> list, Context context, DeliveryFragment deliveryFragment) {
         this.list = list;
         this.context = context;
+        this.deliveryFragment = deliveryFragment;
     }
 
     @NonNull
@@ -57,6 +60,13 @@ public class DeliveryGoodsCategoryAdapter extends RecyclerView.Adapter<DeliveryG
         h.binding.tvGoodsCategory2.setText(list.get(i).getCategoryName2());
         h.binding.tvGoodsCategory3.setText(list.get(i).getCategoryName3());
         h.binding.tvGoodsCategory4.setText(list.get(i).getCategoryName4());
+
+        h.binding.imgvGoodsCategory1.setOnClickListener(v -> {
+            deliveryFragment.onClickCategory(list.get(i));
+
+
+
+        });
 
 
 

@@ -39,9 +39,6 @@ public class HomeFragment extends Fragment {
 
 
 
-
-
-
         binding.lnSearch.setOnClickListener(v -> {
             FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
             SearchFragment searchFragment = new SearchFragment();

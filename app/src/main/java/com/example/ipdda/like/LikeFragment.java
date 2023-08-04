@@ -19,9 +19,8 @@ public class LikeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentLikeBinding.inflate(inflater,container,false);
-
         binding.grid.setAdapter(new LikeAdapter(inflater));
-
         return binding.getRoot();
+
     }
 }

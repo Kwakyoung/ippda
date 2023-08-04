@@ -153,7 +153,6 @@ public class HomeFragment extends Fragment {
 
 
     public void onClickGoods(HomeGoodsRecommendCategoryDTO homeGoodsRecommendCategoryDTO){
-        //조회 로직 넣고 리사이클러뷰 상품부분 내용 다시 조회함.
         ArrayList<HomeGoodsRecommendDTO> list = GetGoodsRecommendList(homeGoodsRecommendCategoryDTO);
         binding.recvGoodsRecommend.setAdapter(new HomeGoodsRecommendAdapter(list, getContext()));
         binding.recvGoodsRecommend.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));

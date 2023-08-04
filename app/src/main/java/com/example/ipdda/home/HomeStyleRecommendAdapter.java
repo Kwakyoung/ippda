@@ -1,17 +1,24 @@
 package com.example.ipdda.home;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ipdda.databinding.ItemHomeRecommendRecvBinding;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 public class HomeStyleRecommendAdapter extends RecyclerView.Adapter<HomeStyleRecommendAdapter.ViewHolder> {
+
+
     ItemHomeRecommendRecvBinding binding;
 
     ArrayList<HomeGoodsRecommendDTO> list;
@@ -52,5 +59,7 @@ public class HomeStyleRecommendAdapter extends RecyclerView.Adapter<HomeStyleRec
             this.binding = binding;
         }
     }
+
+
 
 }

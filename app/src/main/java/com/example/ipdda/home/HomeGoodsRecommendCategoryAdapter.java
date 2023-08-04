@@ -76,15 +76,17 @@ public class HomeGoodsRecommendCategoryAdapter extends RecyclerView.Adapter<Home
         }
     
 }
-
     public void changeTextColor(View view) {
         if (lastClickedMenu != null) {
             lastClickedMenu.setTextColor(Color.WHITE);
+            lastClickedMenu.setTextSize(14);
         }
         TextView textView = (TextView) view;
-        textView.setTextColor(Color.GREEN);
+        textView.setTextSize(18);
+        textView.setTextColor(Color.rgb(2,254,178));
         lastClickedMenu = textView;
     }
+
 
 
 }

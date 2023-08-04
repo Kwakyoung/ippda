@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView
+    android:id="@+id/ln_container"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -31,6 +32,16 @@
                 android:layout_height="wrap_content"/>
 
             <ImageView
+                android:id="@+id/imgv_home"
+                android:src="@drawable/ic_home"
+                android:layout_marginRight="90dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_width="40dp"
+                android:layout_height="40dp" />
+
+            <ImageView
+                android:id="@+id/imgv_search"
                 android:src="@drawable/ic_search_40"
                 android:layout_marginRight="45dp"
                 android:layout_centerVertical="true"
@@ -39,6 +50,7 @@
                 android:layout_height="wrap_content" />
 
             <ImageView
+                android:id="@+id/imgv_mybag"
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
                 android:src="@drawable/ic_bag"

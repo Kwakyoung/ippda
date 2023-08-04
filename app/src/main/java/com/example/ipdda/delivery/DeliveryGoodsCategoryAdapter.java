@@ -10,10 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ipdda.databinding.ItemDeliveryGoodsCategoryBinding;
-import com.example.ipdda.databinding.ItemDeliveryStoreCategoryBinding;
-import com.example.ipdda.goodsboard.GoodsBoardActivity;
-import com.example.ipdda.goodslist.GoodsListActivity;
-import com.example.ipdda.goodslist.GoodsListFragment;
+
 
 import java.util.ArrayList;
 
@@ -47,11 +44,6 @@ public class DeliveryGoodsCategoryAdapter extends RecyclerView.Adapter<DeliveryG
         h.binding.imgvGoodsCategory3.setImageResource(list.get(i).getImgRes3());
         h.binding.imgvGoodsCategory4.setImageResource(list.get(i).getImgRes4());
 
-
-        h.binding.imgvGoodsCategory1.setOnClickListener(v -> {
-            Intent intent = new Intent(context , GoodsListActivity.class);
-            context.startActivity(intent);
-        });
 
         h.binding.tvGoodsCategory1.setText(list.get(i).getCategoryName1());
         h.binding.tvGoodsCategory2.setText(list.get(i).getCategoryName2());

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#00000000"
+    android:gravity="center"
+    android:orientation="vertical">
+<androidx.cardview.widget.CardView
+    android:id="@+id/cv"
+    app:contentPadding="1dp"
+    app:strokeWidth="1dp"
+    app:strokeColor="@color/white"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="20dp"
+   >
+<androidx.cardview.widget.CardView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="20dp">
+
+    <LinearLayout
+        android:background="#000000"
+        android:layout_width="344dp"
+        android:layout_height="446dp"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="QnA 작성"
+            android:textSize="20dp"
+            android:layout_marginBottom="15dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="제   목 : " />
+            <EditText
+                android:id="@+id/title"
+                android:gravity="center|left"
+                android:layout_width="match_parent"
+                android:layout_height="37dp"
+                android:hint="제목 작성"
+                android:maxLength="21"
+                android:textColorHint="#838383"
+                android:textColor="@color/white"
+                android:textSize="14dp"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="작성자 : " />
+            <EditText
+                android:id="@+id/edt_writer"
+                android:gravity="center|left"
+                android:layout_width="match_parent"
+                android:layout_height="37dp"
+                android:hint="작성자"
+                android:textColorHint="#838383"
+                android:textSize="14dp"
+                android:focusableInTouchMode="false"
+                android:background="@null"/>
+
+        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="텍스트 : " />
+        <EditText
+            android:maxLength="350"
+            android:id="@+id/edt_text"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            android:textColorHint="#838383"
+            android:textColor="@color/white"
+            android:textSize="13dp"
+            android:hint="글 작성"
+            android:gravity="top"
+            android:background="@null"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <Button
+                android:id="@+id/btn_cancle"
+                android:layout_width="100dp"
+                android:layout_height="39dp"
+                android:text="작성 취소"
+                android:textSize="15dp"
+                android:backgroundTint="@color/pink"
+                android:layout_marginRight="80dp"
+                />
+            <Button
+                android:id="@+id/btn_complete"
+                android:layout_width="100dp"
+                android:layout_height="39dp"
+                android:text="작성 완료"
+                android:textSize="15dp"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+</androidx.cardview.widget.CardView>
+</LinearLayout>

@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="320dp"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".login.SignUpActivity"
-    android:layout_gravity="center"
-    android:orientation="vertical">
+   >
 
-
+    <LinearLayout
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -54,7 +57,7 @@
                 android:inputType="textMultiLine|textNoSuggestions"
                 android:background="@drawable/radius"
                 android:maxLines="1"
-                android:maxLength="6"
+                android:maxLength="30"
                 android:textColorHint="#75000000"
                 android:hint="사용할 아이디 입력"
                 android:layout_width="match_parent"
@@ -143,7 +146,7 @@
             android:inputType="textMultiLine|textNoSuggestions"
             android:background="@drawable/radius"
             android:maxLines="1"
-            android:maxLength="20"
+            android:maxLength="50"
             android:textColorHint="#75000000"
             android:hint="이메일"
             android:layout_width="match_parent"
@@ -182,5 +185,7 @@
     </LinearLayout>
 
 
+    </LinearLayout>
 
-</LinearLayout>
+
+</FrameLayout>

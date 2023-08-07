@@ -7,10 +7,17 @@ import android.widget.BaseAdapter;
 
 import com.example.ipdda.R;
 
+import java.util.ArrayList;
+
 public class LikeAdapter extends BaseAdapter {
 
 
     LayoutInflater inflater;
+    ArrayList<LikeDTO> list ;
+
+    public LikeAdapter(ArrayList<LikeDTO> list) {
+        this.list = list;
+    }
 
     public LikeAdapter(LayoutInflater inflater) {
         this.inflater = inflater;
@@ -20,7 +27,7 @@ public class LikeAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return 9;
+        return list.size();
     }
 
     @Override

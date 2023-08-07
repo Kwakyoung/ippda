@@ -177,13 +177,7 @@
             android:layout_width="270dp"
             android:layout_height="40dp"/>
 
-        <ImageView
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-            android:src="@drawable/arrow_down_black"
-            android:paddingRight="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+
     </RelativeLayout>
 
     <View
@@ -221,14 +215,6 @@
             android:text="성별 입력"
             android:layout_width="270dp"
             android:layout_height="40dp"/>
-
-        <ImageView
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-            android:src="@drawable/arrow_down_black"
-            android:paddingRight="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
     </RelativeLayout>
 
     <View

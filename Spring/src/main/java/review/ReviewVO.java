@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class ReviewVO {
 	private int review_no, order_no, member_no, goods_no, store_no;
-	private Stringreview_context, review_star;
+	private String review_context, review_star;
 	private Date insert_date, update_date;
 	public int getReview_no() {
 		return review_no;

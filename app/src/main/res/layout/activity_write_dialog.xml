@@ -102,8 +102,9 @@
             android:orientation="horizontal"
             android:gravity="center">
             <Button
+                android:layout_weight="1"
                 android:id="@+id/btn_cancle"
-                android:layout_width="100dp"
+                android:layout_width="0dp"
                 android:layout_height="39dp"
                 android:text="작성 취소"
                 android:textSize="15dp"
@@ -111,8 +112,9 @@
                 android:layout_marginRight="80dp"
                 />
             <Button
+                android:layout_weight="1"
                 android:id="@+id/btn_complete"
-                android:layout_width="100dp"
+                android:layout_width="0dp"
                 android:layout_height="39dp"
                 android:text="작성 완료"
                 android:textSize="15dp"/>

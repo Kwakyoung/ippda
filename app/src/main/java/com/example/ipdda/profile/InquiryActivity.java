@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import com.example.ipdda.R;
 import com.example.ipdda.databinding.ActivityInquiryBinding;
 
 public class InquiryActivity extends AppCompatActivity {

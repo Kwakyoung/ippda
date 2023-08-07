@@ -8,9 +8,7 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.Toast;
 
-import com.example.ipdda.R;
 import com.example.ipdda.databinding.ActivityChangeInfoBinding;
-import com.example.ipdda.login.SignUpActivity;
 
 import java.util.Calendar;
 

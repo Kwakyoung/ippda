@@ -9,8 +9,6 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Base64;
 import android.util.Log;
 import android.widget.Toast;
@@ -23,7 +21,6 @@ import com.example.ipdda.member.MemberVO;
 import com.google.gson.Gson;
 import com.kakao.sdk.auth.model.OAuthToken;
 import com.kakao.sdk.common.KakaoSdk;
-import com.kakao.sdk.user.UserApi;
 import com.kakao.sdk.user.UserApiClient;
 
 import java.security.MessageDigest;
@@ -52,7 +49,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-
         binding.btnLogin.setOnClickListener(v -> {
             if(binding.edtId.getText().toString().length() < 1
                     || binding.edtPw.getText().toString().length() < 1){
@@ -60,22 +56,21 @@ public class LoginActivity extends AppCompatActivity {
                 return;
             }
 
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-            startActivity(intent);
 
-//            CommonConn conn = new CommonConn(this,"member/login");
-//            conn.addParamMap("member_id",binding.edtId.getText().toString());
-//            conn.addParamMap("member_pw",binding.edtPw.getText().toString());
-//            conn.onExcute((isResult, data) -> {
-//                if (isResult) {
-//                    CommonVar.loginInfo = new Gson().fromJson(data, MemberVO.class);
-//                    if (CommonVar.loginInfo == null) {                                       // CommonVar.loginInfo = vo;
-//                        Toast.makeText(this, "아이디 또는 비밀번호를 확인", Toast.LENGTH_SHORT).show();
-//                    } else {
-//
-//                    }
-//                }
-//            });
+            CommonConn conn = new CommonConn(this,"member/login");
+            conn.addParamMap("member_id",binding.edtId.getText().toString());
+            conn.addParamMap("member_pw",binding.edtPw.getText().toString());
+            conn.onExcute(((isResult, data) -> {
+                if (isResult) {
+                    CommonVar.loginInfo = new Gson().fromJson(data, MemberVO.class);
+                    if (CommonVar.loginInfo == null) {                                       // CommonVar.loginInfo = vo;
+                        Toast.makeText(this, "아이디 또는 비밀번호를 확인", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        startActivity(intent);
+                    }
+                }
+            }));
 
         });
 

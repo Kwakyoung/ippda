@@ -1,8 +1,6 @@
 package com.example.ipdda.profile;
 
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +8,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.ipdda.databinding.ItemCircleBinding;
 import com.example.ipdda.databinding.ItemSubRecvBinding;
 
 import java.util.ArrayList;

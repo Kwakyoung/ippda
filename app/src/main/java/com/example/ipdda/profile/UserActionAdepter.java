@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.ipdda.R;
 import com.example.ipdda.databinding.ItemCircleBinding;
 
 import java.util.ArrayList;

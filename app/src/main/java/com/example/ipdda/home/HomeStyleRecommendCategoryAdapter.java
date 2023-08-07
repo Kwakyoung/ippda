@@ -1,7 +1,6 @@
 package com.example.ipdda.home;
 
 import android.content.Context;
-import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +10,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.ipdda.R;
 import com.example.ipdda.databinding.ItemHomeCategoryRecvBinding;
 
 import java.util.ArrayList;

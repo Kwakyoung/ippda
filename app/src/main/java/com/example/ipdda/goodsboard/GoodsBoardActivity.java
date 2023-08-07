@@ -5,7 +5,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.os.Bundle;
 
-import com.airbnb.lottie.L;
 import com.example.ipdda.R;
 import com.example.ipdda.databinding.ActivityGoodsBoardBinding;
 

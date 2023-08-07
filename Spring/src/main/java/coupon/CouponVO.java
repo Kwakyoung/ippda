@@ -4,10 +4,8 @@ import java.sql.Date;
 
 public class CouponVO {
 	private int coupon_no, member_no, admin_no;
-	private String coupon_title, coupon_context;
+	private String coupon_title, coupon_context,discount_amount, coupon_status;
 	private Date deadline_date;
-	
-	
 	public int getCoupon_no() {
 		return coupon_no;
 	}
@@ -38,12 +36,25 @@ public class CouponVO {
 	public void setCoupon_context(String coupon_context) {
 		this.coupon_context = coupon_context;
 	}
+	public String getDiscount_amount() {
+		return discount_amount;
+	}
+	public void setDiscount_amount(String discount_amount) {
+		this.discount_amount = discount_amount;
+	}
+	public String getCoupon_status() {
+		return coupon_status;
+	}
+	public void setCoupon_status(String coupon_status) {
+		this.coupon_status = coupon_status;
+	}
 	public Date getDeadline_date() {
 		return deadline_date;
 	}
 	public void setDeadline_date(Date deadline_date) {
 		this.deadline_date = deadline_date;
 	}
+	
 	
 	
 }

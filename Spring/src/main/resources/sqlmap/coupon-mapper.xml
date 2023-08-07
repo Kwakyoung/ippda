@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="coupon">
+<select id="load" resultType="coupon.CouponVO">
+	SELECT *
+	FROM COUPON
+	WHERE MEMBER_NO = #{member_no}		
+	AND COUPON_STATUS = #{coupon_status}
+</select>
+
+<update id="register" >
+	UPDATE COUPON
+	SET COUPON_STATUS = '보유' , MEMBER_NO = #{member_no}
+	WHERE COUPON_NO = #{coupon_no} AND COUPON_STATUS = '미보유'
+</update>
+
+
+
+
+</mapper>

@@ -1,8 +1,6 @@
 package com.example.ipdda.delivery;
 
 import android.content.Context;
-import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 

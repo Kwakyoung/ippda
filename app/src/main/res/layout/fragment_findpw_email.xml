@@ -171,6 +171,7 @@
 
 
         <Button
+            android:id="@+id/btn_next"
             android:layout_marginTop="20dp"
             android:background="@drawable/button_radius"
             android:layout_gravity="center"

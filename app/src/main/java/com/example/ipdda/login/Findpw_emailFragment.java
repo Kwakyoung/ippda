@@ -1,5 +1,6 @@
 package com.example.ipdda.login;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -8,8 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.ipdda.R;
-import com.example.ipdda.databinding.FragmentFindidEmailBinding;
 import com.example.ipdda.databinding.FragmentFindpwEmailBinding;
 
 
@@ -30,6 +29,11 @@ public class Findpw_emailFragment extends Fragment {
         binding.tvFindId.setOnClickListener(v -> {
             activity = (FindActivity) getActivity();
             activity.changeFragment(2, new FindidFragment());
+        });
+
+        binding.btnNext.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), ResultPwActivity.class);
+            startActivity(intent);
         });
         return binding.getRoot();
     }

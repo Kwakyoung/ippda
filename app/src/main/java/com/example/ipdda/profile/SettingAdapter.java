@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.ipdda.databinding.ItemCouponBinding;
 import com.example.ipdda.databinding.ItemSettingRecvBinding;
 
 import java.util.ArrayList;

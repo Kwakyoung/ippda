@@ -1,7 +1,5 @@
 package com.example.ipdda.profile;
 
-import java.util.Date;
-
 public class SubDTO {
     private int imgGoodsList,goodsCnt,goodsPrice,choiceNum;
     private String storeName,goodsName,insertDate;

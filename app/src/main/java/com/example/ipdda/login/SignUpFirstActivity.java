@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.ipdda.R;
 import com.example.ipdda.databinding.ActivitySignUpFirstBinding;
 
 public class SignUpFirstActivity extends AppCompatActivity {

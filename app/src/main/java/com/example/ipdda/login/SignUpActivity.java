@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.Toast;
 
-import com.example.ipdda.R;
 import com.example.ipdda.databinding.ActivitySignUpBinding;
 
 import java.util.Calendar;

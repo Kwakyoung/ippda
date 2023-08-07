@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.ipdda.R;
 import com.example.ipdda.databinding.FragmentResultBinding;
 
 public class ResultFragment extends Fragment {

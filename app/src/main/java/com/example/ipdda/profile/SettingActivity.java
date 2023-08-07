@@ -5,7 +5,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.os.Bundle;
 
-import com.example.ipdda.R;
 import com.example.ipdda.databinding.ActivitySettingBinding;
 
 import java.util.ArrayList;

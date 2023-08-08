@@ -6,5 +6,36 @@
 		select 1 from dual
 	</select>
 
+	<insert id="insert">
+		INSERT INTO goods (
+		GOODS_NO,
+		STORE_NO,
+		GOODS_NAME,
+		GOODS_PRICE,
+		GOODS_SALE_PRICE,
+		GOODS_SALE_PERCENT,
+		GOODS_INFO,
+		GOODS_GENDER,
+		GOODS_STATUS
+		)
+		VALUES (
+		SEQ_GOODS_NO.nextval,
+		#{STORE_NO},
+		#{GOODS_NAME},
+		#{GOODS_PRICE},
+		#{GOODS_SALE_PRICE},
+		#{GOODS_SALE_PERCENT},
+		#{GOODS_INFO},
+		#{GOODS_GENDER},
+		#{GOODS_STATUS}
+		)
+	</insert>
+	
+	<select id="list" resultType="goods.GoodsVO">
+	select G.* , S.STORE_NAME
+	from GOODS G
+	INNER JOIN STORE S
+	ON G.STORE_NO = S.STORE_NO
+	</select>
 
 </mapper>

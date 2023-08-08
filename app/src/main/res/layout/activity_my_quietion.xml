@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".profile.MyQuietionActivity"
+    android:padding="10dp"
+    android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="20dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="IPPDA"
+                android:textSize="36dp"
+                android:padding="10dp"
+                android:fontFamily="@font/truckin"/>
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="내 질문"
+                android:gravity="left"
+                android:padding="10dp"/>
+            <ImageButton
+                android:id="@+id/btn_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_close"
+                android:layout_gravity="center"
+                android:layout_marginRight="10dp"
+                />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="제   목 : "/>
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="더보기"
+                android:textSize="18dp"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="작성자 : "/>
+            <TextView
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="더보기"
+                android:textSize="14dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="작성일 : "/>
+            <TextView
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="0000-00-00"
+                android:textSize="13dp"/>
+        </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="450dp"
+        android:layout_marginLeft="10dp"
+        android:text="게시판 특성을 살릴수 있도록
+
+(공유글 게시판)에
+
+
+
+읽기어려운 작은
+
+글씨체나 장문의 글등
+
+일목요연하게
+
+정리되지 않은글 등등
+
+
+
+삼가해 달라고 공지를
+
+올렸는데도
+
+몇몇회원님께서
+
+꼭 여기에 글
+
+올리시는데요.
+
+
+
+요즘 바뿐 현대인들은
+
+휴대폰에서 주로
+
+잠깐씩 글을 접하게
+
+되는 경우가 많습니다.
+
+
+
+그래서 말씀 드리는데요
+
+장문의 글은 끝까지
+
+읽지도 않을뿐더러
+
+미리 기피에 버리는
+
+경우가 허다 합니다
+
+
+
+회원님들께
+
+피로도만 가중될뿐
+
+전혀 도움이 안된답니다
+
+
+
+간단 명료 한 글
+
+읽기쉬운 글씨체
+
+SNS에서
+
+서로주고 받고
+
+공감,공유할수 있는
+
+
+
+일상 생활에서
+
+교훈이 될만한
+
+현실적인 글 위주로
+
+올려주시길 부탁
+
+(당부)드립니다
+
+
+
+게시판 특성을
+
+살릴수 있도록
+
+꼭(협조) 바랍니다.
+
+
+
+더 궁금한
+
+사항은 공지 게시판
+
+참고해 주세요
+
+
+
+- 운영진 일동 -게시판 특성을 살릴수 있도록
+
+(공유글 게시판)에
+
+
+
+읽기어려운 작은
+
+글씨체나 장문의 글등
+
+일목요연하게
+
+정리되지 않은글 등등
+
+
+
+삼가해 달라고 공지를
+
+올렸는데도
+
+몇몇회원님께서
+
+꼭 여기에 글
+
+올리시는데요.
+
+
+
+요즘 바뿐 현대인들은
+
+휴대폰에서 주로
+
+잠깐씩 글을 접하게
+
+되는 경우가 많습니다.
+
+
+
+그래서 말씀 드리는데요
+
+장문의 글은 끝까지
+
+읽지도 않을뿐더러
+
+미리 기피에 버리는
+
+경우가 허다 합니다
+
+
+
+회원님들께
+
+피로도만 가중될뿐
+
+전혀 도움이 안된답니다
+
+
+
+간단 명료 한 글
+
+읽기쉬운 글씨체
+
+SNS에서
+
+서로주고 받고
+
+공감,공유할수 있는
+
+
+
+일상 생활에서
+
+교훈이 될만한
+
+현실적인 글 위주로
+
+올려주시길 부탁
+
+(당부)드립니다
+
+
+
+게시판 특성을
+
+살릴수 있도록
+
+꼭(협조) 바랍니다.
+
+
+
+더 궁금한
+
+사항은 공지 게시판
+
+참고해 주세요
+
+
+
+- 운영진 일동 -" />
+
+
+</LinearLayout>

@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import com.example.ipdda.R;
 import com.example.ipdda.databinding.FragmentProfileBinding;
 import com.example.ipdda.goodslist.GoodsListDTO;
+import com.example.ipdda.profile.coupon.CouponActivity;
 
 import java.util.ArrayList;
 

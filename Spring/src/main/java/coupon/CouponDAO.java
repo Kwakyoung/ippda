@@ -20,9 +20,9 @@ public class CouponDAO {
 		List< CouponVO > vo = sql.selectList("coupon.load", params);
 		return vo;
 	}
-	public CouponVO register(HashMap<String, String> params) {
-		CouponVO vo = sql.selectOne("coupon.register", params);
-		return vo;
+	public int register(HashMap<String, String> params) {
+		int result = sql.update("coupon.register", params);
+		return result;
 	}
 
 	

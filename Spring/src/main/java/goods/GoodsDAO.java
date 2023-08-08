@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class GoodsDAO {
-	@Autowired @Qualifier("test") SqlSession sql;
+	@Autowired @Qualifier("ippda") SqlSession sql;
 	
 	public void insert(GoodsVO vo) {
 		int  result = sql.insert("customer.insert" , vo);

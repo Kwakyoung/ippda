@@ -37,7 +37,7 @@ import goods.GoodsVO;
 @RestController
 public class HomeController {
 	
-	@Autowired @Qualifier("test") SqlSession sql;
+	@Autowired @Qualifier("ippda") SqlSession sql;
 	
 	
 	@Autowired GoodsDAO dao ;

@@ -16,6 +16,8 @@ import java.util.ArrayList;
 
 public class HomeStyleRecommendCategoryAdapter extends RecyclerView.Adapter<HomeStyleRecommendCategoryAdapter.ViewHolder> {
 
+
+    Boolean connCheck = true;
     TextView lastClickedMenu;
 
     ItemHomeCategoryRecvBinding binding;
@@ -45,19 +47,32 @@ public class HomeStyleRecommendCategoryAdapter extends RecyclerView.Adapter<Home
         h.binding.imgvCategory.setImageResource(list.get(i).getImgv_category());
         h.binding.tvCategory.setText(list.get(i).getTv_category());
 
-        if(i == 0){
-            homeFragment.onClickStyle(list.get(0));
+
+        if(connCheck == true){
+            if(i == 0){
+                homeFragment.GetStyleRecommendList(list.get(0));
+                changeTextColor(h.binding.tvCategory);
+            }
         }
 
+
         h.binding.imgvCategory.setOnClickListener(v -> {
-            homeFragment.onClickStyle(list.get(i));
+            homeFragment.GetStyleRecommendList(list.get(i));
             changeTextColor(h.binding.tvCategory);
         });
-
-
+        connCheck = false;
 
     }
 
+
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position;
+    }
     @Override
     public int getItemCount() {
         return list.size();

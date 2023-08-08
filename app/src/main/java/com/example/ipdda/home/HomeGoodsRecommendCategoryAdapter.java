@@ -3,7 +3,6 @@ package com.example.ipdda.home;
 import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
@@ -18,7 +17,8 @@ import java.util.ArrayList;
 public class HomeGoodsRecommendCategoryAdapter extends RecyclerView.Adapter<HomeGoodsRecommendCategoryAdapter.ViewHolder> {
 
         private TextView lastClickedMenu;
-        ItemHomeCategoryRecvBinding binding;
+
+        Boolean connCheck = true;
 
         ArrayList<HomeGoodsRecommendCategoryDTO> list;
 
@@ -35,29 +35,39 @@ public class HomeGoodsRecommendCategoryAdapter extends RecyclerView.Adapter<Home
     @Override
     public HomeGoodsRecommendCategoryAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater= LayoutInflater.from(parent.getContext());
-        binding = ItemHomeCategoryRecvBinding.inflate(inflater,parent,false);
+        ItemHomeCategoryRecvBinding binding = ItemHomeCategoryRecvBinding.inflate(inflater,parent,false);
         return new ViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull HomeGoodsRecommendCategoryAdapter.ViewHolder h, int i) {
+
+            if(connCheck == true){
+                if(i == 0){
+                    homeFragment.GetGoodsRecommendList(list.get(0));
+                    changeTextColor(h.binding.tvCategory);
+                }
+            }
+
             h.binding.imgvCategory.setImageResource(list.get(i).getImgv_category());
             h.binding.tvCategory.setText(list.get(i).getTv_category());
 
-
-
-
-        if(i == 0) {
-                homeFragment.onClickGoods(list.get(0));
-            }
-
             h.binding.imgvCategory.setOnClickListener(v -> {
-                homeFragment.onClickGoods(list.get(i));
                 homeFragment.GetGoodsRecommendList(list.get(i));
                 changeTextColor(h.binding.tvCategory);
             });
+        connCheck = false;
+    }
 
 
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position;
     }
 
     @Override
@@ -74,16 +84,18 @@ public class HomeGoodsRecommendCategoryAdapter extends RecyclerView.Adapter<Home
         }
     
 }
-    public void changeTextColor(View view) {
+
+
+    public void changeTextColor(TextView view) {
         if (lastClickedMenu != null) {
             lastClickedMenu.setTextColor(Color.WHITE);
             lastClickedMenu.setTextSize(14);
         }
-        TextView textView = (TextView) view;
-        textView.setTextSize(18);
-        textView.setTextColor(Color.rgb(2,254,178));
-        lastClickedMenu = textView;
+        view.setTextSize(18);
+        view.setTextColor(Color.rgb(2,254,178));
+        lastClickedMenu = view;
     }
+
 
 
 

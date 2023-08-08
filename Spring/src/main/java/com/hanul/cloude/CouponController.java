@@ -1,6 +1,7 @@
 package com.hanul.cloude;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class CouponController {
 		HashMap<String, String> params = new HashMap<String, String>();
 		params.put("member_no", member_no);
 		params.put("coupon_status", coupon_status);
-		CouponVO vo = dao.load(params);
+		List<CouponVO> vo = dao.load(params);
 		return new Gson().toJson(vo);
 	}
 	@RequestMapping(value = "/register", produces = "text/html;charset=utf-8")

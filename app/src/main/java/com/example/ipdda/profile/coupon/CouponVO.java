@@ -1,8 +1,20 @@
-package com.example.ipdda.profile;
+package com.example.ipdda.profile.coupon;
 
-public class CouponDTO {
-    private int coupon_no,member_no,admin_no,coupon_img;
-    private String coupon_title,coupon_context,deadline_date;
+public class CouponVO {
+    private int coupon_no,member_no,admin_no,coupon_img,discount_amount;
+    private String coupon_title,coupon_context,deadline_date,coupon_status;
+
+    public CouponVO(int coupon_no, int member_no, int admin_no, int coupon_img, int discount_amount, String coupon_title, String coupon_context, String deadline_date, String coupon_status) {
+        this.coupon_no = coupon_no;
+        this.member_no = member_no;
+        this.admin_no = admin_no;
+        this.coupon_img = coupon_img;
+        this.discount_amount = discount_amount;
+        this.coupon_title = coupon_title;
+        this.coupon_context = coupon_context;
+        this.deadline_date = deadline_date;
+        this.coupon_status = coupon_status;
+    }
 
     public int getCoupon_no() {
         return coupon_no;
@@ -36,6 +48,14 @@ public class CouponDTO {
         this.coupon_img = coupon_img;
     }
 
+    public int getDiscount_amount() {
+        return discount_amount;
+    }
+
+    public void setDiscount_amount(int discount_amount) {
+        this.discount_amount = discount_amount;
+    }
+
     public String getCoupon_title() {
         return coupon_title;
     }
@@ -60,13 +80,11 @@ public class CouponDTO {
         this.deadline_date = deadline_date;
     }
 
-    public CouponDTO(int coupon_no, int member_no, int admin_no, int coupon_img, String coupon_title, String coupon_context, String deadline_date) {
-        this.coupon_no = coupon_no;
-        this.member_no = member_no;
-        this.admin_no = admin_no;
-        this.coupon_img = coupon_img;
-        this.coupon_title = coupon_title;
-        this.coupon_context = coupon_context;
-        this.deadline_date = deadline_date;
+    public String getCoupon_status() {
+        return coupon_status;
+    }
+
+    public void setCoupon_status(String coupon_status) {
+        this.coupon_status = coupon_status;
     }
 }

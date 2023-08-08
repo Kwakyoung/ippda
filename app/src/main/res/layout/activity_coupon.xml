@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".profile.CouponActivity"
+    tools:context=".profile.coupon.CouponActivity"
     android:orientation="vertical"
     android:padding="10dp">
     <RelativeLayout
@@ -71,6 +71,7 @@
             android:textColor="#777777"/>
     </LinearLayout>
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/coupon_register"
         android:layout_gravity="right"
         android:layout_margin="5dp"
         app:cornerRadius="20dp"

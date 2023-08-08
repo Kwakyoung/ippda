@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class SettingActivity extends AppCompatActivity {
     ActivitySettingBinding binding;
 
-    @Override
+    @Override   
     protected void onCreate(Bundle savedInstanceState) {
         binding = ActivitySettingBinding.inflate(getLayoutInflater());
         super.onCreate(savedInstanceState);
@@ -31,6 +31,7 @@ public class SettingActivity extends AppCompatActivity {
         list.add(new SettingDTO("개인정보 제공 내용",false));
         list.add(new SettingDTO("팝업 알림 설정",true));
         list.add(new SettingDTO("SMS서비스 설정",true));
+        list.add(new SettingDTO("로그아웃",false));
         list.add(new SettingDTO("탈퇴하기",false));
 
         return list;

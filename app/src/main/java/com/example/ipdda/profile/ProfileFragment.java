@@ -80,9 +80,7 @@ public class ProfileFragment extends Fragment {
 
     ArrayList<GoodsListDTO> GoodsList(){
         ArrayList<GoodsListDTO> list = new ArrayList<>();
-        list.add(new GoodsListDTO(R.drawable.ic_home, R.drawable.ic_home, 49000,50000, "입다 화정점", "입다 맨투맨", "입다 농성점", "입다 니트"));
-        list.add(new GoodsListDTO(R.drawable.ic_home, R.drawable.ic_home, 49000,50000, "입다 화정점", "입다 맨투맨", "입다 농성점", "입다 니트"));
-        list.add(new GoodsListDTO(R.drawable.ic_home, R.drawable.ic_home, 49000,50000, "입다 화정점", "입다 맨투맨", "입다 농성점", "입다 니트"));
+
         return list;
     }
 }

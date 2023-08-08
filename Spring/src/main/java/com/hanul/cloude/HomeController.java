@@ -1,10 +1,13 @@
 package com.hanul.cloude;
 
 import java.io.FileInputStream;
+import java.lang.reflect.Array;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,19 +31,32 @@ import com.google.firebase.messaging.Message;
 import com.google.firebase.messaging.Notification;
 import com.google.gson.Gson;
 
-import member.MemberDAO;
-import member.MemberVO;
+import goods.GoodsDAO;
+import goods.GoodsVO;
 
 @RestController
 public class HomeController {
 	
-	@Autowired @Qualifier("ippda") SqlSession sql;
+	@Autowired @Qualifier("test") SqlSession sql;
 	
+	
+	@Autowired GoodsDAO dao ;
 	@RequestMapping("/test")
 	public String test() {
 		int test = sql.selectOne("customer.mapper.test");
 		System.out.println(test);
 		return new Gson().toJson(test);
+	}
+	
+	@RequestMapping("/insert")
+	public void insert(GoodsVO vo) {
+		dao.insert(vo);
+	}
+	
+	@RequestMapping(value = "/list" , produces = "text/html;charset=utf-8")
+	public String list() {
+		List<GoodsVO> list = sql.selectList("customer.mapper.list");
+		 return new Gson().toJson(list);
 	}
 	
 	

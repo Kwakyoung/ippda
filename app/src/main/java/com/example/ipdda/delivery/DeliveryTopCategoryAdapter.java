@@ -19,7 +19,6 @@ public class DeliveryTopCategoryAdapter extends RecyclerView.Adapter<DeliveryTop
 
     Context context;
 
-    DeliveryFragment fragment;
 
     public DeliveryTopCategoryAdapter(ArrayList<DeliveryTopCategoryDTO> list, Context context) {
         this.list = list;
@@ -43,6 +42,7 @@ public class DeliveryTopCategoryAdapter extends RecyclerView.Adapter<DeliveryTop
 
     @Override
     public int getItemCount() {
+
         return list.size();
     }
 

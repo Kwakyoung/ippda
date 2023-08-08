@@ -42,5 +42,6 @@ public class LikeFragment extends Fragment {
 
 
         return binding.getRoot();
+
     }
 }

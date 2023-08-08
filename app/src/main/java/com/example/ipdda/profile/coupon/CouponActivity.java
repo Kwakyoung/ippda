@@ -150,7 +150,7 @@ public class CouponActivity extends AppCompatActivity {
                 conn.addParamMap("coupon_no", dialogBinding.couponNo.getText().toString());
                 conn.onExcute((isResult, data) -> {
                     Log.d("CommonConn", "isResult: " + isResult + ", data: " + data);
-                    if (isResult) {
+                    if (Integer.parseInt(data) >= 1) {
                         Toast.makeText(this, "쿠폰 등록이 완료되었습니다.", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(this, "쿠폰 등록에 실패하였습니다. 다시 입력해주세요.", Toast.LENGTH_SHORT).show();

@@ -35,8 +35,8 @@ public class CouponController {
 	    params.put("member_no", member_no);
 	    params.put("coupon_no", coupon_no);
 	    params.put("coupon_status", coupon_status); // Add this line to include coupon_status parameter
-	    CouponVO vo = dao.register(params);
-	    return new Gson().toJson(vo);
+	    int result = dao.register(params);
+	    return new Gson().toJson(result);
 	}
 
 }

@@ -54,7 +54,7 @@ public class CommonConn {
         onPreExcute();
         this.callBack = callBack;
         RetrofitInterface api = new RetrofitClient().getRetrofit().create(RetrofitInterface.class);
-        api.clientPostMethod(mapping , parammap).enqueue(new Callback<String>() {
+        api.PostMethod(mapping , parammap).enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
                 Log.d(TAG, "onResponse . onResponse: " + response.body());

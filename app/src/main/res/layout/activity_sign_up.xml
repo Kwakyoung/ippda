@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="320dp"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".login.SignUpActivity"
-    android:layout_gravity="center"
-    android:orientation="vertical">
+   >
 
+    <LinearLayout
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center|top">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -44,23 +48,30 @@
         android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
         <RelativeLayout
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="20dp"
             android:layout_width="320dp"
             android:layout_height="wrap_content">
 
             <EditText
+                android:id="@+id/member_id"
                 android:paddingLeft="10dp"
                 android:inputType="textMultiLine|textNoSuggestions"
                 android:background="@drawable/radius"
                 android:maxLines="1"
-                android:maxLength="6"
+                android:maxLength="30"
                 android:textColorHint="#75000000"
                 android:hint="사용할 아이디 입력"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"/>
 
             <Button
+                android:id="@+id/btn_id_check"
                 android:layout_marginRight="5dp"
                 android:gravity="center"
                 android:background="@drawable/custom_button"
@@ -73,9 +84,9 @@
                 android:layout_width="110dp"
                 android:layout_height="35dp"/>
         </RelativeLayout>
-
+        </LinearLayout>
         <EditText
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="20dp"
             android:paddingLeft="10dp"
             android:inputType="textMultiLine|textNoSuggestions"
             android:background="@drawable/radius"
@@ -88,7 +99,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="75dp"
+            android:layout_height="60dp"
             android:orientation="vertical">
         <EditText
             android:id="@+id/edt_pw"
@@ -114,7 +125,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="75dp"
+            android:layout_height="60dp"
             android:orientation="vertical">
         <EditText
             android:id="@+id/edt_pw_check"
@@ -143,35 +154,62 @@
             android:inputType="textMultiLine|textNoSuggestions"
             android:background="@drawable/radius"
             android:maxLines="1"
-            android:maxLength="20"
+            android:maxLength="50"
             android:textColorHint="#75000000"
             android:hint="이메일"
             android:layout_width="match_parent"
             android:layout_height="40dp"/>
 
 
-        <TextView
-            android:paddingLeft="3dp"
-            android:layout_marginBottom="3dp"
-            android:text="생년월일 입력(선택사항)"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
 
-        <TextView
-            android:id="@+id/tv_birth_date"
-            android:layout_marginBottom="30dp"
-            android:gravity="center_vertical"
-            android:textColor="#75000000"
-            android:text="생년월일 입력"
-            android:textSize="18dp"
-            android:paddingLeft="10dp"
-            android:background="@drawable/radius"
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            />
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
+            <RadioGroup
+                android:gravity="center"
+                android:layout_weight="5"
+                android:background="@drawable/radius"
+                android:id="@+id/radio_gender"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:orientation="horizontal">
+                <RadioButton
+                    android:id="@+id/check_man"
+                    android:layout_marginRight="20dp"
+
+                    android:text="남"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <RadioButton
+                    android:id="@+id/check_woman"
+
+                    android:text="여"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </RadioGroup>
+            <View
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="40dp"/>
+            <TextView
+                android:layout_weight="5"
+                android:id="@+id/tv_birth_date"
+                android:gravity="center_vertical"
+                android:textColor="#75000000"
+                android:text="생년월일 입력"
+                android:textSize="18dp"
+                android:paddingLeft="10dp"
+                android:background="@drawable/radius"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                />
+        </LinearLayout>
 
         <Button
+            android:layout_marginTop="30dp"
             android:id="@+id/btn_signup"
             android:layout_gravity="center"
             android:background="@drawable/button_radius"
@@ -182,5 +220,7 @@
     </LinearLayout>
 
 
+    </LinearLayout>
 
-</LinearLayout>
+
+</FrameLayout>

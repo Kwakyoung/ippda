@@ -9,6 +9,7 @@ import android.view.View;
 import com.example.ipdda.R;
 import com.example.ipdda.databinding.ActivitySubBinding;
 import com.example.ipdda.like.LikeAdapter;
+import com.example.ipdda.like.LikeDTO;
 
 import java.util.ArrayList;
 
@@ -41,7 +42,7 @@ public class SubActivity extends AppCompatActivity {
                 binding.recv.setVisibility(View.GONE);
                 binding.gridv.setVisibility(View.VISIBLE);
 
-                binding.gridv.setAdapter(new LikeAdapter(getLayoutInflater()));
+                binding.gridv.setAdapter(new LikeAdapter(getLayoutInflater(),getLikeList()));
             }
 
             binding.tvSee.setOnClickListener(v -> {
@@ -74,7 +75,7 @@ public class SubActivity extends AppCompatActivity {
             }else{
                 binding.recv.setVisibility(View.GONE);
                 binding.gridv.setVisibility(View.VISIBLE);
-                binding.gridv.setAdapter(new LikeAdapter(getLayoutInflater()));
+                binding.gridv.setAdapter(new LikeAdapter(getLayoutInflater(),getLikeList()));
             }
             binding.tvSee.setOnClickListener(v -> {
                 toglerecv = !toglerecv; // 클릭할 때마다 상태를 토글 (보이기 <-> 숨기기)
@@ -105,7 +106,7 @@ public class SubActivity extends AppCompatActivity {
             }else{
                 binding.recv.setVisibility(View.GONE);
                 binding.gridv.setVisibility(View.VISIBLE);
-                binding.gridv.setAdapter(new LikeAdapter(getLayoutInflater()));
+                binding.gridv.setAdapter(new LikeAdapter(getLayoutInflater(),getLikeList()));
             }
             binding.tvSee.setOnClickListener(v -> {
                 toglerecv = !toglerecv; // 클릭할 때마다 상태를 토글 (보이기 <-> 숨기기)
@@ -144,5 +145,10 @@ public class SubActivity extends AppCompatActivity {
         return list;
     }
 
+    ArrayList<LikeDTO> getLikeList(){
+        ArrayList<LikeDTO> list = new ArrayList<>();
+        list.add(new LikeDTO(R.drawable.clothes_top,R.drawable.ic_like_green,"화정점","16,000원"));
+        return list;
+    }
 
 }

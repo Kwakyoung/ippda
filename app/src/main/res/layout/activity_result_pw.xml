@@ -64,16 +64,20 @@
                 android:layout_width="0dp"
                 android:layout_height="50dp"/>
 
-            <EditText
+            <TextView
                 android:background="@null"
                 android:gravity="center"
-                android:textColor="#000"
-                android:hint="아이디치는 곳 입니다"
+                android:textColor="#010101"
+                android:hint="아이디 적혀있음"
                 android:layout_weight="3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -90,9 +94,12 @@
                 android:layout_height="50dp"/>
 
             <EditText
+                android:inputType="textPassword"
+                android:id="@+id/edt_pw"
                 android:background="@null"
                 android:gravity="center"
-                android:textColor="#000"
+                android:maxLines="1"
+                android:maxLength="16"
                 android:hint="비밀번호"
                 android:layout_weight="3"
                 android:layout_width="0dp"
@@ -100,7 +107,7 @@
         </LinearLayout>
 
         <TextView
-            android:layout_marginBottom="15dp"
+            android:visibility="gone"
             android:paddingLeft="10dp"
             android:id="@+id/feedback"
             android:textColor="#F44336"
@@ -108,7 +115,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />
+        </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -125,9 +137,12 @@
                 android:layout_height="50dp"/>
 
             <EditText
+                android:inputType="textPassword"
+                android:id="@+id/edt_pw_check"
                 android:background="@null"
                 android:gravity="center"
-                android:textColor="#000"
+                android:maxLines="1"
+                android:maxLength="16"
                 android:hint="새비밀번호 치는곳 입니다"
                 android:layout_weight="3"
                 android:layout_width="0dp"
@@ -135,13 +150,14 @@
         </LinearLayout>
 
         <TextView
+            android:visibility="gone"
             android:paddingLeft="10dp"
             android:id="@+id/feedback2"
             android:textColor="#4CAF50"
             android:text="비밀번호와 일치합니다."
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
-
+        </LinearLayout>
 
         <Button
             android:id="@+id/btn_activitylogin"
@@ -149,7 +165,6 @@
             android:background="@drawable/button_radius"
             android:textColor="#0E0E0E"
             android:text="로그인 하러가기"
-            android:layout_marginTop="20dp"
             android:layout_width="320dp"
             android:layout_height="50dp"/>
 

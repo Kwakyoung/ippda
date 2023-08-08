@@ -1,5 +1,6 @@
 package com.example.ipdda.search;
 
+import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -14,11 +15,14 @@ import com.example.ipdda.R;
 import com.example.ipdda.databinding.FragmentSearchBinding;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 
 public class SearchFragment extends Fragment {
     FragmentSearchBinding binding;
     ArrayList<SearchHistoryDTO> list ;
+
+    private SimpleDateFormat mFormat = new SimpleDateFormat("MM.dd");
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -31,6 +35,15 @@ public class SearchFragment extends Fragment {
         binding.recvSearchCategory.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
         list = getlist();
         binding.grid.setAdapter(new SearchHotAdapter(getLayoutInflater()));
+
+        binding.tvHistoryDelete.setOnClickListener(v -> {
+            binding.recvSearchHistory.clearOnScrollListeners();
+        });
+
+        Date date = new Date();
+        String date1 = mFormat.format(date);
+        binding.date.setText(date1);
+
 
         binding.edtSearch.setOnKeyListener(new View.OnKeyListener() {
             @Override

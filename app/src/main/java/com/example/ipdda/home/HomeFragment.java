@@ -23,6 +23,7 @@ public class HomeFragment extends Fragment {
 
     FragmentHomeBinding binding;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -68,6 +69,8 @@ public class HomeFragment extends Fragment {
 
         return binding.getRoot();
     }
+
+
 
     public ArrayList<HomeGoodsRecommendCategoryDTO> GetGoodsCategoryList(){
         ArrayList<HomeGoodsRecommendCategoryDTO> list = new ArrayList<>();

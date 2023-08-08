@@ -40,6 +40,8 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         FragmentManager manager = getSupportFragmentManager();
 
+
+
         KakaoSdk.init(this,"82a7553c2a37ccca54dd1db8c4809c71");
 
         UserApiClient.getInstance().unlink(new Function1<Throwable, Unit>() {
@@ -94,6 +96,25 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    private long backKeyPressedTime = 0;
+    @Override
+    public void onBackPressed() {
+        if (System.currentTimeMillis() > backKeyPressedTime + 2000) {
+            backKeyPressedTime = System.currentTimeMillis();
+            Toast.makeText(this, "\'뒤로\' 버튼을 한번 더 누르시면 종료됩니다.", Toast.LENGTH_SHORT).show();
+
+            return;
+        }
+
+        // 2초 이내에 뒤로가기 버튼을 한번 더 클릭시 finish()(앱 종료)
+        if (System.currentTimeMillis() <= backKeyPressedTime + 2000) {
+            //finish();
+            finishAffinity();
+            System.runFinalization();
+            System.exit(0);
+        }
+
+    }
 
 
     public void kakaoLogin(Context context){

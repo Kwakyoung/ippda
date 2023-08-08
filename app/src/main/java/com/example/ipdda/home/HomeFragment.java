@@ -26,7 +26,7 @@ public class HomeFragment extends Fragment {
 
     FragmentHomeBinding binding;
 
-    TextView lastClickedMenu;
+  //  TextView lastClickedMenu;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

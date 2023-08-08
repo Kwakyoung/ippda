@@ -9,13 +9,17 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.example.ipdda.R;
 import com.example.ipdda.databinding.ActivitySignUpBinding;
 import com.example.ipdda.databinding.DialogCalBinding;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -24,6 +28,7 @@ public class SignUpActivity extends AppCompatActivity {
     ActivitySignUpBinding binding;
 //    DatePickerDialog datePickerDialog;
     DialogCalBinding calBinding;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,6 +112,13 @@ public class SignUpActivity extends AppCompatActivity {
 //                datePickerDialog.show();
 //            }
 //        });
+
+        // 남, 여 선택
+        RadioGroup radioGender = findViewById(R.id.radio_gender);
+
+
+
+
 
 
             binding.edtPw.addTextChangedListener(new TextWatcher() {

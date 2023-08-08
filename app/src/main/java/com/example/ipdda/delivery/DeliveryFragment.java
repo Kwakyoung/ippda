@@ -9,12 +9,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.ipdda.R;
 import com.example.ipdda.databinding.FragmentDeliveryBinding;
-import com.example.ipdda.goodslist.GoodsListAdapter;
 import com.example.ipdda.goodslist.GoodsListFragment;
-import com.example.ipdda.goodslist.GoodsListMainCategoryAdapter;
 
 
 import java.util.ArrayList;
@@ -23,8 +22,10 @@ import java.util.ArrayList;
 public class DeliveryFragment extends Fragment {
 
 
-    GoodsListMainCategoryAdapter goodsListMainCategoryAdapter;
+
     FragmentDeliveryBinding binding;
+
+
 
 
 
@@ -41,7 +42,6 @@ public class DeliveryFragment extends Fragment {
 
         binding.recvDeliveryStoreCategory.setAdapter(new DeliveryStoreCategoryAdapter(GetStoreCategoryList(), getContext()));
         binding.recvDeliveryStoreCategory.setLayoutManager(new LinearLayoutManager(getContext()));
-
 
         return binding.getRoot();
     }
@@ -63,7 +63,7 @@ public class DeliveryFragment extends Fragment {
         ArrayList<DeliveryGoodsCategoryDTO> list = new ArrayList<>();
         list.add(new DeliveryGoodsCategoryDTO(R.drawable.ic_home, R.drawable.ic_home , R.drawable.ic_home, R.drawable.ic_home , "상의" , "아우터", "하의", "원피스"));
         list.add(new DeliveryGoodsCategoryDTO(R.drawable.ic_home, R.drawable.ic_home , R.drawable.ic_home, R.drawable.ic_home , "스커트" , "신발", "가방", "악세사리"));
-        list.add(new DeliveryGoodsCategoryDTO(R.drawable.ic_home, R.drawable.ic_home , R.drawable.ic_home, R.drawable.ic_home , "양말" , "시계", "", ""));
+        list.add(new DeliveryGoodsCategoryDTO(R.drawable.ic_home, R.drawable.ic_home , R.drawable.ic_home, R.drawable.ic_home , "양말" , "시계", "모자", ""));
         return list;
     }
 
@@ -78,22 +78,45 @@ public class DeliveryFragment extends Fragment {
         return list;
     }
 
-    public void onClickCategory(DeliveryGoodsCategoryDTO deliveryGoodsCategoryDTO){
 
-        if(deliveryGoodsCategoryDTO.getCategoryName1().equals("상의")){
-            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-            GoodsListFragment goodsListFragment = new GoodsListFragment();
-            transaction.replace(R.id.container , goodsListFragment);
-            transaction.commit();
 
-        } else if (deliveryGoodsCategoryDTO.getCategoryName1().equals("스커트")) {
-            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-            GoodsListFragment goodsListFragment = new GoodsListFragment();
-            transaction.replace(R.id.container , goodsListFragment);
-            transaction.commit();
+
+    public void onClickCategory(String deliveryGoodsCategoryDTO){
+        if(deliveryGoodsCategoryDTO.equals("상의")){
+            selectedFragment(1);
+        } else if (deliveryGoodsCategoryDTO.equals("아우터")) {
+            selectedFragment(2);
+        } else if (deliveryGoodsCategoryDTO.equals("하의")) {
+            selectedFragment(3);
+        }else if (deliveryGoodsCategoryDTO.equals("원피스")) {
+            selectedFragment(4);
+        }else if (deliveryGoodsCategoryDTO.equals("스커트")) {
+            selectedFragment(5);
+        }else if (deliveryGoodsCategoryDTO.equals("신발")) {
+            selectedFragment(6);
+        } else if (deliveryGoodsCategoryDTO.equals("가방")) {
+            selectedFragment(7);
+        }else if (deliveryGoodsCategoryDTO.equals("악세사리")) {
+            selectedFragment(8);
+        }else if (deliveryGoodsCategoryDTO.equals("양말")) {
+            selectedFragment(9);
+        }else if (deliveryGoodsCategoryDTO.equals("시계")) {
+            selectedFragment(10);
+        }else if (deliveryGoodsCategoryDTO.equals("모자")) {
+            selectedFragment(11);
+
         }
+
     }
 
+
+
+    public void selectedFragment(int i){
+        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+        GoodsListFragment goodsListFragment = new GoodsListFragment(i);
+        transaction.replace(R.id.container, goodsListFragment);
+        transaction.commit();
+    }
 
 
 }

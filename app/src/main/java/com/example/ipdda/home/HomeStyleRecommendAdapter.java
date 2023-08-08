@@ -21,11 +21,11 @@ public class HomeStyleRecommendAdapter extends RecyclerView.Adapter<HomeStyleRec
 
     ItemHomeRecommendRecvBinding binding;
 
-    ArrayList<HomeGoodsRecommendDTO> list;
+    ArrayList<GoodsVO> list;
 
     Context context;
 
-    public HomeStyleRecommendAdapter(ArrayList<HomeGoodsRecommendDTO> list, Context context) {
+    public HomeStyleRecommendAdapter(ArrayList<GoodsVO> list, Context context) {
         this.list = list;
         this.context = context;
     }
@@ -40,8 +40,10 @@ public class HomeStyleRecommendAdapter extends RecyclerView.Adapter<HomeStyleRec
 
     @Override
     public void onBindViewHolder(@NonNull HomeStyleRecommendAdapter.ViewHolder h, int i) {
-        h.binding.imgvGoodsTop.setImageResource(list.get(i).getImgv_goods_top());
-        h.binding.imgvGoodsBottom.setImageResource(list.get(i).getImgv_goods_bottom());
+        h.binding.tvRecommendStore1.setText(list.get(i).getStore_name()+"");
+        h.binding.tvRecommendGoods1.setText(list.get(i).getGoods_name()+"");
+
+        h.binding.tvRecommendPrice1.setText(list.get(i).getGoods_price()+"");
 
     }
 

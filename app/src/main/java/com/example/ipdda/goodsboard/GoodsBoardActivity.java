@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import com.airbnb.lottie.L;
 import com.example.ipdda.R;
+import com.example.ipdda.common.CommonConn;
 import com.example.ipdda.databinding.ActivityGoodsBoardBinding;
 
 
@@ -36,5 +37,8 @@ public class GoodsBoardActivity extends AppCompatActivity {
         list.add(new GoodsBoardReviewDTO(R.drawable.ic_profile,R.drawable.ic_home, R.drawable.ic_home,3, 5,"입다 스웨터", "남 180cm 85kg ", "옷이 정말 예쁘네염", "우랑우탄", "L", "20230207"));
         return list;
     }
+
+
+
 
 }

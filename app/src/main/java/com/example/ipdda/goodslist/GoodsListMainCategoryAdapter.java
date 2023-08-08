@@ -2,8 +2,6 @@ package com.example.ipdda.goodslist;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,12 +11,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ipdda.databinding.ItemGoodsMainCategoryBinding;
-import com.example.ipdda.delivery.DeliveryStoreCategoryAdapter;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
 public class GoodsListMainCategoryAdapter extends RecyclerView.Adapter<GoodsListMainCategoryAdapter.ViewHolder> {
 
+
+    Boolean connCheck = false;
+    int key;
 
     TextView lastClickedMenu;
 
@@ -30,10 +32,12 @@ public class GoodsListMainCategoryAdapter extends RecyclerView.Adapter<GoodsList
 
     GoodsListFragment goodsListFragment;
 
-    public GoodsListMainCategoryAdapter(ArrayList<GoodsListMainCategoryDTO> list, Context context, GoodsListFragment goodsListFragment) {
+
+    public GoodsListMainCategoryAdapter(ArrayList<GoodsListMainCategoryDTO> list, Context context, GoodsListFragment goodsListFragment, int key) {
         this.list = list;
         this.context = context;
         this.goodsListFragment = goodsListFragment;
+        this.key = key;
     }
 
 
@@ -47,18 +51,36 @@ public class GoodsListMainCategoryAdapter extends RecyclerView.Adapter<GoodsList
 
     @Override
     public void onBindViewHolder(@NonNull GoodsListMainCategoryAdapter.ViewHolder h, int i) {
+
         h.binding.tvGoodsMainCategory.setText(list.get(i).getGoodsMainCategory());
 
-            if(i == 0){
-                goodsListFragment.onClickGoodsList(list.get(0));
-            }
+        if (connCheck == false && key == i+1){
+                goodsListFragment.onClickCategory(key);
+                changeTextColor(h.binding.tvGoodsMainCategory);
+                goodsListFragment.GetGoodsSubCateogry(list.get(i));
+                connCheck = true;
+        }
+
 
         h.binding.tvGoodsMainCategory.setOnClickListener(v -> {
+            goodsListFragment.onClickCategory(i+1);
             changeTextColor(h.binding.tvGoodsMainCategory);
-            goodsListFragment.onClickGoodsList(list.get(i));
-
+            goodsListFragment.GetGoodsSubCateogry(list.get(i));
         });
 
+
+
+
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position;
     }
 
     @Override

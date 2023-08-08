@@ -10,7 +10,7 @@
     <ImageView
         android:background="@color/green"
         android:id="@+id/imgv_goods_sub_category"
-        android:layout_width="115dp"
+        android:layout_width="125dp"
         android:layout_height="40dp"/>
 
     <TextView

@@ -1,82 +1,45 @@
 package com.example.ipdda.goodslist;
 
 public class GoodsListDTO {
-    private int ImgGoodsList1, ImgGoodsList2, GoodsPrice1, GoodsPrice2 ;
+    private int GOODS_MAIN_IMAGE, GOODS_PRICE;
+    private String GOODS_NAME, STORE_NAME;
 
-    private String StoreName1, GoodsName1 , StoreName2, GoodsName2;
-
-    public GoodsListDTO(int imgGoodsList1, int imgGoodsList2, int goodsPrice1, int goodsPrice2, String storeName1, String goodsName1, String storeName2, String goodsName2) {
-        ImgGoodsList1 = imgGoodsList1;
-        ImgGoodsList2 = imgGoodsList2;
-        GoodsPrice1 = goodsPrice1;
-        GoodsPrice2 = goodsPrice2;
-        StoreName1 = storeName1;
-        GoodsName1 = goodsName1;
-        StoreName2 = storeName2;
-        GoodsName2 = goodsName2;
+    public GoodsListDTO(int GOODS_MAIN_IMAGE, int GOODS_PRICE, String GOODS_NAME, String STORE_NAME) {
+        this.GOODS_MAIN_IMAGE = GOODS_MAIN_IMAGE;
+        this.GOODS_PRICE = GOODS_PRICE;
+        this.GOODS_NAME = GOODS_NAME;
+        this.STORE_NAME = STORE_NAME;
     }
 
-    public int getImgGoodsList1() {
-        return ImgGoodsList1;
+    public int getGOODS_MAIN_IMAGE() {
+        return GOODS_MAIN_IMAGE;
     }
 
-    public void setImgGoodsList1(int imgGoodsList1) {
-        ImgGoodsList1 = imgGoodsList1;
+    public void setGOODS_MAIN_IMAGE(int GOODS_MAIN_IMAGE) {
+        this.GOODS_MAIN_IMAGE = GOODS_MAIN_IMAGE;
     }
 
-    public int getImgGoodsList2() {
-        return ImgGoodsList2;
+    public int getGOODS_PRICE() {
+        return GOODS_PRICE;
     }
 
-    public void setImgGoodsList2(int imgGoodsList2) {
-        ImgGoodsList2 = imgGoodsList2;
+    public void setGOODS_PRICE(int GOODS_PRICE) {
+        this.GOODS_PRICE = GOODS_PRICE;
     }
 
-    public int getGoodsPrice1() {
-        return GoodsPrice1;
+    public String getGOODS_NAME() {
+        return GOODS_NAME;
     }
 
-    public void setGoodsPrice1(int goodsPrice1) {
-        GoodsPrice1 = goodsPrice1;
+    public void setGOODS_NAME(String GOODS_NAME) {
+        this.GOODS_NAME = GOODS_NAME;
     }
 
-    public int getGoodsPrice2() {
-        return GoodsPrice2;
+    public String getSTORE_NAME() {
+        return STORE_NAME;
     }
 
-    public void setGoodsPrice2(int goodsPrice2) {
-        GoodsPrice2 = goodsPrice2;
-    }
-
-    public String getStoreName1() {
-        return StoreName1;
-    }
-
-    public void setStoreName1(String storeName1) {
-        StoreName1 = storeName1;
-    }
-
-    public String getGoodsName1() {
-        return GoodsName1;
-    }
-
-    public void setGoodsName1(String goodsName1) {
-        GoodsName1 = goodsName1;
-    }
-
-    public String getStoreName2() {
-        return StoreName2;
-    }
-
-    public void setStoreName2(String storeName2) {
-        StoreName2 = storeName2;
-    }
-
-    public String getGoodsName2() {
-        return GoodsName2;
-    }
-
-    public void setGoodsName2(String goodsName2) {
-        GoodsName2 = goodsName2;
+    public void setSTORE_NAME(String STORE_NAME) {
+        this.STORE_NAME = STORE_NAME;
     }
 }

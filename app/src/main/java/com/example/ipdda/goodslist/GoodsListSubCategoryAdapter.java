@@ -22,6 +22,8 @@ import java.util.ArrayList;
 
 public class GoodsListSubCategoryAdapter extends RecyclerView.Adapter<GoodsListSubCategoryAdapter.ViewHolder> {
 
+
+    Boolean connCheck = true;
     ImageView lastClickedMenu;
     ItemGoodsSubCategoryBinding binding;
 
@@ -29,9 +31,12 @@ public class GoodsListSubCategoryAdapter extends RecyclerView.Adapter<GoodsListS
 
     Context context;
 
-    public GoodsListSubCategoryAdapter(ArrayList<GoodsListSubCategoryDTO> list, Context context) {
+    GoodsListFragment goodsListFragment;
+
+    public GoodsListSubCategoryAdapter(ArrayList<GoodsListSubCategoryDTO> list, Context context, GoodsListFragment goodsListFragment) {
         this.list = list;
         this.context = context;
+        this.goodsListFragment = goodsListFragment;
     }
 
     @NonNull
@@ -46,12 +51,28 @@ public class GoodsListSubCategoryAdapter extends RecyclerView.Adapter<GoodsListS
     public void onBindViewHolder(@NonNull GoodsListSubCategoryAdapter.ViewHolder h, int i) {
         h.binding.tvSubCategory.setText(list.get(i).getGoodsSubCategory());
 
-        h.binding.imgvGoodsSubCategory.setOnClickListener(v -> {
-            onClick(h.binding.imgvGoodsSubCategory);
-        });
+        if(connCheck == true){
+            if(i == 0){
+                changeImgColor(h.binding.imgvGoodsSubCategory);
+            }
+        }
 
+        h.binding.imgvGoodsSubCategory.setOnClickListener(v -> {
+            changeImgColor(h.binding.imgvGoodsSubCategory);
+            goodsListFragment.SubCategoryConn(i+1);
+        });
+        connCheck = false;
     }
 
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position;
+    }
     @Override
     public int getItemCount() {
         return list.size();
@@ -67,7 +88,7 @@ public class GoodsListSubCategoryAdapter extends RecyclerView.Adapter<GoodsListS
         }
     }
 
-    public void onClick(ImageView v) {
+    public void changeImgColor(ImageView v) {
         if (lastClickedMenu != null) {
             lastClickedMenu.setBackgroundColor(Color.parseColor("#02FEB2"));
         }

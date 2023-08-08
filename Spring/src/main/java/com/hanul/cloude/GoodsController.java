@@ -19,7 +19,7 @@ import goods.GoodsVO;
 @RestController @RequestMapping("/goods")
 public class GoodsController {
 	
-	@Autowired @Qualifier("test") SqlSession sql;
+	@Autowired @Qualifier("ippda") SqlSession sql;
 	
 	@RequestMapping(value = "/categorylist" , produces = "text/html;charset=utf-8")
 	public String categorylist(int GOODS_MIDDLE_CATEGORY) {

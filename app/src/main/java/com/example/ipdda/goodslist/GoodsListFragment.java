@@ -267,10 +267,8 @@ public class GoodsListFragment extends Fragment {
         CommonConn conn = new CommonConn(getContext(), "goods/categorylist");
         conn.addParamMap("GOODS_MIDDLE_CATEGORY", localkey);
         conn.onExcute((isResult, data) -> {
-            ArrayList<GoodsVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<GoodsVO>>() {
-            }.getType());
+            ArrayList<GoodsVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<GoodsVO>>() {}.getType());
             GoodsListAdapter adapter = new GoodsListAdapter(list, getContext());
-
             binding.recvGoodsList.setAdapter(adapter);
             binding.recvGoodsList.setLayoutManager(new LinearLayoutManager(getContext()));
         });

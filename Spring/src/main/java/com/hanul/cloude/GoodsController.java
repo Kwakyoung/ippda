@@ -34,8 +34,8 @@ public class GoodsController {
 	}
 	
 	@RequestMapping(value = "/subcategorylist" , produces = "text/html;charset=utf-8")
-	public String subcategorylist(int GOODS_MIDDLE_CATEGORY, int GOODS_SUB_CATEGORY) {
-		  HashMap<String, Integer> params = new HashMap<>();
+	public String subcategorylist(@RequestParam("GOODS_MIDDLE_CATEGORY") int GOODS_MIDDLE_CATEGORY,@RequestParam("GOODS_SUB_CATEGORY") int GOODS_SUB_CATEGORY) {
+		  HashMap<String, Integer> params = new HashMap<String, Integer>();
 		    params.put("GOODS_MIDDLE_CATEGORY", GOODS_MIDDLE_CATEGORY);
 		    params.put("GOODS_SUB_CATEGORY", GOODS_SUB_CATEGORY);
 		    List<GoodsVO> list = sql.selectList("goods.subcategorylist", params);

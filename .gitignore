@@ -87,3 +87,4 @@ atlassian-ide-plugin.xml
 .vscode/
 
 cached-antora-playbook.yml
+app/src/main/java/com/example/ipdda/common/RetrofitClient.java

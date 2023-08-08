@@ -49,85 +49,120 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <LinearLayout
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-        <RelativeLayout
-            android:layout_marginBottom="20dp"
-            android:layout_width="320dp"
-            android:layout_height="wrap_content">
+            >
 
+            <TextView
+                android:layout_marginRight="10dp"
+                android:layout_centerVertical="true"
+                android:text="아이디"
+                android:textSize="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+                <EditText
+                    android:layout_alignParentRight="true"
+                    android:id="@+id/member_id"
+                    android:paddingLeft="10dp"
+                    android:inputType="textMultiLine|textNoSuggestions"
+                    android:background="@drawable/radius"
+                    android:maxLines="1"
+                    android:maxLength="20"
+                    android:textColorHint="#75000000"
+                    android:hint="사용할 아이디 입력"
+                    android:layout_width="230dp"
+                    android:layout_height="40dp"/>
+                <TextView
+                    android:id="@+id/btn_id_check"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="5dp"
+                    android:backgroundTint="#C8C8C8"
+                    android:textColor="#0E0E0E"
+                    android:layout_alignParentRight="true"
+                    android:text="중복확인"
+                    android:layout_width="50dp"
+                    android:layout_height="20dp"/>
+        </RelativeLayout>
+
+        <TextView
+            android:layout_marginLeft="100dp"
+            android:text="이건 테스트 입니다."
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp">
+            <TextView
+                android:layout_centerVertical="true"
+                android:textSize="16dp"
+                android:layout_marginRight="10dp"
+                android:text="닉네임"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
             <EditText
-                android:id="@+id/member_id"
+                android:layout_alignParentRight="true"
                 android:paddingLeft="10dp"
                 android:inputType="textMultiLine|textNoSuggestions"
                 android:background="@drawable/radius"
                 android:maxLines="1"
-                android:maxLength="30"
+                android:maxLength="20"
                 android:textColorHint="#75000000"
-                android:hint="사용할 아이디 입력"
-                android:layout_width="match_parent"
+                android:hint="닉네임"
+                android:layout_width="230dp"
                 android:layout_height="40dp"/>
-
-            <Button
-                android:id="@+id/btn_id_check"
-                android:layout_marginRight="5dp"
-                android:gravity="center"
-                android:background="@drawable/custom_button"
-                android:layout_centerVertical="true"
-                android:backgroundTint="#C8C8C8"
-                android:textSize="12dp"
-                android:textColor="#0E0E0E"
-                android:layout_alignParentRight="true"
-                android:text="중복확인"
-                android:layout_width="110dp"
-                android:layout_height="35dp"/>
         </RelativeLayout>
-        </LinearLayout>
-        <EditText
-            android:layout_marginBottom="20dp"
-            android:paddingLeft="10dp"
-            android:inputType="textMultiLine|textNoSuggestions"
-            android:background="@drawable/radius"
-            android:maxLines="1"
-            android:maxLength="20"
-            android:textColorHint="#75000000"
-            android:hint="닉네임"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"/>
 
-        <LinearLayout
+        <RelativeLayout
+
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:orientation="vertical">
-        <EditText
-            android:id="@+id/edt_pw"
-            android:paddingLeft="10dp"
-            android:inputType="textPassword"
-            android:background="@drawable/radius"
-            android:maxLines="1"
-            android:maxLength="16"
-            android:textColorHint="#75000000"
-            android:hint="비밀번호"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"/>
+            android:layout_height="wrap_content"
+            >
+            <TextView
+                android:layout_centerVertical="true"
+                android:textSize="16dp"
+                android:text="비밀번호"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <EditText
+                android:layout_alignParentRight="true"
+                android:id="@+id/edt_pw"
+                android:paddingLeft="10dp"
+                android:inputType="textPassword"
+                android:background="@drawable/radius"
+                android:maxLines="1"
+                android:maxLength="16"
+                android:textColorHint="#75000000"
+                android:hint="비밀번호"
+                android:layout_width="230dp"
+                android:layout_height="40dp"/>
+        </RelativeLayout>
 
         <TextView
-            android:paddingLeft="10dp"
-            android:id="@+id/feedback"
-            android:textColor="#F44336"
-            android:text="영문, 숫자, 특수문자 8~16자리를 입력해주세요."
+            android:layout_marginLeft="100dp"
+            android:text="이건 테스트 입니다."
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
-        </LinearLayout>
+            android:layout_height="wrap_content"/>
 
-        <LinearLayout
+        <RelativeLayout
+
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:textSize="16dp"
+                android:layout_centerVertical="true"
+                android:text="비밀번호 확인"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
         <EditText
+            android:layout_alignParentRight="true"
             android:id="@+id/edt_pw_check"
             android:paddingLeft="10dp"
             android:inputType="textPassword"
@@ -136,20 +171,27 @@
             android:maxLength="16"
             android:textColorHint="#75000000"
             android:hint="비밀번호 확인"
-            android:layout_width="match_parent"
+            android:layout_width="230dp"
             android:layout_height="40dp"/>
-
+        </RelativeLayout>
         <TextView
-            android:paddingLeft="10dp"
-            android:id="@+id/feedback2"
-            android:textColor="#4CAF50"
-            android:text="비밀번호와 일치합니다."
+            android:layout_marginLeft="100dp"
+            android:text="이건 테스트 입니다."
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
-        </LinearLayout>
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+           <TextView
+               android:textSize="16dp"
+               android:layout_centerVertical="true"
+               android:text="이메일"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"/>
         <EditText
-            android:layout_marginBottom="20dp"
+            android:layout_alignParentRight="true"
             android:paddingLeft="10dp"
             android:inputType="textMultiLine|textNoSuggestions"
             android:background="@drawable/radius"
@@ -157,13 +199,15 @@
             android:maxLength="50"
             android:textColorHint="#75000000"
             android:hint="이메일"
-            android:layout_width="match_parent"
+            android:layout_width="230dp"
             android:layout_height="40dp"/>
+        </RelativeLayout>
 
 
 
 
         <LinearLayout
+            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">

@@ -88,7 +88,7 @@
         </RelativeLayout>
 
         <TextView
-            android:layout_marginLeft="100dp"
+            android:layout_marginLeft="60dp"
             android:text="이건 테스트 입니다."
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -145,20 +145,19 @@
         </RelativeLayout>
 
         <TextView
-            android:layout_marginLeft="100dp"
+            android:layout_marginLeft="60dp"
             android:text="이건 테스트 입니다."
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
         <RelativeLayout
-
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <TextView
-                android:textSize="16dp"
+                android:textSize="15dp"
                 android:layout_centerVertical="true"
-                android:text="비밀번호\n\t 확인"
+                android:text="비밀번호\n\t  확인"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         <EditText
@@ -175,7 +174,7 @@
             android:layout_height="40dp"/>
         </RelativeLayout>
         <TextView
-            android:layout_marginLeft="100dp"
+            android:layout_marginLeft="60dp"
             android:text="이건 테스트 입니다."
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>

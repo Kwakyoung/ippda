@@ -1,67 +1,68 @@
 package store;
 
 public class StoreVO {
-	private int store_no, store_registration_no;
-	private String store_id, sotre_pw, store_name, store_email, store_main_image, store_sub_image, store_info, store_address;
-	public int getStore_no() {
-		return store_no;
+	private int STORE_NO, STORE_REGISTRATION_NO;
+	private String STORE_ID, SOTRE_PW, STORE_NAME, STORE_EMAIL, STORE_MAIN_IMAGE, STORE_SUB_IMAGE, STORE_INFO, STORE_ADDRESS;
+	
+	public int getSTORE_NO() {
+		return STORE_NO;
 	}
-	public void setStore_no(int store_no) {
-		this.store_no = store_no;
+	public void setSTORE_NO(int sTORE_NO) {
+		STORE_NO = sTORE_NO;
 	}
-	public int getStore_registration_no() {
-		return store_registration_no;
+	public int getSTORE_REGISTRATION_NO() {
+		return STORE_REGISTRATION_NO;
 	}
-	public void setStore_registration_no(int store_registration_no) {
-		this.store_registration_no = store_registration_no;
+	public void setSTORE_REGISTRATION_NO(int sTORE_REGISTRATION_NO) {
+		STORE_REGISTRATION_NO = sTORE_REGISTRATION_NO;
 	}
-	public String getStore_id() {
-		return store_id;
+	public String getSTORE_ID() {
+		return STORE_ID;
 	}
-	public void setStore_id(String store_id) {
-		this.store_id = store_id;
+	public void setSTORE_ID(String sTORE_ID) {
+		STORE_ID = sTORE_ID;
 	}
-	public String getSotre_pw() {
-		return sotre_pw;
+	public String getSOTRE_PW() {
+		return SOTRE_PW;
 	}
-	public void setSotre_pw(String sotre_pw) {
-		this.sotre_pw = sotre_pw;
+	public void setSOTRE_PW(String sOTRE_PW) {
+		SOTRE_PW = sOTRE_PW;
 	}
-	public String getStore_name() {
-		return store_name;
+	public String getSTORE_NAME() {
+		return STORE_NAME;
 	}
-	public void setStore_name(String store_name) {
-		this.store_name = store_name;
+	public void setSTORE_NAME(String sTORE_NAME) {
+		STORE_NAME = sTORE_NAME;
 	}
-	public String getStore_email() {
-		return store_email;
+	public String getSTORE_EMAIL() {
+		return STORE_EMAIL;
 	}
-	public void setStore_email(String store_email) {
-		this.store_email = store_email;
+	public void setSTORE_EMAIL(String sTORE_EMAIL) {
+		STORE_EMAIL = sTORE_EMAIL;
 	}
-	public String getStore_main_image() {
-		return store_main_image;
+	public String getSTORE_MAIN_IMAGE() {
+		return STORE_MAIN_IMAGE;
 	}
-	public void setStore_main_image(String store_main_image) {
-		this.store_main_image = store_main_image;
+	public void setSTORE_MAIN_IMAGE(String sTORE_MAIN_IMAGE) {
+		STORE_MAIN_IMAGE = sTORE_MAIN_IMAGE;
 	}
-	public String getStore_sub_image() {
-		return store_sub_image;
+	public String getSTORE_SUB_IMAGE() {
+		return STORE_SUB_IMAGE;
 	}
-	public void setStore_sub_image(String store_sub_image) {
-		this.store_sub_image = store_sub_image;
+	public void setSTORE_SUB_IMAGE(String sTORE_SUB_IMAGE) {
+		STORE_SUB_IMAGE = sTORE_SUB_IMAGE;
 	}
-	public String getStore_info() {
-		return store_info;
+	public String getSTORE_INFO() {
+		return STORE_INFO;
 	}
-	public void setStore_info(String store_info) {
-		this.store_info = store_info;
+	public void setSTORE_INFO(String sTORE_INFO) {
+		STORE_INFO = sTORE_INFO;
 	}
-	public String getStore_address() {
-		return store_address;
+	public String getSTORE_ADDRESS() {
+		return STORE_ADDRESS;
 	}
-	public void setStore_address(String store_address) {
-		this.store_address = store_address;
+	public void setSTORE_ADDRESS(String sTORE_ADDRESS) {
+		STORE_ADDRESS = sTORE_ADDRESS;
 	}
 	
 	

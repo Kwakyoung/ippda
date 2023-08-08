@@ -1,8 +1,10 @@
 package goods;
 
-public class GoodsVO {
-	private int goods_no, store_no,  goods_price, goods_sale_price, goods_sale_percent, goods_status;
-	private String goods_name, goods_info, goods_main_image, goods_gender;
+
+public class GoodsVO extends GoodsOptionVO{
+	private int  goods_no ,store_no, goods_price, goods_sale_price, goods_sale_percent, goods_status;
+	private String goods_name, goods_info, goods_gender, goods_main_image, store_name;
+	
 	public int getGoods_no() {
 		return goods_no;
 	}
@@ -51,18 +53,30 @@ public class GoodsVO {
 	public void setGoods_info(String goods_info) {
 		this.goods_info = goods_info;
 	}
-	public String getGoods_main_image() {
-		return goods_main_image;
-	}
-	public void setGoods_main_image(String goods_main_image) {
-		this.goods_main_image = goods_main_image;
-	}
 	public String getGoods_gender() {
 		return goods_gender;
 	}
 	public void setGoods_gender(String goods_gender) {
 		this.goods_gender = goods_gender;
 	}
+	public String getGoods_main_image() {
+		return goods_main_image;
+	}
+	public void setGoods_main_image(String goods_main_image) {
+		this.goods_main_image = goods_main_image;
+	}
+	public String getStore_name() {
+		return store_name;
+	}
+	public void setStore_name(String store_name) {
+		this.store_name = store_name;
+	}
+	
+	
+	
+	
+	
+	
 	
 	
 }

@@ -40,7 +40,6 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull CouponAdapter.ViewHolder h, int i) {
-        
         binding.couponImg.setImageResource(list.get(i).getCoupon_img());
         binding.couponTitle.setText(list.get(i).getCoupon_title());
         if (a == 1) {

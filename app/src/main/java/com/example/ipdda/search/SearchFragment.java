@@ -82,9 +82,17 @@ public class SearchFragment extends Fragment {
     ArrayList<SearchCategoryDTO> getcategory(){
         ArrayList<SearchCategoryDTO> list = new ArrayList<>();
         list.add(new SearchCategoryDTO(R.drawable.top,"상의"));
+        list.add(new SearchCategoryDTO(R.drawable.pants,"아우터"));
         list.add(new SearchCategoryDTO(R.drawable.pants,"하의"));
+        list.add(new SearchCategoryDTO(R.drawable.pants,"원피스"));
+        list.add(new SearchCategoryDTO(R.drawable.pants,"스커트"));
         list.add(new SearchCategoryDTO(R.drawable.shoes,"신발"));
+        list.add(new SearchCategoryDTO(R.drawable.pants,"가방"));
         list.add(new SearchCategoryDTO(R.drawable.accessory,"악세서리"));
+        list.add(new SearchCategoryDTO(R.drawable.pants,"양말"));
+        list.add(new SearchCategoryDTO(R.drawable.pants,"시계"));
+        list.add(new SearchCategoryDTO(R.drawable.pants,"모자"));
+
 
         return list;
     }

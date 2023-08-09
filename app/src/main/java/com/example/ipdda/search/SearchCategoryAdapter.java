@@ -1,13 +1,20 @@
 package com.example.ipdda.search;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.ipdda.MainActivity;
+import com.example.ipdda.R;
 import com.example.ipdda.databinding.ItemSearchCategoryBinding;
+import com.example.ipdda.delivery.DeliveryFragment;
+import com.example.ipdda.goodslist.GoodsListFragment;
+import com.example.ipdda.profile.TrackDeliveryActivity;
 
 import java.util.ArrayList;
 
@@ -34,6 +41,14 @@ public class SearchCategoryAdapter extends RecyclerView.Adapter<SearchCategoryAd
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
     holder.binding.imgvTop.setImageResource(list.get(position).getImgv());
     holder.binding.tvTop.setText(list.get(position).getCategory());
+        holder.binding.fl.setOnClickListener(v -> {
+            FragmentTransaction transaction = ((MainActivity) context).getSupportFragmentManager().beginTransaction();
+            GoodsListFragment goodsListFragment = new GoodsListFragment(position+1);
+            transaction.replace(R.id.container, goodsListFragment);
+            transaction.commit();
+        });
+
+
     }
 
     @Override

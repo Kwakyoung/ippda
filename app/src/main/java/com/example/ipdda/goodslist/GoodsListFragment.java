@@ -30,6 +30,7 @@ public class GoodsListFragment extends Fragment {
     FragmentGoodsListBinding binding;
 
 
+
     public GoodsListFragment(int key) {
 
         this.key = key;
@@ -60,6 +61,9 @@ public class GoodsListFragment extends Fragment {
 
 
         });
+
+
+
 
 
         //로고 눌렀을 때 뒤로가기
@@ -291,6 +295,8 @@ public class GoodsListFragment extends Fragment {
             binding.recvGoodsList.setLayoutManager(new LinearLayoutManager(getContext()));
         });
     }
+
+
 
 
 

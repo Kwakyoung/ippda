@@ -3,6 +3,7 @@ package com.example.ipdda.packaging;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.LayoutInflater;
@@ -42,6 +43,13 @@ public class PackagingFragment extends Fragment {
 
         return binding.getRoot();
     }
+
+    // 이전 프래그먼트로 이동
+    public void handleBackPressed() {
+        FragmentManager fragmentManager = getParentFragmentManager();
+        fragmentManager.popBackStack();
+    }
+
     public ArrayList<DeliveryTopCategoryDTO> GetTopCategoryList(){
         ArrayList<DeliveryTopCategoryDTO> list = new ArrayList<>();
         list.add(new DeliveryTopCategoryDTO(R.drawable.ic_home));

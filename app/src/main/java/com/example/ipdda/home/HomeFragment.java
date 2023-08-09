@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.ipdda.R;
 import com.example.ipdda.common.CommonConn;
@@ -53,6 +54,7 @@ public class HomeFragment extends Fragment {
             FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
             DeliveryFragment deliveryFragment = new DeliveryFragment();
             transaction.replace(R.id.container , deliveryFragment);
+            transaction.addToBackStack(null); // 백 스택에 추가
             transaction.commit();
 
         });
@@ -61,6 +63,7 @@ public class HomeFragment extends Fragment {
             FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
             PackagingFragment packagingFragment = new PackagingFragment();
             transaction.replace(R.id.container , packagingFragment);
+            transaction.addToBackStack(null); // 백 스택에 추가
             transaction.commit();
 
         });
@@ -185,6 +188,24 @@ public class HomeFragment extends Fragment {
         });
     }
 
+    private long backKeyPressedTime = 0;
+    public void handleBackPressed() {
+        if (System.currentTimeMillis() > backKeyPressedTime + 2000) {
+            backKeyPressedTime = System.currentTimeMillis();
+            Toast.makeText(getContext(), "\'뒤로\' 버튼을 한번 더 누르시면 종료됩니다.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // 2초 이내에 뒤로가기 버튼을 한번 더 클릭시 finish()(앱 종료)
+        if (System.currentTimeMillis() <= backKeyPressedTime + 2000) {
+           if (getActivity() != null){
+               getActivity().finish();
+           }
+            System.runFinalization();
+            System.exit(0);
+        }
+
+    }
 
 
 }

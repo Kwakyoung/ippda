@@ -9,8 +9,10 @@ import android.os.Handler;
 import android.widget.Toast;
 
 import com.example.ipdda.databinding.ActivityMainBinding;
+import com.example.ipdda.delivery.DeliveryFragment;
 import com.example.ipdda.home.HomeFragment;
 import com.example.ipdda.like.LikeFragment;
+import com.example.ipdda.packaging.PackagingFragment;
 import com.example.ipdda.profile.ProfileFragment;
 import com.example.ipdda.search.SearchFragment;
 
@@ -65,22 +67,37 @@ public class MainActivity extends AppCompatActivity {
         this.backPressed = backPressed;
         getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
     }
+//    @Override
+//    public void onBackPressed() {
+//        if(backPressed==1){
+//            changeFragment(0 , homeFragment );
+//        }else if (backPressed==2){
+//            changeFragment(1 , searchFragment );
+//        }else {
+//            finish();
+//        }
+//    }
 
-    private long backKeyPressedTime = 0;
+
     @Override
     public void onBackPressed() {
-        if (System.currentTimeMillis() > backKeyPressedTime + 2000) {
-            backKeyPressedTime = System.currentTimeMillis();
-            Toast.makeText(this, "\'뒤로\' 버튼을 한번 더 누르시면 종료됩니다.", Toast.LENGTH_SHORT).show();
-            return;
-        }
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        Fragment currentFragment = fragmentManager.findFragmentById(R.id.container);
 
-        // 2초 이내에 뒤로가기 버튼을 한번 더 클릭시 finish()(앱 종료)
-        if (System.currentTimeMillis() <= backKeyPressedTime + 2000) {
-            //finish();
-            finishAffinity();
-            System.runFinalization();
-            System.exit(0);
+        if (currentFragment instanceof HomeFragment) {
+            ((HomeFragment) currentFragment).handleBackPressed();
+        } else if (currentFragment instanceof SearchFragment) {
+            ((SearchFragment) currentFragment).handleBackPressed();
+        } else if (currentFragment instanceof LikeFragment) {
+            ((LikeFragment) currentFragment).handleBackPressed();
+        } else if (currentFragment instanceof ProfileFragment) {
+            ((ProfileFragment) currentFragment).handleBackPressed();
+        }else if (currentFragment instanceof DeliveryFragment) {
+            ((DeliveryFragment) currentFragment).handleBackPressed();
+        }else if (currentFragment instanceof PackagingFragment) {
+            ((PackagingFragment) currentFragment).handleBackPressed();
+        } else {
+            super.onBackPressed();
         }
 
     }

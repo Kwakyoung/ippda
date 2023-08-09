@@ -45,11 +45,13 @@ public class SearchCategoryAdapter extends RecyclerView.Adapter<SearchCategoryAd
             FragmentTransaction transaction = ((MainActivity) context).getSupportFragmentManager().beginTransaction();
             GoodsListFragment goodsListFragment = new GoodsListFragment(position+1);
             transaction.replace(R.id.container, goodsListFragment);
+            transaction.addToBackStack(null);
             transaction.commit();
         });
 
-
     }
+
+
 
     @Override
     public int getItemCount() {
@@ -65,4 +67,6 @@ public class SearchCategoryAdapter extends RecyclerView.Adapter<SearchCategoryAd
             this.binding = binding;
         }
     }
+
+
 }

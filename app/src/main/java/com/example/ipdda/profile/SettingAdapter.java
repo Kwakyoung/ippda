@@ -14,6 +14,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.example.ipdda.common.CommonConn;
+import com.example.ipdda.common.CommonVar;
 import com.example.ipdda.databinding.ItemSettingRecvBinding;
 import com.example.ipdda.login.LoginActivity;
 
@@ -108,6 +110,7 @@ public class SettingAdapter extends RecyclerView.Adapter<SettingAdapter.ViewHold
             public void onClick(DialogInterface dialog, int which) {
                 Intent intent = new Intent(context, LoginActivity.class);
                 ((SettingActivity)context).startActivity(intent);
+                CommonVar.loginInfo=null;
             }
         })
         .setNegativeButton("취소", new DialogInterface.OnClickListener() {

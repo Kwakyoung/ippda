@@ -3,6 +3,7 @@ package com.example.ipdda.delivery;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -43,13 +44,14 @@ public class DeliveryFragment extends Fragment {
         binding.recvDeliveryStoreCategory.setAdapter(new DeliveryStoreCategoryAdapter(GetStoreCategoryList(), getContext()));
         binding.recvDeliveryStoreCategory.setLayoutManager(new LinearLayoutManager(getContext()));
 
+
         return binding.getRoot();
     }
 
 
     public ArrayList<DeliveryTopCategoryDTO> GetTopCategoryList(){
         ArrayList<DeliveryTopCategoryDTO> list = new ArrayList<>();
-        list.add(new DeliveryTopCategoryDTO(R.drawable.ic_home));
+        list.add(new DeliveryTopCategoryDTO(R.drawable.test));
         list.add(new DeliveryTopCategoryDTO(R.drawable.ic_home));
         list.add(new DeliveryTopCategoryDTO(R.drawable.ic_home));
         list.add(new DeliveryTopCategoryDTO(R.drawable.ic_home));
@@ -115,8 +117,15 @@ public class DeliveryFragment extends Fragment {
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
         GoodsListFragment goodsListFragment = new GoodsListFragment(i);
         transaction.replace(R.id.container, goodsListFragment);
+        transaction.addToBackStack(null); // 백 스택에 추가
         transaction.commit();
     }
 
+
+    // 이전 프래그먼트로 이동
+    public void handleBackPressed() {
+        FragmentManager fragmentManager = getParentFragmentManager();
+        fragmentManager.popBackStack();
+    }
 
 }

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -37,11 +38,29 @@ public class HomeGoodsRecommendAdapter extends RecyclerView.Adapter<HomeGoodsRec
 
     @Override
     public void onBindViewHolder(@NonNull HomeGoodsRecommendAdapter.ViewHolder h, int i) {
+
+        if(list.get(i).getGoods_sale_percent() != 0){
+            int getGoodsPrice = list.get(i).getGoods_price()/(100/list.get(i).getGoods_sale_percent());
+            h.binding.tvRecommendPrice1.setText(getGoodsPrice+"");
+
+        }else {
+            h.binding.tvRecommendPrice1.setText(list.get(i).getGoods_price()+"");
+            h.binding.tvSalePercent.setText(list.get(i).getGoods_sale_percent()+"");
+            h.binding.tvSalePercent.setVisibility(View.GONE);
+            h.binding.tvSale.setVisibility(View.GONE);
+        }
+
+
+
         h.binding.tvRecommendStore1.setText(list.get(i).getStore_name()+"");
 
         h.binding.tvRecommendGoods1.setText(list.get(i).getGoods_name()+"");
 
-        h.binding.tvRecommendPrice1.setText(list.get(i).getGoods_price()+"");
+
+
+
+
+
 
         h.binding.imgvRecommendGoods1.setOnClickListener(v -> {
             Intent intent = new Intent(context, GoodsBoardActivity.class);

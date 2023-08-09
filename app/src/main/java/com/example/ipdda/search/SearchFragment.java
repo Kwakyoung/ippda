@@ -3,6 +3,7 @@ package com.example.ipdda.search;
 import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -19,7 +20,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 
-public class SearchFragment extends Fragment {
+public class SearchFragment extends DialogFragment {
     FragmentSearchBinding binding;
     ArrayList<SearchHistoryDTO> list ;
 
@@ -29,6 +30,7 @@ public class SearchFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentSearchBinding.inflate(inflater,container,false);
+
 
 
 

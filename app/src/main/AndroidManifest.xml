@@ -20,6 +20,8 @@
         android:theme="@style/Theme.IPDDA"
         tools:targetApi="31">
 
+
+
         <activity
             android:name=".profile.MyQuietionActivity"
             android:exported="false" />

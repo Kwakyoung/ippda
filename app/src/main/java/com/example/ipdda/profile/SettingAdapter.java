@@ -1,21 +1,28 @@
 package com.example.ipdda.profile;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
+
 import com.example.ipdda.databinding.ItemSettingRecvBinding;
+import com.example.ipdda.login.LoginActivity;
 
 import java.util.ArrayList;
 
 public class SettingAdapter extends RecyclerView.Adapter<SettingAdapter.ViewHolder> {
 
     ItemSettingRecvBinding binding;
+
 
     ArrayList<SettingDTO> list;
 
@@ -36,6 +43,15 @@ public class SettingAdapter extends RecyclerView.Adapter<SettingAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull SettingAdapter.ViewHolder h, int i) {
         h.binding.tvText.setText(list.get(i).getTv_text());
+
+        if (h.binding.tvText.getText().equals("로그아웃")){
+            h.binding.tvText.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    showDialog(v.getContext());
+                }
+            });
+        }
 
         if (h.binding.tvText.getText().equals("팝업 알림 설정")) {
             h.binding.tvToggle.setVisibility(View.VISIBLE);
@@ -63,6 +79,8 @@ public class SettingAdapter extends RecyclerView.Adapter<SettingAdapter.ViewHold
                 h.binding.tvToggle.setVisibility(View.GONE);
         }
 
+
+
     }
 
     @Override
@@ -83,5 +101,22 @@ public class SettingAdapter extends RecyclerView.Adapter<SettingAdapter.ViewHold
         }
     }
 
+    private void showDialog(Context context){
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setMessage("로그아웃 하시겠습니까?").setPositiveButton("확인", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(context, LoginActivity.class);
+                ((SettingActivity)context).startActivity(intent);
+            }
+        })
+        .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        })
+        .show();
+    }
 }
 

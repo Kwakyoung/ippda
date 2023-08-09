@@ -43,4 +43,11 @@ public class GoodsController {
 	}
 	
 	
+	@RequestMapping(value = "/goodsboard" , produces = "text/html;charset=utf-8")
+	public String goodsboard(int goods_no) {
+		System.out.println(goods_no);
+		List<GoodsVO> list = sql.selectList("goods.goodsboard" , goods_no); 
+		return new Gson().toJson(list);
+	}
+	
 }

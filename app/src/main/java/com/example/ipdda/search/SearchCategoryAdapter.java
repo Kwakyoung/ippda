@@ -1,5 +1,6 @@
 package com.example.ipdda.search;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -47,6 +48,7 @@ public class SearchCategoryAdapter extends RecyclerView.Adapter<SearchCategoryAd
             transaction.replace(R.id.container, goodsListFragment);
             transaction.addToBackStack(null);
             transaction.commit();
+
         });
 
     }

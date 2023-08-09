@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -53,7 +54,7 @@ public class SignUpActivity extends AppCompatActivity {
         Date date = new Date(System.currentTimeMillis());
         String formattdDate = format.format(date);
 
-        binding.tvBirthDate.setText(formattdDate);
+
 
         binding.tvBirthDate.setOnClickListener(v -> {
                     calBinding = DialogCalBinding.inflate(getLayoutInflater());
@@ -93,70 +94,84 @@ public class SignUpActivity extends AppCompatActivity {
 
                 });
 
-//        binding.tvBirthDate.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Calendar calendar = Calendar.getInstance();
-//                int pYear = calendar.get(Calendar.YEAR); // 년
-//                int pMonth = calendar.get(Calendar.MONTH); // 월
-//                int pDay = calendar.get(Calendar.DAY_OF_MONTH); // 일
-//                datePickerDialog = new DatePickerDialog(SignUpActivity.this, new DatePickerDialog.OnDateSetListener() {
-//                    @Override
-//                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-//                        month = month +1;
-//                        String date = year + "/" + month + "/" + dayOfMonth;
-//
-//                        binding.tvBirthDate.setText(date);
-//                    }
-//                }, pYear , pMonth , pDay);
-//                datePickerDialog.show();
-//            }
-//        });
 
         // 남, 여 선택
         RadioGroup radioGender = findViewById(R.id.radio_gender);
 
-//            binding.edtPw.addTextChangedListener(new TextWatcher() {
-//                @Override
-//                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//
-//                }
-//
-//                @Override
-//                public void onTextChanged(CharSequence s, int start, int before, int count) {
-//                    if (binding.edtPw.length() == 0) {
-//                        binding.feedback.setVisibility(View.GONE);
-//                    } else if (binding.edtPw.length() != 0) {
-//                        binding.feedback.setVisibility(View.VISIBLE);
-//                    }
-//                }
-//
-//                @Override
-//                public void afterTextChanged(Editable s) {
-//
-//                }
-//            });
-//
-//            binding.edtPwCheck.addTextChangedListener(new TextWatcher() {
-//                @Override
-//                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//
-//                }
-//
-//                @Override
-//                public void onTextChanged(CharSequence s, int start, int before, int count) {
-//                    if (binding.edtPwCheck.length() == 0) {
-//                        binding.feedback2.setVisibility(View.GONE);
-//                    } else if (binding.edtPwCheck.length() != 0) {
-//                        binding.feedback2.setVisibility(View.VISIBLE);
-//                    }
-//                }
-//
-//                @Override
-//                public void afterTextChanged(Editable s) {
-//
-//                }
-//            });
+
+
+
+
+        binding.edtId.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (binding.edtId.length() < 5 || binding.edtId.length()>15) {
+                    binding.tvIdFeedback.setText("5~15자 이내 아이디를 입력해주세요.");
+                    binding.tvIdFeedback.setTextColor(Color.RED);
+
+                } else if (binding.edtId.length() >=5 && binding.edtId.length()<=20) {
+                    binding.tvIdFeedback.setText("중복확인을 해주세요");
+                    binding.tvIdFeedback.setTextColor(Color.GREEN);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+            binding.edtPw.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    if (binding.edtPw.length() < 5 || binding.edtId.length()>15) {
+                        binding.tvPwFeedback.setText("5~15자 이내 아이디를 입력해주세요.");
+                        binding.tvPwFeedback.setTextColor(Color.RED);
+
+                    } else if (binding.edtPw.length() >=5 && binding.edtId.length()<=20) {
+                        binding.tvPwFeedback.setText("사용 가능합니다.");
+                        binding.tvPwFeedback.setTextColor(Color.GREEN);
+                    }
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
+            });
+
+            binding.edtPwCheck.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    if (binding.edtPwCheck.getText().toString().equals(binding.edtPw.getText().toString())) {
+                        binding.tvPwCheck.setText("비밀번호와 일치합니다.");
+                        binding.tvPwCheck.setTextColor(Color.GREEN);
+                    } else {
+                        binding.tvPwCheck.setText("비밀번호와 일치하지 않습니다.");
+                        binding.tvPwCheck.setTextColor(Color.RED);
+                    }
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
+            });
 
 
         }

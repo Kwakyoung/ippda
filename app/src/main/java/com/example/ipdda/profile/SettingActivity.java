@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.ipdda.databinding.ActivitySettingBinding;
 
@@ -20,6 +21,7 @@ public class SettingActivity extends AppCompatActivity {
 
         binding.recvSettingRecv.setAdapter(new SettingAdapter(getSetting(), this));
         binding.recvSettingRecv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+
 
         binding.btnBack.setOnClickListener(v -> this.finish());
     }

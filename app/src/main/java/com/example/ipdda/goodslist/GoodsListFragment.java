@@ -26,6 +26,7 @@ import java.util.ArrayList;
 
 public class GoodsListFragment extends Fragment {
 
+    int localkey;
     int key;
     FragmentGoodsListBinding binding;
 
@@ -49,7 +50,7 @@ public class GoodsListFragment extends Fragment {
 
 
 
-
+        //goods_list에서 클릭한 값으로 첫화면 조회
         CommonConn conn = new CommonConn(getContext(), "goods/categorylist");
         conn.addParamMap("GOODS_MIDDLE_CATEGORY", key);
         conn.onExcute((isResult, data) -> {
@@ -251,7 +252,7 @@ public class GoodsListFragment extends Fragment {
 
 
 
-        GoodsListSubCategoryAdapter adapter = new GoodsListSubCategoryAdapter(list, getContext(), this);
+        GoodsListSubCategoryAdapter adapter = new GoodsListSubCategoryAdapter(list, getContext(), this, localkey);
         binding.recvSubCategory.setAdapter(adapter);
         binding.recvSubCategory.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
 
@@ -264,17 +265,17 @@ public class GoodsListFragment extends Fragment {
 
     public void onClickCategory(int localKey) {
         CategoryConn(localKey);
+        localkey =localKey;
     }
 
 
+    //main카테고리 클릭시 조회
     public void CategoryConn(int localkey) {
         CommonConn conn = new CommonConn(getContext(), "goods/categorylist");
         conn.addParamMap("GOODS_MIDDLE_CATEGORY", localkey);
         conn.onExcute((isResult, data) -> {
-            ArrayList<GoodsVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<GoodsVO>>() {
-            }.getType());
+            ArrayList<GoodsVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<GoodsVO>>() {}.getType());
             GoodsListAdapter adapter = new GoodsListAdapter(list, getContext());
-
             binding.recvGoodsList.setAdapter(adapter);
             binding.recvGoodsList.setLayoutManager(new LinearLayoutManager(getContext()));
         });
@@ -282,10 +283,10 @@ public class GoodsListFragment extends Fragment {
 
 
 
-
+    //sub카테고리 클릭시 조회
     public void SubCategoryConn(int subCategoryKey){
         CommonConn conn = new CommonConn(getContext(), "goods/subcategorylist");
-        conn.addParamMap("GOODS_MIDDLE_CATEGORY", key);
+        conn.addParamMap("GOODS_MIDDLE_CATEGORY", localkey);
         conn.addParamMap("GOODS_SUB_CATEGORY", subCategoryKey);
         conn.onExcute((isResult, data) -> {
             ArrayList<GoodsVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<GoodsVO>>() {}.getType());

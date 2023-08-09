@@ -1,6 +1,8 @@
 package com.example.ipdda.home;
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -8,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ipdda.databinding.ItemHomeRecommendRecvBinding;
+import com.example.ipdda.goodsboard.GoodsBoardActivity;
 
 import java.util.ArrayList;
 
@@ -40,6 +43,13 @@ public class HomeGoodsRecommendAdapter extends RecyclerView.Adapter<HomeGoodsRec
 
         h.binding.tvRecommendPrice1.setText(list.get(i).getGoods_price()+"");
 
+        h.binding.imgvRecommendGoods1.setOnClickListener(v -> {
+            Intent intent = new Intent(context, GoodsBoardActivity.class);
+            intent.putExtra("goods_no", list.get(i).getGoods_no());
+
+            context.startActivity(intent);
+
+        });
 
 
     }

@@ -1,6 +1,7 @@
 package com.example.ipdda.goodsboard;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -16,6 +17,8 @@ import com.example.ipdda.databinding.ActivityGoodsBoardBinding;
 import com.example.ipdda.home.GoodsVO;
 import com.example.ipdda.home.HomeFragment;
 import com.example.ipdda.home.HomeGoodsRecommendAdapter;
+import com.example.ipdda.like.LikeDTO;
+import com.example.ipdda.like.LikeFragment;
 import com.example.ipdda.profile.SubActivity;
 import com.example.ipdda.search.SearchFragment;
 import com.google.gson.Gson;
@@ -28,8 +31,11 @@ import java.util.ArrayList;
 public class GoodsBoardActivity extends AppCompatActivity {
 
 
-
+    boolean like = false;
     ActivityGoodsBoardBinding binding;
+
+    // 테스트용 추가함.
+    ArrayList<LikeDTO> list;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +44,19 @@ public class GoodsBoardActivity extends AppCompatActivity {
 
         binding.recvReview.setAdapter(new GoodsBoardReviewAdapter(GetGoodsBoardReview(),this));
         binding.recvReview.setLayoutManager(new LinearLayoutManager(this));
+
+        // 테스트용 추가함.
+        binding.imgvLike.setOnClickListener(v -> {
+            if (like) {
+                binding.imgvLike.setImageResource(R.drawable.ic_like_blank);
+                like = false;
+            }else {
+                binding.imgvLike.setImageResource(R.drawable.ic_like_green);
+
+                like = true;
+            }
+
+        });
 
         binding.imgvHome.setOnClickListener(v -> {
                 Intent intent = new Intent(this, MainActivity.class);

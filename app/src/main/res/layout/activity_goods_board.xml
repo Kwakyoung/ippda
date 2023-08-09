@@ -688,6 +688,7 @@
             android:layout_weight="1">
 
             <ImageView
+                android:id="@+id/imgv_like"
                 android:layout_centerInParent="true"
                 android:src="@drawable/ic_like_blank"
                 android:layout_width="40dp"

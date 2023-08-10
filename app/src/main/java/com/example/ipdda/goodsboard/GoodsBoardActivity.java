@@ -16,6 +16,8 @@ import com.example.ipdda.databinding.ActivityGoodsBoardBinding;
 import com.example.ipdda.home.GoodsVO;
 import com.example.ipdda.home.HomeFragment;
 import com.example.ipdda.home.HomeGoodsRecommendAdapter;
+import com.example.ipdda.pay.PayActivity;
+import com.example.ipdda.pay.TossPayActivity;
 import com.example.ipdda.profile.SubActivity;
 import com.example.ipdda.search.SearchFragment;
 import com.google.gson.Gson;
@@ -30,6 +32,10 @@ public class GoodsBoardActivity extends AppCompatActivity {
 
 
     ActivityGoodsBoardBinding binding;
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,10 +74,10 @@ public class GoodsBoardActivity extends AppCompatActivity {
             ArrayList<GoodsVO> arrayList = new Gson().fromJson(data, new TypeToken<ArrayList<GoodsVO>>(){}.getType());
             GoodsVO goodsVO = arrayList.get(0);
 
+
             String goodsName = goodsVO.getGoods_name();
             int goodsPrice = goodsVO.getGoods_price();
             int SalePercent = goodsVO.getGoods_sale_percent();
-
             String storeName = goodsVO.getStore_name()+"";
             String starCnt = goodsVO.getGoods_star()+"";
             String goodsContext = goodsVO.getGoods_info()+"";
@@ -84,12 +90,24 @@ public class GoodsBoardActivity extends AppCompatActivity {
                 binding.tvOriginalPrice.setVisibility(View.GONE);
                 binding.tvSalePercent.setVisibility(View.GONE);
                 binding.tvSale.setVisibility(View.GONE);
+
+                binding.btnBuy.setOnClickListener(v -> {
+                    Intent intent = new Intent(this, TossPayActivity.class);
+                    intent.putExtra("price", goodsPrice);
+                    startActivity(intent);
+                });
             }else{
                 int goodsSalePrice = goodsPrice/(100/SalePercent);
                 binding.tvGoodsPrice.setText(goodsSalePrice+"원");
                 binding.tvGoodsOriginalPrice.setText(goodsPrice+"원");
-            }
 
+                binding.btnBuy.setOnClickListener(v -> {
+                    Intent intent = new Intent(this, TossPayActivity.class);
+                    intent.putExtra("price", goodsSalePrice);
+                    startActivity(intent);
+                });
+
+            }
 
             binding.tvStoreName.setText(storeName);
             binding.tvStarCnt.setText(starCnt);
@@ -97,10 +115,14 @@ public class GoodsBoardActivity extends AppCompatActivity {
             binding.tvGoodsContext.setText(goodsContext);
             binding.tvSalePercent.setText(SalePercent+"");
         });
-//
+
+
+
 
         setContentView(binding.getRoot());
     }
+
+
 
     public ArrayList<GoodsBoardReviewDTO> GetGoodsBoardReview(){
         ArrayList<GoodsBoardReviewDTO> list = new ArrayList<>();

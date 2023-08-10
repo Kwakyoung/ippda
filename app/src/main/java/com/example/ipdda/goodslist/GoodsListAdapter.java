@@ -3,6 +3,7 @@ package com.example.ipdda.goodslist;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -45,13 +46,28 @@ public class GoodsListAdapter extends RecyclerView.Adapter<GoodsListAdapter.View
     public void onBindViewHolder(@NonNull GoodsListAdapter.ViewHolder h, int i) {
 
         h.binding.tvStoreName1.setText(list.get(i).getStore_name()+"");
-        h.binding.tvGoodsPrice1.setText(list.get(i).getGoods_price()+"");
+
 
         h.binding.tvStoreName2.setText(list.get(i).getStore_name()+"");
-        h.binding.tvGoodsPrice2.setText(list.get(i).getGoods_price()+"");
+
+        if(list.get(i).getGoods_sale_percent() != 0){
+            int getGoodsPrice = list.get(i).getGoods_price()/(100/list.get(i).getGoods_sale_percent());
+            h.binding.tvGoodsPrice1.setText(getGoodsPrice+"");
+            h.binding.tvGoodsPrice2.setText(getGoodsPrice+"");
+        }else {
+            h.binding.tvGoodsPrice1.setText(list.get(i).getGoods_price()+"");
+            h.binding.tvGoodsPrice2.setText(list.get(i).getGoods_price()+"");
+            h.binding.tvSalePercent.setText(list.get(i).getGoods_sale_percent()+"");
+            h.binding.tvSalePercent.setVisibility(View.GONE);
+            h.binding.tvSale.setVisibility(View.GONE);
+        }
+
 
         h.binding.imgvGoods1.setOnClickListener(v -> {
+            Intent intent = new Intent(context, GoodsBoardActivity.class);
+            intent.putExtra("goods_no", list.get(i).getGoods_no());
 
+            context.startActivity(intent);
         });
 
 

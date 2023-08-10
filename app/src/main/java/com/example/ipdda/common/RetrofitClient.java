@@ -14,4 +14,21 @@ public class RetrofitClient {
 
         return retrofit;
     }
+
+    public Retrofit getKakao(){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://kapi.kakao.com/")
+                .addConverterFactory(ScalarsConverterFactory.create())
+                .build();
+        return retrofit;
+    }
+
+    public Retrofit getToss(){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://pay.toss.im/api/v2/payments")
+                .addConverterFactory(ScalarsConverterFactory.create())
+                .build();
+        return retrofit;
+    }
+
 }

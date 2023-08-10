@@ -8,5 +8,29 @@
 	where member_id = #{member_id} and member_pw = #{member_pw} 
 </select>
 
+<select id="idcheck" resultType="member.MemberVO">
+	SELECT * 
+	FROM member 
+	where member_id = #{member_id} and member_pw = #{member_pw} 
+</select>
+
+<!-- 회원가입: 회원정보신규저장 -->
+<insert id="join">
+insert into member 
+	( member_no,
+	member_id,
+	member_nickname,
+	member_pw,
+	member_email,
+	member_gender
+	)
+values ( #{member_no}, #{member_id}, #{member_nickname}, #{member_pw}, #{member_email}
+		, #{member_gender} )
+</insert>
+
+
+
+
+
 </mapper>
 	

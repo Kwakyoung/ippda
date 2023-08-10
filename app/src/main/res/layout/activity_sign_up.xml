@@ -76,14 +76,14 @@
                     android:layout_height="40dp"/>
                 <TextView
                     android:id="@+id/btn_id_check"
-                    android:layout_marginTop="10dp"
+                    android:layout_centerVertical="true"
                     android:layout_marginRight="5dp"
                     android:backgroundTint="#C8C8C8"
                     android:textColor="#0E0E0E"
                     android:layout_alignParentRight="true"
                     android:text="중복확인"
                     android:layout_width="50dp"
-                    android:layout_height="20dp"/>
+                    android:layout_height="40dp"/>
 
             <TextView
                 android:layout_below="@id/edt_id"
@@ -108,6 +108,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <EditText
+                android:id="@+id/edt_nickname"
                 android:layout_alignParentRight="true"
                 android:paddingLeft="10dp"
                 android:inputType="textMultiLine|textNoSuggestions"
@@ -115,7 +116,7 @@
                 android:maxLines="1"
                 android:maxLength="20"
                 android:textColorHint="#75000000"
-                android:hint="닉네임"
+                android:hint="사용할 닉네임 입력"
                 android:layout_width="260dp"
                 android:layout_height="40dp"/>
         </RelativeLayout>
@@ -140,7 +141,7 @@
                 android:maxLines="1"
                 android:maxLength="16"
                 android:textColorHint="#75000000"
-                android:hint="비밀번호"
+                android:hint="비밀번호 최대 16자까지"
                 android:layout_width="260dp"
                 android:layout_height="40dp"/>
 
@@ -161,7 +162,7 @@
             android:orientation="horizontal">
             <TextView
                 android:textSize="15dp"
-                android:text="비밀번호\n\t  확인"
+                android:text="비밀번호\n확인"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         <EditText
@@ -173,7 +174,7 @@
             android:maxLines="1"
             android:maxLength="16"
             android:textColorHint="#75000000"
-            android:hint="비밀번호 확인"
+            android:hint="비밀번호와 똑같이 입력"
             android:layout_width="260dp"
             android:layout_height="40dp"/>
 
@@ -199,6 +200,7 @@
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"/>
         <EditText
+            android:id="@+id/edt_email"
             android:layout_alignParentRight="true"
             android:paddingLeft="10dp"
             android:inputType="textMultiLine|textNoSuggestions"
@@ -231,13 +233,11 @@
                 <RadioButton
                     android:id="@+id/check_man"
                     android:layout_marginRight="20dp"
-
                     android:text="남"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <RadioButton
                     android:id="@+id/check_woman"
-
                     android:text="여"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
@@ -251,7 +251,7 @@
                 android:id="@+id/tv_birth_date"
                 android:gravity="center_vertical"
                 android:textColor="#75000000"
-                android:text="생년월일 입력"
+                android:text="생년월일 ( 선택 )"
                 android:textSize="18dp"
                 android:paddingLeft="10dp"
                 android:background="@drawable/radius"

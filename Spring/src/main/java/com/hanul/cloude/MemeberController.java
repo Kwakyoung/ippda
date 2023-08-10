@@ -13,6 +13,7 @@ import com.google.gson.Gson;
 import member.MemberDAO;
 import member.MemberVO;
 
+
 @RestController @RequestMapping("/member")
 public class MemeberController {
 
@@ -28,4 +29,18 @@ public class MemeberController {
 		MemberVO vo = dao.login(params);
 		return new Gson().toJson(vo);
 	}
+	
+	@RequestMapping(value = "/insert" , produces = "text/html;charset=utf-8")
+	public void insert(MemberVO vo) {
+		sql.insert("member.join", vo);
+	}
+	
+	
+	@RequestMapping("idcheck")
+	public String idcheck(String member_id) {
+		MemberVO vo = dao.idcheck(member_id);
+		return new Gson().toJson(vo);
+	}
+	
+	
 }

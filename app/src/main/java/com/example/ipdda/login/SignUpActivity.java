@@ -96,12 +96,12 @@ public class SignUpActivity extends AppCompatActivity {
                         }
 
                     CommonConn conn = new CommonConn(this,"member/insert");
-                        conn.addParamMap("member_no", 1235);
-                    conn.addParamMap("member_id", CommonVar.loginInfo.getMember_id()+"");
-                    conn.addParamMap("member_nickname", CommonVar.loginInfo.getMember_nickname()+"");
-                    conn.addParamMap("member_pw", CommonVar.loginInfo.getMember_pw()+"");
-                    conn.addParamMap("member_email", CommonVar.loginInfo.getMember_email()+"");
-                    conn.addParamMap("member_gender", CommonVar.loginInfo.getMember_gender()+"");
+                    conn.addParamMap("member_id", CommonVar.loginInfo.getMember_id());
+                    conn.addParamMap("member_nickname", CommonVar.loginInfo.getMember_nickname());
+                    conn.addParamMap("member_pw", CommonVar.loginInfo.getMember_pw());
+                    conn.addParamMap("member_email", CommonVar.loginInfo.getMember_email());
+                    conn.addParamMap("member_gender", CommonVar.loginInfo.getMember_gender());
+                    conn.addParamMap("member_birthday",CommonVar.loginInfo.getMember_birthday());
 
 
                     conn.onExcute((isResult, data) -> {

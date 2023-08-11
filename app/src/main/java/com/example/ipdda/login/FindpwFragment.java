@@ -32,6 +32,7 @@ public class FindpwFragment extends Fragment {
 
         binding.btnNext.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), ResultPwActivity.class);
+            intent.putExtra("id",binding.edtId.getText().toString());
             startActivity(intent);
         });
 

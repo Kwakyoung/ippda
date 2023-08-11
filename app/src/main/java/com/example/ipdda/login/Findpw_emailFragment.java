@@ -31,8 +31,10 @@ public class Findpw_emailFragment extends Fragment {
             activity.changeFragment(2, new FindidFragment());
         });
 
+
         binding.btnNext.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), ResultPwActivity.class);
+            intent.putExtra("id",binding.edtId.getText().toString());
             startActivity(intent);
         });
         return binding.getRoot();

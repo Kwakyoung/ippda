@@ -12,7 +12,8 @@
         android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_gravity="center|top">
+        android:layout_gravity="center|top"
+        android:layout_marginTop="50dp">
 
     <RelativeLayout
         android:layout_width="match_parent"

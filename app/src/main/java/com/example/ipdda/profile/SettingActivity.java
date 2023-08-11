@@ -23,7 +23,7 @@ public class SettingActivity extends AppCompatActivity {
         binding.recvSettingRecv.setHorizontalScrollBarEnabled(false);
         binding.recvSettingRecv.setAdapter(new SettingAdapter(getSetting(), this));
         binding.recvSettingRecv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-
+        binding.recvSettingRecv.setOverScrollMode(View.OVER_SCROLL_NEVER);
 
         binding.btnBack.setOnClickListener(v -> this.finish());
     }

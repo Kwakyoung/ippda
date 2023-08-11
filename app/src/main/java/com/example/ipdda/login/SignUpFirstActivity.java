@@ -24,6 +24,8 @@ public class SignUpFirstActivity extends AppCompatActivity {
 
         binding.btnNext.setOnClickListener(v -> {
             Intent intent = new Intent(this, SignUpActivity.class);
+            intent.putExtra("name",binding.edtName.getText().toString());
+            intent.putExtra("phone",binding.edtPhonenum.getText().toString());
             startActivity(intent);
         });
     }

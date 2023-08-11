@@ -32,7 +32,11 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
-				
+			    <dependency>
+        <groupId>org.apache.httpcomponents</groupId>
+        <artifactId>httpclient</artifactId>
+        <version>4.5.13</version>
+    </dependency>	
 		<!-- AspectJ -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
@@ -131,6 +135,7 @@
     <artifactId>ojdbc8</artifactId>
     <version>21.5.0.0</version>
 </dependency>
+
 
 	<!-- https://mvnrepository.com/artifact/net.nurigo/sdk -->
 	<!-- 문자 전송을 위해서 2023-05-10에 JEP이 추가함-->

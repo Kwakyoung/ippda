@@ -19,6 +19,8 @@ public class SettingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(binding.getRoot());
 
+        binding.recvSettingRecv.setVerticalScrollBarEnabled(false);
+        binding.recvSettingRecv.setHorizontalScrollBarEnabled(false);
         binding.recvSettingRecv.setAdapter(new SettingAdapter(getSetting(), this));
         binding.recvSettingRecv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 

@@ -9,6 +9,8 @@ import android.text.TextWatcher;
 import android.view.View;
 
 import com.example.ipdda.R;
+import com.example.ipdda.common.CommonConn;
+import com.example.ipdda.common.CommonVar;
 import com.example.ipdda.databinding.ActivityResultPwBinding;
 
 public class ResultPwActivity extends AppCompatActivity {
@@ -19,6 +21,10 @@ public class ResultPwActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityResultPwBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        Intent intent1 = getIntent();
+        binding.tvMemberId.setText(intent1.getStringExtra("id"));
+
 
         binding.btnActivitylogin.setOnClickListener(v -> {
             Intent intent = new Intent(this, LoginActivity.class);

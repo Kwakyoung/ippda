@@ -82,13 +82,14 @@ public class SignUpActivity extends AppCompatActivity {
                 Toast.makeText(this, "성별을 골라주세요", Toast.LENGTH_SHORT).show();
             } else if (binding.tvIdFeedback.getText().equals("사용가능한 아이디 입니다.") && binding.edtPw.getText().toString().equals(binding.edtPwCheck.getText().toString())){
 
+                    Intent intent1 = getIntent();
                     CommonVar.loginInfo = new MemberVO();
                     CommonVar.loginInfo.setMember_id(binding.edtId.getText().toString());
                     CommonVar.loginInfo.setMember_nickname(binding.edtNickname.getText().toString());
                     CommonVar.loginInfo.setMember_pw(binding.edtPw.getText().toString());
                     CommonVar.loginInfo.setMember_email(binding.edtEmail.getText().toString());
                     CommonVar.loginInfo.setMember_birthday(binding.tvBirthDate.getText().toString());
-
+                    CommonVar.loginInfo.setMember_phone(intent1.getStringExtra("phone"));
                         if (binding.checkMan.isChecked()){
                             CommonVar.loginInfo.setMember_gender("남");
                         }else {
@@ -102,7 +103,7 @@ public class SignUpActivity extends AppCompatActivity {
                     conn.addParamMap("member_email", CommonVar.loginInfo.getMember_email());
                     conn.addParamMap("member_gender", CommonVar.loginInfo.getMember_gender());
                     conn.addParamMap("member_birthday",CommonVar.loginInfo.getMember_birthday());
-
+                    conn.addParamMap("member_phone",CommonVar.loginInfo.getMember_phone());
 
                     conn.onExcute((isResult, data) -> {
                         if (isResult) {
@@ -156,6 +157,9 @@ public class SignUpActivity extends AppCompatActivity {
         int year = calendar.get(Calendar.YEAR); // 현재연도
         int month = calendar.get(Calendar.MONTH) + 1; // 현재 월 (0부터 시작하므로 1을 더해줌)
         int day = calendar.get(Calendar.DAY_OF_MONTH); // 현재 일
+        long today = calendar.getTimeInMillis();        // 달력에서 오늘날짜까지만
+        calendar.add(Calendar.YEAR, -100);    // 달력 최소년도를 오늘 -100년으로
+        long minDate = calendar.getTimeInMillis();      // 달력 최소년도 설정
 
         SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd");
         Date date = new Date(System.currentTimeMillis());
@@ -163,12 +167,19 @@ public class SignUpActivity extends AppCompatActivity {
 
 
 
+
+
         binding.tvBirthDate.setOnClickListener(v -> {
                     calBinding = DialogCalBinding.inflate(getLayoutInflater());
                     AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    calBinding.dpDate.setMaxDate(today);    // 달력 최대날 ( 오늘 )
+                    calBinding.dpDate.setMinDate(minDate);  // 달력 최소날 ( 100년전 )
                     builder.setView(calBinding.getRoot());
                     AlertDialog dialog = builder.create();
                     dialog.show();
+
+
+
                     calBinding.btnCancel.setOnClickListener(v1 -> {
                         dialog.dismiss();
                     });

@@ -23,10 +23,11 @@ insert into member
 	member_pw,
 	member_email,
 	member_gender,
-	member_birthday
+	member_birthday,
+	member_phone
 	)
 values ( seq_member_no.NEXTVAL, #{member_id}, #{member_nickname}, #{member_pw}, #{member_email}
-		, #{member_gender}, TO_DATE(#{member_birthday},'yy.MM.dd') )
+		, #{member_gender}, TO_DATE(#{member_birthday},'yy.MM.dd'), #{member_phone} )
 </insert>
 
 

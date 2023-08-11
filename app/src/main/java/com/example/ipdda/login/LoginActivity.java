@@ -55,7 +55,7 @@ public class LoginActivity extends AppCompatActivity {
             if(binding.edtId.getText().toString().length() < 1
                     || binding.edtPw.getText().toString().length() < 1){
                 Toast.makeText(this, "아이디 또는 패스워드를 입력하세요.", Toast.LENGTH_SHORT).show();
-                return;
+                    return;
             }
 
 

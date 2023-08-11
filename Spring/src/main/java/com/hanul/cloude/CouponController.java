@@ -34,9 +34,15 @@ public class CouponController {
 	    HashMap<String, String> params = new HashMap<String, String>();
 	    params.put("member_no", member_no);
 	    params.put("coupon_no", coupon_no);
-	    params.put("coupon_status", coupon_status); // Add this line to include coupon_status parameter
+	    params.put("coupon_status", coupon_status);
 	    int result = dao.register(params);
 	    return new Gson().toJson(result);
 	}
+	
+	@RequestMapping(value = "/count" , produces = "text/html;charset=utf-8")
+	public String count(CouponVO vo) {
 
+		int count = dao.count(vo);
+		return new Gson().toJson(count);
+	}
 }

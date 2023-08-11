@@ -27,7 +27,7 @@ public class CouponActivity extends AppCompatActivity {
     Dialog write_dialog;
     ActivityCouponBinding binding;
     ActivityCouponRegisterBinding dialogBinding;
-
+    private CouponAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         binding=ActivityCouponBinding.inflate(getLayoutInflater());

@@ -12,9 +12,13 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.ipdda.R;
+import com.example.ipdda.common.CommonConn;
+import com.example.ipdda.common.CommonVar;
 import com.example.ipdda.databinding.FragmentProfileBinding;
 import com.example.ipdda.goodslist.GoodsListDTO;
+import com.example.ipdda.member.MemberVO;
 import com.example.ipdda.profile.coupon.CouponActivity;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
@@ -34,6 +38,15 @@ public class ProfileFragment extends Fragment {
 
         binding.gridvViewed.setAdapter(new ViewedAdepter(GoodsList(),getContext()));
         binding.recvUserActions.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL , false));
+
+        binding.user.setText(CommonVar.loginInfo.getMember_nickname());
+        binding.userEmail.setText(CommonVar.loginInfo.getMember_email());
+        CommonConn conn = new CommonConn(getContext(),"coupon/count");
+        conn.addParamMap("coupon_status","보유");
+        conn.addParamMap("member_no",CommonVar.loginInfo.getMember_no());
+        conn.onExcute(((isResult, data) -> {
+            binding.tvCoupon.setText("쿠폰\n"+Integer.parseInt(data));
+        }));
 
         binding.editInfo.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), ChangeInfoActivity.class);
@@ -79,7 +92,7 @@ public class ProfileFragment extends Fragment {
         return list;
     }
 
-    ArrayList<GoodsListDTO> GoodsList(){    
+    ArrayList<GoodsListDTO> GoodsList(){
         ArrayList<GoodsListDTO> list = new ArrayList<>();
         list.add(new GoodsListDTO(0,2000,"후드","입다"));
 

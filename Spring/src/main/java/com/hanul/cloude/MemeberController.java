@@ -59,17 +59,17 @@ public class MemeberController {
 		for (int i=0; i<6; i++) { 
 			createNum = random.nextInt(9);		//0부터 9까지 올 수 있는 1자리 난수 생성
 			ranNum =  Integer.toString(createNum);  //1자리 난수를 String으로 형변환
-			resultNum += ranNum;			//생성된 난수(문자열)을 원하는 수(letter)만큼 더하며 나열
+			resultNum += ranNum;			//생성된 난수(문자열)을 원하는 수(	letter)만큼 더하며 나열
 		}	
 		
-		final String APIKEY = "NCSETJIO9APTNGCU";
-		final String APISECRET = "FYUXODBO43RFL0WA0JLVPLJRG3XUBQ2C";
+		final String APIKEY = "NCSCTZA8YMURWIAC";
+		final String APISECRET = "CKZVCPVIKL1I6BSISLDIH9BLTCVR7UNO";
 		
 		Message sms = new Message(APIKEY, APISECRET);
 		
 		HashMap<String, String> params = new HashMap();
-		params.put("to", "01025407141");
-		params.put("from", "01034481720");
+		params.put("to", "01034481720");
+		params.put("from", "01025407141");
 		params.put("type", "SMS"); //SMS, LMS, MMS ...
 		params.put("text", "IPPDA 인증번호\n["+resultNum+"]");
 		params.put("app_version", "JAVA SDK v1.2");

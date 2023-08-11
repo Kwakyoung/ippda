@@ -12,7 +12,6 @@ android {
         targetSdk 33
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -34,6 +33,13 @@ android {
 
 
 dependencies {
+
+    //naver maps api
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'com.google.android.gms:play-services-location:21.0.1' //현재 위치 표시
+    implementation 'com.naver.maps:map-sdk:3.17.0'
+
+    //Toss결제 API
     implementation 'com.github.tosspayments:payment-sdk-android:0.1.11'
 
     implementation 'androidx.appcompat:appcompat:1.6.1'
@@ -43,6 +49,11 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
+
+    implementation files('libs/libDaumMapAndroid.jar')
+
+    //위치설정
+    implementation 'com.google.android.gms:play-services-location:18.0.0'
 
 
     implementation "com.kakao.sdk:v2-user:2.15.0" // 카카오 로그인

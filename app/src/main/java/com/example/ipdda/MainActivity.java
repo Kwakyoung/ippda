@@ -4,8 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Base64;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.ipdda.databinding.ActivityMainBinding;
@@ -15,6 +20,9 @@ import com.example.ipdda.like.LikeFragment;
 import com.example.ipdda.packaging.PackagingFragment;
 import com.example.ipdda.profile.ProfileFragment;
 import com.example.ipdda.search.SearchFragment;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class MainActivity extends AppCompatActivity {
 

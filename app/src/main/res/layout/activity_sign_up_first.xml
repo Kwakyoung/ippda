@@ -89,6 +89,7 @@
                 android:layout_height="50dp"/>
 
             <Button
+                android:id="@+id/btn_phonecheck"
                 android:layout_marginRight="5dp"
                 android:background="@drawable/custom_button"
                 android:layout_centerVertical="true"

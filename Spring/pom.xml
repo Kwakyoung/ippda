@@ -144,6 +144,7 @@
     	<artifactId>javaSDK</artifactId>
     	<version>2.2</version>
 	</dependency>
+	
 	<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-email -->
 	<!-- 이메일전송을 위한 lib(api) jep-->
 	<dependency>

@@ -17,7 +17,7 @@
         <ImageView
             android:id="@+id/imgv_back"
             android:layout_centerVertical="true"
-            android:src="@drawable/arrow_down"
+            android:src="@drawable/clear"
             android:layout_width="30dp"
             android:layout_height="30dp"/>
         
@@ -73,6 +73,7 @@
     </LinearLayout>
     
     <View
+        android:layout_marginBottom="20dp"
         android:background="#666"
         android:layout_width="match_parent"
         android:layout_height="2dp"/>

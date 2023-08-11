@@ -10,7 +10,16 @@ public class MemberVO {
             member_address,
             member_bank,
             member_bank_no,
-            member_profile_image;
+            member_profile_image,
+            member_birthday;
+
+    public String getMember_birthday() {
+        return member_birthday;
+    }
+
+    public void setMember_birthday(String member_birthday) {
+        this.member_birthday = member_birthday;
+    }
 
     private int member_no;
 

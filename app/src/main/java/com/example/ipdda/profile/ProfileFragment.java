@@ -33,7 +33,7 @@ public class ProfileFragment extends Fragment {
         binding.recvUserActions.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL , false));
 
         binding.gridvViewed.setAdapter(new ViewedAdepter(GoodsList(),getContext()));
-        binding.gridvViewed.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.recvUserActions.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL , false));
 
         binding.editInfo.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), ChangeInfoActivity.class);
@@ -79,8 +79,9 @@ public class ProfileFragment extends Fragment {
         return list;
     }
 
-    ArrayList<GoodsListDTO> GoodsList(){
+    ArrayList<GoodsListDTO> GoodsList(){    
         ArrayList<GoodsListDTO> list = new ArrayList<>();
+        list.add(new GoodsListDTO(0,2000,"후드","입다"));
 
         return list;
     }

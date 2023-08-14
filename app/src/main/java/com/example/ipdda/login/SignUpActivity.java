@@ -31,6 +31,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.regex.Pattern;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -58,11 +59,15 @@ public class SignUpActivity extends AppCompatActivity {
 
 
 
+
+
+
             binding.btnSignup.setOnClickListener(v -> {
                 int selectRadio = binding.radioGender.getCheckedRadioButtonId();
 
             if(binding.edtId.getText().toString().length()<1) {
-                binding.tvIdFeedback.setText("빈칸을 입력해주세요. 5~15자 이내");
+                binding.tvIdFeedback.setText("빈칸을 입력해주세요.");
+                binding.tvIdFeedback.setTextColor(Color.RED);
             } else if(binding.tvIdFeedback.getText().toString().equals("중복확인을 해주세요")){
                 Toast.makeText(this, "아이디 중복확인 후 진행해주세요.", Toast.LENGTH_SHORT).show();
             } else if (binding.edtNickname.getText().toString().length()<1) {
@@ -230,10 +235,23 @@ public class SignUpActivity extends AppCompatActivity {
                 if (binding.edtId.length() < 5 || binding.edtId.length()>15) {
                     binding.tvIdFeedback.setText("5~15자 이내 아이디를 입력해주세요.");
                     binding.tvIdFeedback.setTextColor(Color.RED);
-
-                } else if (binding.edtId.length() >=5 && binding.edtId.length()<=20) {
+                    binding.btnIdCheck.setVisibility(View.GONE);
+                }else if(!Pattern.compile("[0-9]").matcher(binding.edtId.getText().toString()).find()){
+                        binding.tvIdFeedback.setVisibility(View.VISIBLE);
+                        binding.tvIdFeedback.setText("숫자 1자 이상 넣어주세요");
+                        binding.tvIdFeedback.setTextColor(Color.RED);
+                }else if(!Pattern.compile("[a-z]").matcher(binding.edtId.getText().toString()).find()) {
+                    binding.tvIdFeedback.setVisibility(View.VISIBLE);
+                    binding.tvIdFeedback.setText("영문 1자 이상 넣어주세요.");
+                    binding.tvIdFeedback.setTextColor(Color.RED);
+                }else if (Pattern.compile("[A-Z$@$!%*#?;&가-힣]").matcher(binding.edtId.getText().toString()).find()){
+                        binding.tvIdFeedback.setVisibility(View.VISIBLE);
+                        binding.tvIdFeedback.setText("영문, 숫자만 적어주세요.");
+                        binding.tvIdFeedback.setTextColor(Color.RED);
+                } else {
                     binding.tvIdFeedback.setText("중복확인을 해주세요");
                     binding.tvIdFeedback.setTextColor(Color.GREEN);
+                    binding.btnIdCheck.setVisibility(View.VISIBLE);
                 }
             }
 
@@ -243,6 +261,7 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
 
+
             binding.edtPw.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -251,11 +270,19 @@ public class SignUpActivity extends AppCompatActivity {
 
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
-                    if (binding.edtPw.length() < 5 || binding.edtId.length()>15) {
-                        binding.tvPwFeedback.setText("5~15자 이내 아이디를 입력해주세요.");
+                    if (binding.edtPw.length() < 6 || binding.edtPw.length()>16) {
+                        binding.tvPwFeedback.setText("6~16자 이내로 입력해주세요.");
                         binding.tvPwFeedback.setTextColor(Color.RED);
-
-                    } else if (binding.edtPw.length() >=5 && binding.edtId.length()<=20) {
+                    }else if(!Pattern.compile("[0-9]").matcher(binding.edtPw.getText().toString()).find()){
+                        binding.tvPwFeedback.setVisibility(View.VISIBLE);
+                        binding.tvPwFeedback.setText("숫자 1자 이상 넣어주세요.");
+                    }else if(!Pattern.compile("[a-z]").matcher(binding.edtPw.getText().toString()).find()){
+                        binding.tvPwFeedback.setVisibility(View.VISIBLE);
+                        binding.tvPwFeedback.setText("영문 1자 이상 넣어주세요.");
+                    }else if(!Pattern.compile("[A-Z$@$!%*#?&]").matcher(binding.edtPw.getText().toString()).find()) {
+                        binding.tvPwFeedback.setVisibility(View.VISIBLE);
+                        binding.tvPwFeedback.setText("특수문자 1자 이상 넣어주세요.");
+                    } else {
                         binding.tvPwFeedback.setText("사용 가능합니다.");
                         binding.tvPwFeedback.setTextColor(Color.GREEN);
                     }

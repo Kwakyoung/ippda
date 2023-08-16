@@ -205,12 +205,12 @@
             android:id="@+id/edt_email"
             android:layout_alignParentRight="true"
             android:paddingLeft="10dp"
-            android:inputType="textMultiLine|textNoSuggestions"
+            android:inputType="textEmailAddress"
             android:background="@drawable/radius"
             android:maxLines="1"
             android:maxLength="50"
             android:textColorHint="#75000000"
-            android:hint="이메일"
+            android:hint="test@email.com"
             android:layout_width="260dp"
             android:layout_height="40dp"/>
         </RelativeLayout>
@@ -249,11 +249,12 @@
                 android:layout_width="0dp"
                 android:layout_height="40dp"/>
             <TextView
+                android:textColor="@color/black"
                 android:layout_weight="5"
                 android:id="@+id/tv_birth_date"
                 android:gravity="center_vertical"
-                android:textColor="#75000000"
-                android:text="생년월일 ( 선택 )"
+                android:textColorHint="#75000000"
+                android:hint="생년월일 ( 선택 )"
                 android:textSize="18dp"
                 android:paddingLeft="10dp"
                 android:background="@drawable/radius"

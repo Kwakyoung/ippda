@@ -1,5 +1,6 @@
 package com.example.ipdda.login;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -31,8 +32,9 @@ public class Findid_emailFragment extends Fragment {
         });
 
         binding.btnNext.setOnClickListener(v -> {
-            activity = (FindActivity) getActivity();
-            activity.changeFragment(7, new ResultFragment());
+
+            Intent intent = new Intent(getContext(),ResultActivity.class);
+            startActivity(intent);
         });
 
         return binding.getRoot();

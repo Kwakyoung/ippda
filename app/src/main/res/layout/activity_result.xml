@@ -54,22 +54,31 @@
     </LinearLayout>
 
     <RelativeLayout
-        android:layout_gravity="center"
-        android:layout_width="180dp"
+        android:gravity="center"
+        android:layout_width="match_parent"
         android:layout_height="80dp"
         >
-        <TextView
-            android:layout_centerVertical="true"
-            android:text="TestID1234"
-            android:maxLines="1"
-            android:ellipsize="end"
-            android:layout_width="110dp"
-            android:layout_height="wrap_content"/>
 
         <TextView
-            android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:text="2023.07.27"
+            android:id="@+id/tv_member_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
+            android:textStyle="bold"
+            android:text="TestID1234"
+            android:textSize="16dp" />
+
+
+        <TextView
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/tv_member_id"
+            android:layout_marginLeft="50dp"
+            android:id="@+id/tv_create"
+            android:textColor="#EAE9E9"
+            android:text="2022-08-08"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </RelativeLayout>

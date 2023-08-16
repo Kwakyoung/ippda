@@ -79,7 +79,7 @@
             <EditText
                 android:id="@+id/edt_phonenum"
                 android:paddingLeft="10dp"
-                android:inputType="textMultiLine|textNoSuggestions"
+                android:inputType="number"
                 android:background="@drawable/radius"
                 android:maxLines="1"
                 android:maxLength="15"
@@ -110,7 +110,7 @@
             <EditText
                 android:id="@+id/edt_check"
                 android:paddingLeft="10dp"
-                android:inputType="textMultiLine|textNoSuggestions"
+                android:inputType="number"
                 android:background="@drawable/radius"
                 android:maxLines="1"
                 android:maxLength="6"
@@ -120,6 +120,7 @@
                 android:layout_height="50dp"/>
 
             <Button
+                android:id="@+id/btn_phonecheck_last"
                 android:layout_marginRight="5dp"
                 android:background="@drawable/custom_button"
                 android:layout_centerVertical="true"
@@ -132,7 +133,6 @@
                 android:layout_height="35dp"/>
 
         </RelativeLayout>
-
 
         <Button
             android:id="@+id/btn_next"

@@ -11,7 +11,25 @@ public class MemberVO {
             member_bank,
             member_bank_no,
             member_profile_image,
-            member_birthday;
+            member_birthday,
+            member_name,
+            member_create;
+
+    public String getMember_create() {
+        return member_create;
+    }
+
+    public void setMember_create(String member_create) {
+        this.member_create = member_create;
+    }
+
+    public String getMember_name() {
+        return member_name;
+    }
+
+    public void setMember_name(String member_name) {
+        this.member_name = member_name;
+    }
 
     public String getMember_birthday() {
         return member_birthday;

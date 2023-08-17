@@ -8,11 +8,33 @@
 	where member_id = #{member_id} and member_pw = #{member_pw} 
 </select>
 
+
+<!-- id 중복체크 -->
 <select id="idcheck" resultType="member.MemberVO">
-	SELECT * 
+	SELECT member_id 
 	FROM member 
-	where member_id = #{member_id} and member_pw = #{member_pw} 
+	where member_id = #{member_id} 
 </select>
+
+<!-- 폰으로 아이디찾기 -->
+<select id="findid" resultType="member.MemberVO">
+	SELECT  member_id, to_char(member_create,'yyyy-MM-DD')AS MEMBER_CREATE
+	FROM    member
+	WHERE   member_name = #{member_name}
+	AND		member_phone = #{member_phone}
+</select>
+
+
+
+<!-- 폰으로 비밀번호 찾기 -->
+<update id="resetPw">
+UPDATE 	member 
+SET 	member_pw = #{member_pw} 
+WHERE 	member_id = #{member_id} 
+AND 	member_name = #{member_name}
+AND		member_phone = #{member_phone}
+</update>
+
 
 <!-- 회원가입: 회원정보신규저장 -->
 <insert id="join">
@@ -24,10 +46,11 @@ insert into member
 	member_email,
 	member_gender,
 	member_birthday,
-	member_phone
+	member_phone,
+	member_name
 	)
 values ( seq_member_no.NEXTVAL, #{member_id}, #{member_nickname}, #{member_pw}, #{member_email}
-		, #{member_gender}, TO_DATE(#{member_birthday},'yy.MM.dd'), #{member_phone} )
+		, #{member_gender}, TO_DATE(#{member_birthday},'yy.MM.dd'), #{member_phone},#{member_name} )
 </insert>
 
 

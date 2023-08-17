@@ -108,11 +108,9 @@
         </LinearLayout>
 
         <TextView
-            android:visibility="gone"
             android:paddingLeft="10dp"
-            android:id="@+id/feedback"
-            android:textColor="#F44336"
-            android:text="영문, 숫자, 특수문자 8~16자리를 입력해주세요."
+            android:id="@+id/tv_pw_feedback"
+            android:text=""
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />
@@ -151,11 +149,9 @@
         </LinearLayout>
 
         <TextView
-            android:visibility="gone"
             android:paddingLeft="10dp"
-            android:id="@+id/feedback2"
-            android:textColor="#4CAF50"
-            android:text="비밀번호와 일치합니다."
+            android:id="@+id/tv_pw_check"
+            android:text=""
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         </LinearLayout>

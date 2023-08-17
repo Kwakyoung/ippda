@@ -19,6 +19,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".login.ResultActivity"
+            android:exported="false" />
+        <activity
             android:name=".pay.TossPayActivity"
             android:exported="false" />
         <activity

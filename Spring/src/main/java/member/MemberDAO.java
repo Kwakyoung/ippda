@@ -8,6 +8,10 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.google.gson.Gson;
+
+
+
 
 
 @Repository
@@ -26,8 +30,21 @@ public class MemberDAO {
 //		return sql.insert("member.join",vo);
 //	}
 	
+	
 	public MemberVO idcheck(String member_id) {
 		return sql.selectOne("member.idcheck",member_id);
 	}
+	
+	
+	public MemberVO findid(MemberVO vo) {
+		return sql.selectOne("member.findid",vo);
+	}
+	
+	
+	public int resetPw(MemberVO vo) {
+		return sql.update("member.resetPw", vo);
+	}
+	
+	
 	
 }

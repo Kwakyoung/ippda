@@ -107,12 +107,12 @@
 
             <EditText
                 android:paddingLeft="10dp"
-                android:inputType="textMultiLine|textNoSuggestions"
+                android:inputType="textEmailAddress"
                 android:background="@drawable/radius"
                 android:maxLines="1"
                 android:maxLength="15"
                 android:textColorHint="#75000000"
-                android:hint="이메일"
+                android:hint="test@email.com"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"/>
 
@@ -136,7 +136,7 @@
 
             <EditText
                 android:paddingLeft="10dp"
-                android:inputType="textMultiLine|textNoSuggestions"
+                android:inputType="number"
                 android:background="@drawable/radius"
                 android:maxLines="1"
                 android:maxLength="6"

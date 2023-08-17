@@ -21,10 +21,11 @@
             android:layout_height="wrap_content"
             android:src="@drawable/img_arrow_down"
             app:tint="@color/gray" />
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recv"
+        <Spinner
+            android:id="@+id/spinner"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:theme="@style/SpinnerPhontBlack"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"

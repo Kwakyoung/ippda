@@ -10,8 +10,12 @@ import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import com.example.ipdda.MainActivity;
@@ -20,6 +24,7 @@ import com.example.ipdda.common.CommonConn;
 import com.example.ipdda.common.CommonVar;
 import com.example.ipdda.databinding.ActivityCouponRegisterBinding;
 import com.example.ipdda.databinding.ActivityGoodsBoardBinding;
+import com.example.ipdda.databinding.ActivityGoodsboardBuyBinding;
 import com.example.ipdda.home.GoodsVO;
 import com.example.ipdda.home.HomeFragment;
 import com.example.ipdda.home.HomeGoodsRecommendAdapter;
@@ -27,7 +32,9 @@ import com.example.ipdda.pay.PayActivity;
 import com.example.ipdda.pay.TossPayActivity;
 import com.example.ipdda.like.LikeDTO;
 import com.example.ipdda.like.LikeFragment;
+import com.example.ipdda.profile.RecvCircleDTO;
 import com.example.ipdda.profile.SubActivity;
+import com.example.ipdda.profile.TrackDeliveryAdepter;
 import com.example.ipdda.search.SearchFragment;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -41,7 +48,7 @@ public class GoodsBoardActivity extends AppCompatActivity {
     Dialog write_dialog;
     boolean like = false;
     ActivityGoodsBoardBinding binding;
-    ActivityCouponRegisterBinding dialogBinding;
+    ActivityGoodsboardBuyBinding dialogBinding;
 
 
 
@@ -159,13 +166,39 @@ public class GoodsBoardActivity extends AppCompatActivity {
         return list;
     }
 
+
     public void showDialog(){
         write_dialog.show(); // 다이얼로그 띄우기
-        dialogBinding = ActivityCouponRegisterBinding.inflate(write_dialog.getLayoutInflater());
+        Window window = write_dialog.getWindow();
+        window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT); // 다이얼로그 크기 조절
+        window.setGravity(Gravity.BOTTOM);
+
+        dialogBinding = ActivityGoodsboardBuyBinding.inflate(write_dialog.getLayoutInflater());
         write_dialog.setContentView(dialogBinding.getRoot());
 
+        //https://www.youtube.com/watch?v=4ogzfAipGS8 스피너 영상
+        dialogBinding.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedOption = parent.getItemAtPosition(position).toString();
+                // 선택된 옵션에 대한 처리를 추가하세요.
+            }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // 아무것도 선택되지 않았을 때의 동작
+            }
+        });
 
+        ArrayList<String> arrayList = new ArrayList<>();
+        arrayList.add("색상");
+        arrayList.add("블랙");
+        arrayList.add("블루");
+        arrayList.add("핑크");
+        arrayList.add("화이트");
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,arrayList);
+        adapter.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
+        dialogBinding.spinner.setAdapter(adapter);
     }
 
 }

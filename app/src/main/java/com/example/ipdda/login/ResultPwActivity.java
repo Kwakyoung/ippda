@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -14,6 +15,8 @@ import com.example.ipdda.R;
 import com.example.ipdda.common.CommonConn;
 import com.example.ipdda.common.CommonVar;
 import com.example.ipdda.databinding.ActivityResultPwBinding;
+import com.example.ipdda.member.MemberVO;
+import com.google.gson.Gson;
 
 import java.util.regex.Pattern;
 
@@ -27,18 +30,12 @@ public class ResultPwActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         Intent intent1 = getIntent();
-        binding.tvMemberId.setText(intent1.getStringExtra("id"));
+        CommonVar.loginInfo = new MemberVO();
+        CommonVar.loginInfo.setMember_id(intent1.getStringExtra("id"));
+        CommonVar.loginInfo.setMember_name(intent1.getStringExtra("name"));
+        CommonVar.loginInfo.setMember_phone(intent1.getStringExtra("phone"));
+        binding.tvMemberId.setText(CommonVar.loginInfo.getMember_id());
 
-
-        binding.btnActivitylogin.setOnClickListener(v -> {
-            if(binding.tvPwCheck.getText().toString().equals("비밀번호와 일치합니다.") && binding.tvPwFeedback.getText().toString().equals("사용 가능합니다.")){
-                Intent intent = new Intent(this, LoginActivity.class);
-                startActivity(intent);
-            }else {
-                Toast.makeText(this, "비밀번호를 확인해주세요.", Toast.LENGTH_SHORT).show();
-            }
-
-        });
 
         binding.edtPw.addTextChangedListener(new TextWatcher() {
             @Override
@@ -76,7 +73,6 @@ public class ResultPwActivity extends AppCompatActivity {
             }
         });
 
-
         binding.edtPwCheck.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -98,6 +94,26 @@ public class ResultPwActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
 
             }
+        });
+
+
+        binding.btnActivitylogin.setOnClickListener(v -> {
+            CommonConn conn = new CommonConn(this,"member/resetPw");
+            conn.addParamMap("member_id",CommonVar.loginInfo.getMember_id());
+            conn.addParamMap("member_name", CommonVar.loginInfo.getMember_name());
+            conn.addParamMap("member_phone", CommonVar.loginInfo.getMember_phone());
+            conn.addParamMap("member_pw",binding.edtPw.getText().toString());
+
+            if(binding.tvPwCheck.getText().toString().equals("비밀번호와 일치합니다.") && binding.tvPwFeedback.getText().toString().equals("사용 가능합니다.")){
+                conn.onExcute((isResult, data) -> {
+                    Toast.makeText(this, "비밀번호가 변경되었습니다.", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(this, LoginActivity.class);
+                    startActivity(intent);
+                });
+            }else {
+                Toast.makeText(this, "비밀번호를 확인해주세요.", Toast.LENGTH_SHORT).show();
+            }
+
         });
 
     }

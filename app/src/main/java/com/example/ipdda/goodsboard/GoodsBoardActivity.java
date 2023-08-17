@@ -5,14 +5,20 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.widget.Toast;
 
 import com.example.ipdda.MainActivity;
 import com.example.ipdda.R;
 import com.example.ipdda.common.CommonConn;
+import com.example.ipdda.common.CommonVar;
+import com.example.ipdda.databinding.ActivityCouponRegisterBinding;
 import com.example.ipdda.databinding.ActivityGoodsBoardBinding;
 import com.example.ipdda.home.GoodsVO;
 import com.example.ipdda.home.HomeFragment;
@@ -32,9 +38,10 @@ import java.util.ArrayList;
 
 public class GoodsBoardActivity extends AppCompatActivity {
 
-
+    Dialog write_dialog;
     boolean like = false;
     ActivityGoodsBoardBinding binding;
+    ActivityCouponRegisterBinding dialogBinding;
 
 
 
@@ -44,6 +51,10 @@ public class GoodsBoardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityGoodsBoardBinding.inflate(getLayoutInflater());
 
+        write_dialog = new Dialog(this);       // Dialog 초기화
+        write_dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // 타이틀 제거
+        write_dialog.setContentView(R.layout.activity_coupon_register);             // xml 레이아웃 파일과 연결
+        write_dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 
         binding.recvReview.setAdapter(new GoodsBoardReviewAdapter(GetGoodsBoardReview(),this));
         binding.recvReview.setLayoutManager(new LinearLayoutManager(this));
@@ -108,9 +119,10 @@ public class GoodsBoardActivity extends AppCompatActivity {
                 binding.tvSale.setVisibility(View.GONE);
 
                 binding.btnBuy.setOnClickListener(v -> {
-                    Intent intent = new Intent(this, TossPayActivity.class);
+                    showDialog();
+                    /*Intent intent = new Intent(this, TossPayActivity.class);
                     intent.putExtra("price", goodsPrice);
-                    startActivity(intent);
+                    startActivity(intent);*/
                 });
             }else{
                 int goodsSalePrice = goodsPrice/(100/SalePercent);
@@ -118,9 +130,10 @@ public class GoodsBoardActivity extends AppCompatActivity {
                 binding.tvGoodsOriginalPrice.setText(goodsPrice+"원");
 
                 binding.btnBuy.setOnClickListener(v -> {
-                    Intent intent = new Intent(this, TossPayActivity.class);
+                    showDialog();
+                    /*Intent intent = new Intent(this, TossPayActivity.class);
                     intent.putExtra("price", goodsSalePrice);
-                    startActivity(intent);
+                    startActivity(intent);*/
                 });
 
             }
@@ -146,7 +159,13 @@ public class GoodsBoardActivity extends AppCompatActivity {
         return list;
     }
 
+    public void showDialog(){
+        write_dialog.show(); // 다이얼로그 띄우기
+        dialogBinding = ActivityCouponRegisterBinding.inflate(write_dialog.getLayoutInflater());
+        write_dialog.setContentView(dialogBinding.getRoot());
 
 
+
+    }
 
 }

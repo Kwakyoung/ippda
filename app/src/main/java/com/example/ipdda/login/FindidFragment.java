@@ -24,6 +24,7 @@ public class FindidFragment extends Fragment {
 
     FindActivity activity;
     String result;
+    String TAG = "ippda";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -56,7 +57,7 @@ public class FindidFragment extends Fragment {
                     }else {
                         result = data;
                         Toast.makeText(getContext(), "인증번호가 전송되었습니다.", Toast.LENGTH_SHORT).show();
-                        Log.d("TAG", "onCreate: "+data);
+                        Log.d(TAG, "onCreate: "+data);
                     }
                 });
             }else{
@@ -65,6 +66,7 @@ public class FindidFragment extends Fragment {
         });
 
         binding.btnPhonecheckLast.setOnClickListener(v -> {
+
             if (result.equals(binding.edtPhonenumCheck.getText().toString())){
                 Toast.makeText(getContext(), "인증이 완료되었습니다.", Toast.LENGTH_SHORT).show();
                 binding.btnPhonecheckLast.setText("인증완료");
@@ -72,6 +74,8 @@ public class FindidFragment extends Fragment {
                 binding.edtPhonenumCheck.setEnabled(false);
                 binding.btnPhonecheck.setEnabled(false);
                 binding.btnPhonecheckLast.setEnabled(false);
+            }else {
+                Toast.makeText(getContext(), "인증번호가 맞지 않습니다. 다시 입력해주세요.", Toast.LENGTH_SHORT).show();
             }
         });
 

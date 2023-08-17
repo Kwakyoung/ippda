@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.example.ipdda.MainActivity;
@@ -40,9 +42,8 @@ public class ResultActivity extends AppCompatActivity {
             if (isResult) {
                 CommonVar.loginInfo = new Gson().fromJson(data, MemberVO.class);
                 if (CommonVar.loginInfo == null) {
-                    binding.tvMemberId.setText("가입된 정보가 없습니다.");
-                    binding.tvCreate.setText("");
-                    Toast.makeText(this, "이름, 번호 없음", Toast.LENGTH_SHORT).show();
+                    binding.relInfo.setVisibility(View.GONE);
+                    binding.tvNoinfo.setVisibility(View.VISIBLE);
                 } else {
                     binding.tvMemberId.setText(CommonVar.loginInfo.getMember_id());
                     binding.tvCreate.setText(CommonVar.loginInfo.getMember_create());

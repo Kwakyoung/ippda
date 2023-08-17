@@ -53,7 +53,13 @@
             android:layout_height="wrap_content"/>
     </LinearLayout>
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        >
     <RelativeLayout
+        android:id="@+id/rel_info"
+        android:visibility="visible"
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="80dp"
@@ -65,7 +71,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ellipsize="end"
-            android:gravity="center"
             android:maxLines="1"
             android:textStyle="bold"
             android:text="TestID1234"
@@ -83,6 +88,18 @@
             android:layout_height="wrap_content"/>
     </RelativeLayout>
 
+        <TextView
+            android:id="@+id/tv_noinfo"
+            android:visibility="gone"
+            android:layout_gravity="center"
+            android:fontFamily="@font/pretendard_bold"
+            android:textSize="16dp"
+            android:text="가입된 정보가 없습니다."
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+    </FrameLayout>
     <RelativeLayout
         android:id="@+id/find_pw"
         android:layout_gravity="center"

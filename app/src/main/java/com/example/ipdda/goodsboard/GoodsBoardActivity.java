@@ -1,8 +1,6 @@
 package com.example.ipdda.goodsboard;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
@@ -15,19 +13,14 @@ import com.example.ipdda.R;
 import com.example.ipdda.common.CommonConn;
 import com.example.ipdda.databinding.ActivityGoodsBoardBinding;
 import com.example.ipdda.home.GoodsVO;
-import com.example.ipdda.home.HomeFragment;
-import com.example.ipdda.home.HomeGoodsRecommendAdapter;
-import com.example.ipdda.pay.PayActivity;
+import com.example.ipdda.order.OrderActivity;
 import com.example.ipdda.pay.TossPayActivity;
-import com.example.ipdda.like.LikeDTO;
-import com.example.ipdda.like.LikeFragment;
 import com.example.ipdda.profile.SubActivity;
 import com.example.ipdda.search.SearchFragment;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 
-import java.sql.Connection;
 import java.util.ArrayList;
 
 public class GoodsBoardActivity extends AppCompatActivity {
@@ -107,8 +100,9 @@ public class GoodsBoardActivity extends AppCompatActivity {
                 binding.tvSalePercent.setVisibility(View.GONE);
                 binding.tvSale.setVisibility(View.GONE);
 
+
                 binding.btnBuy.setOnClickListener(v -> {
-                    Intent intent = new Intent(this, TossPayActivity.class);
+                    Intent intent = new Intent(this, OrderActivity.class);
                     intent.putExtra("price", goodsPrice);
                     startActivity(intent);
                 });

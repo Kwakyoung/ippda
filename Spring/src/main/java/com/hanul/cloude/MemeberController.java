@@ -50,6 +50,17 @@ public class MemeberController {
 	}
 
 	
+	@RequestMapping("check")
+	public String check(MemberVO vo) {
+		return new Gson().toJson(dao.check(vo));
+	}
+	
+	@RequestMapping("order")
+	public String order(MemberVO vo) {
+		return new Gson().toJson(dao.order(vo));
+	}
+	
+	
 	@RequestMapping(value = "/findid", produces = "text/html;charset=utf-8")
 	public String findid(MemberVO vo) {
 		MemberVO vo1 = dao.findid(vo);

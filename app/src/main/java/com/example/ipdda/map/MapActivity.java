@@ -51,9 +51,6 @@ public class MapActivity extends AppCompatActivity  implements  OnMapReadyCallba
 
         binding.mapView.getMapAsync(this);
 
-        Intent intent = getIntent();
-        double latitude = intent.getIntExtra("latitude" , 0);
-        double longitude = intent.getIntExtra("longitude" , 0);
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             // 권한이 이미 부여된 경우 위치 업데이트 시작
@@ -62,6 +59,8 @@ public class MapActivity extends AppCompatActivity  implements  OnMapReadyCallba
             // 권한 요청
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_CODE_LOCATION);
         }
+
+
 
     }
 
@@ -102,12 +101,16 @@ public class MapActivity extends AppCompatActivity  implements  OnMapReadyCallba
 
     @Override
     public void onLocationChanged(@NonNull Location location) {
-         latitude = location.getLatitude();
-         longitude = location.getLongitude();
 
 
+         if(location.getLatitude()!= latitude && location.getLongitude() != longitude){
 
-
+             latitude = location.getLatitude();
+             longitude = location.getLongitude();
+        LatLng initialLatLng = new LatLng(latitude, latitude);
+        CameraUpdate cameraUpdate = CameraUpdate.scrollTo(initialLatLng);
+        naverMap.moveCamera(cameraUpdate);
+         }
 
     }
 

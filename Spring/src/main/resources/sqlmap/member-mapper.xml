@@ -8,5 +8,11 @@
 	where member_id = #{member_id} and member_pw = #{member_pw} 
 </select>
 
+<select id="address" resultType="String">
+select member_address
+from member 
+where member_no = #{member_no}
+</select>
+
 </mapper>
 	

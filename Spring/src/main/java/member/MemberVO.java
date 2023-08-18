@@ -10,7 +10,8 @@ public class MemberVO {
 	member_address,
 	member_bank,
 	member_bank_no,
-	member_profile_image;
+	member_profile_image,
+	member_sub_address;
 	
 	private int member_no;
 
@@ -94,6 +95,14 @@ public class MemberVO {
 		this.member_profile_image = member_profile_image;
 	}
 
+	public String getMember_sub_address() {
+		return member_sub_address;
+	}
+
+	public void setMember_sub_address(String member_sub_address) {
+		this.member_sub_address = member_sub_address;
+	}
+
 	public int getMember_no() {
 		return member_no;
 	}
@@ -101,6 +110,7 @@ public class MemberVO {
 	public void setMember_no(int member_no) {
 		this.member_no = member_no;
 	}
+
 	
 	
 }

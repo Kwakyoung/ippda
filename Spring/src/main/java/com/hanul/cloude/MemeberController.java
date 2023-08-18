@@ -1,6 +1,8 @@
 package com.hanul.cloude;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,4 +30,11 @@ public class MemeberController {
 		MemberVO vo = dao.login(params);
 		return new Gson().toJson(vo);
 	}
+	
+	@RequestMapping(value = "/address" , produces = "text/html;charset=utf-8")
+	public String address(int member_no) {
+		String address = sql.selectOne("member/address", member_no);
+		return new Gson().toJson(address);
+	}
+	
 }

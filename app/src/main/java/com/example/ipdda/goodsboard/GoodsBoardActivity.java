@@ -1,5 +1,6 @@
 package com.example.ipdda.goodsboard;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -53,10 +54,10 @@ public class GoodsBoardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityGoodsBoardBinding.inflate(getLayoutInflater());
 
-        write_dialog = new Dialog(this);       // Dialog 초기화
-        write_dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // 타이틀 제거
-        write_dialog.setContentView(R.layout.activity_coupon_register);             // xml 레이아웃 파일과 연결
-        write_dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+   // Dialog 초기화
+//        write_dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // 타이틀 제거
+//        write_dialog.setContentView(R.layout.activity_coupon_register);             // xml 레이아웃 파일과 연결
+//        write_dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 
         binding.recvReview.setAdapter(new GoodsBoardReviewAdapter(GetGoodsBoardReview(),this));
         binding.recvReview.setLayoutManager(new LinearLayoutManager(this));
@@ -165,7 +166,8 @@ public class GoodsBoardActivity extends AppCompatActivity {
 
 
     public void showDialog(){
-        write_dialog.show(); // 다이얼로그 띄우기
+        write_dialog = new Dialog(this);
+
         Window window = write_dialog.getWindow();
         window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT); // 다이얼로그 크기 조절
         window.setGravity(Gravity.BOTTOM);
@@ -176,22 +178,10 @@ public class GoodsBoardActivity extends AppCompatActivity {
         dialogBinding.btnBuy.setOnClickListener(v -> {
             Intent intent = new Intent(this, OrderActivity.class);
             startActivity(intent);
-
         });
 
         //https://www.youtube.com/watch?v=4ogzfAipGS8 스피너 영상
-        dialogBinding.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selectedOption = parent.getItemAtPosition(position).toString();
-                // 선택된 옵션에 대한 처리를 추가하세요.
-            }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                // 아무것도 선택되지 않았을 때의 동작
-            }
-        });
 
         ArrayList<String> arrayList = new ArrayList<>();
         arrayList.add("색상");
@@ -199,9 +189,33 @@ public class GoodsBoardActivity extends AppCompatActivity {
         arrayList.add("블루");
         arrayList.add("핑크");
         arrayList.add("화이트");
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,arrayList);
-        adapter.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
-        dialogBinding.spinner.setAdapter(adapter);
+        showSpinnerDialog(arrayList);
+//        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,arrayList);
+//        adapter.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
+//        dialogBinding.spinner.setAdapter(adapter);
+//        dialogBinding.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                String selectedOption = parent.getItemAtPosition(position).toString();
+//                // 선택된 옵션에 대한 처리를 추가하세요.
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//                // 아무것도 선택되지 않았을 때의 동작
+//            }
+//        });
+        write_dialog.show(); // 다이얼로그 띄우기
+    }
+    public void showSpinnerDialog(ArrayList<String> arrayList){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("사진 업로드 방식");
+        String[] arr = arrayList.stream().toArray(String[]::new);
+        builder.setSingleChoiceItems(arr, -1 , (dialog, which) -> {
+            Log.d("TAG", "showSpinnerDialog: " + "aaaaaaaaaaaaaaaaa");
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
 }

@@ -180,42 +180,25 @@ public class GoodsBoardActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        //https://www.youtube.com/watch?v=4ogzfAipGS8 스피너 영상
+        dialogBinding.btnSelectColor.setOnClickListener(v->{
+            ArrayList<String> arrayList = new ArrayList<>();
+            arrayList.add("색상");
+            arrayList.add("블랙");
+            arrayList.add("블루");
+            arrayList.add("핑크");
+            arrayList.add("화이트");
+        });
+        dialogBinding.btnSelectSize.setOnClickListener(v->{
+            ArrayList<String> arrayList = new ArrayList<>();
+            arrayList.add("사이즈");
+            arrayList.add("블랙");
+            arrayList.add("블루");
+            arrayList.add("핑크");
+            arrayList.add("화이트");
+        });
 
-
-        ArrayList<String> arrayList = new ArrayList<>();
-        arrayList.add("색상");
-        arrayList.add("블랙");
-        arrayList.add("블루");
-        arrayList.add("핑크");
-        arrayList.add("화이트");
-        showSpinnerDialog(arrayList);
-//        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,arrayList);
-//        adapter.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
-//        dialogBinding.spinner.setAdapter(adapter);
-//        dialogBinding.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                String selectedOption = parent.getItemAtPosition(position).toString();
-//                // 선택된 옵션에 대한 처리를 추가하세요.
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//                // 아무것도 선택되지 않았을 때의 동작
-//            }
-//        });
         write_dialog.show(); // 다이얼로그 띄우기
     }
-    public void showSpinnerDialog(ArrayList<String> arrayList){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("사진 업로드 방식");
-        String[] arr = arrayList.stream().toArray(String[]::new);
-        builder.setSingleChoiceItems(arr, -1 , (dialog, which) -> {
-            Log.d("TAG", "showSpinnerDialog: " + "aaaaaaaaaaaaaaaaa");
-        });
-        AlertDialog dialog = builder.create();
-        dialog.show();
-    }
+
 
 }

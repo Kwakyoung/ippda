@@ -57,10 +57,14 @@ dependencies {
     // String json 단일 데이터 타입용 컨버터
     implementation group: 'com.squareup.retrofit2', name: 'converter-scalars', version: '2.9.0'
 
-//    // 이메일전송 SMTP 테스트
-//    implementation files('libs/activation.jar')
-//    implementation files('libs/additionnal.jar')
-//    implementation files('libs/mail.jar')
+
+// 코루틴
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0"
+
+// 메일 보내기
+    implementation files('libs/activation.jar')
+    implementation files('libs/additionnal.jar')
+    implementation files('libs/mail.jar')
 
 
 }

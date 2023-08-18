@@ -45,6 +45,25 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </RelativeLayout>
+
+    <LinearLayout
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+
+
+        <EditText
+            android:id="@+id/edt_subAddress"
+            android:layout_gravity="center_vertical"
+            android:textColor="@color/gray"
+            android:textColorHint="@color/white"
+            android:hint="상세 주소 입력"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
     
     <LinearLayout
         android:id="@+id/ln_currentlocation"
@@ -77,8 +96,23 @@
         android:background="#666"
         android:layout_width="match_parent"
         android:layout_height="2dp"/>
+
+    <TextView
+        android:id="@+id/tv_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
     
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recv_address"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="400dp"/>
+
+    <Button
+        android:id="@+id/btn_search"
+        android:textColor="@color/black"
+        android:text="완료"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
+
 </LinearLayout>

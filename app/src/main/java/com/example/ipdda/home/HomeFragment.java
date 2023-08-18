@@ -40,7 +40,9 @@ public class HomeFragment extends Fragment {
 
         binding.recvStyleRecommendCategory.setAdapter(new HomeStyleRecommendCategoryAdapter(GetStyleCategoryList(), getContext(), this));
         binding.recvStyleRecommendCategory.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL , false));
-
+//
+//        CommonConn conn = new CommonConn(this , "")
+//        binding.tvLocation.setText();
 
 
         binding.lnSearch.setOnClickListener(v -> {

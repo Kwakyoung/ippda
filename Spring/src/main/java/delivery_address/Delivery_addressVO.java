@@ -2,8 +2,7 @@ package delivery_address;
 
 public class Delivery_addressVO {
 	private int delivery_address_no, member_no;
-	private String delivery_address;
-	
+	private String delivery_address, delivery_sub_address;
 	public int getDelivery_address_no() {
 		return delivery_address_no;
 	}
@@ -22,6 +21,14 @@ public class Delivery_addressVO {
 	public void setDelivery_address(String delivery_address) {
 		this.delivery_address = delivery_address;
 	}
+	public String getDelivery_sub_address() {
+		return delivery_sub_address;
+	}
+	public void setDelivery_sub_address(String delivery_sub_address) {
+		this.delivery_sub_address = delivery_sub_address;
+	}
+	
+	
 	
 	
 }

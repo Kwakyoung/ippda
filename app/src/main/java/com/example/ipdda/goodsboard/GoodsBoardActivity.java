@@ -86,6 +86,7 @@ public class GoodsBoardActivity extends AppCompatActivity {
         binding.recvReview.setAdapter(new GoodsBoardReviewAdapter(GetGoodsBoardReview(),this));
         binding.recvReview.setLayoutManager(new LinearLayoutManager(this));
 
+
         // 테스트용 추가함.
         binding.imgvLike.setOnClickListener(v -> {
             if (like) {
@@ -196,6 +197,12 @@ public class GoodsBoardActivity extends AppCompatActivity {
 
         dialogBinding = ActivityGoodsboardBuyBinding.inflate(write_dialog.getLayoutInflater());
         write_dialog.setContentView(dialogBinding.getRoot());
+
+        dialogBinding.btnBuy.setOnClickListener(v -> {
+            Intent intent = new Intent(this, OrderActivity.class);
+            startActivity(intent);
+
+        });
 
         //https://www.youtube.com/watch?v=4ogzfAipGS8 스피너 영상
         dialogBinding.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

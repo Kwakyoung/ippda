@@ -14,6 +14,7 @@ public class MemberVO {
 	member_birthday,
 	member_name,
 	member_create;
+	member_sub_address;
 	
 	private int member_no;
 
@@ -119,6 +120,12 @@ public class MemberVO {
 
 	public void setMember_create(String member_create) {
 		this.member_create = member_create;
+	public String getMember_sub_address() {
+		return member_sub_address;
+	}
+
+	public void setMember_sub_address(String member_sub_address) {
+		this.member_sub_address = member_sub_address;
 	}
 
 	public int getMember_no() {

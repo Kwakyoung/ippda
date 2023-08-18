@@ -51,12 +51,12 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
                 context.startActivity(intent);
             });
         });
-        h.binding.btnAddressDelete.setOnClickListener(v -> {
-            CommonConn conn = new CommonConn(context, "address/delete");
-            conn.addParamMap("");
-
-
-        });
+//        h.binding.btnAddressDelete.setOnClickListener(v -> {
+//            CommonConn conn = new CommonConn(context, "address/delete");
+//            conn.addParamMap("");
+//
+//
+//        });
 
     }
 

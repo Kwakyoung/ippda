@@ -85,17 +85,17 @@ public class HomeFragment extends Fragment {
 
     public ArrayList<HomeGoodsRecommendCategoryDTO> GetGoodsCategoryList(){
         ArrayList<HomeGoodsRecommendCategoryDTO> list = new ArrayList<>();
-        list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.clothes_top, "상의"));
-        list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.img_setting, "아우터"));
-        list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.img_setting, "하의"));
-        list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.img_setting, "원피스"));
-        list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.img_setting, "스커트"));
-        list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.img_setting, "신발"));
-        list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.img_setting, "가방"));
-        list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.img_setting, "악세사리"));
-        list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.img_setting, "양말"));
-        list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.img_setting, "시계"));
-        list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.img_setting, "모자"));
+        list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.top, "상의"));
+        list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.outer, "아우터"));
+        list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.pants, "하의"));
+        list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.onepeecs, "원피스"));
+        list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.skirt, "스커트"));
+        list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.shoes, "신발"));
+        list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.backpack, "가방"));
+        list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.accessory, "악세사리"));
+        list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.socks, "양말"));
+        list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.watch, "시계"));
+        list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.cap, "모자"));
         return list;
     }
 

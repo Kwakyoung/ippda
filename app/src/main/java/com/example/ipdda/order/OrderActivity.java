@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.CompoundButton;
+import android.widget.Toast;
 
 import com.example.ipdda.R;
 import com.example.ipdda.common.CommonConn;
@@ -26,6 +28,29 @@ public class OrderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityOrderBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+       binding.radioPay.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+           @Override
+           public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+               if (isChecked){
+                   binding.lnPay.setVisibility(View.VISIBLE);
+               }else{
+                   binding.lnPay.setVisibility(View.GONE);
+               }
+           }
+       });
+
+       binding.radioIppdapay.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+           @Override
+           public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+               if (isChecked){
+                   binding.lnIppdapay.setVisibility(View.VISIBLE);
+               }else{
+                   binding.lnIppdapay.setVisibility(View.GONE);
+               }
+           }
+       });
+
 
         binding.recvOrderGoods.setLayoutManager(new LinearLayoutManager(this));
         binding.recvOrderGoods.setAdapter(new OrderAdapter(getlist()));
@@ -52,6 +77,7 @@ public class OrderActivity extends AppCompatActivity {
                 }
             }
         });
+
 
 
 

@@ -141,6 +141,7 @@ public class MemberVO {
 		this.sms_service = sms_service;
 	}
 
+	
 	public String getMember_sub_address() {
 		return member_sub_address;
 	}

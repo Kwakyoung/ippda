@@ -47,7 +47,7 @@ public class PayActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pay);
 
-        PayConn payConn = new PayConn(this, "KakaoAK d555d9a6eb1da3661d083006aadf8ac0", "application/x-www-form-urlencoded;charset=utf-8");
+        PayConn payConn = new PayConn(this, "KakaoAK 1317a7eddae1a3be8fffc9c38ee21fac", "application/x-www-form-urlencoded;charset=utf-8");
         payConn.addParamMap("cid", "TC0ONETIME");
         payConn.addParamMap("partner_order_id", "1");
         payConn.addParamMap("partner_user_id", "test123");

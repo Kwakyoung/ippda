@@ -74,5 +74,11 @@ values ( seq_member_no.NEXTVAL, #{member_id}, #{member_nickname}, #{member_pw}, 
 
 
 
+<select id="address" resultType="String">
+select member_address
+from member 
+where member_no = #{member_no}
+</select>
+
 </mapper>
 	

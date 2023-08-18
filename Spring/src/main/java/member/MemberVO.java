@@ -1,7 +1,8 @@
 package member;
 
 public class MemberVO {
-	private String member_id,
+	private String
+	member_id,
 	member_pw,
 	member_gender,
 	member_email,
@@ -13,7 +14,9 @@ public class MemberVO {
 	member_profile_image,
 	member_birthday,
 	member_name,
-	member_create;
+	member_create,
+	popup,
+	sms_service,
 	member_sub_address;
 	
 	private int member_no;
@@ -120,6 +123,24 @@ public class MemberVO {
 
 	public void setMember_create(String member_create) {
 		this.member_create = member_create;
+	}
+
+	public String getPopup() {
+		return popup;
+	}
+
+	public void setPopup(String popup) {
+		this.popup = popup;
+	}
+
+	public String getSms_service() {
+		return sms_service;
+	}
+
+	public void setSms_service(String sms_service) {
+		this.sms_service = sms_service;
+	}
+
 	public String getMember_sub_address() {
 		return member_sub_address;
 	}
@@ -135,7 +156,8 @@ public class MemberVO {
 	public void setMember_no(int member_no) {
 		this.member_no = member_no;
 	}
-
+	
+	
 	
 	
 }

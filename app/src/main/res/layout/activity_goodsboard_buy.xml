@@ -22,6 +22,7 @@
             android:src="@drawable/img_arrow_down"
             app:tint="@color/gray" />
         <Spinner
+            android:backgroundTint="@color/black"
             android:id="@+id/spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

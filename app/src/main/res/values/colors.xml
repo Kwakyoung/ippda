@@ -6,4 +6,8 @@
     <color name="pink">#EE8FFE</color>
     <color name="gray">#D8D8D8</color>
     <color name="red">#FF0000</color>
+
+    <selector xmlns:android="http://schemas.android.com/apk/res/android">
+        <item android:color="@color/black" />
+    </selector>
 </resources>

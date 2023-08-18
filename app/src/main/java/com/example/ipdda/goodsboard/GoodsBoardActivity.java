@@ -53,31 +53,6 @@ public class GoodsBoardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityGoodsBoardBinding.inflate(getLayoutInflater());
 
-        binding.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selectedOption = parent.getItemAtPosition(position).toString();
-                // 선택된 옵션에 대한 처리를 추가하세요.
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                // 아무것도 선택되지 않았을 때의 동작
-            }
-        });
-
-        ArrayList<String> arrayList1 = new ArrayList<>();
-        arrayList1.add("색상");
-        arrayList1.add("블랙");
-        arrayList1.add("블루");
-        arrayList1.add("핑크");
-        arrayList1.add("화이트");
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,arrayList1);
-        adapter.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
-        binding.spinner.setAdapter(adapter);
-
-
-
         write_dialog = new Dialog(this);       // Dialog 초기화
         write_dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // 타이틀 제거
         write_dialog.setContentView(R.layout.activity_coupon_register);             // xml 레이아웃 파일과 연결
@@ -224,7 +199,7 @@ public class GoodsBoardActivity extends AppCompatActivity {
         arrayList.add("블루");
         arrayList.add("핑크");
         arrayList.add("화이트");
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,R.layout.customer,arrayList);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,arrayList);
         adapter.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
         dialogBinding.spinner.setAdapter(adapter);
     }

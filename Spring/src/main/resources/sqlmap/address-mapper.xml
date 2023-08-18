@@ -16,4 +16,8 @@ select * from delivery_address where member_no = #{member_no}
 update member set member_address = #{member_address}, member_sub_address = #{member_sub_address} where member_no = #{member_no}
 </update>
 
+<delete id="delete">
+delete from delivery_address where delivery_address_no = #{delivery_address_no}
+</delete>
+
 </mapper>

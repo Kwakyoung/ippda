@@ -13,7 +13,7 @@ public class MemberVO {
 	member_profile_image,
 	member_birthday,
 	member_name,
-	member_create;
+	member_create,
 	member_sub_address;
 	
 	private int member_no;
@@ -120,6 +120,8 @@ public class MemberVO {
 
 	public void setMember_create(String member_create) {
 		this.member_create = member_create;
+	}
+
 	public String getMember_sub_address() {
 		return member_sub_address;
 	}
@@ -135,6 +137,8 @@ public class MemberVO {
 	public void setMember_no(int member_no) {
 		this.member_no = member_no;
 	}
+
+	
 
 	
 	

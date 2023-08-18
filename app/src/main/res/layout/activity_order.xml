@@ -16,6 +16,7 @@
         >
 
         <ImageView
+            android:id="@+id/imgv_back"
             android:layout_centerVertical="true"
             android:src="@drawable/img_back"
             android:layout_width="30dp"
@@ -36,8 +37,9 @@
         android:layout_height="1dp"/>
 
     <ScrollView
+        android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -95,7 +97,13 @@
         <TextView
             android:id="@+id/tv_member_address"
             android:layout_marginHorizontal="10dp"
-            android:text="광주 서구 풍금로 11번길 6-10, 201호"
+            android:text="광주 서구 풍금로 11번길 6-10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/tv_sub_member_address"
+            android:layout_marginHorizontal="10dp"
+            android:text="201호"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </LinearLayout>
@@ -121,28 +129,53 @@
                     android:text="배송 요청사항"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-                <TextView
-                    android:id="@+id/btn_change_request"
-                    android:layout_alignParentRight="true"
-                    android:textColor="@color/green"
-                    android:text="변경하기"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+
             </RelativeLayout>
 
+                <View
+                    android:layout_marginVertical="10dp"
+                    android:background="#666"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"/>
 
-            <View
-                android:layout_marginVertical="10dp"
-                android:background="#666"
+            <RelativeLayout
+                android:id="@+id/rl_delivery_request"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"/>
+                android:layout_height="match_parent">
 
 
-            <TextView
-                android:layout_marginHorizontal="10dp"
-                android:text="문앞에 놓아주세요."
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_marginTop="2dp"
+                    android:id="@+id/tv_delivery_request"
+                    android:layout_marginLeft="10dp"
+                    android:text="문앞에 놓아주세요."
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <ImageView
+                    android:layout_toEndOf="@+id/tv_delivery_request"
+                    android:src="@drawable/arrow_down"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </RelativeLayout>
+
+            <EditText
+                android:textSize="15dp"
+                android:textColorHint="@color/gray"
+                android:textColor="@color/white"
+                android:hint="여기에 입력하세요"
+                android:id="@+id/edt_delivery_request"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"/>
+
+
+
+
+
+
+
         </LinearLayout>
 
         <View
@@ -414,15 +447,129 @@
             android:layout_width="match_parent"
             android:layout_height="4dp"/>
 
-
-        <Button
-            android:layout_marginHorizontal="10dp"
-            android:background="@drawable/radius"
-            android:text="결제하기"
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_marginLeft="10dp"
+                    android:textStyle="bold"
+                    android:textSize="20dp"
+                    android:text="최종 결제 금액"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <View
+                    android:layout_marginVertical="10dp"
+                    android:background="#666"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"/>
+
+
+            <RelativeLayout
+                android:layout_margin="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textSize="15dp"
+                    android:text="상품 금액"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/tv_original_price"
+                    android:layout_marginRight="5dp"
+                    android:layout_alignParentRight="true"
+                    android:text="100000원"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </RelativeLayout>
+
+
+            <View
+                android:layout_marginVertical="10dp"
+                android:background="#666"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+
+            <RelativeLayout
+                android:layout_margin="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+
+                    android:textSize="15dp"
+                    android:text="할인 금액"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/tv_sale_price"
+                    android:layout_marginRight="5dp"
+                    android:layout_alignParentRight="true"
+                    android:text="100000원"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </RelativeLayout>
+
+            <View
+                android:layout_marginVertical="10dp"
+                android:background="#666"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+
+            <RelativeLayout
+                android:layout_margin="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textColor="@color/green"
+                    android:textSize="18dp"
+                    android:text="결제 금액"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/tv_pay_price"
+                    android:textSize="18dp"
+                    android:textColor="@color/green"
+                    android:layout_marginRight="5dp"
+                    android:layout_alignParentRight="true"
+                    android:text="100000원"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </RelativeLayout>
+
+            <View
+                android:layout_marginVertical="10dp"
+                android:background="#666"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+
+
+        </LinearLayout>
+
+
 
 
     </LinearLayout>
     </ScrollView>
+
+    <Button
+        android:layout_marginBottom="10dp"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:layout_marginHorizontal="10dp"
+        android:background="@drawable/radius"
+        android:text="결제하기"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
+
 </LinearLayout>

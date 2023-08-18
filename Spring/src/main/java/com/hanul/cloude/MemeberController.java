@@ -119,7 +119,7 @@ public class MemeberController {
 	
 	@RequestMapping(value = "/address" , produces = "text/html;charset=utf-8")
 	public String address(int member_no) {
-		String address = sql.selectOne("member/address", member_no);
+		String address = sql.selectOne("member.address", member_no);
 		return new Gson().toJson(address);
 	}
 	

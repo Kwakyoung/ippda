@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.ipdda.R;
 import com.example.ipdda.common.CommonConn;
+import com.example.ipdda.common.CommonVar;
 import com.example.ipdda.databinding.FragmentHomeBinding;
 import com.example.ipdda.delivery.DeliveryFragment;
 import com.example.ipdda.packaging.PackagingFragment;
@@ -74,6 +75,13 @@ public class HomeFragment extends Fragment {
         binding.relativeLocation.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), LocationActivity.class);
             startActivity(intent);
+        });
+
+        CommonConn conn = new CommonConn(getContext(), "member/address");
+        conn.addParamMap("member_no", CommonVar.loginInfo.getMember_no());
+        conn.onExcute((isResult, data) -> {
+            String cleanedData = data.replaceAll("\"", ""); // 더블 쿼테이션 제거
+            binding.tvLocation.setText(cleanedData);
         });
 
 

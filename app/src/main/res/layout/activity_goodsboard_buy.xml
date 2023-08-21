@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -24,8 +25,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="13dp">
+            android:orientation="horizontal">
             <Button
                 android:id="@+id/btn_select_size"
                 android:gravity="left"
@@ -33,20 +33,24 @@
                 android:layout_width="0dp"
                 android:layout_height="35dp"
                 android:backgroundTint="@color/white"
-                android:text="button"
+                android:text="사이즈"
                 android:textColor="@color/black"
                 android:textSize="13dp"
-                android:textSelectHandleRight="@drawable/img_arrow_down"
                 />
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
                 android:src="@drawable/img_arrow_down"/>
         </LinearLayout>
-
+        <androidx.recyclerview.widget.RecyclerView
+            android:visibility="gone"
+            android:id="@+id/recv_size"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="13dp"
             android:orientation="horizontal">
             <Button
                 android:id="@+id/btn_select_color"
@@ -55,16 +59,21 @@
                 android:layout_width="0dp"
                 android:layout_height="35dp"
                 android:backgroundTint="@color/white"
-                android:text="button"
+                android:text="색상"
                 android:textColor="@color/black"
                 android:textSize="13dp"
-                android:textSelectHandleRight="@drawable/img_arrow_down"
                 />
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
                 android:src="@drawable/img_arrow_down"/>
         </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:visibility="gone"
+            android:id="@+id/recv_color"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"

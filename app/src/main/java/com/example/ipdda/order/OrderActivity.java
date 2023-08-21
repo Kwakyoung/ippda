@@ -8,8 +8,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.CompoundButton;
@@ -40,6 +42,7 @@ public class OrderActivity extends AppCompatActivity {
         binding = ActivityOrderBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+
         //최초 실행시 직접입력 안보이게 하기
         binding.edtDeliveryRequest.setVisibility(View.GONE);
 
@@ -58,13 +61,14 @@ public class OrderActivity extends AppCompatActivity {
         });
 
         //입다페이 현재 잔액조회
-
             CommonConn conn1 = new CommonConn(this, "member/money");
             conn1.addParamMap("member_no" ,CommonVar.loginInfo.getMember_no());
             conn1.onExcute((isResult, data) -> {
                 String cleanedData = data.replaceAll("\"", ""); // 더블 쿼테이션 제거
                 binding.tvMemberMoney.setText(cleanedData);
             });
+
+            binding.tvMemberMoney.setText(CommonVar.loginInfo.getMember_money()+"");
 
 
 

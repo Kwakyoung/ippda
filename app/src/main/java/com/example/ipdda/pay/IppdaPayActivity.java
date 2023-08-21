@@ -2,7 +2,10 @@ package com.example.ipdda.pay;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.UnderlineSpan;
@@ -13,6 +16,7 @@ import com.example.ipdda.R;
 import com.example.ipdda.common.CommonConn;
 import com.example.ipdda.common.CommonVar;
 import com.example.ipdda.databinding.ActivityIppdaPayBinding;
+import com.example.ipdda.order.OrderActivity;
 
 public class IppdaPayActivity extends AppCompatActivity {
 
@@ -33,9 +37,10 @@ public class IppdaPayActivity extends AppCompatActivity {
                 conn.addParamMap("member_money", member_money);
                 conn.addParamMap("member_no", CommonVar.loginInfo.getMember_no());
                 conn.onExcute((isResult, data) -> {
-                    Toast.makeText(this, "충전 금액 : " + member_money + "원", Toast.LENGTH_SHORT).show();
                     finish();
                 });
+
+
 
             } catch (NumberFormatException e) {
                 // 숫자로 입력안했을 때 변환할 수 없는 경우 처리

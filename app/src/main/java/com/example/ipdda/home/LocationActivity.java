@@ -19,6 +19,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -49,6 +50,8 @@ public class LocationActivity extends AppCompatActivity  {
     String address;
 
 
+
+
     private LocationManager locationManager;
     private static final int REQUEST_CODE_LOCATION = 2;
 
@@ -75,6 +78,7 @@ public class LocationActivity extends AppCompatActivity  {
         setContentView(binding.getRoot());
 
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
 
         CommonConn addressConn = new CommonConn(this, "address/select");
         addressConn.addParamMap("member_no" , CommonVar.loginInfo.getMember_no());
@@ -120,10 +124,23 @@ public class LocationActivity extends AppCompatActivity  {
                 conn.addParamMap("delivery_address", address);
                 conn.addParamMap("delivery_sub_address", binding.edtSubAddress.getText().toString());
                 conn.onExcute((isResult, data) -> {
-                    Intent intent = new Intent(this, MainActivity.class);
-                    startActivity(intent);
+
 
                 });
+
+                CommonConn updateConn = new CommonConn(this, "address/update");
+                updateConn.addParamMap("member_address", address);
+                updateConn.addParamMap("member_sub_address", binding.edtSubAddress.getText().toString());
+                updateConn.addParamMap("member_no", CommonVar.loginInfo.getMember_no());
+                updateConn.onExcute((isResult, data) -> {
+                    Intent intent = new Intent(this , MainActivity.class);
+                    startActivity(intent);
+                });
+
+
+
+            }else {
+                Toast.makeText(this, "주소를 입력해주세요", Toast.LENGTH_SHORT).show();
             }
 
         });

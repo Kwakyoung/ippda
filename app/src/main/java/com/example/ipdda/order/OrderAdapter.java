@@ -1,6 +1,7 @@
 package com.example.ipdda.order;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -8,15 +9,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ipdda.databinding.ActivityOrderBinding;
 import com.example.ipdda.databinding.ItemOrderGoodsBinding;
+import com.example.ipdda.home.GoodsVO;
 
 import java.util.ArrayList;
 
 public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder>{
 
-    ArrayList<OrderDTO> list ;
+    ArrayList<GoodsVO> list ;
     ItemOrderGoodsBinding binding;
 
-    public OrderAdapter(ArrayList<OrderDTO> list) {
+    public OrderAdapter(ArrayList<GoodsVO> list) {
         this.list = list;
     }
 
@@ -29,12 +31,26 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder>{
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.binding.store.setText(list.get(position).getStore());
-        holder.binding.imgvGoodsImg.setImageResource(list.get(position).getGoods_img());
-        holder.binding.tvGoods.setText(list.get(position).getGoods());
-        holder.binding.tvOption.setText(list.get(position).getOption());
-        holder.binding.tvPrice.setText(list.get(position).getPrice());
+    public void onBindViewHolder(@NonNull ViewHolder h, int i) {
+        int goodsPrice = list.get(i).getGoods_price();
+        int SalePercent = list.get(i).getGoods_sale_percent();
+
+
+        if(SalePercent == 0){
+            h.binding.tvPayPrice.setText(list.get(i).getGoods_price()+"원");
+            h.binding.tvOrginalPrice.setVisibility(View.GONE);
+        }else {
+        int goodsSalePrice = goodsPrice/(100/SalePercent);
+            h.binding.tvGoods.setText(list.get(i).getGoods_name()+"");
+            h.binding.tvOrginalPrice.setText(list.get(i).getGoods_price()+"");
+            h.binding.tvPayPrice.setText(goodsSalePrice+"");
+        }
+
+        h.binding.tvStore.setText(list.get(i).getStore_name()+"");
+        h.binding.tvGoods.setText(list.get(i).getGoods_name()+"");
+
+
+
     }
 
     @Override

@@ -119,8 +119,25 @@ public class MemeberController {
 	
 	@RequestMapping(value = "/address" , produces = "text/html;charset=utf-8")
 	public String address(int member_no) {
-		String address = sql.selectOne("member/address", member_no);
+		String address = sql.selectOne("member.address", member_no);
 		return new Gson().toJson(address);
 	}
+	
+	
+	@RequestMapping(value = "/charge" , produces = "text/html;charset=utf-8")
+	public void charge(MemberVO vo) {
+		sql.update("member.charge", vo);
+	}
+	
+	@RequestMapping(value = "/money" , produces = "text/html;charset=utf-8")
+	public String money(int member_no) {
+		int money = sql.selectOne("member.money", member_no);
+		return new Gson().toJson(money+"");
+	}
+	
+
+	
+	
+	
 	
 }

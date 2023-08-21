@@ -38,6 +38,11 @@ public class AddressController {
 
 	}
 	
+	@RequestMapping(value = "/address/delete" , produces = "text/html;charset=utf-8")
+	public void delete(int delivery_address_no) {
+		sql.delete("address.delete" , delivery_address_no);
+	}
+	
 	
 	
 }

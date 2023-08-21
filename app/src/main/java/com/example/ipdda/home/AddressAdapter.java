@@ -13,6 +13,8 @@ import com.example.ipdda.MainActivity;
 import com.example.ipdda.common.CommonConn;
 import com.example.ipdda.common.CommonVar;
 import com.example.ipdda.databinding.ItemAddressBinding;
+import com.example.ipdda.member.MemberVO;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
@@ -51,12 +53,16 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
                 context.startActivity(intent);
             });
         });
-//        h.binding.btnAddressDelete.setOnClickListener(v -> {
-//            CommonConn conn = new CommonConn(context, "address/delete");
-//            conn.addParamMap("");
-//
-//
-//        });
+
+        h.binding.btnAddressDelete.setOnClickListener(v -> {
+            CommonConn conn = new CommonConn(context, "address/delete");
+            conn.addParamMap("delivery_address_no", list.get(i).getDelivery_address_no());
+            conn.onExcute((isResult, data) -> {
+                list.remove(i);
+                notifyDataSetChanged();
+            });
+
+        });
 
     }
 

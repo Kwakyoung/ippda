@@ -80,5 +80,20 @@ from member
 where member_no = #{member_no}
 </select>
 
+<update id="charge">
+update member
+set
+member_money = nvl(member_money, 0) + #{member_money}
+where
+member_no = #{member_no}
+</update>
+
+<select id="money" resultType="Integer">
+select member_money
+from member
+where member_no = #{member_no}
+</select>
+
+
 </mapper>
 	

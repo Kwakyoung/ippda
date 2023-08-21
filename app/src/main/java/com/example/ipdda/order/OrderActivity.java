@@ -2,10 +2,13 @@ package com.example.ipdda.order;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -19,6 +22,8 @@ import com.example.ipdda.databinding.ActivityOrderBinding;
 import com.example.ipdda.databinding.ActivityTossPayBinding;
 import com.example.ipdda.home.GoodsVO;
 import com.example.ipdda.member.MemberVO;
+import com.example.ipdda.pay.IppdaPayActivity;
+import com.example.ipdda.pay.TossPayActivity;
 import com.google.android.gms.common.internal.service.Common;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -28,6 +33,7 @@ import java.util.ArrayList;
 public class OrderActivity extends AppCompatActivity {
     ActivityOrderBinding binding;
     String TAG = "ippda";
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,8 +48,36 @@ public class OrderActivity extends AppCompatActivity {
             finish();
         });
 
+        //첫화면에 입다페이 체크
+        binding.radioIppdapay.setChecked(true);
 
-        //결제 정보 체크
+
+        binding.lnTosspay.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TossPayActivity.class);
+            startActivity(intent);
+        });
+
+        //입다페이 현재 잔액조회
+
+            CommonConn conn1 = new CommonConn(this, "member/money");
+            conn1.addParamMap("member_no" ,CommonVar.loginInfo.getMember_no());
+            conn1.onExcute((isResult, data) -> {
+                String cleanedData = data.replaceAll("\"", ""); // 더블 쿼테이션 제거
+                binding.tvMemberMoney.setText(cleanedData);
+            });
+
+
+
+        binding.btnPayment.setOnClickListener(v -> {
+
+        });
+
+        binding.tvCharge.setOnClickListener(v -> {
+            Intent intent = new Intent(this , IppdaPayActivity.class);
+            startActivity(intent);
+        });
+
+        //다른 결제 수단 체크
        binding.radioPay.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
            @Override
            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -54,6 +88,7 @@ public class OrderActivity extends AppCompatActivity {
                }
            }
        });
+
 
        binding.radioIppdapay.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
            @Override
@@ -153,5 +188,9 @@ public class OrderActivity extends AppCompatActivity {
         alertDialog.show();
 
     }
+
+
+
+
 
 }

@@ -123,4 +123,21 @@ public class MemeberController {
 		return new Gson().toJson(address);
 	}
 	
+	
+	@RequestMapping(value = "/charge" , produces = "text/html;charset=utf-8")
+	public void charge(MemberVO vo) {
+		sql.update("member.charge", vo);
+	}
+	
+	@RequestMapping(value = "/money" , produces = "text/html;charset=utf-8")
+	public String money(int member_no) {
+		int money = sql.selectOne("member.money", member_no);
+		return new Gson().toJson(money+"");
+	}
+	
+
+	
+	
+	
+	
 }

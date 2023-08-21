@@ -17,8 +17,10 @@ import com.example.ipdda.common.CommonConn;
 import com.example.ipdda.common.CommonVar;
 import com.example.ipdda.databinding.FragmentHomeBinding;
 import com.example.ipdda.delivery.DeliveryFragment;
+import com.example.ipdda.member.MemberVO;
 import com.example.ipdda.packaging.PackagingFragment;
 import com.example.ipdda.search.SearchFragment;
+import com.google.android.gms.common.internal.service.Common;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -36,14 +38,13 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
 
+
+
         binding.recvGoodsRecommendCategory.setAdapter(new HomeGoodsRecommendCategoryAdapter(GetGoodsCategoryList(), getContext() , this));
         binding.recvGoodsRecommendCategory.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
 
         binding.recvStyleRecommendCategory.setAdapter(new HomeStyleRecommendCategoryAdapter(GetStyleCategoryList(), getContext(), this));
         binding.recvStyleRecommendCategory.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL , false));
-//
-//        CommonConn conn = new CommonConn(this , "")
-//        binding.tvLocation.setText();
 
 
         binding.lnSearch.setOnClickListener(v -> {
@@ -77,12 +78,17 @@ public class HomeFragment extends Fragment {
             startActivity(intent);
         });
 
+        //유저 현재주소 조회
         CommonConn conn = new CommonConn(getContext(), "member/address");
         conn.addParamMap("member_no", CommonVar.loginInfo.getMember_no());
         conn.onExcute((isResult, data) -> {
             String cleanedData = data.replaceAll("\"", ""); // 더블 쿼테이션 제거
             binding.tvLocation.setText(cleanedData);
         });
+
+
+
+
 
 
 

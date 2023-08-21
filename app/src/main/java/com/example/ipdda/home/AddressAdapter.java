@@ -13,6 +13,8 @@ import com.example.ipdda.MainActivity;
 import com.example.ipdda.common.CommonConn;
 import com.example.ipdda.common.CommonVar;
 import com.example.ipdda.databinding.ItemAddressBinding;
+import com.example.ipdda.member.MemberVO;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 

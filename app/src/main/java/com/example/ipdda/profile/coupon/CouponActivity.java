@@ -35,11 +35,6 @@ public class CouponActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
 
-        write_dialog = new Dialog(this);       // Dialog 초기화
-        write_dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // 타이틀 제거
-        write_dialog.setContentView(R.layout.activity_coupon_register);             // xml 레이아웃 파일과 연결
-        write_dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-
         binding.couponRegister.setOnClickListener(v -> {
             showDialog();
         });
@@ -136,6 +131,11 @@ public class CouponActivity extends AppCompatActivity {
     }
 
     public void showDialog(){
+        write_dialog = new Dialog(this);       // Dialog 초기화
+        write_dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // 타이틀 제거
+        write_dialog.setContentView(R.layout.activity_coupon_register);             // xml 레이아웃 파일과 연결
+        write_dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
         write_dialog.show(); // 다이얼로그 띄우기
         dialogBinding = ActivityCouponRegisterBinding.inflate(write_dialog.getLayoutInflater());
         write_dialog.setContentView(dialogBinding.getRoot());

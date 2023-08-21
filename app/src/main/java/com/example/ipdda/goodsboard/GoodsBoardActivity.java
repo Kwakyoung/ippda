@@ -47,12 +47,14 @@ public class GoodsBoardActivity extends AppCompatActivity {
     ActivityGoodsboardBuyBinding dialogBinding;
 
 
+    static String select_color,select_size;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityGoodsBoardBinding.inflate(getLayoutInflater());
+
 
    // Dialog 초기화
 //        write_dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // 타이틀 제거
@@ -113,8 +115,6 @@ public class GoodsBoardActivity extends AppCompatActivity {
             String starCnt = goodsVO.getGoods_star()+"";
             String goodsContext = goodsVO.getGoods_info()+"";
 
-
-
             if(SalePercent == 0){
                 binding.tvGoodsPrice.setText(goodsPrice+"원");
                 binding.tvGoodsOriginalPrice.setVisibility(View.GONE);
@@ -122,26 +122,15 @@ public class GoodsBoardActivity extends AppCompatActivity {
                 binding.tvSalePercent.setVisibility(View.GONE);
                 binding.tvSale.setVisibility(View.GONE);
 
-
-                binding.btnBuy.setOnClickListener(v -> {
-                    showDialog();
-                    /*Intent intent = new Intent(this, TossPayActivity.class);
-                    intent.putExtra("price", goodsPrice);
-                    startActivity(intent);*/
-                });
             }else{
                 int goodsSalePrice = goodsPrice/(100/SalePercent);
                 binding.tvGoodsPrice.setText(goodsSalePrice+"원");
                 binding.tvGoodsOriginalPrice.setText(goodsPrice+"원");
 
-                binding.btnBuy.setOnClickListener(v -> {
-                    showDialog();
-                    /*Intent intent = new Intent(this, TossPayActivity.class);
-                    intent.putExtra("price", goodsSalePrice);
-                    startActivity(intent);*/
-                });
-
             }
+            binding.btnBuy.setOnClickListener(v -> {
+                showDialog_buy();
+            });
 
             binding.tvStoreName.setText(storeName);
             binding.tvStarCnt.setText(starCnt);
@@ -149,9 +138,6 @@ public class GoodsBoardActivity extends AppCompatActivity {
             binding.tvGoodsContext.setText(goodsContext);
             binding.tvSalePercent.setText(SalePercent+"");
         });
-
-
-
 
         setContentView(binding.getRoot());
     }
@@ -165,11 +151,10 @@ public class GoodsBoardActivity extends AppCompatActivity {
     }
 
 
-    public void showDialog(){
+    public void showDialog_buy(){
         write_dialog = new Dialog(this);
-
         Window window = write_dialog.getWindow();
-        window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT); // 다이얼로그 크기 조절
+        window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT); // 다이얼로그 크기 조절
         window.setGravity(Gravity.BOTTOM);
 
         dialogBinding = ActivityGoodsboardBuyBinding.inflate(write_dialog.getLayoutInflater());
@@ -179,26 +164,60 @@ public class GoodsBoardActivity extends AppCompatActivity {
             Intent intent = new Intent(this, OrderActivity.class);
             startActivity(intent);
         });
+        dialogBinding.recvSize.setAdapter(new GoodsBoardbuyAdapter(GetSizeList(),this));
+        dialogBinding.recvSize.setLayoutManager(new LinearLayoutManager(this));
+
+        dialogBinding.recvColor.setAdapter(new GoodsBoardbuyAdapter(GetColorList(),this));
+        dialogBinding.recvColor.setLayoutManager(new LinearLayoutManager(this));
+
+        if (select_size!=null) {
+            dialogBinding.btnSelectSize.setText(select_size);
+        }
+
+        if (select_color!=null) {
+            dialogBinding.btnSelectColor.setText(select_color);
+        }
+
+        dialogBinding.btnSelectSize.setOnClickListener(v->{
+            if (dialogBinding.recvSize.getVisibility()==View.GONE) {
+                dialogBinding.recvSize.setVisibility(View.VISIBLE);
+                dialogBinding.recvColor.setVisibility(View.GONE);
+            }else{
+                dialogBinding.recvSize.setVisibility(View.GONE);
+                dialogBinding.recvColor.setVisibility(View.GONE);
+            }
+
+        });
 
         dialogBinding.btnSelectColor.setOnClickListener(v->{
-            ArrayList<String> arrayList = new ArrayList<>();
-            arrayList.add("색상");
-            arrayList.add("블랙");
-            arrayList.add("블루");
-            arrayList.add("핑크");
-            arrayList.add("화이트");
-        });
-        dialogBinding.btnSelectSize.setOnClickListener(v->{
-            ArrayList<String> arrayList = new ArrayList<>();
-            arrayList.add("사이즈");
-            arrayList.add("블랙");
-            arrayList.add("블루");
-            arrayList.add("핑크");
-            arrayList.add("화이트");
+            if (dialogBinding.recvColor.getVisibility()==View.GONE) {
+                dialogBinding.recvColor.setVisibility(View.VISIBLE);
+                dialogBinding.recvSize.setVisibility(View.GONE);
+            }else{
+                dialogBinding.recvColor.setVisibility(View.GONE);
+                dialogBinding.recvSize.setVisibility(View.GONE);
+            }
         });
 
         write_dialog.show(); // 다이얼로그 띄우기
     }
-
+    public ArrayList<String> GetSizeList(){
+        ArrayList<String> list = new ArrayList<>();
+        list.add("S");
+        list.add("M");
+        list.add("L");
+        list.add("XL");
+        list.add("사이즈");
+        return list;
+    }
+    public ArrayList<String> GetColorList(){
+        ArrayList<String> list = new ArrayList<>();
+        list.add("블랙");
+        list.add("화이트");
+        list.add("베이지");
+        list.add("핑크");
+        list.add("색상");
+        return list;
+    }
 
 }

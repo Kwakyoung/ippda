@@ -22,6 +22,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -35,33 +36,31 @@ import com.google.firebase.messaging.Notification;
 import member.MemberDAO;
 import member.MemberVO;
 
-
 @Controller
 public class MemberController {
 	
 	@Autowired @Qualifier("ippda") SqlSession sql;
+	@Autowired MemberDAO dao;
 	
-	
-	@Autowired private MemberDAO service;
-		
-	// 로그인처리 요청
-		@RequestMapping( value="/smartLogin")
-		public String login(String member_id, String member_pw) {
-						
-			MemberVO vo = service.member_info(member_id);
-			if() {
-				return "home/sales";
+		// 로그인 처리
+		@RequestMapping(value = "/smartLogin", produces = "text/html;charset=utf-8")
+		public String loginR(String member_id, String member_pw, HttpSession session) {
+			HashMap<String, String> params = new HashMap<String, String>();
+			params.put("member_id", member_id);
+			params.put("member_pw", member_pw);
+			MemberVO vo = dao.login(params);
+			
+			if(vo==null) {
+				return "redirect:/login";
+				
 			}else {
-				return "redirect:login"; //로그인화면 다시 요청
+				session.setAttribute("loginInfo", vo);
+				return "redirect:/sales";
 			}
 			
 			
 		}
-		
-		
-		
-	
-	
+			
 	// 로그인화면 요청
 		@RequestMapping("/login")
 		public String login(HttpSession session) {

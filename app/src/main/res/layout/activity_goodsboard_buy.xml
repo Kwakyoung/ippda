@@ -42,11 +42,74 @@
                 android:layout_height="35dp"
                 android:src="@drawable/img_arrow_down"/>
         </LinearLayout>
-        <androidx.recyclerview.widget.RecyclerView
-            android:visibility="gone"
-            android:id="@+id/recv_size"
+        <LinearLayout
+            android:id="@+id/lin_size"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+            <Button
+                android:id="@+id/btn_XS"
+                android:gravity="left"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:backgroundTint="@color/white"
+                android:text="XS"
+                android:textColor="@color/black"
+                android:textSize="13dp"
+                />
+            <Button
+                android:id="@+id/btn_S"
+                android:gravity="left"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:backgroundTint="@color/white"
+                android:text="S"
+                android:textColor="@color/black"
+                android:textSize="13dp"
+                />
+            <Button
+                android:id="@+id/btn_M"
+                android:gravity="left"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:backgroundTint="@color/white"
+                android:text="M"
+                android:textColor="@color/black"
+                android:textSize="13dp"
+                />
+            <Button
+                android:id="@+id/btn_L"
+                android:gravity="left"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:backgroundTint="@color/white"
+                android:text="L"
+                android:textColor="@color/black"
+                android:textSize="13dp"
+                />
+            <Button
+                android:id="@+id/btn_XL"
+                android:gravity="left"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:backgroundTint="@color/white"
+                android:text="XL"
+                android:textColor="@color/black"
+                android:textSize="13dp"
+                />
+            <Button
+                android:id="@+id/btn_XXL"
+                android:gravity="left"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:backgroundTint="@color/white"
+                android:text="XXL"
+                android:textColor="@color/black"
+                android:textSize="13dp"
+                />
+
+        </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

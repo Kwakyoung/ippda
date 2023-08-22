@@ -14,6 +14,7 @@ import com.google.gson.Gson;
 
 
 
+
 @Repository
 public class MemberDAO {
 	
@@ -55,6 +56,11 @@ public class MemberDAO {
 	
 	public int resetPw(MemberVO vo) {
 		return sql.update("member.resetPw", vo);
+	}
+	
+	
+	public MemberVO member_info(String member_id) {
+		return sql.selectOne("member.info", member_id);
 	}
 	
 	

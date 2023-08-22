@@ -8,9 +8,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Stylish Portfolio - Start Bootstrap Template</title>
+        <title>IPPDA</title>
         <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="logo.ico" />
+        <link rel="icon" type="image/logo" href="<c:url value='/img/logo.png' />" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Simple line icons-->
@@ -36,9 +36,9 @@
         <!-- Header-->
         <header class="masthead d-flex align-items-center">
             <div class="container px-4 px-lg-5 text-center">
-                <h1 class="mb-1">Stylish Portfolio</h1>
-                <h3 class="mb-5"><em>A Free Bootstrap Theme by Start Bootstrap</em></h3>
-                <a class="btn btn-primary btn-xl" href="#about">Find Out More</a>
+                <h1 class="mb-1">IPPDA</h1>
+                <h3 class="mb-5"><em>옷 배달 플랫폼 ㅎ헤헤헤헿</em></h3>
+                <a class="btn btn-primary btn-xl" href="login">시작하기</a>
             </div>
         </header>
         <!-- About-->

@@ -30,16 +30,22 @@ public class IppdaPayActivity extends AppCompatActivity {
 
         binding.btnCharge.setOnClickListener(v -> {
             String inputText = binding.edtChargemoney.getText()+"";
-
+            
             try {
                 int member_money = Integer.parseInt(inputText); // 문자열을 숫자로 변환
-                CommonConn conn = new CommonConn(this ,"member/charge");
-                conn.addParamMap("member_money", member_money);
-                conn.addParamMap("member_no", CommonVar.loginInfo.getMember_no());
-                conn.onExcute((isResult, data) -> {
-                    finish();
-                });
-
+                
+                if(member_money <= 0){
+                    Toast.makeText(this, "0보다 큰 금액을 입력해주세요", Toast.LENGTH_SHORT).show();
+                } else if (isValidAmount(member_money) == false) {
+                    Toast.makeText(this, "금액 단위로 입력해주세요", Toast.LENGTH_SHORT).show();
+                } else if(member_money > 0 && isValidAmount(member_money)){
+                    CommonConn conn = new CommonConn(this ,"member/charge");
+                    conn.addParamMap("member_money", member_money);
+                    conn.addParamMap("member_no", CommonVar.loginInfo.getMember_no());
+                    conn.onExcute((isResult, data) -> {
+                        finish();
+                    });
+                }
 
 
             } catch (NumberFormatException e) {
@@ -52,9 +58,12 @@ public class IppdaPayActivity extends AppCompatActivity {
         });
 
 
-
-
-
-
     }
+
+    // 입력된 내용이 유효한 10원 단위 금액인지 검사하는 함수
+    private boolean isValidAmount(int amount) {
+        // 10원 단위로 입력 검사
+        return amount % 10 == 0;
+    }
+
 }

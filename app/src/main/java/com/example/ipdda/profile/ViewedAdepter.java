@@ -34,13 +34,10 @@ public class ViewedAdepter extends RecyclerView.Adapter<ViewedAdepter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ViewedAdepter.ViewHolder h, int i) {
         h.binding.imgvGoods1.setImageResource(list.get(i).getGOODS_MAIN_IMAGE());
-        h.binding.imgvGoods2.setImageResource(list.get(i).getGOODS_MAIN_IMAGE());
 
         h.binding.tvGoodsName1.setText(list.get(i).getGOODS_NAME()+"");
-        h.binding.tvGoodsName2.setText(list.get(i).getGOODS_NAME()+"");
 
         h.binding.tvGoodsPrice1.setText(list.get(i).getGOODS_PRICE()+"원");
-        h.binding.tvGoodsPrice2.setText(list.get(i).getGOODS_PRICE()+"원");
     }
 
 

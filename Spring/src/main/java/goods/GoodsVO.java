@@ -2,9 +2,15 @@ package goods;
 
 
 public class GoodsVO extends GoodsOptionVO{
-	private int  goods_no ,store_no, goods_price, goods_sale_price, goods_sale_percent, goods_status;
+	private int  rownum ,goods_no ,store_no, goods_price, goods_sale_price, goods_sale_percent, goods_status, store_delivery_tip;
 	private String goods_name, goods_info, goods_gender, goods_main_image, store_name;
 	
+	public int getRownum() {
+		return rownum;
+	}
+	public void setRownum(int rownum) {
+		this.rownum = rownum;
+	}
 	public int getGoods_no() {
 		return goods_no;
 	}
@@ -41,6 +47,12 @@ public class GoodsVO extends GoodsOptionVO{
 	public void setGoods_status(int goods_status) {
 		this.goods_status = goods_status;
 	}
+	public int getStore_delivery_tip() {
+		return store_delivery_tip;
+	}
+	public void setStore_delivery_tip(int store_delivery_tip) {
+		this.store_delivery_tip = store_delivery_tip;
+	}
 	public String getGoods_name() {
 		return goods_name;
 	}
@@ -71,6 +83,10 @@ public class GoodsVO extends GoodsOptionVO{
 	public void setStore_name(String store_name) {
 		this.store_name = store_name;
 	}
+	
+	
+	
+	
 	
 	
 	

@@ -132,10 +132,13 @@ public class MemeberController {
 	@RequestMapping(value = "/money" , produces = "text/html;charset=utf-8")
 	public String money(int member_no) {
 		int money = sql.selectOne("member.money", member_no);
-		return new Gson().toJson(money+"");
+		return new Gson().toJson(money);
 	}
 	
-
+	@RequestMapping(value = "/payment" , produces = "text/html;charset=utf-8")
+	public void payment(MemberVO vo) {
+		sql.update("member.payment", vo);
+	}
 	
 	
 	

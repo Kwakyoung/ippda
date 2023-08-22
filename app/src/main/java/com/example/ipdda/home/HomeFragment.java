@@ -78,13 +78,15 @@ public class HomeFragment extends Fragment {
             startActivity(intent);
         });
 
-        //유저 현재주소 조회
-        CommonConn conn = new CommonConn(getContext(), "member/address");
-        conn.addParamMap("member_no", CommonVar.loginInfo.getMember_no());
-        conn.onExcute((isResult, data) -> {
-            String cleanedData = data.replaceAll("\"", ""); // 더블 쿼테이션 제거
-            binding.tvLocation.setText(cleanedData);
-        });
+
+
+            //유저 현재주소 조회
+            CommonConn conn = new CommonConn(getContext(), "member/address");
+            conn.addParamMap("member_no", CommonVar.loginInfo.getMember_no());
+            conn.onExcute((isResult, data) -> {
+                String cleanedData = data.replaceAll("\"", ""); // 더블 쿼테이션 제거
+                binding.tvLocation.setText(cleanedData);
+            });
 
 
 
@@ -188,7 +190,7 @@ public class HomeFragment extends Fragment {
 
     public void CategoryConn(int i){
         CommonConn conn = new CommonConn(getContext(), "goods/categorylist");
-        conn.addParamMap("GOODS_MIDDLE_CATEGORY", i);
+        conn.addParamMap("goods_middle_category", i);
         conn.onExcute((isResult, data) -> {
             ArrayList<GoodsVO> arrayList = new Gson().fromJson(data, new TypeToken<ArrayList<GoodsVO>>(){}.getType());
             HomeGoodsRecommendAdapter adapter = new HomeGoodsRecommendAdapter(arrayList, getContext());
@@ -200,7 +202,7 @@ public class HomeFragment extends Fragment {
 
     public void StyleConn(int i){
         CommonConn conn = new CommonConn(getContext(), "goods/stylelist");
-        conn.addParamMap("GOODS_STYLE", i);
+        conn.addParamMap("goods_style", i);
         conn.onExcute((isResult, data) -> {
             ArrayList<GoodsVO> arrayList = new Gson().fromJson(data, new TypeToken<ArrayList<GoodsVO>>(){}.getType());
             HomeGoodsRecommendAdapter adapter = new HomeGoodsRecommendAdapter(arrayList, getContext());

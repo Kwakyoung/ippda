@@ -5,11 +5,13 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridView;
 
 import com.example.ipdda.R;
 import com.example.ipdda.common.CommonConn;
@@ -52,7 +54,7 @@ public class GoodsListFragment extends Fragment {
 
         //goods_list에서 클릭한 값으로 첫화면 조회
         CommonConn conn = new CommonConn(getContext(), "goods/categorylist");
-        conn.addParamMap("GOODS_MIDDLE_CATEGORY", key);
+        conn.addParamMap("goods_middle_category", key);
         conn.onExcute((isResult, data) -> {
             ArrayList<GoodsVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<GoodsVO>>(){}.getType());
             GoodsListAdapter adapter = new GoodsListAdapter(list, getContext());
@@ -272,12 +274,15 @@ public class GoodsListFragment extends Fragment {
     //main카테고리 클릭시 조회
     public void CategoryConn(int localkey) {
         CommonConn conn = new CommonConn(getContext(), "goods/categorylist");
-        conn.addParamMap("GOODS_MIDDLE_CATEGORY", localkey);
+        conn.addParamMap("goods_middle_category", localkey);
         conn.onExcute((isResult, data) -> {
             ArrayList<GoodsVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<GoodsVO>>() {}.getType());
             GoodsListAdapter adapter = new GoodsListAdapter(list, getContext());
+
+            GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
             binding.recvGoodsList.setAdapter(adapter);
-            binding.recvGoodsList.setLayoutManager(new LinearLayoutManager(getContext()));
+            binding.recvGoodsList.setLayoutManager(layoutManager);
+
         });
     }
 
@@ -286,14 +291,15 @@ public class GoodsListFragment extends Fragment {
     //sub카테고리 클릭시 조회
     public void SubCategoryConn(int subCategoryKey){
         CommonConn conn = new CommonConn(getContext(), "goods/subcategorylist");
-        conn.addParamMap("GOODS_MIDDLE_CATEGORY", localkey);
-        conn.addParamMap("GOODS_SUB_CATEGORY", subCategoryKey);
+        conn.addParamMap("goods_middle_category", localkey);
+        conn.addParamMap("goods_sub_category", subCategoryKey);
         conn.onExcute((isResult, data) -> {
             ArrayList<GoodsVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<GoodsVO>>() {}.getType());
             GoodsListAdapter adapter = new GoodsListAdapter(list, getContext());
 
+            GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
             binding.recvGoodsList.setAdapter(adapter);
-            binding.recvGoodsList.setLayoutManager(new LinearLayoutManager(getContext()));
+            binding.recvGoodsList.setLayoutManager(layoutManager);
         });
     }
 

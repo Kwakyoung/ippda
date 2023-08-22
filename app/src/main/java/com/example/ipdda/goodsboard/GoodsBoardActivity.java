@@ -1,13 +1,19 @@
 package com.example.ipdda.goodsboard;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -57,27 +63,36 @@ public class GoodsBoardActivity extends AppCompatActivity {
         binding = ActivityGoodsBoardBinding.inflate(getLayoutInflater());
 
 
-   // Dialog 초기화
+
+
+
+        // Dialog 초기화
 //        write_dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // 타이틀 제거
 //        write_dialog.setContentView(R.layout.activity_coupon_register);             // xml 레이아웃 파일과 연결
 //        write_dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 
+
+        //리뷰 리사이클러
         binding.recvReview.setAdapter(new GoodsBoardReviewAdapter(GetGoodsBoardReview(),this));
         binding.recvReview.setLayoutManager(new LinearLayoutManager(this));
 
 
-        // 테스트용 추가함.
+
+// 테스트용 추가한 부분
         binding.imgvLike.setOnClickListener(v -> {
             if (like) {
                 binding.imgvLike.setImageResource(R.drawable.ic_like_blank);
                 like = false;
-            }else {
+            } else {
                 binding.imgvLike.setImageResource(R.drawable.ic_like_green);
-
                 like = true;
-            }
 
+
+
+            }
         });
+
+
 
         binding.imgvHome.setOnClickListener(v -> {
                 Intent intent = new Intent(this, MainActivity.class);
@@ -117,16 +132,16 @@ public class GoodsBoardActivity extends AppCompatActivity {
             String goodsContext = goodsVO.getGoods_info()+"";
 
             if(SalePercent == 0){
-                binding.tvGoodsPrice.setText(goodsPrice+"원");
+                binding.tvGoodsPrice.setText(goodsPrice+" 원");
                 binding.tvGoodsOriginalPrice.setVisibility(View.GONE);
                 binding.tvOriginalPrice.setVisibility(View.GONE);
                 binding.tvSalePercent.setVisibility(View.GONE);
                 binding.tvSale.setVisibility(View.GONE);
-
+                binding.lnOrignalPrice.setVisibility(View.GONE);
             }else{
                 int goodsSalePrice = goodsPrice/(100/SalePercent);
-                binding.tvGoodsPrice.setText(goodsSalePrice+"원");
-                binding.tvGoodsOriginalPrice.setText(goodsPrice+"원");
+                binding.tvGoodsPrice.setText(goodsSalePrice+" 원");
+                binding.tvGoodsOriginalPrice.setText(goodsPrice+" 원");
 
             }
             binding.btnBuy.setOnClickListener(v -> {
@@ -134,10 +149,11 @@ public class GoodsBoardActivity extends AppCompatActivity {
             });
 
             binding.tvStoreName.setText(storeName);
-            binding.tvStarCnt.setText(starCnt);
+            binding.tvStarCnt.setText(starCnt+"");
             binding.tvGoodsName.setText(goodsName);
             binding.tvGoodsContext.setText(goodsContext);
             binding.tvSalePercent.setText(SalePercent+"");
+            binding.tvDeliveryTip.setText(goodsVO.getStore_delivery_tip()+" 원");
         });
 
         setContentView(binding.getRoot());
@@ -150,6 +166,8 @@ public class GoodsBoardActivity extends AppCompatActivity {
         list.add(new GoodsBoardReviewDTO(R.drawable.ic_profile,R.drawable.ic_home, R.drawable.ic_home,3, 5,"입다 스웨터", "남 180cm 85kg ", "옷이 정말 예쁘네염", "우랑우탄", "L", "20230207"));
         return list;
     }
+
+
 
 
     public void showDialog_buy(){
@@ -221,5 +239,10 @@ public class GoodsBoardActivity extends AppCompatActivity {
         list.add("색상");
         return list;
     }
+
+
+
+
+
 
 }

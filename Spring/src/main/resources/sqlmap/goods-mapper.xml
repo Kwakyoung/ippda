@@ -3,13 +3,18 @@
 <mapper namespace="goods">
 
 <select id="list" resultType="goods.GoodsVO">
-select G.* , GO.*, S.STORE_NAME
-from 
-GOODS G INNER JOIN GOODS_OPTION GO 
-ON G.GOODS_NO = GO.GOODS_NO 
-INNER JOIN STORE S
-ON S.STORE_NO = G.STORE_NO
-WHERE GOODS_MIDDLE_CATEGORY = #{GOODS_MIDDLE_CATEGORY}
+select rownum, g.*, go.*, s.store_name
+from goods g
+inner join goods_option go on g.goods_no = go.goods_no
+inner join store s on s.store_no = g.store_no
+where go.goods_middle_category = #{goods_middle_category}
+<!-- select G.* , GO.*, S.STORE_NAME -->
+<!-- from  -->
+<!-- GOODS G INNER JOIN GOODS_OPTION GO  -->
+<!-- ON G.GOODS_NO = GO.GOODS_NO  -->
+<!-- INNER JOIN STORE S -->
+<!-- ON S.STORE_NO = G.STORE_NO -->
+<!-- WHERE GOODS_MIDDLE_CATEGORY = #{GOODS_MIDDLE_CATEGORY} -->
 </select>
 	
 <select id="stylelist" resultType="goods.GoodsVO">
@@ -23,17 +28,15 @@ WHERE GOODS_STYLE = #{GOODS_STYLE}
 </select>	
 	
 <select id="subcategorylist" resultType="goods.GoodsVO">
-select G.* , GO.*, S.STORE_NAME
-from 
-GOODS G INNER JOIN GOODS_OPTION GO 
-ON G.GOODS_NO = GO.GOODS_NO 
-INNER JOIN STORE S
-ON S.STORE_NO = G.STORE_NO
-WHERE GOODS_MIDDLE_CATEGORY = #{GOODS_MIDDLE_CATEGORY} AND GOODS_SUB_CATEGORY = #{GOODS_SUB_CATEGORY}
+select rownum, g.*, go.*, s.store_name
+from goods g
+inner join goods_option go on g.goods_no = go.goods_no
+inner join store s on s.store_no = g.store_no
+where goods_middle_category = #{goods_middle_category} and goods_sub_category = #{goods_sub_category}
 </select>	
 
 <select id="goodsboard" resultType="goods.GoodsVO">
-select G.* , GO.*, S.STORE_NAME
+select G.* , GO.*, S.STORE_NAME , S.STORE_DELIVERY_TIP
 from 
 GOODS G INNER JOIN GOODS_OPTION GO 
 ON G.GOODS_NO = GO.GOODS_NO 
@@ -41,6 +44,8 @@ INNER JOIN STORE S
 ON S.STORE_NO = G.STORE_NO
 WHERE G.GOODS_NO =#{GOODS_NO}
 </select>	
+
+
 
 
 </mapper>

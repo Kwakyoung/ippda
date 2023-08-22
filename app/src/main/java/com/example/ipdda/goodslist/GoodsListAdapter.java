@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.ipdda.common.CommonConn;
 import com.example.ipdda.databinding.ItemGoodsListBinding;
 import com.example.ipdda.databinding.ItemGoodsSubCategoryBinding;
 import com.example.ipdda.databinding.ItemHomeRecommendRecvBinding;
@@ -48,19 +49,18 @@ public class GoodsListAdapter extends RecyclerView.Adapter<GoodsListAdapter.View
         h.binding.tvStoreName1.setText(list.get(i).getStore_name()+"");
 
 
-        h.binding.tvStoreName2.setText(list.get(i).getStore_name()+"");
 
-        if(list.get(i).getGoods_sale_percent() != 0){
+        if( list.get(i).getGoods_sale_percent() != 0){
             int getGoodsPrice = list.get(i).getGoods_price()/(100/list.get(i).getGoods_sale_percent());
             h.binding.tvGoodsPrice1.setText(getGoodsPrice+"");
-            h.binding.tvGoodsPrice2.setText(getGoodsPrice+"");
-        }else {
+        }else{
             h.binding.tvGoodsPrice1.setText(list.get(i).getGoods_price()+"");
-            h.binding.tvGoodsPrice2.setText(list.get(i).getGoods_price()+"");
-            h.binding.tvSalePercent.setText(list.get(i).getGoods_sale_percent()+"");
-            h.binding.tvSalePercent.setVisibility(View.GONE);
-            h.binding.tvSale.setVisibility(View.GONE);
+            h.binding.tvSalePercent1.setVisibility(View.GONE);
+            h.binding.tvSale1.setVisibility(View.GONE);
         }
+
+
+
 
 
         h.binding.imgvGoods1.setOnClickListener(v -> {

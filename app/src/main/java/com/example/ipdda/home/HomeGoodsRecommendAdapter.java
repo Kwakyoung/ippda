@@ -41,11 +41,11 @@ public class HomeGoodsRecommendAdapter extends RecyclerView.Adapter<HomeGoodsRec
 
         if(list.get(i).getGoods_sale_percent() != 0){
             int getGoodsPrice = list.get(i).getGoods_price()/(100/list.get(i).getGoods_sale_percent());
-            h.binding.tvRecommendPrice1.setText(getGoodsPrice+"");
+            h.binding.tvRecommendPrice1.setText(getGoodsPrice+" 원");
 
         }else {
-            h.binding.tvRecommendPrice1.setText(list.get(i).getGoods_price()+"");
-            h.binding.tvSalePercent.setText(list.get(i).getGoods_sale_percent()+"");
+            h.binding.tvRecommendPrice1.setText(list.get(i).getGoods_price()+" 원");
+            h.binding.tvSalePercent.setText(list.get(i).getGoods_sale_percent()+" 원");
             h.binding.tvSalePercent.setVisibility(View.GONE);
             h.binding.tvSale.setVisibility(View.GONE);
         }

@@ -141,28 +141,91 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:background="@color/gray"
         android:padding="6dp">
-        <TextView
-            android:layout_marginLeft="10dp"
-            android:gravity="left"
-            android:layout_weight="1"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="상품 0개"
-            android:textColor="@color/black"
-            android:textSize="16dp"/>
+            android:orientation="horizontal"
+            android:background="@color/white"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+            <TextView
+                android:id="@+id/tv_check_goods"
+                android:text="체크 물건"
+                android:textColor="@color/black"
+                android:textSize="15dp"
+                android:layout_weight="4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+            <ImageView
+                android:id="@+id/img_delete"
+                android:background="@color/gray"
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/img_minus"/>
+            <TextView
+                android:gravity="center"
+                android:id="@+id/tv_check_cnt"
+                android:text="1"
+                android:textColor="@color/black"
+                android:textSize="15dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <ImageView
+                android:id="@+id/imv_add"
+                android:background="@color/gray"
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/img_add"/>
+            <TextView
+                android:gravity="center"
+                android:id="@+id/tv_check_price"
+                android:text="가격"
+                android:textColor="@color/black"
+                android:textSize="15dp"
+                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+            <ImageView
+                android:id="@+id/img_check_cancle"
+                android:background="@color/gray"
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/img_clear"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-        <TextView
-            android:layout_marginRight="10dp"
-            android:gravity="right"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="0원"
-            android:textColor="@color/black"
-            android:textSize="16dp"/>
+            <TextView
+                android:id="@+id/tv_total_goods"
+                android:layout_marginLeft="10dp"
+                android:gravity="left"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="상품 0개"
+                android:textColor="@color/black"
+                android:textSize="16dp"/>
+
+            <TextView
+                android:id="@+id/tv_total_price"
+                android:layout_marginRight="10dp"
+                android:gravity="right"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="0원"
+                android:textColor="@color/black"
+                android:textSize="16dp"/>
+        </LinearLayout>
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"

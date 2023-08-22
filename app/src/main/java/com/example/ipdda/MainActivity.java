@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ipdda.databinding.ActivityMainBinding;
@@ -15,9 +16,10 @@ import com.example.ipdda.like.LikeFragment;
 import com.example.ipdda.packaging.PackagingFragment;
 import com.example.ipdda.profile.ProfileFragment;
 import com.example.ipdda.search.SearchFragment;
+import com.example.ipdda.search.URLConnector;
 
 public class MainActivity extends AppCompatActivity {
-
+    private TextView txtv1;
     private boolean doubleBackToExitPressedOnce = false;
     ActivityMainBinding binding;
     HomeFragment homeFragment = new HomeFragment();
@@ -32,6 +34,39 @@ public class MainActivity extends AppCompatActivity {
 
         FragmentManager manager = getSupportFragmentManager();
         manager.beginTransaction().replace(R.id.container, new HomeFragment()).commit();
+
+        setContentView(R.layout.activity_main);
+
+        txtv1 = findViewById(R.id.txtv1);
+
+        // 백그라운드 스레드에서 웹 서버로 요청을 보냄.
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String test = "http://192.168.0.14/MediumServer/SelectAllPost.php";
+                URLConnector task = new URLConnector(test);
+
+                task.start();
+
+                try {
+                    task.join(); // 요청이 완료될 때까지 대기
+                    System.out.println("waiting... for result");
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                final String result = task.getResult();
+
+                // UI 업데이트를 위해 UI 스레드로 돌아감
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        txtv1.setText(result); // 결과를 TextView에 표시
+                    }
+                });
+            }
+        }).start();
+
 
 
 

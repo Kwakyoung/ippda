@@ -24,6 +24,10 @@
         android:background="#353535"
         app:labelVisibilityMode="unlabeled"
         app:menu="@menu/btm_mainact_menu" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtv1"/>
 
 
 </LinearLayout>

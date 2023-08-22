@@ -24,7 +24,8 @@ import net.nurigo.sdk.message.service.DefaultMessageService;
 @RestController
 @RequestMapping("/member")
 public class MemeberController {
-
+	
+	
 	@Autowired
 	@Qualifier("ippda")
 	SqlSession sql;

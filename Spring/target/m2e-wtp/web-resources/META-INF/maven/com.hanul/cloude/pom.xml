@@ -121,6 +121,17 @@
 			<scope>test</scope>
 		</dependency>    
 		
+			
+		<!-- 타일 사용을 위한 -->
+		<!-- https://mvnrepository.com/artifact/org.apache.tiles/tiles-jsp -->
+		<dependency>
+		    <groupId>org.apache.tiles</groupId>
+		    <artifactId>tiles-jsp</artifactId>
+		    <version>3.0.8</version>
+		</dependency>
+
+
+
 
 		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-dbcp2 -->
 		<dependency>
@@ -142,6 +153,7 @@
   <artifactId>sdk</artifactId>
   <version>4.2.7</version>
 </dependency>
+
 	
 	<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-email -->
 	<!-- 이메일전송을 위한 lib(api) jep-->

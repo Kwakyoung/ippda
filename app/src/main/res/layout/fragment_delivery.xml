@@ -65,13 +65,6 @@
 
     </RelativeLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recv_delivery_top_category"
-        android:padding="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"/>
-
 
     <androidx.recyclerview.widget.RecyclerView
         android:padding="10dp"

@@ -2,9 +2,9 @@ package inventory;
 
 public class InventoryVO {
 	private int
-		inventory_no, goods_no, store_no, goods_size, goods_cnt;
+		inventory_no, goods_no, store_no,  goods_cnt;
 	private String 
-		goods_color;
+		goods_size, goods_color;
 	public int getInventory_no() {
 		return inventory_no;
 	}
@@ -23,17 +23,17 @@ public class InventoryVO {
 	public void setStore_no(int store_no) {
 		this.store_no = store_no;
 	}
-	public int getGoods_size() {
-		return goods_size;
-	}
-	public void setGoods_size(int goods_size) {
-		this.goods_size = goods_size;
-	}
 	public int getGoods_cnt() {
 		return goods_cnt;
 	}
 	public void setGoods_cnt(int goods_cnt) {
 		this.goods_cnt = goods_cnt;
+	}
+	public String getGoods_size() {
+		return goods_size;
+	}
+	public void setGoods_size(String goods_size) {
+		this.goods_size = goods_size;
 	}
 	public String getGoods_color() {
 		return goods_color;

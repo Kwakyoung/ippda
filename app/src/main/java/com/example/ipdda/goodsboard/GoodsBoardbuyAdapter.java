@@ -1,19 +1,17 @@
 package com.example.ipdda.goodsboard;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.ipdda.MainActivity;
-import com.example.ipdda.databinding.ActivityGoodsboardBuyBinding;
 import com.example.ipdda.databinding.ItemGoodsboardRecvBinding;
-import com.example.ipdda.databinding.ItemReviewBinding;
+import com.example.ipdda.inventory.InventoryVO;
 
 import java.util.ArrayList;
 
@@ -21,13 +19,14 @@ public class GoodsBoardbuyAdapter extends RecyclerView.Adapter<GoodsBoardbuyAdap
 
     ItemGoodsboardRecvBinding binding;
 
-    ArrayList<String> list;
+    ArrayList<InventoryVO> list;
+    Button btn;
+    RecyclerView recv;
 
-    Context context;
-
-    public GoodsBoardbuyAdapter(ArrayList<String> list, Context context) {
+    public GoodsBoardbuyAdapter(ArrayList<InventoryVO> list, Button btn, RecyclerView recv) {
         this.list = list;
-        this.context = context;
+        this.btn = btn;
+        this.recv=recv;
     }
 
     @NonNull
@@ -35,29 +34,27 @@ public class GoodsBoardbuyAdapter extends RecyclerView.Adapter<GoodsBoardbuyAdap
     public GoodsBoardbuyAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         binding = ItemGoodsboardRecvBinding.inflate(inflater,parent,false);
-        return new GoodsBoardbuyAdapter.ViewHolder(binding);
+        return new ViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull GoodsBoardbuyAdapter.ViewHolder h, int i) {
-        h.binding.btnOption.setText(list.get(i));
-        Intent intent = new Intent(context, GoodsBoardActivity.class);
+        h.binding.btnOption.setText(list.get(i).getGoods_color());
         h.binding.btnOption.setOnClickListener(v -> {
-            if(list.get(list.size() - 1).equals("사이즈")) {
-                GoodsBoardActivity.select_size= list.get(i);
-
-            } else if (list.get(list.size() - 1).equals("색상")) {
-                GoodsBoardActivity.select_color= list.get(i);
-            }
-
+            btn.setText(list.get(i).getGoods_color());
+            recv.setVisibility(View.GONE);
         });
 
 
     }
-
+    public void updateData(ArrayList<InventoryVO> newList) {
+        list.clear();
+        list.addAll(newList);
+        notifyDataSetChanged();
+    }
     @Override
     public int getItemCount() {
-        return list.size()-1;
+        return list.size();
     }
 
     public class  ViewHolder extends RecyclerView.ViewHolder {

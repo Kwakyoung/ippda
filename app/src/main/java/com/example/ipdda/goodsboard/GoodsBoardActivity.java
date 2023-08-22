@@ -15,6 +15,8 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.ipdda.MainActivity;
@@ -25,6 +27,7 @@ import com.example.ipdda.databinding.ActivityCouponRegisterBinding;
 import com.example.ipdda.databinding.ActivityGoodsBoardBinding;
 import com.example.ipdda.databinding.ActivityGoodsboardBuyBinding;
 import com.example.ipdda.home.GoodsVO;
+import com.example.ipdda.inventory.InventoryVO;
 import com.example.ipdda.order.OrderActivity;
 import com.example.ipdda.pay.TossPayActivity;
 import com.example.ipdda.like.LikeDTO;
@@ -32,6 +35,7 @@ import com.example.ipdda.like.LikeFragment;
 import com.example.ipdda.profile.RecvCircleDTO;
 import com.example.ipdda.profile.SubActivity;
 import com.example.ipdda.profile.TrackDeliveryAdepter;
+import com.example.ipdda.profile.coupon.CouponVO;
 import com.example.ipdda.search.SearchFragment;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -166,60 +170,95 @@ public class GoodsBoardActivity extends AppCompatActivity {
             intent.putExtra("goods_no", goods_no);
             startActivity(intent);
         });
-        dialogBinding.recvSize.setAdapter(new GoodsBoardbuyAdapter(GetSizeList(),this));
-        dialogBinding.recvSize.setLayoutManager(new LinearLayoutManager(this));
 
-        dialogBinding.recvColor.setAdapter(new GoodsBoardbuyAdapter(GetColorList(),this));
-        dialogBinding.recvColor.setLayoutManager(new LinearLayoutManager(this));
-
-        if (select_size!=null) {
-            dialogBinding.btnSelectSize.setText(select_size);
-        }
-
-        if (select_color!=null) {
-            dialogBinding.btnSelectColor.setText(select_color);
-        }
+        size_click(dialogBinding.btnXS,dialogBinding.btnSelectSize,dialogBinding.linSize);
+        size_click(dialogBinding.btnS,dialogBinding.btnSelectSize,dialogBinding.linSize);
+        size_click(dialogBinding.btnM,dialogBinding.btnSelectSize,dialogBinding.linSize);
+        size_click(dialogBinding.btnL,dialogBinding.btnSelectSize,dialogBinding.linSize);
+        size_click(dialogBinding.btnXL,dialogBinding.btnSelectSize,dialogBinding.linSize);
+        size_click(dialogBinding.btnXXL,dialogBinding.btnSelectSize,dialogBinding.linSize);
+        size(dialogBinding.btnXS);
+        size(dialogBinding.btnS);
+        size(dialogBinding.btnM);
+        size(dialogBinding.btnL);
+        size(dialogBinding.btnXL);
+        size(dialogBinding.btnXXL);
 
         dialogBinding.btnSelectSize.setOnClickListener(v->{
-            if (dialogBinding.recvSize.getVisibility()==View.GONE) {
-                dialogBinding.recvSize.setVisibility(View.VISIBLE);
+            if (dialogBinding.linSize.getVisibility()==View.GONE) {
+                dialogBinding.btnSelectSize.setText("사이즈");
+                dialogBinding.linSize.setVisibility(View.VISIBLE);
                 dialogBinding.recvColor.setVisibility(View.GONE);
             }else{
-                dialogBinding.recvSize.setVisibility(View.GONE);
+                dialogBinding.linSize.setVisibility(View.GONE);
                 dialogBinding.recvColor.setVisibility(View.GONE);
             }
 
         });
 
         dialogBinding.btnSelectColor.setOnClickListener(v->{
-            if (dialogBinding.recvColor.getVisibility()==View.GONE) {
-                dialogBinding.recvColor.setVisibility(View.VISIBLE);
-                dialogBinding.recvSize.setVisibility(View.GONE);
-            }else{
-                dialogBinding.recvColor.setVisibility(View.GONE);
-                dialogBinding.recvSize.setVisibility(View.GONE);
+            if(!dialogBinding.btnSelectSize.getText().equals("사이즈")){
+                if (dialogBinding.recvColor.getVisibility()==View.GONE) {
+                    dialogBinding.btnSelectColor.setText("색상");
+                    dialogBinding.recvColor.setVisibility(View.VISIBLE);
+                    dialogBinding.linSize.setVisibility(View.GONE);
+                    color();
+                }else{
+                    dialogBinding.recvColor.setVisibility(View.GONE);
+                    dialogBinding.linSize.setVisibility(View.GONE);
+                }
+            }else {
+                Toast.makeText(this, "사이즈를 먼저 선택해주세요.", Toast.LENGTH_SHORT).show();
             }
         });
 
         write_dialog.show(); // 다이얼로그 띄우기
     }
-    public ArrayList<String> GetSizeList(){
-        ArrayList<String> list = new ArrayList<>();
-        list.add("S");
-        list.add("M");
-        list.add("L");
-        list.add("XL");
-        list.add("사이즈");
-        return list;
+
+    public void size(Button btn){
+        CommonConn conn = new CommonConn(this, "inventory/check_size");
+        conn.addParamMap("goods_no" , goods_no);
+        conn.addParamMap("goods_size", btn.getText().toString());
+        conn.onExcute(((isResult, data) -> {
+            ArrayList<InventoryVO> list = new Gson().fromJson(data , new TypeToken<ArrayList<InventoryVO>>(){}.getType());
+            btn.setText(btn.getText());
+
+            if ((list.size())==0){
+                btn.setVisibility(View.GONE);
+            }
+
+        }));
     }
-    public ArrayList<String> GetColorList(){
-        ArrayList<String> list = new ArrayList<>();
-        list.add("블랙");
-        list.add("화이트");
-        list.add("베이지");
-        list.add("핑크");
-        list.add("색상");
-        return list;
+    public void size_click(Button btn, Button select, LinearLayout ln){
+        btn.setOnClickListener(v -> {
+            select.setText(btn.getText().toString());
+            ln.setVisibility(View.GONE);
+            if (btn == dialogBinding.btnXS) {
+                select_size="XS";
+            }else if (btn == dialogBinding.btnS) {
+                select_size="S";
+            }else if (btn == dialogBinding.btnM) {
+                select_size="M";
+            }else if (btn == dialogBinding.btnL) {
+                select_size="L";
+            }else if (btn == dialogBinding.btnXL) {
+                select_size="XL";
+            }else if (btn == dialogBinding.btnXXL) {
+                select_size="XXL";
+            }
+        });
+    }
+    public void color() {
+        CommonConn conn = new CommonConn(this, "inventory/check_size");
+        conn.addParamMap("goods_no" , goods_no);
+        conn.addParamMap("goods_size", select_size);
+        conn.onExcute((isResult, data) -> {
+            Log.d("ServerResponse", "isResult: " + isResult + ", data: " + data);
+            ArrayList<InventoryVO> list = new Gson().fromJson(data , new TypeToken<ArrayList<InventoryVO>>(){}.getType());
+            // 어댑터 데이터 업데이트
+            dialogBinding.recvColor.setAdapter(new GoodsBoardbuyAdapter(list, dialogBinding.btnSelectColor, dialogBinding.recvColor));
+            dialogBinding.recvColor.setLayoutManager(new LinearLayoutManager(this));
+        });
     }
 
 }

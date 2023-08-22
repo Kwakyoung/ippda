@@ -17,6 +17,7 @@ import com.google.gson.Gson;
 @Repository
 public class MemberDAO {
 	
+	
 	@Autowired @Qualifier("ippda") SqlSession sql;
 	public MemberVO login(HashMap<String , String> params) {
 		MemberVO vo = sql.selectOne("member.login", params);

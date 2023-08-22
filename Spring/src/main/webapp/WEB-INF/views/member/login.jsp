@@ -21,17 +21,17 @@
             <div class="card-body">
                 <form method="post" action="smartLogin">
 					<div class="form-floating mb-3">
-					    <input class="form-control" type="text" name="userid" 
+					    <input class="form-control" type="text" name="member_id" 
 					    						required  placeholder="아이디">
 					    <label>아이디</label>
 					</div>
                     <div class="form-floating mb-3">
-                        <input class="form-control" name="userpw"  required  type="password" placeholder="비밀번호">
+                        <input class="form-control" name="member_pw"  required  type="password" placeholder="비밀번호">
                         <label>비밀번호</label>
                     </div>
              	
                 <div class="d-flex align-items-center justify-content-between mt-1 mb-4">
-                    <a class="small" href="join">회원가입</a>
+                    <a class="small" href="register">회원가입</a>
                     <a class="small" href="findPassword">아이디 / 비밀번호찾기</a>
                 </div>
                     <button class="btn btn-success opacity-50 form-control py-2">로그인</button>

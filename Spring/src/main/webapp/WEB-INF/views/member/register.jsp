@@ -15,13 +15,17 @@
     </head>
     <body class="bg-dark">
         <div id="layoutAuthentication">
-            <div id="layoutAuthentication_content">
+            <div class="row justify-content-center h-100 align-items-center" id="layoutAuthentication_content">
                 <main>
                     <div class="container">
                         <div class="row justify-content-center">
                             <div class="col-lg-7">
-                                <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">회원가입</h3></div>
+                                <div class="card shadow-lg border-0 rounded-lg px-3 py-5">
+                                    <div class="card-header">
+                                    	<h3 class="text-center">
+                                    		<a href="<c:url value='/'/>"><img src="<c:url value='/img/whitelogo.png'/>"></a>
+                                   		</h3>
+                               		</div>
                                     <div class="card-body">
                                         <form>
                                             <div class="row mb-3">
@@ -62,7 +66,7 @@
                                         </form>
                                     </div>
                                     <div class="card-footer text-center py-3">
-                                        <div class="small"><a href="login.html">Have an account? Go to login</a></div>
+                                        <div class="small"><a href="login">로그인 페이지로 가기</a></div>
                                     </div>
                                 </div>
                             </div>

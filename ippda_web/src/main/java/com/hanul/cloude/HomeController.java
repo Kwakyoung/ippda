@@ -6,8 +6,10 @@ import java.sql.DriverManager;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
@@ -27,18 +29,46 @@ import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.Message;
 import com.google.firebase.messaging.Notification;
 
-@RestController
+@Controller
 public class HomeController {
 	
-	@Autowired @Qualifier("test") SqlSession sql;
+	@Autowired @Qualifier("ippda") SqlSession sql;
 	
-	@RequestMapping("test")
-	public String test() {
-		int test = sql.selectOne("customer.mapper.test");
-		System.out.println(test);
-		return "a";
-	}
+	//오류처리
+			@RequestMapping("/error")
+			public String error(HttpSession session, HttpServletRequest request, Model model) {
+				session.setAttribute("category", "error");
+				//header,footer없이
+				//Object --> Integer --> int
+				int code = (Integer)request.getAttribute("javax.servlet.error.status_code"); //오류코드
+				model.addAttribute("code", code);
+				model.addAttribute("method", request.getMethod());
+				//오류내용:500
+				if( code==500 ) {
+					Throwable exception 
+						= (Throwable)request.getAttribute("javax.servlet.error.exception");
+					model.addAttribute("error", exception.getMessage());
+				}
+				
+				return "default/error/" + (code==404 ? 404 : "common");
+			}
 	
+	
+	// 홈화면 
+		@RequestMapping(value = "/", method = RequestMethod.GET)
+		public String home(Locale locale, Model model, HttpSession session ) {
+			
+			String test = "ab12cA";
+			System.out.println( Pattern.compile("[0-9]").matcher(test).find() );
+			System.out.println( Pattern.compile("[a-zA-Z]").matcher(test).find() );
+			
+			session.setAttribute("now", new java.util.Date().getTime());
+			//session.setAttribute("category", "");
+			session.removeAttribute("category");
+			return "home";
+		}
+	
+		
 	
 	
 }

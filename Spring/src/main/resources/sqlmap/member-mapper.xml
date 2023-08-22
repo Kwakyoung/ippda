@@ -75,9 +75,13 @@ values ( seq_member_no.NEXTVAL, #{member_id}, #{member_nickname}, #{member_pw}, 
 
 
 <select id="address" resultType="String">
-select member_address
-from member 
-where member_no = #{member_no}
+SELECT 
+    CASE 
+        WHEN member_address IS NULL THEN '주소를 입력하세요'
+        ELSE member_address
+    END AS member_address
+FROM member
+WHERE member_no = #{member_no}
 </select>
 
 <update id="charge">
@@ -89,10 +93,22 @@ member_no = #{member_no}
 </update>
 
 <select id="money" resultType="Integer">
-select member_money
-from member
-where member_no = #{member_no}
+SELECT 
+    CASE 
+        WHEN member_money IS NULL THEN 0
+        ELSE member_money
+    END AS member_money
+FROM member
+WHERE member_no = #{member_no}
 </select>
+
+<update id="payment">
+update member
+set
+member_money = #{member_money}
+where
+member_no = #{member_no}
+</update>
 
 
 </mapper>

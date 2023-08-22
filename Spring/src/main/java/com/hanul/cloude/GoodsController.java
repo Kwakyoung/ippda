@@ -22,22 +22,22 @@ public class GoodsController {
 	@Autowired @Qualifier("ippda") SqlSession sql;
 	
 	@RequestMapping(value = "/categorylist" , produces = "text/html;charset=utf-8")
-	public String categorylist(int GOODS_MIDDLE_CATEGORY) {
-		List<GoodsVO> list = sql.selectList("goods.list", GOODS_MIDDLE_CATEGORY);
+	public String categorylist(int goods_middle_category) {
+		List<GoodsVO> list = sql.selectList("goods.list", goods_middle_category);
 		 return new Gson().toJson(list);
 	}
 
 	@RequestMapping(value = "/stylelist" , produces = "text/html;charset=utf-8")
-	public String stylelist(int GOODS_STYLE) {
-		List<GoodsVO> list = sql.selectList("goods.stylelist" , GOODS_STYLE);
+	public String stylelist(int goods_style) {
+		List<GoodsVO> list = sql.selectList("goods.stylelist" , goods_style);
 		return new Gson().toJson(list);
 	}
 	
 	@RequestMapping(value = "/subcategorylist" , produces = "text/html;charset=utf-8")
-	public String subcategorylist(@RequestParam("GOODS_MIDDLE_CATEGORY") int GOODS_MIDDLE_CATEGORY,@RequestParam("GOODS_SUB_CATEGORY") int GOODS_SUB_CATEGORY) {
+	public String subcategorylist(@RequestParam("goods_middle_category") int goods_middle_category,@RequestParam("goods_sub_category") int goods_sub_category) {
 		  HashMap<String, Integer> params = new HashMap<String, Integer>();
-		    params.put("GOODS_MIDDLE_CATEGORY", GOODS_MIDDLE_CATEGORY);
-		    params.put("GOODS_SUB_CATEGORY", GOODS_SUB_CATEGORY);
+		    params.put("goods_middle_category", goods_middle_category);
+		    params.put("goods_sub_category", goods_sub_category);
 		    List<GoodsVO> list = sql.selectList("goods.subcategorylist", params);
 		return new Gson().toJson(list);
 	}
@@ -49,5 +49,9 @@ public class GoodsController {
 		List<GoodsVO> list = sql.selectList("goods.goodsboard" , goods_no); 
 		return new Gson().toJson(list);
 	}
+	
+	
+	
+	
 	
 }

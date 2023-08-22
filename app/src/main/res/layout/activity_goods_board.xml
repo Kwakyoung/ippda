@@ -189,10 +189,10 @@
                 android:layout_weight="2">
 
                 <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_weight="1"
                     android:layout_width="0dp"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -201,20 +201,18 @@
 
                         <TextView
                             android:id="@+id/tv_goods_price"
-                            android:layout_weight="1"
-                            android:textSize="40dp"
-                            android:layout_gravity="center_vertical"
-                            android:text="69000"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:text="69000"
+                            android:textSize="30dp" />
 
                     </LinearLayout>
 
 
-
-
-
                     <LinearLayout
+                        android:id="@+id/ln_orignal_price"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
@@ -222,18 +220,36 @@
 
                         <TextView
                             android:id="@+id/tv_original_price"
-                            android:textSize="15dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="top"
                             android:text="정상가 : "
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:textSize="15dp" />
 
                         <TextView
                             android:id="@+id/tv_goods_original_price"
-                            android:textSize="20dp"
-                            android:text="890000"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            android:text="890000"
+                            android:textSize="20dp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="배달비 : " />
+
+                        <TextView
+                            android:id="@+id/tv_delivery_tip"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1000" />
 
                     </LinearLayout>
 
@@ -274,6 +290,7 @@
         </LinearLayout>
 
         <View
+            android:layout_marginTop="10dp"
             android:background="@color/white"
             android:layout_width="match_parent"
             android:layout_height="1dp"/>
@@ -468,6 +485,7 @@
             android:layout_height="50dp">
             
             <TextView
+                android:layout_gravity="center_vertical"
                 android:text="사이즈"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -624,19 +642,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
 
-                <TextView
-                    android:layout_weight="1"
-                    android:layout_gravity="center_vertical"
-                    android:text="남자"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
 
-                <TextView
-                    android:layout_weight="1"
-                    android:layout_gravity="center_vertical"
-                    android:text="여자"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
 
             </LinearLayout>
 

@@ -35,9 +35,6 @@ public class DeliveryFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentDeliveryBinding.inflate(inflater, container, false);
 
-        binding.recvDeliveryTopCategory.setAdapter(new DeliveryTopCategoryAdapter(GetTopCategoryList(),getContext()));
-        binding.recvDeliveryTopCategory.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-
         binding.recvDeliveryGoodsCategory.setAdapter(new DeliveryGoodsCategoryAdapter(GetGoodsCategoryList(), getContext(), this));
         binding.recvDeliveryGoodsCategory.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -63,9 +60,10 @@ public class DeliveryFragment extends Fragment {
 
     public ArrayList<DeliveryGoodsCategoryDTO> GetGoodsCategoryList(){
         ArrayList<DeliveryGoodsCategoryDTO> list = new ArrayList<>();
-        list.add(new DeliveryGoodsCategoryDTO(R.drawable.ic_home, R.drawable.ic_home , R.drawable.ic_home, R.drawable.ic_home , "상의" , "아우터", "하의", "원피스"));
-        list.add(new DeliveryGoodsCategoryDTO(R.drawable.ic_home, R.drawable.ic_home , R.drawable.ic_home, R.drawable.ic_home , "스커트" , "신발", "가방", "악세사리"));
-        list.add(new DeliveryGoodsCategoryDTO(R.drawable.ic_home, R.drawable.ic_home , R.drawable.ic_home, R.drawable.ic_home , "양말" , "시계", "모자", ""));
+        list.add(new DeliveryGoodsCategoryDTO(R.drawable.top, R.drawable.outer , R.drawable.pants, R.drawable.onepeecs , "상의" , "아우터", "하의", "원피스"));
+        list.add(new DeliveryGoodsCategoryDTO(R.drawable.skirt, R.drawable.shoes , R.drawable.backpack, R.drawable.accessory , "스커트" , "신발", "가방", "악세사리"));
+        list.add(new DeliveryGoodsCategoryDTO(R.drawable.socks, R.drawable.watch , R.drawable.cap, 0 , "양말" , "시계", "모자", ""));
+
         return list;
     }
 

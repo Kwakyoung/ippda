@@ -241,7 +241,6 @@ public class GoodsBoardActivity extends AppCompatActivity {
         conn.onExcute(((isResult, data) -> {
             ArrayList<InventoryVO> list = new Gson().fromJson(data , new TypeToken<ArrayList<InventoryVO>>(){}.getType());
             btn.setText(btn.getText());
-
             if ((list.size())==0){
                 btn.setVisibility(View.GONE);
             }

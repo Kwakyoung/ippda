@@ -19,14 +19,14 @@
         		<a href="<c:url value='/sales'/>"><img src="<c:url value='/img/whitelogo.png'/>"></a>
         	</h3>
             <div class="card-body">
-                <form method="post" action="smartLogin">
+                <form method="post" action="ippdaLogin">
 					<div class="form-floating mb-3">
-					    <input class="form-control" type="text" name="member_id" 
+					    <input class="form-control" type="text" name="store_id" 
 					    						required  placeholder="아이디">
 					    <label>아이디</label>
 					</div>
                     <div class="form-floating mb-3">
-                        <input class="form-control" name="member_pw"  required  type="password" placeholder="비밀번호">
+                        <input class="form-control" name="store_pw"  required  type="password" placeholder="비밀번호">
                         <label>비밀번호</label>
                     </div>
              	

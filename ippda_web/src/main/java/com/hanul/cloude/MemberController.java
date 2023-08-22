@@ -43,11 +43,11 @@ public class MemberController {
 	@Autowired MemberDAO dao;
 	
 		// 로그인 처리
-		@RequestMapping(value = "/smartLogin", produces = "text/html;charset=utf-8")
-		public String loginR(String member_id, String member_pw, HttpSession session) {
+		@RequestMapping(value = "/ippdaLogin", produces = "text/html;charset=utf-8")
+		public String login(String store_id, String store_pw, HttpSession session) {
 			HashMap<String, String> params = new HashMap<String, String>();
-			params.put("member_id", member_id);
-			params.put("member_pw", member_pw);
+			params.put("store_id", store_id);
+			params.put("store_pw", store_pw);
 			MemberVO vo = dao.login(params);
 			
 			if(vo==null) {

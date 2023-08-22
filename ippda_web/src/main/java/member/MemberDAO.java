@@ -24,13 +24,7 @@ public class MemberDAO {
 		MemberVO vo = sql.selectOne("member.login", params);
 		return vo;
 }
-	
-//	public int insert(@RequestParam String member_id , ) {
-//		HashMap<Stirng, Object> params = new HashMap<String, Object>();
-//		params
-//		
-//		return sql.insert("member.join",vo);
-//	}
+
 	
 	
 	public MemberVO idcheck(String member_id) {
@@ -59,8 +53,8 @@ public class MemberDAO {
 	}
 	
 	
-	public MemberVO member_info(String member_id) {
-		return sql.selectOne("member.info", member_id);
+	public MemberVO member_info(String store_id) {
+		return sql.selectOne("member.info", store_id);
 	}
 	
 	

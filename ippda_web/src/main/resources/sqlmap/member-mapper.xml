@@ -3,9 +3,9 @@
 <mapper namespace="member">
 
 <select id="login" resultType="member.MemberVO">
-	SELECT * 
-	FROM member 
-	where member_id = #{member_id} and member_pw = #{member_pw} 
+	select * 
+	from store 
+	where store_id = #{store_id} and store_pw = #{store_pw} 
 </select>
 
 

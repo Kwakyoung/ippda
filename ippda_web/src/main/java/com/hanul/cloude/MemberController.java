@@ -7,6 +7,7 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
+import java.util.Random;
 import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +18,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,11 +31,16 @@ import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 import com.google.firebase.messaging.FirebaseMessaging;
-import com.google.firebase.messaging.Message;
+
 import com.google.firebase.messaging.Notification;
+import com.google.gson.Gson;
 
 import member.MemberDAO;
 import member.MemberVO;
+import net.nurigo.sdk.NurigoApp;
+import net.nurigo.sdk.message.exception.NurigoMessageNotReceivedException;
+import net.nurigo.sdk.message.model.Message;
+import net.nurigo.sdk.message.service.DefaultMessageService;
 
 @Controller
 public class MemberController {
@@ -50,18 +56,19 @@ public class MemberController {
 			params.put("store_pw", store_pw);
 			MemberVO vo = dao.login(params);
 			
-			if(vo==null) {
-				return "redirect:/login";
-				
-			}else {
+			if(vo!=null) {
 				session.setAttribute("loginInfo", vo);
 				return "redirect:/sales";
+				
+			}else {
+				return "redirect:/login";
 			}
-			
-			
 		}
+		
+		
+		
 			
-	// 로그인화면 요청
+		// 로그인화면 요청
 		@RequestMapping("/login")
 		public String login(HttpSession session) {
 			session.setAttribute("category", "login");
@@ -75,5 +82,79 @@ public class MemberController {
 			return "default/member/register";
 		}
 		
+		
+		// 아이디 찾기 화면
+		@RequestMapping("/findid")
+		public String findid() {
+			return "default/member/findid";
+		}
+		
+		
+		@ResponseBody @RequestMapping(value = "/findidresult", produces = "text/html;charset=utf-8")
+		public String findid(MemberVO vo) {
+			MemberVO vo1 = dao.findid(vo);
+			return new Gson().toJson(vo1);
+		}
+		
+		
+		// 휴대폰 인증문자 전송
+		@RequestMapping(value = "/sms", produces = "text/html;charset=utf-8")
+		@ResponseBody
+		public String sendSms(String store_phone) {
+
+			Random random = new Random();
+			int createNum = 0;
+			String ranNum = "";
+			String resultNum = "";
+
+			for (int i = 0; i < 6; i++) {
+				createNum = random.nextInt(9);
+				ranNum = Integer.toString(createNum);
+				resultNum += ranNum;
+			}
+
+			final String APIKEY = "NCSG2LLRPF6C8E0W";
+			final String APISECRET = "RT7T0LQHVFECZ5LD09VOD7TB8SK9RKE5";
+
+			DefaultMessageService messageService = NurigoApp.INSTANCE.initialize(APIKEY, APISECRET,
+					"https://api.solapi.com");
+			Message message = new Message();
+			message.setFrom("01034481720");
+			message.setTo(store_phone);
+			message.setText("인증번호는 [" + resultNum + "] 입니다.");
+
+			try {
+				// send 메소드로 ArrayList<Message> 객체를 넣어도 동작합니다!
+				messageService.send(message);
+			} catch (NurigoMessageNotReceivedException exception) {
+				// 발송에 실패한 메시지 목록을 확인할 수 있습니다!
+				System.out.println(exception.getFailedMessageList());
+				System.out.println(exception.getMessage());
+			} catch (Exception exception) {
+				System.out.println(exception.getMessage());
+				System.out.println(" 인증번호는 : " + resultNum);
+			}
+
+			return resultNum;
+		}
+		
+		
+		
+		
+		
+		
+		
+		// 비밀번호 찾기 화면
+		@RequestMapping("/findpw")
+		public String findpw() {
+			return "default/member/findpw";
+		}
+		
+		
+		// 비밀번호 수정 화면
+		@RequestMapping(value = "/findpwresult", produces = "text/html;charset=utf-8")
+		public String findpwresult() {
+			return "default/member/findpwresult";
+		}
 		
 }

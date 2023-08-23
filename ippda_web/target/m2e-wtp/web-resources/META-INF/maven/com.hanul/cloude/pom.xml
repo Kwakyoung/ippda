@@ -118,6 +118,13 @@
 			<scope>test</scope>
 		</dependency>    
 		
+		
+		<!-- 문자인증 -->
+		<dependency>
+		  <groupId>net.nurigo</groupId>
+		  <artifactId>sdk</artifactId>
+		  <version>4.2.7</version>
+		</dependency>
 
 		<!-- 타일 사용을 위한 -->
 		<!-- https://mvnrepository.com/artifact/org.apache.tiles/tiles-jsp -->

@@ -58,10 +58,6 @@ public class HomeController {
 		@RequestMapping(value = "/", method = RequestMethod.GET)
 		public String home(Locale locale, Model model, HttpSession session ) {
 			
-			String test = "ab12cA";
-			System.out.println( Pattern.compile("[0-9]").matcher(test).find() );
-			System.out.println( Pattern.compile("[a-zA-Z]").matcher(test).find() );
-			
 			session.setAttribute("now", new java.util.Date().getTime());
 			//session.setAttribute("category", "");
 			session.removeAttribute("category");

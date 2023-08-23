@@ -69,7 +69,7 @@
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="goods/list">상품 목록</a>
-                                    <a class="nav-link" href="goods.insert">상품 등록</a>
+                                    <a class="nav-link" href="goods/insert">상품 등록</a>
                                 </nav>
                             </div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">

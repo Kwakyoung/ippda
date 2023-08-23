@@ -88,12 +88,6 @@ public class HomeFragment extends Fragment {
                 binding.tvLocation.setText(cleanedData);
             });
 
-
-
-
-
-
-
         return binding.getRoot();
     }
 

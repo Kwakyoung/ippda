@@ -12,6 +12,12 @@ public class GoodsBoardBuyCheckDTO {
         this.check_goods_name = check_goods_name;
     }
 
+    public GoodsBoardBuyCheckDTO(String check_goods_name, int check_goods_cnt, int check_goods_price) {
+        this.check_goods_name = check_goods_name;
+        this.check_goods_cnt = check_goods_cnt;
+        this.check_goods_price = check_goods_price;
+    }
+
     public int getCheck_goods_cnt() {
         return check_goods_cnt;
     }
@@ -28,3 +34,4 @@ public class GoodsBoardBuyCheckDTO {
         this.check_goods_price = check_goods_price;
     }
 }
+

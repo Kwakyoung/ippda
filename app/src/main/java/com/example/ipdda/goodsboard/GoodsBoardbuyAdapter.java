@@ -8,9 +8,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.ipdda.databinding.ActivityGoodsBoardBinding;
 import com.example.ipdda.databinding.ActivityGoodsboardBuyBinding;
 import com.example.ipdda.databinding.ItemGoodsboardRecvBinding;
 import com.example.ipdda.inventory.InventoryVO;
@@ -23,10 +23,18 @@ public class GoodsBoardbuyAdapter extends RecyclerView.Adapter<GoodsBoardbuyAdap
 
     ArrayList<InventoryVO> list;
     ActivityGoodsboardBuyBinding dialogBinding;
+    GoodsBoardActivity activity;
+    ArrayList<GoodsBoardBuyCheckDTO> getBuyCheck;
 
-    public GoodsBoardbuyAdapter(ArrayList<InventoryVO> list, ActivityGoodsboardBuyBinding dialogBinding) {
+
+
+    int goods_price;
+    public GoodsBoardbuyAdapter(GoodsBoardActivity activity , ArrayList<InventoryVO> list, ActivityGoodsboardBuyBinding dialogBinding, ArrayList<GoodsBoardBuyCheckDTO> getBuyCheck,int goods_price) {
         this.list = list;
         this.dialogBinding = dialogBinding;
+        this.getBuyCheck=getBuyCheck;
+        this.goods_price=goods_price;
+        this.activity=activity;
     }
 
     @NonNull
@@ -41,10 +49,16 @@ public class GoodsBoardbuyAdapter extends RecyclerView.Adapter<GoodsBoardbuyAdap
     public void onBindViewHolder(@NonNull GoodsBoardbuyAdapter.ViewHolder h, int i) {
         h.binding.btnOption.setText(list.get(i).getGoods_color());
         h.binding.btnOption.setOnClickListener(v -> {
-            dialogBinding.btnSelectColor.setText(list.get(i).getGoods_color());
             dialogBinding.recvColor.setVisibility(View.GONE);
+            getBuyCheck.add(new GoodsBoardBuyCheckDTO(list.get(i).getGoods_color()+ "/" +
+                    GoodsBoardActivity.select_size,1,goods_price));
+            dialogBinding.recvBuyCheck.setAdapter(new GoodsBuyCheckAdapter(activity , getBuyCheck,list.get(i).getGoods_color(),dialogBinding.btnSelectSize.getText().toString()));
+            dialogBinding.recvBuyCheck.setLayoutManager(new LinearLayoutManager(dialogBinding.getRoot().getContext()));
+            activity.calcTotalPrice(getBuyCheck,"+");
+            dialogBinding.btnSelectSize.setText("사이즈");
+            dialogBinding.btnSelectColor.setText("색상");
+            notifyDataSetChanged();
         });
-
 
     }
     @Override

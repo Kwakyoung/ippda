@@ -57,8 +57,8 @@ public class GoodsBoardActivity extends AppCompatActivity {
     boolean like = false;
     ActivityGoodsBoardBinding binding;
     ActivityGoodsboardBuyBinding dialogBinding;
-
-    int goods_no;
+    int totalPrice = 0,totalCnt = 0;
+    int goods_no,goodsPrice;
 
     static String select_size;
 
@@ -67,16 +67,6 @@ public class GoodsBoardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityGoodsBoardBinding.inflate(getLayoutInflater());
-
-
-
-
-
-        // Dialog 초기화
-//        write_dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // 타이틀 제거
-//        write_dialog.setContentView(R.layout.activity_coupon_register);             // xml 레이아웃 파일과 연결
-//        write_dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-
 
         //리뷰 리사이클러
         binding.recvReview.setAdapter(new GoodsBoardReviewAdapter(GetGoodsBoardReview(),this));
@@ -131,7 +121,7 @@ public class GoodsBoardActivity extends AppCompatActivity {
 
 
             String goodsName = goodsVO.getGoods_name();
-            int goodsPrice = goodsVO.getGoods_price();
+            goodsPrice = goodsVO.getGoods_price();
             int SalePercent = goodsVO.getGoods_sale_percent();
             String storeName = goodsVO.getStore_name()+"";
             String starCnt = goodsVO.getGoods_star()+"";
@@ -231,9 +221,50 @@ public class GoodsBoardActivity extends AppCompatActivity {
                 Toast.makeText(this, "사이즈를 먼저 선택해주세요.", Toast.LENGTH_SHORT).show();
             }
         });
+        int totalGoods = 0;
+        if(getBuyCheck()!=null){
+            for (int i = 0; i < getBuyCheck().size(); i++) {
+                totalGoods+=getBuyCheck().get(i).getCheck_goods_cnt();
+            }
+            dialogBinding.tvTotalGoods.setText("상품 "+totalGoods+"개");
+        }else{
+            dialogBinding.tvTotalGoods.setText("상품 0개");
+        }
 
+        //calcTotalPrice();
         write_dialog.show(); // 다이얼로그 띄우기
     }
+
+    // CheckAdapter 수량 * 가격 .
+    //totalPrice 에 누적
+    public void calcTotalPrice( ArrayList<GoodsBoardBuyCheckDTO> list,String str){
+        if (str.equals("+")) {
+            if(list!=null){
+                for (int i = 0; i < list.size(); i++) {
+                    totalCnt=list.get(i).getCheck_goods_cnt();
+                }
+                dialogBinding.tvTotalGoods.setText("상품 "+totalCnt+"개");
+                for (int i = 0; i < list.size(); i++) {
+                    totalPrice+=list.get(i).getCheck_goods_price();
+                }
+                dialogBinding.tvTotalPrice.setText(totalPrice+"원");
+            }
+        } else if (str.equals("-")) {
+            if(list!=null){
+                for (int i = 0; i < list.size(); i++) {
+                    totalCnt=list.get(i).getCheck_goods_cnt();
+                }
+                dialogBinding.tvTotalGoods.setText("상품 "+totalCnt+"개");
+                for (int i = 0; i < list.size(); i++) {
+                    totalPrice-=list.get(i).getCheck_goods_price();
+                }
+                dialogBinding.tvTotalPrice.setText(totalPrice+"원");
+            }
+        }
+
+    }
+
+
 
     public void size(Button btn){
         CommonConn conn = new CommonConn(this, "inventory/check_size");
@@ -275,7 +306,7 @@ public class GoodsBoardActivity extends AppCompatActivity {
             Log.d("ServerResponse", "isResult: " + isResult + ", data: " + data);
             ArrayList<InventoryVO> list = new Gson().fromJson(data , new TypeToken<ArrayList<InventoryVO>>(){}.getType());
             // 어댑터 데이터 업데이트
-            dialogBinding.recvColor.setAdapter(new GoodsBoardbuyAdapter(list, dialogBinding));
+            dialogBinding.recvColor.setAdapter(new GoodsBoardbuyAdapter(this,list, dialogBinding,getBuyCheck(),goodsPrice));
             dialogBinding.recvColor.setLayoutManager(new LinearLayoutManager(this));
         });
     }
@@ -284,7 +315,6 @@ public class GoodsBoardActivity extends AppCompatActivity {
         ArrayList<GoodsBoardBuyCheckDTO> list= new ArrayList<>();
         return list;
     }
-
 
 
 

@@ -61,7 +61,7 @@ public class GoodsBoardActivity extends AppCompatActivity {
     int goods_no,goodsPrice;
 
     static String select_size;
-
+    ArrayList<GoodsBoardBuyCheckDTO> getBuyCheck= new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -222,9 +222,9 @@ public class GoodsBoardActivity extends AppCompatActivity {
             }
         });
         int totalGoods = 0;
-        if(getBuyCheck()!=null){
-            for (int i = 0; i < getBuyCheck().size(); i++) {
-                totalGoods+=getBuyCheck().get(i).getCheck_goods_cnt();
+        if(getBuyCheck!=null){
+            for (int i = 0; i < getBuyCheck.size(); i++) {
+                totalGoods+=getBuyCheck.get(i).getCheck_goods_cnt();
             }
             dialogBinding.tvTotalGoods.setText("상품 "+totalGoods+"개");
         }else{
@@ -237,30 +237,19 @@ public class GoodsBoardActivity extends AppCompatActivity {
 
     // CheckAdapter 수량 * 가격 .
     //totalPrice 에 누적
-    public void calcTotalPrice( ArrayList<GoodsBoardBuyCheckDTO> list,String str){
-        if (str.equals("+")) {
+    public void calcTotalPrice( ArrayList<GoodsBoardBuyCheckDTO> list){
             if(list!=null){
+                totalCnt=0;
+                totalPrice=0;
                 for (int i = 0; i < list.size(); i++) {
-                    totalCnt=list.get(i).getCheck_goods_cnt();
+                    totalCnt+=list.get(i).getCheck_goods_cnt();
                 }
                 dialogBinding.tvTotalGoods.setText("상품 "+totalCnt+"개");
                 for (int i = 0; i < list.size(); i++) {
-                    totalPrice+=list.get(i).getCheck_goods_price();
+                    totalPrice+=list.get(i).getCheck_goods_price()*list.get(i).getCheck_goods_cnt();
                 }
                 dialogBinding.tvTotalPrice.setText(totalPrice+"원");
             }
-        } else if (str.equals("-")) {
-            if(list!=null){
-                for (int i = 0; i < list.size(); i++) {
-                    totalCnt=list.get(i).getCheck_goods_cnt();
-                }
-                dialogBinding.tvTotalGoods.setText("상품 "+totalCnt+"개");
-                for (int i = 0; i < list.size(); i++) {
-                    totalPrice-=list.get(i).getCheck_goods_price();
-                }
-                dialogBinding.tvTotalPrice.setText(totalPrice+"원");
-            }
-        }
 
     }
 
@@ -306,15 +295,11 @@ public class GoodsBoardActivity extends AppCompatActivity {
             Log.d("ServerResponse", "isResult: " + isResult + ", data: " + data);
             ArrayList<InventoryVO> list = new Gson().fromJson(data , new TypeToken<ArrayList<InventoryVO>>(){}.getType());
             // 어댑터 데이터 업데이트
-            dialogBinding.recvColor.setAdapter(new GoodsBoardbuyAdapter(this,list, dialogBinding,getBuyCheck(),goodsPrice));
+            dialogBinding.recvColor.setAdapter(new GoodsBoardbuyAdapter(this,list, dialogBinding,getBuyCheck,goodsPrice));
             dialogBinding.recvColor.setLayoutManager(new LinearLayoutManager(this));
         });
     }
 
-    ArrayList<GoodsBoardBuyCheckDTO> getBuyCheck(){
-        ArrayList<GoodsBoardBuyCheckDTO> list= new ArrayList<>();
-        return list;
-    }
 
 
 

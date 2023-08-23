@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -50,11 +51,15 @@ public class GoodsBoardbuyAdapter extends RecyclerView.Adapter<GoodsBoardbuyAdap
         h.binding.btnOption.setText(list.get(i).getGoods_color());
         h.binding.btnOption.setOnClickListener(v -> {
             dialogBinding.recvColor.setVisibility(View.GONE);
+
             getBuyCheck.add(new GoodsBoardBuyCheckDTO(list.get(i).getGoods_color()+ "/" +
-                    GoodsBoardActivity.select_size,1,goods_price));
-            dialogBinding.recvBuyCheck.setAdapter(new GoodsBuyCheckAdapter(activity , getBuyCheck,list.get(i).getGoods_color(),dialogBinding.btnSelectSize.getText().toString()));
+                    GoodsBoardActivity.select_size,list.get(i).getGoods_size(),list.get(i).getGoods_color(),
+                    1,goods_price));
+
+
+            dialogBinding.recvBuyCheck.setAdapter(new GoodsBuyCheckAdapter(activity , getBuyCheck));
             dialogBinding.recvBuyCheck.setLayoutManager(new LinearLayoutManager(dialogBinding.getRoot().getContext()));
-            activity.calcTotalPrice(getBuyCheck,"+");
+            activity.calcTotalPrice(getBuyCheck);
             dialogBinding.btnSelectSize.setText("사이즈");
             dialogBinding.btnSelectColor.setText("색상");
             notifyDataSetChanged();

@@ -31,14 +31,10 @@
 
         ItemGoodsBoardBuyCheckBinding binding;
 
-
-        String goods_color,goods_size;
         ArrayList<GoodsBoardBuyCheckDTO> list;
         GoodsBoardActivity activity ;
-        public GoodsBuyCheckAdapter(  GoodsBoardActivity activity ,    ArrayList<GoodsBoardBuyCheckDTO> list,String goods_color,String goods_size) {
+        public GoodsBuyCheckAdapter(  GoodsBoardActivity activity ,    ArrayList<GoodsBoardBuyCheckDTO> list) {
             this.list = list;
-            this.goods_color=goods_color;
-            this.goods_size=goods_size;
             this.activity=activity;
         }
 
@@ -53,30 +49,32 @@
 
         @Override
         public void onBindViewHolder(@NonNull GoodsBuyCheckAdapter.ViewHolder h, int i) {
-            h.binding.tvCheckGoods.setText(goods_color + "/" + goods_size);
+            h.binding.tvCheckGoods.setText(list.get(i).getCheck_goods_color() + "/" + list.get(i).getCheck_goods_size());
             h.binding.tvCheckCnt.setText(list.get(i).getCheck_goods_cnt() + "");
             h.binding.tvCheckPrice.setText("" + list.get(i).getCheck_goods_price() * list.get(i).getCheck_goods_cnt());
             h.binding.imgDelete.setOnClickListener(v -> {
-                if (list.size() > i) {
+                if (list.size() >= i) {
                     list.get(i).setCheck_goods_cnt(list.get(i).getCheck_goods_cnt() - 1);
                     if (list.get(i).getCheck_goods_cnt() == 0) {
                         list.remove(i);
+
                     }
                     notifyDataSetChanged();
                 }
-                activity.calcTotalPrice(list,"-");
+                activity.calcTotalPrice(list);
             });
             h.binding.imgAdd.setOnClickListener(v -> {
                 if (list.size() > i) {
                     list.get(i).setCheck_goods_cnt(list.get(i).getCheck_goods_cnt() + 1);
                     notifyDataSetChanged();
                 }
-                activity.calcTotalPrice(list,"+");
+                activity.calcTotalPrice(list);
             });
             h.binding.imgCheckCancle.setOnClickListener(v -> {
                 if (list.size() > i) {
                     list.remove(i);
                     notifyDataSetChanged();
+                    activity.calcTotalPrice(list);
                 }
             });
         }

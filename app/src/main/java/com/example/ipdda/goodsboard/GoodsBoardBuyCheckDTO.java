@@ -1,7 +1,7 @@
 package com.example.ipdda.goodsboard;
 
 public class GoodsBoardBuyCheckDTO {
-     private String check_goods_name;
+     private String check_goods_name,check_goods_size,check_goods_color;
      private int check_goods_cnt, check_goods_price;
 
     public String getCheck_goods_name() {
@@ -12,10 +12,20 @@ public class GoodsBoardBuyCheckDTO {
         this.check_goods_name = check_goods_name;
     }
 
-    public GoodsBoardBuyCheckDTO(String check_goods_name, int check_goods_cnt, int check_goods_price) {
-        this.check_goods_name = check_goods_name;
-        this.check_goods_cnt = check_goods_cnt;
-        this.check_goods_price = check_goods_price;
+    public String getCheck_goods_size() {
+        return check_goods_size;
+    }
+
+    public void setCheck_goods_size(String check_goods_size) {
+        this.check_goods_size = check_goods_size;
+    }
+
+    public String getCheck_goods_color() {
+        return check_goods_color;
+    }
+
+    public void setCheck_goods_color(String check_goods_color) {
+        this.check_goods_color = check_goods_color;
     }
 
     public int getCheck_goods_cnt() {
@@ -31,6 +41,14 @@ public class GoodsBoardBuyCheckDTO {
     }
 
     public void setCheck_goods_price(int check_goods_price) {
+        this.check_goods_price = check_goods_price;
+    }
+
+    public GoodsBoardBuyCheckDTO(String check_goods_name, String check_goods_size, String check_goods_color, int check_goods_cnt, int check_goods_price) {
+        this.check_goods_name = check_goods_name;
+        this.check_goods_size = check_goods_size;
+        this.check_goods_color = check_goods_color;
+        this.check_goods_cnt = check_goods_cnt;
         this.check_goods_price = check_goods_price;
     }
 }

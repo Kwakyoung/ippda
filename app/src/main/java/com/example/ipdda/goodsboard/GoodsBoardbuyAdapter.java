@@ -10,6 +10,8 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.ipdda.databinding.ActivityGoodsBoardBinding;
+import com.example.ipdda.databinding.ActivityGoodsboardBuyBinding;
 import com.example.ipdda.databinding.ItemGoodsboardRecvBinding;
 import com.example.ipdda.inventory.InventoryVO;
 
@@ -20,13 +22,11 @@ public class GoodsBoardbuyAdapter extends RecyclerView.Adapter<GoodsBoardbuyAdap
     ItemGoodsboardRecvBinding binding;
 
     ArrayList<InventoryVO> list;
-    Button btn;
-    RecyclerView recv;
+    ActivityGoodsboardBuyBinding dialogBinding;
 
-    public GoodsBoardbuyAdapter(ArrayList<InventoryVO> list, Button btn, RecyclerView recv) {
+    public GoodsBoardbuyAdapter(ArrayList<InventoryVO> list, ActivityGoodsboardBuyBinding dialogBinding) {
         this.list = list;
-        this.btn = btn;
-        this.recv=recv;
+        this.dialogBinding = dialogBinding;
     }
 
     @NonNull
@@ -41,16 +41,11 @@ public class GoodsBoardbuyAdapter extends RecyclerView.Adapter<GoodsBoardbuyAdap
     public void onBindViewHolder(@NonNull GoodsBoardbuyAdapter.ViewHolder h, int i) {
         h.binding.btnOption.setText(list.get(i).getGoods_color());
         h.binding.btnOption.setOnClickListener(v -> {
-            btn.setText(list.get(i).getGoods_color());
-            recv.setVisibility(View.GONE);
+            dialogBinding.btnSelectColor.setText(list.get(i).getGoods_color());
+            dialogBinding.recvColor.setVisibility(View.GONE);
         });
 
 
-    }
-    public void updateData(ArrayList<InventoryVO> newList) {
-        list.clear();
-        list.addAll(newList);
-        notifyDataSetChanged();
     }
     @Override
     public int getItemCount() {

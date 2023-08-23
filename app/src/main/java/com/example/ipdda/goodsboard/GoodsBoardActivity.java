@@ -40,6 +40,7 @@ import com.example.ipdda.pay.TossPayActivity;
 import com.example.ipdda.like.LikeDTO;
 import com.example.ipdda.like.LikeFragment;
 import com.example.ipdda.profile.RecvCircleDTO;
+import com.example.ipdda.profile.SettingDTO;
 import com.example.ipdda.profile.SubActivity;
 import com.example.ipdda.profile.TrackDeliveryAdepter;
 import com.example.ipdda.profile.coupon.CouponVO;
@@ -59,7 +60,7 @@ public class GoodsBoardActivity extends AppCompatActivity {
 
     int goods_no;
 
-    static String select_color,select_size;
+    static String select_size;
 
 
     @Override
@@ -274,12 +275,15 @@ public class GoodsBoardActivity extends AppCompatActivity {
             Log.d("ServerResponse", "isResult: " + isResult + ", data: " + data);
             ArrayList<InventoryVO> list = new Gson().fromJson(data , new TypeToken<ArrayList<InventoryVO>>(){}.getType());
             // 어댑터 데이터 업데이트
-            dialogBinding.recvColor.setAdapter(new GoodsBoardbuyAdapter(list, dialogBinding.btnSelectColor, dialogBinding.recvColor));
+            dialogBinding.recvColor.setAdapter(new GoodsBoardbuyAdapter(list, dialogBinding));
             dialogBinding.recvColor.setLayoutManager(new LinearLayoutManager(this));
         });
     }
 
-
+    ArrayList<GoodsBoardBuyCheckDTO> getBuyCheck(){
+        ArrayList<GoodsBoardBuyCheckDTO> list= new ArrayList<>();
+        return list;
+    }
 
 
 

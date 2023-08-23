@@ -9,13 +9,25 @@ public class MemberVO {
 	store_main_image,
 	store_sub_image,
 	store_info,
-	store_address;
+	store_address,
+	store_ceo;
 	
 	
 	private int 
 	store_no,
 	store_registration_no,
-	store_delivery_tip;
+	store_delivery_tip,
+	store_phone;
+
+
+	public String getStore_ceo() {
+		return store_ceo;
+	}
+
+
+	public void setStore_ceo(String store_ceo) {
+		this.store_ceo = store_ceo;
+	}
 
 
 	public String getStore_id() {
@@ -126,6 +138,18 @@ public class MemberVO {
 	public void setStore_delivery_tip(int store_delivery_tip) {
 		this.store_delivery_tip = store_delivery_tip;
 	}
+
+
+	public int getStore_phone() {
+		return store_phone;
+	}
+
+
+	public void setStore_phone(int store_phone) {
+		this.store_phone = store_phone;
+	}
+
+
 
 		
 	

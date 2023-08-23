@@ -10,6 +10,17 @@
  * Copyright 2011-2022 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
+
+a {
+	color: initial
+}
+ 
+ 
+a:link, a:hover {
+	text-decoration: none;
+	color: inherit;
+}
+ 
 :root {
   --bs-blue: #1D809F;
   --bs-indigo: #6610f2;

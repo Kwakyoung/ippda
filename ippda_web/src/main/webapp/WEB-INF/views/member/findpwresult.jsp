@@ -14,31 +14,19 @@
         <div class="card shadow-lg border-0 rounded-lg px-3 py-5">
         	<h3 class="text-center">
         		<a href="<c:url value='/sales'/>"><img src="<c:url value='/img/whitelogo.png'/>"></a>
-        		<div class="text-center">
-        			<p>회원 정보를 입력 후, 가입을 <br> 완료해주세요</p>
-        		</div>
-        		
+        		<p>새 비밀번호로 변경하기</p>
         	</h3>
             <div class="card-body">
                 <form method="post" action="login">
 					<div class="form-floating mb-3">
 					    <input class="form-control" type="password" name="store_pw" 
 					    						required  placeholder="비밀번호">
-					    <label>아이디</label>
+					    <label>새로운 비밀번호</label>
 					</div>
-                    <div class="form-floating mb-3">
-                        <input class="form-control" name="store_pw_check"  required  type="password" placeholder="비밀번호 확인">
-                        <label>비밀번호</label>
-                    </div>
                     <div class="form-floating mb-3">
                         <input class="form-control" name="store_pw_check"  required  type="password" placeholder="비밀번호 확인">
                         <label>비밀번호 확인</label>
                     </div>
-                    <div class="form-floating mb-3">
-                        <input class="form-control" name="store_pw_check"  required  type="password" placeholder="비밀번호 확인">
-                        <label>이메일</label>
-                    </div>
-                    
              		
                 
                     <button class="btn btn-success opacity-50 form-control py-2 mt-3">완료</button>

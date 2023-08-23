@@ -12,7 +12,7 @@ public class GoodsController {
 	@Autowired @Qualifier("ippda") SqlSession sql;
 
 	
-	@RequestMapping("/goods.insert")
+	@RequestMapping("/goods/insert")
 	public String insert() {
 		
 		

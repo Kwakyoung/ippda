@@ -6,13 +6,13 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@Controller @RequestMapping("/goods")
+@Controller 
 public class GoodsController {
 	
 	@Autowired @Qualifier("ippda") SqlSession sql;
 
 	
-	@RequestMapping("insert")
+	@RequestMapping("/goods.insert")
 	public String insert() {
 		
 		

@@ -34,7 +34,7 @@ public class NotificationService extends Service {
         runnable = new Runnable() {
             @Override
             public void run() {
-                // 여기에 주기적으로 실행할 작업을 작성합니다.
+
                 makeNotification();
                 Log.d(TAG, "Background task is running.");
                 handler.postDelayed(this, 5000); // 5초마다 작업을 실행

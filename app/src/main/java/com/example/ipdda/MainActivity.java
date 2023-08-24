@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager manager = getSupportFragmentManager();
         manager.beginTransaction().replace(R.id.container, new HomeFragment()).commit();
 
-        if (CommonVar.loginInfo != null && "N".equals(CommonVar.loginInfo.getPopup())) {
+        if (CommonVar.loginInfo != null && "Y".equals(CommonVar.loginInfo.getPopup())) {
             startService(new Intent(MainActivity.this, NotificationService.class));
         }
 

@@ -7,6 +7,7 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Random;
 import java.util.regex.Pattern;
 
@@ -23,6 +24,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -48,21 +50,18 @@ public class MemberController {
 	@Autowired @Qualifier("ippda") SqlSession sql;
 	@Autowired MemberDAO dao;
 	
-		// 로그인 처리
-		@RequestMapping(value = "/ippdaLogin", produces = "text/html;charset=utf-8")
-		public String login(String store_id, String store_pw, HttpSession session) {
-			HashMap<String, String> params = new HashMap<String, String>();
-			params.put("store_id", store_id);
-			params.put("store_pw", store_pw);
-			MemberVO vo = dao.login(params);
-			
-			if(vo!=null) {
-				session.setAttribute("loginInfo", vo);
-				return "redirect:/sales";
-				
-			}else {
-				return "redirect:/login";
-			}
+		@RequestMapping("ippdaLogin")
+		@ResponseBody // 결과를 문자열로 반환
+		public String admin(HttpSession session, String store_id, String store_pw) {
+		    HashMap<String, String> params = new HashMap<String, String>();
+		    params.put("store_id", store_id);
+		    params.put("store_pw", store_pw);
+		    MemberVO vo = dao.login(params);
+		    if (vo == null) {
+		        return "failure"; // 로그인 실패 시
+		    } else {
+		    	return "success"; // 로그인 성공 시 (관리자)
+		    }
 		}
 		
 		
@@ -90,17 +89,35 @@ public class MemberController {
 		}
 		
 		
-		@ResponseBody @RequestMapping(value = "/findidresult", produces = "text/html;charset=utf-8")
-		public String findid(MemberVO vo) {
-			MemberVO vo1 = dao.findid(vo);
-			return new Gson().toJson(vo1);
+		
+		@RequestMapping("findingid")
+		@ResponseBody // 결과를 문자열로 반환
+		public String findingid(HttpSession session, String store_ceo, String store_phone) {
+		    HashMap<String, String> params = new HashMap<String, String>();
+		    params.put("store_ceo", store_ceo);
+		    params.put("store_phone", store_phone);
+		    MemberVO vo = dao.findid(params);
+		    if (vo == null) {
+		        return "failure"; // 정보틀림
+		    } else {
+		    	return "success"; // 정보맞음
+		    }
 		}
 		
 		
+		// 아이디 수정 화면
+		@RequestMapping(value = "/findidresult", produces = "text/html;charset=utf-8")
+		public String findidresult() {
+			
+			return "default/member/findidresult";
+		}
+		
+		
+		
 		// 휴대폰 인증문자 전송
-		@RequestMapping(value = "/sms", produces = "text/html;charset=utf-8")
-		@ResponseBody
-		public String sendSms(String store_phone) {
+		@RequestMapping(value = "sms")
+		@ResponseBody 
+		public Map<String, String> sendSms(String store_phone) {
 
 			Random random = new Random();
 			int createNum = 0;
@@ -112,7 +129,7 @@ public class MemberController {
 				ranNum = Integer.toString(createNum);
 				resultNum += ranNum;
 			}
-
+			
 			final String APIKEY = "NCSG2LLRPF6C8E0W";
 			final String APISECRET = "RT7T0LQHVFECZ5LD09VOD7TB8SK9RKE5";
 
@@ -122,26 +139,29 @@ public class MemberController {
 			message.setFrom("01034481720");
 			message.setTo(store_phone);
 			message.setText("인증번호는 [" + resultNum + "] 입니다.");
-
+			
 			try {
 				// send 메소드로 ArrayList<Message> 객체를 넣어도 동작합니다!
 				messageService.send(message);
+				System.out.println(" 인증번호는 : " + resultNum);
 			} catch (NurigoMessageNotReceivedException exception) {
 				// 발송에 실패한 메시지 목록을 확인할 수 있습니다!
 				System.out.println(exception.getFailedMessageList());
 				System.out.println(exception.getMessage());
+				
 			} catch (Exception exception) {
 				System.out.println(exception.getMessage());
 				System.out.println(" 인증번호는 : " + resultNum);
 			}
-
-			return resultNum;
+			
+			Map<String, String> response = new HashMap<>();
+			response.put("result", "success");
+			response.put("Code", resultNum);
+			
+			return response;
 		}
 		
-		
-		
-		
-		
+
 		
 		
 		// 비밀번호 찾기 화면
@@ -149,6 +169,25 @@ public class MemberController {
 		public String findpw() {
 			return "default/member/findpw";
 		}
+		
+		@RequestMapping("findingpw")
+		@ResponseBody // 결과를 문자열로 반환
+		public String findingpw(HttpSession session, String store_id, String store_phone) {
+		    HashMap<String, String> params = new HashMap<String, String>();
+		    params.put("store_id", store_id);
+		    params.put("store_phone", store_phone);
+		    MemberVO vo = dao.findpw(params);
+		    if (vo == null) {
+		        return "failure"; // 정보틀림
+		    } else {
+		    	return "success"; // 정보맞음
+		    }
+		}
+		
+		
+		
+		
+		
 		
 		
 		// 비밀번호 수정 화면

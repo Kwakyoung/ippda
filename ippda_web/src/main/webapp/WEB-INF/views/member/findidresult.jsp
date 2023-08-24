@@ -5,7 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
+<style>
+p {
+	font-weight:bold;
+}
+</style>
 </head>
 <body>
 
@@ -13,36 +17,16 @@
     <div class="col-md-9 col-lg-7 col-xl-5">
         <div class="card shadow-lg border-0 rounded-lg px-3 py-4">
         <a href="login">로그인 화면으로</a>
-        	<h3 class="text-center">
+        	<h3 class="text-center mb-5">
         		<a href="<c:url value='/sales'/>"><img src="<c:url value='/img/whitelogo.png'/>"></a>
-        		<p>아이디 찾기</p>
+        		<br>아이디 찾기 결과
         	</h3>
-            <div class="card-body">
-                <form method="post" action="findidresult">
-					<div class="form-floating mb-3">
-					    <input class="form-control" type="text" name="store_ceo" 
-					    						required  placeholder="이름">
-					    <label>이름</label>
-    
-					</div>
-					
-					<div class ="d-flex justify-content-between">
-	                    <div class="form-floating mb-3">
-	                        <input class="form-control" name="store_phone"  required  id="store_phone" type="text" placeholder="휴대폰 번호" autocomplete="off">
-	                        <label>휴대폰 번호 입력</label>
-	                    </div>
-	                    <button class="btn btn-success opacity-50 form-control mb-3" id="phoneChk">인증번호 보내기</button>
-                    </div>
-                    
-	                    <div class="form-floating mb-3">
-	                        <input class="form-control" name="store_phone_check"  required  id="store_phone_check" type="text" placeholder="휴대폰 번호" autocomplete="off">
-	                        <label>인증번호 확인</label>
-	                    </div>
- 					
-             	
-                    <button class="btn btn-success opacity-50 form-control py-2 mt-3" id="findid">아이디 찾기</button>
-                    
-                </form>
+
+            <div class="card-body mt-2">
+                <div class="text-center">
+                	<h5>회원님의 휴대전화로<br>가입된 아이디는 아래와 같습니다.</h5>
+                	<p class="mt-4">아이디 자리</p>
+                </div>
             </div>
         </div>
     </div>
@@ -53,25 +37,6 @@
 <jsp:include page="/WEB-INF/views/include/modal_alert.jsp"/>
 
 
-<script>
-$(document).ready(function(){
-	$("#phoneChk").click(function(){
-		var InputValue = $("#store_phone").val();
-		
-		if (InputValue.trim() !==""){
-			alert("인증번호 발송이 완료되었습니다.\n휴대폰에서 인증번호 확인을 해주십시오.");
-			
-			
-		} else {
-			alert("빈칸을 입력해주세요.")
-		}
-	
-	});
-	
-});
-	
 
-
-</script>
 </body>
 </html>

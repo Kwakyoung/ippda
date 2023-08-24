@@ -43,13 +43,13 @@ public class MemberDAO {
 	
 
 	
-	public MemberVO findid(MemberVO vo) {
-		return sql.selectOne("member.findid",vo);
+	public MemberVO findid(HashMap<String, String> params) {
+		return sql.selectOne("member.findid",params);
 	}
 	
 	
-	public int resetPw(MemberVO vo) {
-		return sql.update("member.resetPw", vo);
+	public MemberVO findpw(HashMap<String, String> params) {
+		return sql.selectOne("member.findpw",params);
 	}
 	
 	

@@ -10,9 +10,14 @@
 
 <select id="findid" resultType="member.MemberVO">
 	select 	store_id 
-			from store 
+	from 	store 
 	where 	store_ceo = #{store_ceo} and store_phone = #{store_phone} 
 </select>
 
+<select id="findpw" resultType="member.MemberVO">
+	select 	* 
+	from 	store 
+	where 	store_id = #{store_id} and store_phone = #{store_phone} 
+</select>
 
 </mapper>

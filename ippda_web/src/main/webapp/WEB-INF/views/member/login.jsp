@@ -29,7 +29,7 @@
         		<a href="<c:url value='/sales'/>"><img src="<c:url value='/img/whitelogo.png'/>"></a>
         	</h3>
             <div class="card-body">
-                <form method="post" action="ippdaLogin">
+                <form method="post" action="ippdaLogin" id="loginForm">
 					<div class="form-floating mb-3">
 					    <input class="form-control" type="text" name="store_id" 
 					    						required  placeholder="아이디">
@@ -63,19 +63,31 @@
 
 
 <script>
+$(document).ready(function() {
+  $("#loginForm").submit(function(event) {
+    event.preventDefault(); // 기본 제출 동작 방지
 
-$(function(){
-	modalAlert( "warning", "로그인 실패", "아이디나 비밀번호가 일치하지 않습니다!" );
-	
-	if( ${not empty fail} ){ //로그인 실패인 경우
-		new bootstrap.Modal( $('#modal-alert') ).show();
-	}
-})
+    var formData = $(this).serialize(); // 폼 데이터를 직렬화
 
-$('#modal-alert .btn-ok').click(function(){
-	$('[name=userid]').focus();
-})
-
-</script>
+    $.ajax({
+        type: "POST",
+        url: $(this).attr("action"),
+        data: formData,
+        success: function(response) {
+          // 서버 응답을 처리하는 코드 작성
+          // 예: 로그인 성공 시 페이지 리다이렉트
+          if (response === "success") {
+            window.location.href = "sales";
+          } else {
+            alert("로그인 실패! 아이디와 비밀번호를 확인하세요.");
+          }
+        },
+        error: function() {
+          alert("오류가 발생했습니다.");
+        }
+      });
+    });
+  });
+  </script>
 </body>
 </html>

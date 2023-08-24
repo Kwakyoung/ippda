@@ -57,6 +57,11 @@ public class MemberDAO {
 		return sql.update("member.resetPw", vo);
 	}
 	
-	
+	public int popup_on(MemberVO vo) {
+		return sql.update("member.popup_on", vo);
+	}
+	public int popup_off(MemberVO vo) {
+		return sql.update("member.popup_off", vo);
+	}
 	
 }

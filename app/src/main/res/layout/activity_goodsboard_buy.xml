@@ -148,7 +148,8 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recv_buy_check"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:scrollbars="none"/>
 
         <LinearLayout
             android:layout_width="match_parent"

@@ -19,6 +19,8 @@ import androidx.core.app.NotificationCompat;
 import com.example.ipdda.MainActivity;
 import com.example.ipdda.R;
 
+import java.util.Calendar;
+
 public class NotificationService extends Service {
     private static final String TAG = "BackgroundService";
     private Handler handler;
@@ -34,10 +36,9 @@ public class NotificationService extends Service {
         runnable = new Runnable() {
             @Override
             public void run() {
-                // 여기에 주기적으로 실행할 작업을 작성합니다.
                 makeNotification();
                 Log.d(TAG, "Background task is running.");
-                handler.postDelayed(this, 5000); // 5초마다 작업을 실행
+                handler.postDelayed(this, 24 * 60 * 60 * 1000); // 하루마다 작업을 실행 (24시간 * 60분 * 60초 * 1000밀리초)
             }
         };
     }
@@ -65,17 +66,38 @@ public class NotificationService extends Service {
     }
 
     public void makeNotification() {
+        // 현재 시간 정보 가져오기
+        Calendar calendar = Calendar.getInstance();
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+
+        String notificationTitle = "";
+        String notificationText = "";
+
+        // 시간에 따라 알림 제목과 텍스트 설정
+        if (hour ==9) {
+            notificationTitle = "아침 알림";
+            notificationText = "지금 접속하면 새로운 상품을 볼 수 있습니다.";
+        } else if (hour ==15) {
+            notificationTitle = "점심 알림";
+            notificationText = "지금 접속하면 새로운 상품을 볼 수 있습니다.";
+        } else if(hour == 21){
+            notificationTitle = "저녁 알림";
+            notificationText = "지금 접속하면 새로운 상품을 볼 수 있습니다.";
+        }
+
         NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), NOTIFICATION_CHANNEL_ID);
-            builder.setSmallIcon(R.drawable.ippda_logo)
-                .setContentTitle("알림 타이틀")
-                .setContentText("알림 텍스트")
+        builder.setSmallIcon(R.drawable.ippda_logo)
+                .setContentTitle(notificationTitle)
+                .setContentText(notificationText)
                 .setAutoCancel(true).setPriority(NotificationCompat.PRIORITY_DEFAULT);
+
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                .putExtra("data", "Somevalue to be passed here");
+                .putExtra("data", "Some value to be passed here");
 
         PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, PendingIntent.FLAG_MUTABLE);
         builder.setContentIntent(pendingIntent);
+
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -88,6 +110,7 @@ public class NotificationService extends Service {
                 notificationManager.createNotificationChannel(notificationChannel);
             }
         }
+
         notificationManager.notify(0, builder.build());
     }
 
@@ -107,5 +130,4 @@ public class NotificationService extends Service {
 
         return builder.build();
     }
-
 }

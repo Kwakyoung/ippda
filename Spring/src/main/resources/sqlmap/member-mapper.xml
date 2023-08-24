@@ -110,6 +110,17 @@ where
 member_no = #{member_no}
 </update>
 
+<update id="popup_on">
+UPDATE MEMBER
+SET POPUP = 'Y'
+WHERE MEMBER_NO = #{member_no} AND POPUP = 'N'
+</update>
+
+<update id="popup_off">
+UPDATE MEMBER
+SET POPUP = 'N'
+WHERE MEMBER_NO = #{member_no} AND POPUP = 'Y'
+</update>
 
 </mapper>
 	

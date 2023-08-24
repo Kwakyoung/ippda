@@ -15,12 +15,14 @@ public class MemberVO {
 	member_birthday,
 	member_name,
 	member_create,
-	member_sub_address;
+	member_sub_address,
+	popup;
 	
 	
 	private int member_no, member_money;
 
-
+	
+	
 	public String getMember_id() {
 		return member_id;
 	}
@@ -150,6 +152,7 @@ public class MemberVO {
 		this.member_create = member_create;
 	}
 
+
 	public String getMember_sub_address() {
 		return member_sub_address;
 	}
@@ -157,6 +160,16 @@ public class MemberVO {
 
 	public void setMember_sub_address(String member_sub_address) {
 		this.member_sub_address = member_sub_address;
+	}
+
+
+	public String getPopup() {
+		return popup;
+	}
+
+
+	public void setPopup(String popup) {
+		this.popup = popup;
 	}
 
 
@@ -178,6 +191,7 @@ public class MemberVO {
 	public void setMember_money(int member_money) {
 		this.member_money = member_money;
 	}
+
 
 	
 	

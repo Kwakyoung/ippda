@@ -141,7 +141,15 @@ public class MemeberController {
 		sql.update("member.payment", vo);
 	}
 	
+	@RequestMapping(value = "/popup_on" , produces = "text/html;charset=utf-8")
+	public void popup_on(MemberVO vo) {
+		sql.update("member.popup_on", vo);
+	}
 	
+	@RequestMapping(value = "/popup_off" , produces = "text/html;charset=utf-8")
+	public void popup_off(MemberVO vo) {
+		sql.update("member.popup_off", vo);
+	}
 	
 	
 }

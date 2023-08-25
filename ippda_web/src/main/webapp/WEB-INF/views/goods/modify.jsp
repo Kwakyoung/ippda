@@ -10,7 +10,7 @@
 
 
 
-	<h3 class="my-4">상품 등록</h3>
+	<h3 class="my-4">상품 수정</h3>
 
 	<ul class="nav nav-tabs">
 		<li class="nav-item"><a class="nav-link text-dark active fs-5"
@@ -21,16 +21,16 @@
 
 
  		<div class="form-group my-4"> <!--style="display: none;"--> 
-			<h4>가맹점번호</h4>
-			<input class="form-control input-lg" type="number" placeholder="가맹점번호"
-				name="store_no" id="store_no" value="${loginInfo.store_no}" />
+			<h4>상품번호</h4>
+			<input class="form-control input-lg" type="number" placeholder="상품번호"
+				name="store_no" id="store_no" value="${vo.goods_no}" />
 		</div>
 		
 		<div class="form-group" style="">
 				<h4>대분류</h4>
 				<select class="form-control" name="goods_middle_category" id="item_catemain"
 					title="상품 대분류">
-					<option value="">(선택)</option>
+					<option value="" >(선택)</option>
 					<option value="1">상의</option>
 					<option value="2">아우터</option>
 					<option value="3">하의</option>
@@ -49,6 +49,8 @@
 				<select class="form-control" name="goods_sub_category" id="item_catesub"
 					title="상품 소분류">
 					<option value="">(선택)</option>
+					
+					
 				</select>
 						<hr class="divider-w mt-10 mb-20">
 							<h4>스타일</h4>
@@ -72,13 +74,13 @@
 		<div class="form-group my-4 ">
 			<h4>상품명</h4>
 			<input class="form-control input-lg" type="text" placeholder="상품명"
-				name="goods_name" id="goods_name" />
+				name="goods_name" id="goods_name" value="${vo.goods_name}"/>
 		</div>
 		<hr class="divider-w mt-10 mb-20">
 		<div class="form-group">
 			<h4>판매가</h4>
 			<input class="form-control input-lg" type="number"
-				placeholder="판매가 / 단위 : 원" name="goods_price" id="goods_price" />
+				placeholder="판매가 / 단위 : 원" name="goods_price" id="goods_price" value="${vo.goods_price}"/>
 		</div>
 		<hr class="divider-w mt-10 mb-20">
 
@@ -104,13 +106,13 @@
 <button type="button" class="btn btn-secondary my-4" id="btn">상품가격 확인하기</button>
 					<div class="form-group">
 		<h3 id="calculated_price_display"></h3>
-		    <input id="calculated_price" name="goods_sale_price">
+		    <input id="calculated_price" name="goods_sale_price" value="${vo.goods_sale_price}">
 		</div>
 		
 				<div class="form-group">
 			<h4>상품내용</h4>
 			<textarea class="form-control input-lg" placeholder="내용을 입력하세요"
-				name="goods_info" id="goods_info"></textarea>
+				name="goods_info" id="goods_info">${vo.goods_info}</textarea>
 		</div>
 
 
@@ -154,6 +156,9 @@
 document.addEventListener("DOMContentLoaded", function() {
     const catemainSelect = document.getElementById("item_catemain");
     const catesubSelect = document.getElementById("item_catesub");
+    const goodsMiddleCategory = ${vo.goods_middle_category}; // 이 부분에 실제 값이 들어가야 합니다.
+
+
     
     const subCategories = {
         1: ["니트/스웨터","후드 티셔츠", "맨투맨/스웨트셔츠", "긴소매 티셔츠", "셔츠/블라우스", "피케/카라티셔츠", "반소매 티셔츠", "민소매 티셔츠", "기타 상의"], // 예시: 각 대분류에 맞는 소분류들
@@ -172,32 +177,58 @@ document.addEventListener("DOMContentLoaded", function() {
     };
     
     catemainSelect.addEventListener("change", function() {
-        const selectedCatemain = catemainSelect.value;
-        catesubSelect.innerHTML = ""; // 먼저 기존의 소분류 옵션들을 지웁니다.
+    	change_catemainSelect();
+//         const selectedCatemain = catemainSelect.value;
+//         catesubSelect.innerHTML = ""; // 먼저 기존의 소분류 옵션들을 지웁니다.
 
-        const subCats = subCategories[selectedCatemain];
-        for (let i = 0; i < subCats.length; i++) {
-            const subCat = subCats[i];
-            const option = document.createElement("option");
-            option.value = i + 1;
-            option.textContent = subCat;
-            catesubSelect.appendChild(option);
-        }
+//         const subCats = subCategories[selectedCatemain];
+//         for (let i = 0; i < subCats.length; i++) {
+//             const subCat = subCats[i];
+//             const option = document.createElement("option");
+//             option.value = i + 1;
+//             option.textContent = subCat;
+//             catesubSelect.appendChild(option);
+//         }
     });
     
-    
-    catemainSelect.addEventListener("change", function() {
-        const selectedCatemain = catemainSelect.value;
-        catesubSelect.innerHTML = ""; // 먼저 기존의 소분류 옵션들을 지웁니다.
+    function change_catemainSelect(){
+    	 const selectedCatemain = catemainSelect.value;
+         catesubSelect.innerHTML = ""; // 먼저 기존의 소분류 옵션들을 지웁니다.
 
-        const subCats = subCategories[selectedCatemain];
-        for (let i = 0; i < subCats.length; i++) {
-            const subCat = subCats[i];
-            const option = document.createElement("option");
-            option.value = i + 1;
-            option.textContent = subCat;
-            catesubSelect.appendChild(option);
-        }
+         const subCats = subCategories[selectedCatemain];
+         for (let i = 0; i < subCats.length; i++) {
+             const subCat = subCats[i];
+             const option = document.createElement("option");
+             option.value = i + 1;
+             option.textContent = subCat;
+             catesubSelect.appendChild(option);
+         }
+    }
+    
+    
+    
+    $(document).ready(function() {
+        const catemainSelect = $("#item_catemain");
+        const catesubSelect = $("#item_catesub");
+        const catestyleSelect = $("#goods_style");
+        const SlaePercent = $("#goods_sale_percent");
+        const Gender = $("#goods_gender");
+        
+        
+        const goodsMiddleCategory = ${vo.goods_middle_category}; 
+        const goodsSubCategory = ${vo.goods_sub_category}; 
+        const goodsStyleCategory = ${vo.goods_style}
+        const goodsSalepercent = ${vo.goods_sale_percent}
+        const goodsGender = "${vo.goods_gender}"
+    
+        
+        catestyleSelect.val(goodsStyleCategory)
+        catemainSelect.val(goodsMiddleCategory);
+        change_catemainSelect()
+        
+        catesubSelect.val(goodsSubCategory);
+        SlaePercent.val(goodsSalepercent);
+        Gender.val(goodsGender);
     });
     
     
@@ -205,7 +236,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		        const goodsPriceInput = document.getElementById("goods_price");
 		        const salePercentSelect = document.getElementById("goods_sale_percent");
 		        const calculatedPriceDisplay = document.getElementById("calculated_price_display");
-		
+				
 		            const goodsPrice = parseFloat(goodsPriceInput.value);
 		            const salePercent = parseFloat(salePercentSelect.value);
 		            console.log(goodsPrice);

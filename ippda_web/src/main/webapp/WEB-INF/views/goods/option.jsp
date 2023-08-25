@@ -26,7 +26,7 @@
 <div class="form-group my-4"> <!--style="display: none;"--> 
 			<h4>상품번호</h4>
 			<input class="form-control input-lg" type="number" placeholder="상품번호"
-				name="goods_no" id="goods_no" value="${goodsInfo.goods_no}" />
+				name="goods_no" id="goods_no" value="${goodsInfo}" />
 		</div>
 		
 	

@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import common.CommonUtility;
@@ -42,16 +43,19 @@ public class GoodsController {
 		int insert = sql.insert("goods.insert", vo);
 		if( insert==1  ) {
 //			sql.insert("goods.fileRegister", vo);
-			session.setAttribute("goodsInfo", vo);
+
 		}
 		
-		return "redirect:option";
+		return "redirect:list";
 	}
 	
 	@RequestMapping("/option")
-	public String option(HttpSession session , Model model) {
-		GoodsVO goodsInfo = (GoodsVO) session.getAttribute("goodsInfo");
-		model.addAttribute("goodsInfo" , goodsInfo);
+	public String option(@RequestParam("goods_no") int goods_no , Model model , HttpSession session) {
+	
+		
+		MemberVO loginInfo = (MemberVO) session.getAttribute("loginInfo");
+		model.addAttribute("loginInfo", loginInfo);
+		model.addAttribute("goodsInfo" , goods_no);
 		
 		return"goods/option";
 	}
@@ -82,7 +86,7 @@ public class GoodsController {
 		MemberVO loginInfo = (MemberVO) session.getAttribute("loginInfo");
 		
 		
-		return"goods/list";
+		return "redirect:/goods/list";
 	}
 	
 	
@@ -94,8 +98,19 @@ public class GoodsController {
 		int store_no = loginInfo.getStore_no();
 		List<GoodsVO> vo = sql.selectList("goods.list", store_no);
 		model.addAttribute("goodslist", vo);
-		
+		session.setAttribute("goodsInfo", vo);
 		return"goods/list";
 	}
+	
+	@RequestMapping("/modify")
+	public String modify(@RequestParam("goods_no") int goods_no , Model model , HttpSession session , MultipartFile file[]) {
+		GoodsVO vo = sql.selectOne("goods.modify", goods_no);
+			
+		model.addAttribute("vo", vo);
+		
+		return"goods/modify";
+	}
+	
+	
 	
 }

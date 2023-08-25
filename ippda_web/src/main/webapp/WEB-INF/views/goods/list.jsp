@@ -6,6 +6,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+table img{
+	max-height: 70px
+}
+
+
+</style>
+
 </head>
 <body>
 
@@ -23,10 +31,12 @@
 </c:if>
 <!-- 사원정보목록이 없는 경우 -->
 <c:forEach items="${goodslist}" var="vo">
-<tr><td>${vo.goods_name}</td>
 <td><a class="text-link" href="info?id=${vo.goods_name}"> ${vo.goods_name}</a></td>
 <td>${vo.goods_price}</td>
 <td>${vo.goods_sale_percent}</td>
+<td><img src="${vo.goods_main_image}"></td>
+<td>${vo.goods_status}</td>
+
 </c:forEach>
 
 </table>

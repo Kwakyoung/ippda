@@ -63,31 +63,31 @@
 
 
 <script>
-$(document).ready(function() {
-  $("#loginForm").submit(function(event) {
-    event.preventDefault(); // 기본 제출 동작 방지
+// $(document).ready(function() {
+//   $("#loginForm").submit(function(event) {
+//     event.preventDefault(); // 기본 제출 동작 방지
 
-    var formData = $(this).serialize(); // 폼 데이터를 직렬화
+//     var formData = $(this).serialize(); // 폼 데이터를 직렬화
 
-    $.ajax({
-        type: "POST",
-        url: $(this).attr("action"),
-        data: formData,
-        success: function(response) {
-          // 서버 응답을 처리하는 코드 작성
-          // 예: 로그인 성공 시 페이지 리다이렉트
-          if (response === "success") {
-            window.location.href = "sales";
-          } else {
-            alert("로그인 실패! 아이디와 비밀번호를 확인하세요.");
-          }
-        },
-        error: function() {
-          alert("오류가 발생했습니다.");
-        }
-      });
-    });
-  });
+//     $.ajax({
+//         type: "POST",
+//         url: $(this).attr("action"),
+//         data: formData,
+//         success: function(response) {
+//           // 서버 응답을 처리하는 코드 작성
+//           // 예: 로그인 성공 시 페이지 리다이렉트
+//           if (response === "success") {
+//             window.location.href = "sales";
+//           } else {
+//             alert("로그인 실패! 아이디와 비밀번호를 확인하세요.");
+//           }
+//         },
+//         error: function() {
+//           alert("오류가 발생했습니다.");
+//         }
+//       });
+//     });
+//   });
   </script>
 </body>
 </html>

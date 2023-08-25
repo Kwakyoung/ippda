@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
 
-import goods.GoodsOptionVO;
 import goods.GoodsVO;
+
 
 @RestController @RequestMapping("/goods")
 public class GoodsController {

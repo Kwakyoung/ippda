@@ -19,7 +19,6 @@
     import com.example.ipdda.databinding.ItemGoodsBoardBuyCheckBinding;
     import com.example.ipdda.databinding.ItemGoodsboardRecvBinding;
     import com.example.ipdda.databinding.ItemSettingRecvBinding;
-    import com.example.ipdda.inventory.InventoryVO;
     import com.example.ipdda.login.LoginActivity;
     import com.example.ipdda.profile.SettingActivity;
     import com.example.ipdda.profile.SettingAdapter;

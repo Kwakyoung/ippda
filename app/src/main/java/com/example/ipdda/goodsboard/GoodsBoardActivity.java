@@ -1,27 +1,16 @@
 package com.example.ipdda.goodsboard;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -29,21 +18,11 @@ import android.widget.Toast;
 import com.example.ipdda.MainActivity;
 import com.example.ipdda.R;
 import com.example.ipdda.common.CommonConn;
-import com.example.ipdda.common.CommonVar;
-import com.example.ipdda.databinding.ActivityCouponRegisterBinding;
 import com.example.ipdda.databinding.ActivityGoodsBoardBinding;
 import com.example.ipdda.databinding.ActivityGoodsboardBuyBinding;
 import com.example.ipdda.home.GoodsVO;
-import com.example.ipdda.inventory.InventoryVO;
 import com.example.ipdda.order.OrderActivity;
-import com.example.ipdda.pay.TossPayActivity;
-import com.example.ipdda.like.LikeDTO;
-import com.example.ipdda.like.LikeFragment;
-import com.example.ipdda.profile.RecvCircleDTO;
-import com.example.ipdda.profile.SettingDTO;
 import com.example.ipdda.profile.SubActivity;
-import com.example.ipdda.profile.TrackDeliveryAdepter;
-import com.example.ipdda.profile.coupon.CouponVO;
 import com.example.ipdda.search.SearchFragment;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -58,7 +37,7 @@ public class GoodsBoardActivity extends AppCompatActivity {
     ActivityGoodsBoardBinding binding;
     ActivityGoodsboardBuyBinding dialogBinding;
     int totalPrice = 0,totalCnt = 0;
-    int goods_no,goodsPrice;
+    int goods_no,goodsPrice,goods_sale_price;
 
     static String select_size;
     ArrayList<GoodsBoardBuyCheckDTO> getBuyCheck= new ArrayList<>();
@@ -126,7 +105,7 @@ public class GoodsBoardActivity extends AppCompatActivity {
             String storeName = goodsVO.getStore_name()+"";
             String starCnt = goodsVO.getGoods_star()+"";
             String goodsContext = goodsVO.getGoods_info()+"";
-            int goods_sale_price = goodsVO.getGoods_sale_price();
+            goods_sale_price = goodsVO.getGoods_sale_price();
 
             if(SalePercent == 0){
                 binding.tvGoodsPrice.setText(goodsPrice+" 원");
@@ -177,9 +156,18 @@ public class GoodsBoardActivity extends AppCompatActivity {
         write_dialog.setContentView(dialogBinding.getRoot());
 
         dialogBinding.btnBuy.setOnClickListener(v -> {
-            Intent intent = new Intent(this, OrderActivity.class);
-            intent.putExtra("goods_no", goods_no);
-            startActivity(intent);
+            if (getBuyCheck.size()==0){
+                Toast.makeText(this, "상품을 선택해주세요.", Toast.LENGTH_SHORT).show();
+            }else{
+                Intent intent = new Intent(this, OrderActivity.class);
+                intent.putExtra("goods_no", goods_no);
+                for (int i = 0; i < getBuyCheck.size(); i++) {
+                    intent.putExtra("check_goods_name"+i, getBuyCheck.get(i).getCheck_goods_name());
+                    intent.putExtra("check_goods_cnt"+i, getBuyCheck.get(i).getCheck_goods_cnt());
+                    intent.putExtra("check_goods_price"+i, getBuyCheck.get(i).getCheck_goods_price());
+                }
+                startActivity(intent);
+            }
         });
 
         size_click(dialogBinding.btnXS,dialogBinding.btnSelectSize,dialogBinding.linSize);
@@ -261,7 +249,7 @@ public class GoodsBoardActivity extends AppCompatActivity {
         conn.addParamMap("goods_no" , goods_no);
         conn.addParamMap("goods_size", btn.getText().toString());
         conn.onExcute(((isResult, data) -> {
-            ArrayList<InventoryVO> list = new Gson().fromJson(data , new TypeToken<ArrayList<InventoryVO>>(){}.getType());
+            ArrayList<Goods_optionVO> list = new Gson().fromJson(data , new TypeToken<ArrayList<Goods_optionVO>>(){}.getType());
             btn.setText(btn.getText());
             if ((list.size())==0){
                 btn.setVisibility(View.GONE);
@@ -294,9 +282,9 @@ public class GoodsBoardActivity extends AppCompatActivity {
         conn.addParamMap("goods_size", select_size);
         conn.onExcute((isResult, data) -> {
             Log.d("ServerResponse", "isResult: " + isResult + ", data: " + data);
-            ArrayList<InventoryVO> list = new Gson().fromJson(data , new TypeToken<ArrayList<InventoryVO>>(){}.getType());
+            ArrayList<Goods_optionVO> list = new Gson().fromJson(data , new TypeToken<ArrayList<Goods_optionVO>>(){}.getType());
             // 어댑터 데이터 업데이트
-            dialogBinding.recvColor.setAdapter(new GoodsBoardbuyAdapter(this,list, dialogBinding,getBuyCheck,goodsPrice));
+            dialogBinding.recvColor.setAdapter(new GoodsBoardbuyAdapter(this,list, dialogBinding,getBuyCheck,goods_sale_price));
             dialogBinding.recvColor.setLayoutManager(new LinearLayoutManager(this));
         });
     }

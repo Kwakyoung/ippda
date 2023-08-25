@@ -4,7 +4,7 @@
 
 	<select id="check_size" resultType="goods_option.Goods_optionVO">
 		SELECT U.*
-		FROM INVENTORY U
+		FROM GOODS_OPTION U
 		INNER JOIN GOODS F ON U.GOODS_NO = F.GOODS_NO
 		WHERE U.GOODS_SIZE =#{goods_size} AND U.goods_no=#{goods_no}
 	</select>

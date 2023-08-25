@@ -8,12 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<!-- 사원정보목록이 없는 경우 -->
-<c:forEach items="${goodslist}" var="vo">
-<td><a> ${vo.goods_name}</a></td>
-<td>${vo.goods_price}</td>
 
-</c:forEach>
 
 <table class="tb-list">
 <colgroup>

@@ -86,43 +86,6 @@
 <script>
 
 
-document.addEventListener("DOMContentLoaded", function() {
-    const catemainSelect = document.getElementById("item_catemain");
-    const catesubSelect = document.getElementById("item_catesub");
-    
-    const subCategories = {
-        1: ["니트/스웨터","후드 티셔츠", "맨투맨/스웨트셔츠", "긴소매 티셔츠", "셔츠/블라우스", "피케/카라티셔츠", "반소매 티셔츠", "민소매 티셔츠", "기타 상의"], // 예시: 각 대분류에 맞는 소분류들
-        2: ["후드 집업", "블루종/MA-1", "레더/라이더스 재킷", "무스탕/퍼", "트러커 재킷" , "슈트/블레이저 재킷", "카디건", "아노락 재킷", "플리스/뽀글이",
-        	"트레이닝 재킷", "환절기 코트", "겨울 싱글 코트", "겨울 더블 코트", "롱패딩/롱헤비 아우터", "숏패딩/숏헤비 아우터","패딩 베스트", "베스트", "사파리/헌팅 재킷", "나일론/코치 재킷", "기타 아우터"],
-        3: [ "데님 팬츠", "코튼 팬츠", "슈트 팬츠/슬랙스", "트레이닝/조거 팬츠", "숏 팬츠", "레깅스", "점프 슈트/오버올", "스포츠 하의", "기타 바지" ],
-		4: [ "미니 원피스", "미디 원피스", "맥시 원피스" ],
-        5: [ "미니스커트", "미디스커트", "롱스커트" ],
-		6: [ "구두", "로퍼", "힐/펌프스", "플랫 슈즈", "블로퍼", "샌들", "슬리퍼", "기타 신발", "모카신/보트 슈즈", "신발 용품", "캔버스/단화", "패션스니커즈화", "스포츠 스니커즈", "기타 스니커즈" ],
-        7 : [ "백팩", "메신저/크로스 백", "숄더백", "토트백", "에코백", "보스턴/드럼/더플백", "웨이스트 백", "파우치 백", "모카신/보트 슈즈", "브리프케이스", "캐리어", "가방 소품", "지갑/머니클립", "클러치 백", "기타 가방" ],
-		8: [ "팔찌", "반지", "목걸이/펜던트", "귀걸이", "발찌", "브로치/배지", "헤어 악세사리", "기타 악세사리" ],
-        9: [ "양말", "스타킹", "기타 양말" ],
-		10: [ "디지털", "쿼츠 아날로그", "오토매틱 아날로그", "시계 용품", "기타 시계" ],
-		11 : [ "캡/야구 모자", "헌팅캡/베레모", "페도라", "버킷/사파리햇", "비니", "트루퍼", "기타 모자" ],
-
-    };
-    
-    catemainSelect.addEventListener("change", function() {
-        const selectedCatemain = catemainSelect.value;
-        catesubSelect.innerHTML = ""; // 먼저 기존의 소분류 옵션들을 지웁니다.
-
-        const subCats = subCategories[selectedCatemain];
-        for (let i = 0; i < subCats.length; i++) {
-            const subCat = subCats[i];
-            const option = document.createElement("option");
-            option.value = i + 1;
-            option.textContent = subCat;
-            catesubSelect.appendChild(option);
-        }
-    });
-
-
-
-
 $(document).ready(function() {
 	  var optionCount = 1; // 추가된 옵션 개수 초기값
 	  var selectedSize = "";
@@ -176,18 +139,10 @@ $(document).ready(function() {
 
 	  });
 	  
-
-// 	  $('#regist').click(function(){
-// 		  console.log("goods_size 값:", $('[name=goods_option_size]').val() );
-// 		  console.log("goods_color 값:", $('[name=goods_option_color]').val() );
-// 		  console.log("goods_cnt 값:", $('[name=goods_option_cnt]').val() );
-// 	  })
-	  
-	  
-	});
-
-
 });
+	  
+
+
 
 </script>
 

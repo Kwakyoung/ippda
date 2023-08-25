@@ -135,6 +135,7 @@ public class GoodsBoardActivity extends AppCompatActivity {
             String storeName = goodsVO.getStore_name()+"";
             String starCnt = goodsVO.getGoods_star()+"";
             String goodsContext = goodsVO.getGoods_info()+"";
+            int goods_sale_price = goodsVO.getGoods_sale_price();
 
             if(SalePercent == 0){
                 binding.tvGoodsPrice.setText(goodsPrice+" 원");
@@ -145,7 +146,7 @@ public class GoodsBoardActivity extends AppCompatActivity {
                 binding.lnOrignalPrice.setVisibility(View.GONE);
             }else{
                 int goodsSalePrice = goodsPrice/(100/SalePercent);
-                binding.tvGoodsPrice.setText(goodsSalePrice+" 원");
+                binding.tvGoodsPrice.setText(goods_sale_price+" 원");
                 binding.tvGoodsOriginalPrice.setText(goodsPrice+" 원");
 
             }

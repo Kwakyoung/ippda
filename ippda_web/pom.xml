@@ -141,7 +141,13 @@
 	    	<version>21.1.0.0</version>
 		</dependency>
 
-
+	
+			<!-- 첨부파일 업로드용 라이브러리 -->
+		<dependency>
+		    <groupId>commons-fileupload</groupId>
+		    <artifactId>commons-fileupload</artifactId>
+		    <version>1.5</version>
+		</dependency>
 
 		<!-- Mybatis 라이브러리 -->
 		<dependency>

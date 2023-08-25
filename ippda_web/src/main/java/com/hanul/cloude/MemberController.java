@@ -17,7 +17,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -49,12 +48,13 @@ public class MemberController {
 			params.put("store_id", store_id);
 			params.put("store_pw", store_pw);
 			MemberVO vo = dao.login(params);
+	
 			
 			if(vo==null) {
 				return "redirect:/login";
-				
 			}else {
 				session.setAttribute("loginInfo", vo);
+		
 				return "redirect:/sales";
 			}
 			

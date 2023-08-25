@@ -55,7 +55,7 @@ public class GoodsListSubCategoryAdapter extends RecyclerView.Adapter<GoodsListS
         //sub카테고리 클릭시 조회되는 로직
         h.binding.imgvGoodsSubCategory.setOnClickListener(v -> {
             changeImgColor(h.binding.imgvGoodsSubCategory);
-            goodsListFragment.SubCategoryConn(i+1);
+            goodsListFragment.SubCategoryConn(i);
 
             //sub카테고리 전체 조회 로직
             if(localkey==1 && i==0){

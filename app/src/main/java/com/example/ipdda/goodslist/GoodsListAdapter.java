@@ -51,8 +51,8 @@ public class GoodsListAdapter extends RecyclerView.Adapter<GoodsListAdapter.View
 
 
         if( list.get(i).getGoods_sale_percent() != 0){
-            int getGoodsPrice = list.get(i).getGoods_price()/(100/list.get(i).getGoods_sale_percent());
-            h.binding.tvGoodsPrice1.setText(getGoodsPrice+"");
+            h.binding.tvGoodsPrice1.setText(list.get(i).getGoods_sale_price()+" 원");
+            h.binding.tvSalePercent1.setText(list.get(i).getGoods_sale_percent()+"");
         }else{
             h.binding.tvGoodsPrice1.setText(list.get(i).getGoods_price()+"");
             h.binding.tvSalePercent1.setVisibility(View.GONE);

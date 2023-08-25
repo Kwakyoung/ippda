@@ -18,6 +18,7 @@
              <link href="<c:url value='/css/styles.css?${now }'/>" rel="stylesheet" />
         <link href="<c:url value='/css/common.css?${now }'/>" rel="stylesheet" />
         <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed">
@@ -68,8 +69,8 @@
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="goods/list">상품 목록</a>
-                                    <a class="nav-link" href="goods.insert">상품 등록</a>
+                                    <a class="nav-link" href="<c:url value="/goods/list"/>">상품 목록</a>
+                                    <a class="nav-link" href="<c:url value='/goods/basicinfo'/>">상품 등록</a>
                                 </nav>
                             </div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
@@ -104,9 +105,9 @@
                                 </nav>
                             </div>
                             <div class="sb-sidenav-menu-heading">더보기</div>
-                            <a class="nav-link" href="charts.html">
+                            <a class="nav-link" href="<c:url value='/test/home'/>">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                                차트
+                                테스트
                             </a>
                             <a class="nav-link" href="tables.html">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
@@ -145,7 +146,6 @@
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
      
     </body>
 </html>

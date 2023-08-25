@@ -36,11 +36,12 @@ public class GoodsController {
 	
 	@RequestMapping("/insert")
 	public String insert(GoodsVO vo, MultipartFile file[] , HttpServletRequest request ,HttpSession session) {
-		int insert = sql.insert("goods.insert", vo);
-		vo.setFileList( common.attachedFiles("goods", file, request) );
+		vo.setGoods_main_image( common.fileUpload("goods", file[0], request) );
+		vo.setGoods_sub_image( common.fileUpload("goods", file[1], request) );
 		
-		if( insert==1 && vo.getFileList() != null ) {
-			sql.insert("goods.fileRegister", vo);
+		int insert = sql.insert("goods.insert", vo);
+		if( insert==1  ) {
+//			sql.insert("goods.fileRegister", vo);
 			session.setAttribute("goodsInfo", vo);
 		}
 		

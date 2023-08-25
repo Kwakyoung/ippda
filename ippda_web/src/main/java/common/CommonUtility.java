@@ -47,7 +47,6 @@ public class CommonUtility {
 	
 	
 	
-	
 	//첨부파일 삭제: 디스크에 저장된 물리적 파일 삭제
 	public void deletedFile(String filepath, HttpServletRequest request) {
 		if( filepath != null ) {

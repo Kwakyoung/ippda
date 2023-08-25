@@ -257,7 +257,7 @@ public class GoodsBoardActivity extends AppCompatActivity {
 
 
     public void size(Button btn){
-        CommonConn conn = new CommonConn(this, "inventory/check_size");
+        CommonConn conn = new CommonConn(this, "goods_option/check_size");
         conn.addParamMap("goods_no" , goods_no);
         conn.addParamMap("goods_size", btn.getText().toString());
         conn.onExcute(((isResult, data) -> {
@@ -289,7 +289,7 @@ public class GoodsBoardActivity extends AppCompatActivity {
         });
     }
     public void color() {
-        CommonConn conn = new CommonConn(this, "inventory/check_size");
+        CommonConn conn = new CommonConn(this, "goods_option/check_size");
         conn.addParamMap("goods_no" , goods_no);
         conn.addParamMap("goods_size", select_size);
         conn.onExcute((isResult, data) -> {

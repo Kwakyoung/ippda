@@ -50,18 +50,18 @@ public class MemberController {
 	@Autowired @Qualifier("ippda") SqlSession sql;
 	@Autowired MemberDAO dao;
 	
-		@RequestMapping("ippdaLogin")
-		@ResponseBody // 결과를 문자열로 반환
-		public String admin(HttpSession session, String store_id, String store_pw) {
-		    HashMap<String, String> params = new HashMap<String, String>();
-		    params.put("store_id", store_id);
-		    params.put("store_pw", store_pw);
-		    MemberVO vo = dao.login(params);
-		    if (vo == null) {
-		        return "failure"; // 로그인 실패 시
-		    } else {
-		    	return "success"; // 로그인 성공 시 (관리자)
-		    }
+//		@RequestMapping("ippdaLogin")
+//		@ResponseBody // 결과를 문자열로 반환
+//		public String admin(HttpSession session, String store_id, String store_pw) {
+//		    HashMap<String, String> params = new HashMap<String, String>();
+//		    params.put("store_id", store_id);
+//		    params.put("store_pw", store_pw);
+//		    MemberVO vo = dao.login(params);
+//		    if (vo == null) {
+//		        return "failure"; // 로그인 실패 시
+//		    } else {
+//		    	return "success"; // 로그인 성공 시 (관리자)
+//		    }
 		// 로그인 처리
 		@RequestMapping(value = "/ippdaLogin", produces = "text/html;charset=utf-8")
 		public String login(String store_id, String store_pw, HttpSession session) {

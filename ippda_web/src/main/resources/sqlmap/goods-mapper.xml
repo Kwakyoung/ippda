@@ -61,10 +61,10 @@ values(seq_goods_option_no.nextval, #{goods_no}, #{store_no}, #{goods_middle_cat
 
 <foreach collection="optionList" item="option" open="insert all" separator=" " 
 													close="select * from dual">
-	into goods_option (  goods_no, store_no, goods_middle_category, goods_sub_category, 
-goods_size, goods_cnt, goods_style, goods_color )
-	values( #{goods_no}, #{store_no}, #{goods_middle_category}, #{goods_sub_category}
-, #{option.goods_size}, #{option.goods_cnt}, #{goods_style}, #{option.goods_color})
+	into goods_option (  goods_no, store_no,
+goods_size, goods_cnt, goods_color )
+	values( #{goods_no}, #{store_no}
+, #{option.goods_size}, #{option.goods_cnt}, #{option.goods_color})
 </foreach>
     
 </insert>

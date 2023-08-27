@@ -22,6 +22,7 @@ import com.example.ipdda.common.CommonConn;
 import com.example.ipdda.common.CommonVar;
 import com.example.ipdda.databinding.ActivityOrderBinding;
 import com.example.ipdda.databinding.ActivityTossPayBinding;
+import com.example.ipdda.goodsboard.GoodsBoardBuyCheckDTO;
 import com.example.ipdda.home.GoodsVO;
 import com.example.ipdda.member.MemberVO;
 import com.example.ipdda.pay.IppdaPayActivity;
@@ -40,14 +41,20 @@ public class OrderActivity extends AppCompatActivity {
 
     int storeNo;
     String cleanedData;
+
+    ArrayList<GoodsBoardBuyCheckDTO> getBuyCheck;
+    public OrderActivity() {
+        // 기본 생성자
+    }
+    public OrderActivity(ArrayList<GoodsBoardBuyCheckDTO> getBuyCheck) {
+        this.getBuyCheck = getBuyCheck;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityOrderBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-
-
 
         //최초 실행시 직접입력 안보이게 하기
         binding.edtDeliveryRequest.setVisibility(View.GONE);
@@ -120,6 +127,8 @@ public class OrderActivity extends AppCompatActivity {
        });
 
         int goods_no = getIntent().getIntExtra("goods_no", 0);
+
+
         Log.d("goods_no", "onCreate: " + goods_no);
         CommonConn conn = new CommonConn(this, "goods/goodsboard");
         conn.addParamMap("goods_no" , goods_no);
@@ -133,6 +142,7 @@ public class OrderActivity extends AppCompatActivity {
 
             int goodsPrice = goodsVO.getGoods_price();
             int SalePercent = goodsVO.getGoods_sale_percent();
+            int totalprice=0;
 
             if(SalePercent == 0){
                 binding.tvSalePrice.setText("0 원");
@@ -140,36 +150,37 @@ public class OrderActivity extends AppCompatActivity {
                 binding.tvDeliveryTip1.setText(goodsVO.getStore_delivery_tip()+" 원");
                 binding.tvOriginalPrice.setText(goodsVO.getGoods_price()+" 원");
 
+                for (int i = 0; i <getBuyCheck.size(); i++) {
+                    totalprice+=getBuyCheck.get(i).getCheck_goods_price();
+                }
                 //입다페이 사용하기 눌렀을 때 (상품 금액) 표시
-                binding.tvGoodsAmount.setText("-" + goodsVO.getGoods_price()+" 원");
+                binding.tvGoodsAmount.setText("-" + totalprice+" 원");
                 //입다페이 사용하기 눌렀을 때 (배달비) 표시
                 binding.tvDeliveryTip.setText("-" + goodsVO.getStore_delivery_tip()+" 원");
 
                 int HoldingAmount = Integer.parseInt(cleanedData);
-                int remaingAmount = HoldingAmount - (goodsVO.getGoods_price() + goodsVO.getStore_delivery_tip());
+                int remaingAmount = HoldingAmount - (totalprice + goodsVO.getStore_delivery_tip());
                 binding.tvRemainingAmount.setText(remaingAmount+" 원");
                 //결제 눌렀을 때 로직
                 OnclickPayment(remaingAmount, HoldingAmount, goodsPrice,  goodsVO.getStore_delivery_tip());
             }else {
-                int goodsPayPrice = goodsPrice/(100/SalePercent);
-                int goodsSalePrice = goodsPrice-goodsPayPrice;
                 binding.tvOriginalPrice.setText(goodsVO.getGoods_price()+" 원");
-                binding.tvSalePrice.setText(goodsSalePrice+" 원");
+                binding.tvSalePrice.setText(totalprice+" 원");
                 binding.tvDeliveryTip1.setText(goodsVO.getStore_delivery_tip()+" 원");
-                binding.tvPayPrice.setText(goodsPayPrice+" 원");
+                binding.tvPayPrice.setText(totalprice+" 원");
 
                 //입다페이 사용하기 눌렀을 때 (상품 금액) 표시
-                binding.tvGoodsAmount.setText("-" + goodsPayPrice+" 원");
+                binding.tvGoodsAmount.setText("-" + totalprice+" 원");
                 //입다페이 사용하기 눌렀을 때 (결제 후 남은 금액) 표시
                 int HoldingAmount = Integer.parseInt(cleanedData);
-                int remaingAmount = HoldingAmount - (goodsSalePrice + goodsVO.getStore_delivery_tip());
+                int remaingAmount = HoldingAmount - (totalprice + goodsVO.getStore_delivery_tip());
                 binding.tvRemainingAmount.setText(remaingAmount+" 원");
 
                 //입다페이 사용하기 눌렀을 때 (배달비) 표시
                 binding.tvDeliveryTip.setText("-" + goodsVO.getStore_delivery_tip()+" 원");
 
                 //결제 눌렀을 때 로직
-                OnclickPayment(remaingAmount, HoldingAmount, goodsPayPrice,  goodsVO.getStore_delivery_tip());
+                OnclickPayment(remaingAmount, HoldingAmount, totalprice,  goodsVO.getStore_delivery_tip());
             }
 
 

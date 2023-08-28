@@ -44,17 +44,6 @@
 
 <script>
 	
-$(function(){
-	modalAlert( "warning", "로그인 실패", "아이디나 비밀번호가 일치하지 않습니다!" );
-	
-	if( ${not empty fail} ){ //로그인 실패인 경우
-		new bootstrap.Modal( $('#modal-alert') ).show();
-	}
-})
-
-$('#modal-alert .btn-ok').click(function(){
-	$('[name=userid]').focus();
-})
 
 </script>
 </body>

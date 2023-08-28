@@ -20,4 +20,9 @@
 	where 	store_id = #{store_id} and store_phone = #{store_phone} 
 </select>
 
+<!-- 비번 변경저장 -->
+<update id="resetPassword">
+update store set store_pw = #{store_pw} where store_id = #{store_id}
+</update>
+
 </mapper>

@@ -62,6 +62,7 @@ public class MemberController {
 //		    } else {
 //		    	return "success"; // 로그인 성공 시 (관리자)
 //		    }
+	
 		// 로그인 처리
 		@RequestMapping(value = "/ippdaLogin", produces = "text/html;charset=utf-8")
 		public String login(String store_id, String store_pw, HttpSession session) {
@@ -110,7 +111,7 @@ public class MemberController {
 		
 		@RequestMapping("findingid")
 		@ResponseBody // 결과를 문자열로 반환
-		public String findingid(HttpSession session, String store_ceo, String store_phone) {
+		public String findingid(String store_ceo, String store_phone) {
 		    HashMap<String, String> params = new HashMap<String, String>();
 		    params.put("store_ceo", store_ceo);
 		    params.put("store_phone", store_phone);
@@ -190,7 +191,7 @@ public class MemberController {
 		
 		@RequestMapping("findingpw")
 		@ResponseBody // 결과를 문자열로 반환
-		public String findingpw(HttpSession session, String store_id, String store_phone) {
+		public String findingpw(String store_id, String store_phone) {
 		    HashMap<String, String> params = new HashMap<String, String>();
 		    params.put("store_id", store_id);
 		    params.put("store_phone", store_phone);
@@ -204,14 +205,21 @@ public class MemberController {
 		
 		
 		
-		
-		
-		
-		
 		// 비밀번호 수정 화면
 		@RequestMapping(value = "/findpwresult", produces = "text/html;charset=utf-8")
-		public String findpwresult() {
+		public String findpwresult(String store_pw) {
+			
 			return "default/member/findpwresult";
+		}
+		
+		
+		
+		//새비밀번호 변경저장 처리 요청
+		@ResponseBody @RequestMapping("/updatePassword")
+		public boolean update(MemberVO vo) {
+			//화면에서 입력한 새 비밀번호가 DB에 변경저장
+			vo.setStore_pw(vo.getStore_pw());
+			return service.member_resetPassword(vo)==1 ? true : false;
 		}
 		
 }

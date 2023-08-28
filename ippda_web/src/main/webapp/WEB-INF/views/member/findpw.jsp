@@ -25,7 +25,7 @@
         	<a href="findid">아이디 찾기</a>
         </div>
         	<h3 class="text-center">
-        		<a href="<c:url value='/sales'/>"><img src="<c:url value='/img/whitelogo.png'/>"></a>
+        		<img src="<c:url value='/img/whitelogo.png'/>">
         		<p>비밀번호 찾기</p>
         	</h3>
             <div class="card-body">

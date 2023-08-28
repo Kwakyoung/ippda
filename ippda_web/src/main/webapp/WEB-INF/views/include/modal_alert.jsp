@@ -5,16 +5,17 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content"  data-no='0'>
       <div class="modal-header">
-      	<i class="modal-icon me-2 fs-3 fa-solid"></i>
-        <h4 class="modal-title"></h4>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h5 class="modal-title" id="confirmModalLabel">아이디 사용 가능</h5>
+        
       </div>
-      <div class="modal-body fs-5">
+      <div class="modal-body">
+        사용 가능한 아이디입니다. 계속 진행하시겠습니까?
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-ok" data-bs-dismiss="modal">확인</button>
-        <button type="button" class="btn btn-danger px-4">예</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancle">취소</button>
+        <button type="button" class="btn btn-primary" id="confirmButton">확인</button>
       </div>
     </div>
   </div>
 </div>
+

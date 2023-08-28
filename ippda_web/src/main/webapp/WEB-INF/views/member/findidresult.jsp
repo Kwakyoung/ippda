@@ -18,14 +18,14 @@ p {
         <div class="card shadow-lg border-0 rounded-lg px-3 py-4">
         <a href="login">로그인 화면으로</a>
         	<h3 class="text-center mb-5">
-        		<a href="<c:url value='/sales'/>"><img src="<c:url value='/img/whitelogo.png'/>"></a>
+        		<img src="<c:url value='/img/whitelogo.png'/>">
         		<br>아이디 찾기 결과
         	</h3>
 
             <div class="card-body mt-2">
                 <div class="text-center">
                 	<h5>회원님의 휴대전화로<br>가입된 아이디는 아래와 같습니다.</h5>
-                	<p class="mt-4">아이디 자리</p>
+                	<p class="mt-4" id="resultText">아이디는 : ${foundId} 입니다. </p>
                 </div>
             </div>
         </div>

@@ -86,7 +86,7 @@ $(document).ready(function() {
             data: { store_id: store_id },
             success: function(response) {
                 if (response === "success") {
-                	$("#confirmModal").modal("show");
+                	$("#modal-alert").modal("show");
                     
                 } else {
                     alert("이미 존재하는 아이디입니다.");

@@ -45,7 +45,7 @@
                         <input class="form-control" name="store_pw_check" id="store_pw_check" required  type="password" placeholder="비밀번호 확인" >
                         <label>비밀번호 확인</label>
                     </div>
-                    <div class="form-text" id="passwordMessage">ㅇㅇ</div>
+                    <div class="form-text" id="passwordMessage"></div>
                     
                     
                     <div class="form-floating mb-3">
@@ -136,6 +136,7 @@ $(document).ready(function() {
 		            success: function(response) {
 		                if (response === "success") {
 		                    window.location.href = "login";
+		                    alert("회원가입을 축하합니다.")
 		                } else {
 		                    alert("회원 가입 중 오류가 발생했습니다.");
 		                }
@@ -187,8 +188,6 @@ function matchPasswords() {
     }
 }
 
-const password = $("#store_pw").val();
-const passwordCheck = $("#")
 
 </script>
 </body>

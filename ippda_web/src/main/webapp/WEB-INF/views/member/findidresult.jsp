@@ -25,8 +25,7 @@ p {
             <div class="card-body mt-2">
                 <div class="text-center">
                 	<h5>회원님의 휴대전화로<br>가입된 아이디는 아래와 같습니다.</h5>
-                	<p class="mt-4" id="resultText">
-						<c:out value="${findid}"/></p>
+                	<p class="mt-4" id="resultText">아이디는 : ${foundId} 입니다. </p>
                 </div>
             </div>
         </div>

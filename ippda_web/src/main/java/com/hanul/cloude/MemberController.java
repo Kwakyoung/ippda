@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -46,6 +47,7 @@ import net.nurigo.sdk.message.model.Message;
 import net.nurigo.sdk.message.service.DefaultMessageService;
 
 @Controller
+@SessionAttributes("foundId")
 public class MemberController {
 	
 	@Autowired @Qualifier("ippda") SqlSession sql;
@@ -63,6 +65,7 @@ public class MemberController {
 //		    } else {
 //		    	return "success"; // 로그인 성공 시 (관리자)
 //		    }
+	
 	
 		// 로그인 처리
 		@RequestMapping(value = "/ippdaLogin", produces = "text/html;charset=utf-8")
@@ -146,7 +149,7 @@ public class MemberController {
 		    
 
 		    if (vo != null) {
-		    	model.addAttribute("findid", vo.getStore_id());
+		    	model.addAttribute("foundId", vo.getStore_id());
 		        return "success"; 
 		    } else {
 		    	return "failure"; 
@@ -154,10 +157,11 @@ public class MemberController {
 		}
 		
 		
-		// 아이디 수정 화면
+		// 아이디 찾기 화면
 		@RequestMapping(value = "/findidresult", produces = "text/html;charset=utf-8")
 		public String findidresult(Model model) {
-			model.getAttribute("findid");
+			String foundId = (String) model.getAttribute("foundId");
+		    model.addAttribute("foundId", foundId);
 			return "default/member/findidresult";
 		}
 		
@@ -222,14 +226,16 @@ public class MemberController {
 		
 		@RequestMapping("findingpw")
 		@ResponseBody // 결과를 문자열로 반환
-		public String findingpw(String store_id, String store_phone) {
+		public String findingpw(String store_id, String store_phone, Model model) {
 		    HashMap<String, String> params = new HashMap<String, String>();
 		    params.put("store_id", store_id);
 		    params.put("store_phone", store_phone);
 		    MemberVO vo = dao.findpw(params);
+		    
 		    if (vo == null) {
 		        return "failure"; // 정보틀림
 		    } else {
+		    	model.addAttribute("foundId", vo.getStore_id());
 		    	return "success"; // 정보맞음
 		    }
 		}
@@ -238,11 +244,18 @@ public class MemberController {
 		
 		// 비밀번호 수정 화면
 		@RequestMapping(value = "/findpwresult", produces = "text/html;charset=utf-8")
-		public String findpwresult() {
+		public String findpwresult(Model model) {
 			
 			return "default/member/findpwresult";
 		}
 		
+		
+		@RequestMapping("changePw")
+		public String changePw(MemberVO vo, @RequestParam("store_id") String storeId) {
+			vo.setStore_id(storeId);
+			dao.member_resetPassword(vo);
+			return "redirect:/login";
+		}
 		
 		
 //		//새비밀번호 변경저장 처리 요청

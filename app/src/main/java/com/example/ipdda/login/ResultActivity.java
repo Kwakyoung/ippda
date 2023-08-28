@@ -53,6 +53,14 @@ public class ResultActivity extends AppCompatActivity {
             }
         });
 
+        binding.btnActivitylogin.setOnClickListener(v -> {
+            Intent intent1 = new Intent(this, LoginActivity.class);
+            startActivity(intent1);
+        });
 
+        binding.tvFindPw.setOnClickListener(v -> {
+            Intent intent1 = new Intent(this, FindpwFragment.class);
+            startActivity(intent1);
+        });
     }
 }

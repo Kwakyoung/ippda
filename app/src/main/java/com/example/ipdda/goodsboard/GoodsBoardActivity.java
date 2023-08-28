@@ -134,6 +134,7 @@ public class GoodsBoardActivity extends AppCompatActivity {
             binding.tvDeliveryTip.setText(goodsVO.getStore_delivery_tip()+" 원");
             String mainImageUrl = goodsVO.getGoods_main_image(); // 이미지의 실제 URL을 입력해주세요
             String subImageUrl = goodsVO.getGoods_sub_image();
+
             Picasso.get()
                     .load(mainImageUrl)
                     .into(binding.imgvMainGoods);

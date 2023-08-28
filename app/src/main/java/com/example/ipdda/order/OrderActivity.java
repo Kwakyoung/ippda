@@ -271,6 +271,12 @@ public class OrderActivity extends AppCompatActivity {
 
                     int goodsPrice = goodsVO.getGoods_price();
                     int SalePercent = goodsVO.getGoods_sale_percent();
+                    int totalprice=0;
+                    if (getBuyCheck != null) {
+                        for (int i = 0; i <getBuyCheck.size(); i++) {
+                            totalprice+=getBuyCheck.get(i).getCheck_goods_price();
+                        }
+                    }
 
                     if(goodsVO.getGoods_sale_percent() == 0){
                         binding.tvSalePrice.setText("0 원");
@@ -279,7 +285,7 @@ public class OrderActivity extends AppCompatActivity {
                         binding.tvOriginalPrice.setText(goodsPrice+" 원");
 
                         //입다페이 사용하기 눌렀을 때 (상품 금액) 표시
-                        binding.tvGoodsAmount.setText("-" + goodsVO.getGoods_price()+" 원");
+                        binding.tvGoodsAmount.setText("-" + totalprice+" 원");
 
                         //보유금액
                         int HoldingAmount = Integer.parseInt(cleanedData);
@@ -302,7 +308,7 @@ public class OrderActivity extends AppCompatActivity {
                         binding.tvPayPrice.setText(goodsPayPrice+" 원");
 
                         //입다페이 사용하기 눌렀을 때 (상품 금액) 표시
-                        binding.tvGoodsAmount.setText("-" + goodsPayPrice+" 원");
+                        binding.tvGoodsAmount.setText("-" + totalprice+" 원");
                         //입다페이 사용하기 눌렀을 때 (결제 후 남은 금액) 표시
                         int HoldingAmount = Integer.parseInt(cleanedData);
                         int remaingAmount = HoldingAmount - (goodsSalePrice + goodsVO.getStore_delivery_tip());

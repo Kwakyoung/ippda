@@ -43,6 +43,7 @@ public class GoodsBoardActivity extends AppCompatActivity {
     static String select_size;
     ArrayList<GoodsBoardBuyCheckDTO> getBuyCheck= new ArrayList<>();
 
+    OrderActivity orderActivity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -133,6 +134,7 @@ public class GoodsBoardActivity extends AppCompatActivity {
             binding.tvDeliveryTip.setText(goodsVO.getStore_delivery_tip()+" 원");
             String mainImageUrl = goodsVO.getGoods_main_image(); // 이미지의 실제 URL을 입력해주세요
             String subImageUrl = goodsVO.getGoods_sub_image();
+
             Picasso.get()
                     .load(mainImageUrl)
                     .into(binding.imgvMainGoods);
@@ -176,11 +178,8 @@ public class GoodsBoardActivity extends AppCompatActivity {
             }else{
                 Intent intent = new Intent(this, OrderActivity.class);
                 intent.putExtra("goods_no", goods_no);
-                for (int i = 0; i < getBuyCheck.size(); i++) {
-                    intent.putExtra("check_goods_name"+i, getBuyCheck.get(i).getCheck_goods_name());
-                    intent.putExtra("check_goods_cnt"+i, getBuyCheck.get(i).getCheck_goods_cnt());
-                    intent.putExtra("check_goods_price"+i, getBuyCheck.get(i).getCheck_goods_price());
-                }
+                orderActivity = new OrderActivity(getBuyCheck);
+
                 startActivity(intent);
             }
         });

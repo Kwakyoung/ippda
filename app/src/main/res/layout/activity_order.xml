@@ -162,18 +162,13 @@
             </RelativeLayout>
 
             <EditText
-                android:textSize="15dp"
-                android:textColorHint="@color/gray"
-                android:textColor="@color/white"
-                android:hint="여기에 입력하세요"
                 android:id="@+id/edt_delivery_request"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"/>
-
-
-
-
-
+                android:layout_height="150dp"
+                android:hint="여기에 입력하세요"
+                android:textColor="@color/white"
+                android:textColorHint="@color/gray"
+                android:textSize="15dp" />
 
 
         </LinearLayout>
@@ -282,7 +277,7 @@
                                     android:layout_centerVertical="true"
                                     android:textSize="16dp"
                                     android:textColor="#010101"
-                                    android:text="보유 금엑"
+                                    android:text="보유 금액"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"/>
                                 <TextView

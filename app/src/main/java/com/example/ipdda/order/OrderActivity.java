@@ -23,6 +23,7 @@ import com.example.ipdda.common.CommonVar;
 import com.example.ipdda.databinding.ActivityOrderBinding;
 import com.example.ipdda.databinding.ActivityTossPayBinding;
 import com.example.ipdda.goodsboard.GoodsBoardBuyCheckDTO;
+import com.example.ipdda.home.GoodsOptionVO;
 import com.example.ipdda.home.GoodsVO;
 import com.example.ipdda.member.MemberVO;
 import com.example.ipdda.pay.IppdaPayActivity;
@@ -346,24 +347,47 @@ public class OrderActivity extends AppCompatActivity {
             binding.btnPayment.setOnClickListener(v -> {
                 if(holdingAmount >= (goodsPrice + storeDeliverytip)){
                     if(binding.radioIppdapay.isChecked()){
+                        ArrayList<GoodsBoardBuyCheckDTO> receivedList = getIntent().getParcelableArrayListExtra("getBuyCheck");
+                        int totalprice=0;
+                        if (receivedList != null) {
+                            for (int i = 0; i <receivedList.size(); i++) {
+                                totalprice+=(receivedList.get(i).getCheck_goods_price()*receivedList.get(i).getCheck_goods_cnt());
+                            }
+                        }
+                        int cnt=0;
+                        for (int i = 0; i < receivedList.size(); i++) {
+                            cnt=receivedList.get(i).getCheck_goods_cnt();
+                        }
                         //페이 줄어드는 로직
                         CommonConn conn = new CommonConn(this , "member/payment");
                         conn.addParamMap("member_money", remaingAmount);
                         conn.addParamMap("member_no", CommonVar.loginInfo.getMember_no());
                         conn.onExcute((isResult, data) -> {
-                            finish();
-                        Intent intent = new Intent(this, OrderCompleteActivity.class);
-                        intent.putExtra("holdingAmount", goodsPrice+storeDeliverytip);
-                        intent.putExtra("goodsPrice" ,goodsPrice);
-                        intent.putExtra("storeDeliverytip", storeDeliverytip);
-                        startActivity(intent);
+
                         });
 
-//                        CommonConn orderConn = new CommonConn(this, "order/ing");
-//                        orderConn.addParamMap("member_no", CommonVar.loginInfo.getMember_no());
-//                        orderConn.addParamMap("goods_no", goods_no);
-//                        orderConn.addParamMap("store_no",  storeNo);
+                        CommonConn orderConn = new CommonConn(this, "order/ing");
+                        orderConn.addParamMap("member_no", CommonVar.loginInfo.getMember_no());
+                        orderConn.addParamMap("goods_no", goods_no);
+                        orderConn.addParamMap("store_no",  storeNo);
 
+                        CommonConn conn3 = new CommonConn(this , "goods_option/order");
+//                      conn3.addParamMap("list" , new Gson().toJson( receivedList ));
+
+                        for (int i = 0; i < receivedList.size(); i++) {
+                            conn3.addParamMap("goods_cnt", receivedList.get(i).getCheck_goods_cnt());
+                            conn3.addParamMap("goods_no", goods_no);
+                            conn3.addParamMap("goods_color", receivedList.get(i).getCheck_goods_color());
+                            conn3.addParamMap("goods_size", receivedList.get(i).getCheck_goods_size());
+                            conn3.onExcute(((isResult, data) -> {}));
+                        }
+
+                        finish();
+                        Intent intent = new Intent(this, OrderCompleteActivity.class);
+                        intent.putExtra("holdingAmount", totalprice+storeDeliverytip);
+                        intent.putExtra("totalprice" ,totalprice);
+                        intent.putExtra("storeDeliverytip", storeDeliverytip);
+                        startActivity(intent);
 
                     }else {
                         Toast.makeText(this, "결제 수단을 클릭해주세요", Toast.LENGTH_SHORT).show();

@@ -26,6 +26,7 @@ import com.example.ipdda.profile.SubActivity;
 import com.example.ipdda.search.SearchFragment;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.squareup.picasso.Picasso;
 
 
 import java.util.ArrayList;
@@ -131,7 +132,21 @@ public class GoodsBoardActivity extends AppCompatActivity {
             binding.tvGoodsContext.setText(goodsContext);
             binding.tvSalePercent.setText(SalePercent+"");
             binding.tvDeliveryTip.setText(goodsVO.getStore_delivery_tip()+" 원");
+            String mainImageUrl = goodsVO.getGoods_main_image(); // 이미지의 실제 URL을 입력해주세요
+            String subImageUrl = goodsVO.getGoods_sub_image();
+            Picasso.get()
+                    .load(mainImageUrl)
+                    .into(binding.imgvMainGoods);
+
+            Picasso.get()
+                    .load(subImageUrl)
+                    .into(binding.imgvSubGoods);
+
+
+
         });
+
+
 
         setContentView(binding.getRoot());
     }

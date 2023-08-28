@@ -15,8 +15,6 @@
 	<ul class="nav nav-tabs">
 		<li class="nav-item"><a class="nav-link text-dark active fs-5"
 			data-tab="basicInfo">기본정보</a></li>
-		<li class="nav-item"><a class="nav-link text-dark fs-5"
-			data-tab="optionSettings">옵션설정</a></li>
 	</ul>
 
 	<form action="insert" method="post" enctype="multipart/form-data">

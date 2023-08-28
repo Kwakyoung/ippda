@@ -127,9 +127,7 @@ public class OrderActivity extends AppCompatActivity {
        });
 
         int goods_no = getIntent().getIntExtra("goods_no", 0);
-
-
-        Log.d("goods_no", "onCreate: " + goods_no);
+        Log.d("goods_no", "onCreate: " + goods_no); 
         CommonConn conn = new CommonConn(this, "goods/goodsboard");
         conn.addParamMap("goods_no" , goods_no);
         conn.onExcute((isResult, data) -> {

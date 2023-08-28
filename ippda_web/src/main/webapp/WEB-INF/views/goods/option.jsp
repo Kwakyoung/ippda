@@ -6,15 +6,25 @@
 <head>
 <meta charset="UTF-8">
 <title>상품 등록</title>
+<style>
+.options-container {
+  display: flex; /* Display children in a row */
+  gap: 10px; /* Gap between option divs */
+}
+
+.option {
+  display: flex; /* Display contents in a row */
+ 
+}
+</style>
 </head>
+
 
 <body>
 
 	<h3 class="my-4">옵션 등록</h3>
 
 	<ul class="nav nav-tabs">
-		<li class="nav-item"><a class="nav-link text-dark fs-5"
-			data-tab="basicInfo">기본정보</a></li>
 		<li class="nav-item"><a class="nav-link text-dark fs-5 active"
 			data-tab="optionSettings">옵션설정</a></li>
 	</ul>
@@ -24,14 +34,17 @@
 	<form action="option/insert" method="post" name="itemInsertForm"
 		id="itemInsertForm" enctype="multipart/form-data">
 
-<div class="form-group my-4"> <!--style="display: none;"--> 
+		<div class="form-group my-4" style="display: none;" > <!--style="display: none;"--> 
 			<h4>상품번호</h4>
 			<input class="form-control input-lg" type="number" placeholder="상품번호"
-				name="goods_no" id="goods_no" value="${goodsInfo}" />
+				name="goods_no" id="goods_no" value="${goodsInfo.goods_no}" />
 		</div>
 		
+		<div class="options-container my-4">
+		<h4>${goodsInfo.goods_name }</h4>
+		</div>
 	
- 		<div class="form-group my-4"> <!--style="display: none;"--> 
+ 		<div class="form-group my-2" style="display: none;"> <!--style="display: none;"--> 
 			<h4>가맹점번호</h4>
 			<input class="form-control input-lg" type="number" placeholder="가맹점번호"
 				name="store_no" id="store_no" value="${loginInfo.store_no}" />
@@ -40,12 +53,9 @@
 
 		<div class="tab-pane active my-4" id="itemInsert_1">
 	
-		
-			<hr class="divider-w mt-10 mb-20">
 
-		<button type="button" class="btn btn-secondary my-4" id="option">옵션추가</button>
+
 		
-		<div id="options-container"></div>
 			<h4>사이즈</h4>
 			<select class="form-control" id="goods_size"
 				title="상품 사이즈">
@@ -75,8 +85,10 @@
 				 id="goods_cnt" />
 			</div>
 			<hr class="divider-w mt-10 mb-20">
+			
+		<div id="options-container"></div>
 		</div>
-<!-- 		<button type="button" class="btn btn-secondary" id="regist">등록완료</button> -->
+				<button type="button" class="btn btn-secondary my-4" id="option">옵션추가</button>
 		<button type="submit" class="btn btn-secondary">등록완료</button>
 	</form>
 
@@ -116,12 +128,20 @@ $(document).ready(function() {
 			
 			var optionId = "option_" + optionCount;
 			
-		    var newOption = '<div class="option" id="' + optionId + '">' +
-	        '<input type="text" for="newOption" class="p-2 g-col-6" name="goods_option_size" value= "'+selectedSize+'">' + selectedSize + '</input>'+
-	        '<input type="text" for="newOption" class="p-2 g-col-6" name="goods_option_color" value="'+goodsColor+'">' + goodsColor + '</input>'+
-	        '<input type="text" for="newOption" class="p-2 g-col-6" name="goods_option_cnt" value="'+goodsCnt+'">' + goodsCnt + '</input>'+
+		    var newOption = '<div class="options-container my-3" id="' + optionId + '">' +'<p>사이즈 : </p>' +
+		    '<div class="option">'+
+	        '<input type="text" class="p-2 g-col-6" name="goods_option_size" value= "'+selectedSize+'"></input>'+
+	        '</div>'+
+	        '<p>색깔 : </p>' +
+	        '<div class="option">'+
+	        '<input type="text" class="p-2 g-col-6" name="goods_option_color" value="'+goodsColor+'"></input>'+
+	        '</div>'+
+	        '<p>수량 : </p>' +
+	        '<div class="option">'+
+	        '<input type="text" class="p-2 g-col-6" name="goods_option_cnt" value="'+goodsCnt+'"></input>'+
+	        '</div>'+
 	        '<button type="button" class="btn btn-secondary optionDelete" id="optionDelete" data-option-id="' + optionId + '">삭제</button>'+
-	        '</div>'; 
+	        '</div>';  
 				console.log(optionId);
 			
 	        console.log("item_color 값:", goodsColor);

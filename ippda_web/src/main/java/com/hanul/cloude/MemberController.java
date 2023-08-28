@@ -172,7 +172,7 @@ public class MemberController {
 				System.out.println(" 인증번호는 : " + resultNum);
 			}
 			
-			Map<String, String> response = new HashMap<>();
+			HashMap<String, String> response = new HashMap();
 			response.put("result", "success");
 			response.put("Code", resultNum);
 			

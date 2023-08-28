@@ -20,13 +20,13 @@
 	<form action="insert" method="post" enctype="multipart/form-data">
 
 
- 		<div class="form-group my-4"> <!--style="display: none;"--> 
+ 		<div class="form-group my-4" style="display: none;"> <!--style="display: none;"--> 
 			<h4>가맹점번호</h4>
 			<input class="form-control input-lg" type="number" placeholder="가맹점번호"
 				name="store_no" id="store_no" value="${loginInfo.store_no}" />
 		</div>
 		
-		<div class="form-group" style="">
+		<div class="form-group my-3">
 				<h4>대분류</h4>
 				<select class="form-control" name="goods_middle_category" id="item_catemain"
 					title="상품 대분류">
@@ -101,10 +101,10 @@
 			</select>
 		</div>
 
-<button type="button" class="btn btn-secondary my-4" id="btn">상품가격 확인하기</button>
+<button type="button" class="btn btn-secondary my-4" id="checkPriceBtn">상품가격 확인하기</button>
 					<div class="form-group">
 		<h3 id="calculated_price_display"></h3>
-		    <input id="calculated_price" name="goods_sale_price">
+		    <input id="calculated_price" name="goods_sale_price" style="display: none">
 		</div>
 		
 				<div class="form-group">
@@ -145,7 +145,7 @@
 		</div>		
 		
 
-		<button type="submit" class="btn btn-secondary my-4">입력완료</button>
+		<a type="submit" class="btn btn-secondary my-4" id="submit">입력완료</a>
 	</form>
 </body>
 
@@ -154,6 +154,9 @@
 document.addEventListener("DOMContentLoaded", function() {
     const catemainSelect = document.getElementById("item_catemain");
     const catesubSelect = document.getElementById("item_catesub");
+    const calculated_price = document.getElementById("calculated_price");
+	
+    
     
     const subCategories = {
         1: ["니트/스웨터","후드 티셔츠", "맨투맨/스웨트셔츠", "긴소매 티셔츠", "셔츠/블라우스", "피케/카라티셔츠", "반소매 티셔츠", "민소매 티셔츠", "기타 상의"], // 예시: 각 대분류에 맞는 소분류들
@@ -221,6 +224,32 @@ document.addEventListener("DOMContentLoaded", function() {
 		            }
 		 
 	  });
+	  
+	  
+	  // 버튼 클릭 이벤트 처리
+	  $("#submit").click(function() {
+			 goodsCategoryMain = document.getElementById("item_catemain").value;
+			 goodsCategorySub = document.getElementById("item_catesub").value;
+			 goodsStyle = document.getElementById("goods_style").value;
+		     goodsName = $("#goods_name").val();		    
+		     goodsPrice = $("#goods_price").val();
+		     
+		 if(goodsCategoryMain === ""){
+			 alert("카테고리를 입력해주세요")
+		 }else if(goodsName === ""){
+			 alert("상품명을 입력해주세요")
+		 }else if (goodsStyle === "") {
+			 alert("스타일을 입력해주세요")
+		 }else if (goodsPrice === "") {
+			 alert("가격을 입력해주세요")
+		 }else if (condition) {
+			
+		}
+
+	  
+	  
+		});
+	  
     
 
 });

@@ -115,4 +115,20 @@ where goods_no = #{goods_no}
 </select>
 
 
+<delete id="optionDelete">
+delete from goods_option where goods_option_no = #{goods_option_no}
+
+</delete>
+
+
+<update id="optionUpdate">
+<foreach collection="list" item="option" open="DECLARE BEGIN" separator=";" 
+													close="; END;">
+update goods_option
+set	goods_cnt = #{option.goods_cnt} , goods_color = #{option.goods_color}, goods_size = #{option.goods_size}
+where goods_option_no = #{option.goods_option_no}
+</foreach>
+</update>
+
+
 </mapper>

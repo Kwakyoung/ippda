@@ -3,7 +3,7 @@
 
 <div class="modal fade" id="modal-alert" data-bs-backdrop="static" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
+    <div class="modal-content"  data-no='0'>
       <div class="modal-header">
       	<i class="modal-icon me-2 fs-3 fa-solid"></i>
         <h4 class="modal-title"></h4>

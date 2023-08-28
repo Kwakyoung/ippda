@@ -16,6 +16,7 @@
   display: flex; /* Display contents in a row */
  
 }
+select#goods_size { width: 100px }
 </style>
 </head>
 <body>
@@ -28,40 +29,52 @@
 
 
 
-	<form action="option/insert" method="post" name="itemInsertForm"
+	<form action="option/update" method="post" name="itemInsertForm"
 		id="itemInsertForm" enctype="multipart/form-data">
 
-<div class="form-group my-4"> <!--style="display: none;"--> 
+<div class="form-group my-4" style="display: none;"> <!--style="display: none;"--> 
 			<h4>상품번호</h4>
 			<input class="form-control input-lg" type="number" placeholder="상품번호"
-				name="goods_no" id="goods_no" value="${goods_no}" />
+				name="goods_no" id="goods_no" value="${goods_no} "  />
 		</div>
 		
 	
- 		<div class="form-group my-4"> <!--style="display: none;"--> 
+ 		<div class="form-group my-4" style="display: none;"> <!--style="display: none;"--> 
 			<h4>가맹점번호</h4>
 			<input class="form-control input-lg" type="number" placeholder="가맹점번호"
-				name="store_no" id="store_no" value="${store_no}" />
+				name="store_no" id="store_no" value="${store_no}"/>
 		</div>
 		<!-- 상품등록 -->
 
 		<div class="tab-pane active my-4" id="itemInsert_1">
 	
 		
-			<hr class="divider-w mt-10 mb-20">
 
-		<button type="button" class="btn btn-secondary my-4" id="option">옵션추가</button>
+
 
 			<c:forEach var="option" items="${vo}">
-				<div class="options-container">
-				
-					<div class="option">
+				<div class="options-container"  data-no="${option.goods_option_no}">
+			
+					<div class="option" style="display: none;">
 						<p>옵션 번호</p>
 						<input type="text" class="p-2 g-col-6" name="goods_option_no" value="${option.goods_option_no}" id="goods_option_no">
 					</div>
 					<div class="option" id="option1">
 						<p>사이즈 :</p>
-						<input type="text" class="p-2 g-col-6" name="goods_size" value="${option.goods_size}">
+<%-- 						<input type="text" class="p-2 g-col-6" name="goods_size" value="${option.goods_size}"> --%>
+						<select class="form-control" id="goods_size"  name="goods_size"
+							title="상품 사이즈">
+							<option value="">(선택)</option>
+							<option value="2XS" ${option.goods_size == '2XS' ? 'selected' : ''}>2XS</option>
+							<option value="XS" ${option.goods_size == 'XS' ? 'selected' : ''}>XS</option>
+							<option value="S" ${option.goods_size == 'S' ? 'selected' : ''}>S</option>
+							<option value="M" ${option.goods_size == 'M' ? 'selected' : ''}>M</option>
+							<option value="L" ${option.goods_size == 'L' ? 'selected' : ''}>L</option>
+							<option value="XL" ${option.goods_size == 'XL' ? 'selected' : ''}>XL</option>
+							<option value="2XL" ${option.goods_size == '2XL' ? 'selected' : ''}>2XL</option>
+							<option value="3XL" ${option.goods_size == '3XL' ? 'selected' : ''}>3XL</option>
+							<option value="FREE" ${option.goods_size == 'FREE' ? 'selected' : ''}>FREE</option>
+						</select>
 					</div>
 
 					<div class="option" id="option2">
@@ -74,11 +87,12 @@
 						<input type="text" class="p-2 g-col-6" name="goods_cnt" value=" ${option.goods_cnt}">
 					</div>
 					
-					<button type="button" class="btn btn-secondary optionDelete" id="btn-delete">삭제</button>
+					<button type="button" class="btn btn-secondary optionDelete" >삭제</button>
 
 				</div>
 			</c:forEach>
 			<div id="options-container"></div>
+<!--  
 			<h4>사이즈</h4>
 			<select class="form-control" id="goods_size"
 				title="상품 사이즈">
@@ -108,16 +122,22 @@
 				 id="goods_cnt" />
 			</div>
 			<hr class="divider-w mt-10 mb-20">
+-->			
+		
 		</div>
 <!-- 		<button type="button" class="btn btn-secondary" id="regist">등록완료</button> -->
-		<button type="submit" class="btn btn-secondary">등록완료</button>
+		<button type="submit" class="btn btn-secondary" >수정완료</button>
 	</form>
+	
+	<jsp:include page="/WEB-INF/views/include/modal_alert.jsp"/>
 </body>
 
 <script>
 
 
 $(document).ready(function() {
+	
+	
 	  var optionCount = 1; // 추가된 옵션 개수 초기값
 	  var selectedSize = "";
 	   var goodsColor;
@@ -129,6 +149,7 @@ $(document).ready(function() {
 	        console.log("Selected Size:", selectedSize);
 	    });
 	    
+
 			
 	    
 	    
@@ -170,25 +191,37 @@ $(document).ready(function() {
 		    optionCount++; // 옵션 개수 증가
 		 
 
+	  }
+	
+
+	  
+	  });
+
+	  $(".optionDelete").click(function() {
+		  modalAlert('danger', '옵션 삭제', '선택한 옵션을 삭제하시겠습니까?')
+		  new bootstrap.Modal('#modal-alert').show();
+		  $('#modal-alert').attr( 'data-no', $(this).closest('.options-container').data('no') );
 	  });
 	  
-
-	 }
 	  
-	  document.getElementById("optionDelete").addEventListener("click", function() {
-	        // AJAX 요청을 통해 스프링 컨트롤러에 데이터 전송
-	        $.ajax({
-	            type: "POST",
-	            url: "/deleteOption", // 해당 URL은 스프링 컨트롤러의 매핑과 일치해야 함
-	            success: function(response) {
-	                // 서버에서 응답을 받아서 처리하는 코드
-	            },
-	            error: function(xhr, status, error) {
-	                // 에러 처리 코드
-	            }
-	        });
-	    });
-
+	//모달창으로 삭제여부 confirm 시 예 버튼 클릭할때만 서브밋
+	  $('#modal-alert .btn-danger').click(function(){
+		  
+	  	$.ajax({
+	  		url: 'deleteOption',
+	  		data: {goods_option_no: $('#modal-alert').data('no') },
+	  		success: function(result) {
+				if(result == 1){
+					$('.options-container[data-no="'+ $('#modal-alert').data('no') + '"]').remove()  
+					$('#modal-alert').removeClass('show').addClass('fade')
+					$('#modal-alert .btn-ok').trigger('click');
+				}
+			}
+	  		
+	  	});
+	  	
+	  });
+});
 
 </script>
 

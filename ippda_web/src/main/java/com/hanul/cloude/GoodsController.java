@@ -1,6 +1,8 @@
 package com.hanul.cloude;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import common.CommonUtility;
@@ -58,9 +61,9 @@ public class GoodsController {
 	
 		
 		MemberVO loginInfo = (MemberVO) session.getAttribute("loginInfo");
+		GoodsVO vo = sql.selectOne("goods.info" , goods_no);
 		model.addAttribute("loginInfo", loginInfo);
-		model.addAttribute("goodsInfo" , goods_no);
-		
+		model.addAttribute("goodsInfo", vo);
 		return"goods/option";
 	}
 	
@@ -160,12 +163,37 @@ public class GoodsController {
 		return "goods/modifyOption";
 	}
 	
-	@RequestMapping("/deleteOption")
-	public String deleteOption() {
+	@ResponseBody
+	@RequestMapping("/modify/deleteOption")
+	public int deleteOption(int goods_option_no) {
 		
 		
+		return sql.delete("goods.optionDelete", goods_option_no);
+	}
+	
+
+	@RequestMapping("/modify/option/update")
+	public String updateOption(@RequestParam("goods_option_no") Integer optionNo[],
+            @RequestParam("goods_size") String optionSizes[],
+            @RequestParam("goods_color") String optionColors[],
+            @RequestParam("goods_cnt") Integer optionCounts[]) {
+
+		ArrayList<GoodsOptionVO> list = new ArrayList<GoodsOptionVO>();
 		
-		return "goods/modifyOption";
+		for (int i = 0; i < optionNo.length; i++) {
+		GoodsOptionVO vo = new GoodsOptionVO();
+		vo.setGoods_cnt(optionCounts[i]);
+		vo.setGoods_color(optionColors[i]);
+		vo.setGoods_size(optionSizes[i]);
+		vo.setGoods_option_no(optionNo[i]);
+		
+		list.add(vo);
+		
+		}
+		
+		sql.update("goods.optionUpdate", list);
+		
+		return "redirect:/goods/list";
 	}
 	
 

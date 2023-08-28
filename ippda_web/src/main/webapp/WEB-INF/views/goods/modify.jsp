@@ -34,14 +34,14 @@ img {
 	<form action="update" method="post" enctype="multipart/form-data">
 
 
-		<div class="form-group my-4">
+		<div class="form-group my-4" style="display: none;">
 			<!--style="display: none;"-->
 			<h4>상품번호</h4>
 			<input class="form-control input-lg" type="number" placeholder="상품번호"
 				name="goods_no" id="goods_no" value="${vo.goods_no}" />
 		</div>
 
-		<div class="form-group" style="">
+		<div class="form-group my-3" style="">
 			<h4>대분류</h4>
 			<select class="form-control" name="goods_middle_category"
 				id="item_catemain" title="상품 대분류">
@@ -124,7 +124,7 @@ img {
 		<div class="form-group">
 			<h3 id="calculated_price_display"></h3>
 			<input id="calculated_price" name="goods_sale_price"
-				value="${vo.goods_sale_price}">
+				value="${vo.goods_sale_price}" style="display: none">
 		</div>
 
 		<div class="form-group">
@@ -154,22 +154,22 @@ img {
 				<p>현재 메인 이미지: ${vo.file_main_name}</p>
 				<img src="${vo.goods_main_image}" alt="Main Image">
 			</div>
-			   <input name="file_main_name" value="${vo.file_main_name}">
-    			<input name="goods_main_image" value="${vo.goods_main_image}">
+			   <input name="file_main_name" value="${vo.file_main_name}" style="display: none">
+    			<input name="goods_main_image" value="${vo.goods_main_image}" style="display: none">
 		</div>
 
 
 		<hr class="divider-w mt-10 mb-20">
 
-		<div class="form-group ">
+		<div class="form-group " >
 			<h3>서브이미지 ( 상품설명 이미지 )</h3>
 			<input class="form-control input-lg" type="file" name="file" id="itemSubImg" />
 			<div class="image-info my-3">
 				<p>현재 서브 이미지: ${vo.file_sub_name}</p>
 				<img src="${vo.goods_sub_image}" alt="Sub Image">
 			</div>
-				   <input name="file_sub_name" value="${vo.file_sub_name}">
-    			<input name="goods_sub_image" value="${vo.goods_sub_image}">
+				   <input name="file_sub_name" value="${vo.file_sub_name}" style="display: none">
+    			<input name="goods_sub_image" value="${vo.goods_sub_image}" style="display: none">
 		</div>
 
 

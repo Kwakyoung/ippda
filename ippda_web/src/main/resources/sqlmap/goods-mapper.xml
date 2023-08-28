@@ -24,7 +24,9 @@
 		goods_middle_category, 
 		goods_sub_category, 
 		goods_style,
-		goods_sale_price
+		goods_sale_price,
+		file_main_name,
+		file_sub_name
 		) values(
 		#{goods_no},
 		#{store_no},
@@ -40,7 +42,9 @@
 		#{goods_middle_category}, 
 		#{goods_sub_category}, 
 		#{goods_style},
-		#{goods_sale_price}
+		#{goods_sale_price},
+		#{file_main_name},
+		#{file_sub_name}
 		)
 
 	</insert>
@@ -49,8 +53,8 @@
 <insert id="fileRegister">
 <foreach collection="fileList" item="file" open="insert all" separator=" " 
 													close="select * from dual">
-	into file_board ( file_name, file_path, writing_type )
-	values ( #{file.file_name}, #{file.file_path}, 'g')
+	into file_board ( file_name, file_path, writing_type , writing_no)
+	values ( #{file.file_name}, #{file.file_path}, 'g', #{goods_no})
 </foreach>
 
 </insert>
@@ -85,6 +89,30 @@ from goods
 where goods_no = #{goods_no}
 </select>
 
+<update id="update">
+update goods
+set goods_name = #{goods_name}, goods_price = #{goods_price}, goods_sale_percent = #{goods_sale_percent}, goods_info = #{goods_info}, 
+goods_main_image =#{goods_main_image}, goods_gender=#{goods_gender}, goods_sub_image=#{goods_sub_image}, goods_middle_category=#{goods_middle_category}, goods_sub_category=#{goods_sub_category}, goods_style=#{goods_style},
+goods_sale_price=#{goods_sale_price}, file_main_name=#{file_main_name}, file_sub_name=#{file_sub_name} 
+where goods_no = #{goods_no}
+
+
+
+</update>
+
+
+<select id="info" resultType="goods.GoodsVO">
+select *
+from goods
+where goods_no = #{goods_no}
+</select>
+
+
+<select id="goodsOption" resultType="goods.GoodsOptionVO">
+select *
+from goods_option
+where goods_no = #{goods_no}
+</select>
 
 
 </mapper>

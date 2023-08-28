@@ -35,7 +35,7 @@
 		#{goods_sale_percent},
 		#{goods_info},
 		#{goods_gender},
-		'판매중',
+		#{goods_status},
 		TO_DATE(SYSDATE, 'YY-MM-DD HH24:MI:SS'),
 		#{goods_main_image}, 
 		#{goods_sub_image}, 

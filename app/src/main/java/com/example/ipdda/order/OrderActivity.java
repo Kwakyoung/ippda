@@ -141,10 +141,12 @@ public class OrderActivity extends AppCompatActivity {
             binding.recvOrderGoods.setAdapter(new OrderAdapter(arrayList));
 
             int goodsPrice = goodsVO.getGoods_price();
-            int SalePercent = goodsVO.getGoods_sale_percent();
+            int salePercent = goodsVO.getGoods_sale_percent();
             int totalprice=0;
-            for (int i = 0; i <getBuyCheck.size(); i++) {
-                totalprice+=getBuyCheck.get(i).getCheck_goods_price();
+            if (getBuyCheck != null) {
+                for (int i = 0; i <getBuyCheck.size(); i++) {
+                    totalprice+=getBuyCheck.get(i).getCheck_goods_price();
+                }
             }
 
             if(SalePercent == 0){
@@ -166,7 +168,7 @@ public class OrderActivity extends AppCompatActivity {
                 OnclickPayment(remaingAmount, HoldingAmount, goodsPrice,  goodsVO.getStore_delivery_tip());
             }else {
                 binding.tvOriginalPrice.setText(goodsVO.getGoods_price()+" 원");
-                binding.tvSalePrice.setText(totalprice+" 원");
+                binding.tvSalePrice.setText((goodsVO.getGoods_price()*(salePercent/100))+" 원");
                 binding.tvDeliveryTip1.setText(goodsVO.getStore_delivery_tip()+" 원");
                 binding.tvPayPrice.setText(totalprice+" 원");
 

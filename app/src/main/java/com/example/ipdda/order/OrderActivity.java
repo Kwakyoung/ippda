@@ -147,7 +147,7 @@ public class OrderActivity extends AppCompatActivity {
                 }
             }
 
-            if(SalePercent == 0){
+            if(salePercent == 0){
                 binding.tvSalePrice.setText("0 원");
                 binding.tvPayPrice.setText(goodsVO.getGoods_price()+" 원");
                 binding.tvDeliveryTip1.setText(goodsVO.getStore_delivery_tip()+" 원");

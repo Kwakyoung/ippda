@@ -372,8 +372,6 @@ public class OrderActivity extends AppCompatActivity {
                         orderConn.addParamMap("store_no",  storeNo);
 
                         CommonConn conn3 = new CommonConn(this , "goods_option/order");
-//                      conn3.addParamMap("list" , new Gson().toJson( receivedList ));
-
                         for (int i = 0; i < receivedList.size(); i++) {
                             conn3.addParamMap("goods_cnt", receivedList.get(i).getCheck_goods_cnt());
                             conn3.addParamMap("goods_no", goods_no);

@@ -39,7 +39,8 @@ public class GoodsOptionController {
 	    params.put("goods_no", goods_no);
 	    params.put("goods_color", goods_color);
 	    params.put("goods_size", goods_size);
-	    int a = dao.Order(params);	
+	    int a = dao.Order(params);
+	    System.out.println("1");
 	    return new Gson().toJson(a);
 	}
 }

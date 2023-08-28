@@ -1,9 +1,13 @@
 package com.example.ipdda.home;
 
 
+import retrofit2.http.Url;
+
 public class GoodsVO extends GoodsOptionVO{
-	private int  rownum ,goods_no ,store_no, goods_price, goods_sale_price, goods_sale_percent, store_delivery_tip;
-	private String goods_name, goods_info, goods_gender, goods_main_image, store_name, goods_status;
+
+
+	private int  rownum ,goods_no ,store_no, goods_price, goods_sale_price, goods_sale_percent, store_delivery_tip, goods_middle_category, goods_sub_category ,goods_style;
+	private String goods_name, goods_info, goods_gender, goods_main_image, goods_sub_image, store_name, goods_status,  file_main_name, file_sub_name;
 
 	public int getRownum() {
 		return rownum;
@@ -61,6 +65,30 @@ public class GoodsVO extends GoodsOptionVO{
 		this.store_delivery_tip = store_delivery_tip;
 	}
 
+	public int getGoods_middle_category() {
+		return goods_middle_category;
+	}
+
+	public void setGoods_middle_category(int goods_middle_category) {
+		this.goods_middle_category = goods_middle_category;
+	}
+
+	public int getGoods_sub_category() {
+		return goods_sub_category;
+	}
+
+	public void setGoods_sub_category(int goods_sub_category) {
+		this.goods_sub_category = goods_sub_category;
+	}
+
+	public int getGoods_style() {
+		return goods_style;
+	}
+
+	public void setGoods_style(int goods_style) {
+		this.goods_style = goods_style;
+	}
+
 	public String getGoods_name() {
 		return goods_name;
 	}
@@ -93,6 +121,14 @@ public class GoodsVO extends GoodsOptionVO{
 		this.goods_main_image = goods_main_image;
 	}
 
+	public String getGoods_sub_image() {
+		return goods_sub_image;
+	}
+
+	public void setGoods_sub_image(String goods_sub_image) {
+		this.goods_sub_image = goods_sub_image;
+	}
+
 	public String getStore_name() {
 		return store_name;
 	}
@@ -107,5 +143,21 @@ public class GoodsVO extends GoodsOptionVO{
 
 	public void setGoods_status(String goods_status) {
 		this.goods_status = goods_status;
+	}
+
+	public String getFile_main_name() {
+		return file_main_name;
+	}
+
+	public void setFile_main_name(String file_main_name) {
+		this.file_main_name = file_main_name;
+	}
+
+	public String getFile_sub_name() {
+		return file_sub_name;
+	}
+
+	public void setFile_sub_name(String file_sub_name) {
+		this.file_sub_name = file_sub_name;
 	}
 }

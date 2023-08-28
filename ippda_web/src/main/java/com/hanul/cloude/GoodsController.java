@@ -11,7 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import common.CommonUtility;
@@ -38,20 +41,25 @@ public class GoodsController {
 	public String insert(GoodsVO vo, MultipartFile file[] , HttpServletRequest request ,HttpSession session) {
 		vo.setGoods_main_image( common.fileUpload("goods", file[0], request) );
 		vo.setGoods_sub_image( common.fileUpload("goods", file[1], request) );
+		vo.setFile_main_name(file[0].getOriginalFilename());
+		vo.setFile_sub_name(file[1].getOriginalFilename());
 		
 		int insert = sql.insert("goods.insert", vo);
 		if( insert==1  ) {
 //			sql.insert("goods.fileRegister", vo);
-			session.setAttribute("goodsInfo", vo);
+
 		}
 		
-		return "redirect:option";
+		return "redirect:list";
 	}
 	
 	@RequestMapping("/option")
-	public String option(HttpSession session , Model model) {
-		GoodsVO goodsInfo = (GoodsVO) session.getAttribute("goodsInfo");
-		model.addAttribute("goodsInfo" , goodsInfo);
+	public String option(@RequestParam("goods_no") int goods_no , Model model , HttpSession session) {
+	
+		
+		MemberVO loginInfo = (MemberVO) session.getAttribute("loginInfo");
+		model.addAttribute("loginInfo", loginInfo);
+		model.addAttribute("goodsInfo" , goods_no);
 		
 		return"goods/option";
 	}
@@ -82,7 +90,7 @@ public class GoodsController {
 		MemberVO loginInfo = (MemberVO) session.getAttribute("loginInfo");
 		
 		
-		return"goods/list";
+		return "redirect:/goods/list";
 	}
 	
 	
@@ -94,8 +102,66 @@ public class GoodsController {
 		int store_no = loginInfo.getStore_no();
 		List<GoodsVO> vo = sql.selectList("goods.list", store_no);
 		model.addAttribute("goodslist", vo);
-		
+		session.setAttribute("goodsInfo", vo);
 		return"goods/list";
 	}
+	
+	@RequestMapping("/modify")
+	public String modify(@RequestParam("goods_no") int goods_no , Model model , HttpSession session , MultipartFile file[]) {
+		GoodsVO vo = sql.selectOne("goods.modify", goods_no);
+			
+		model.addAttribute("vo", vo);
+		
+		return"goods/modify";
+	}
+	
+	
+	@RequestMapping("/update")
+	public String update(GoodsVO vo, MultipartFile file[] ,HttpServletRequest request) {
+	
+
+			
+	        if (!file[0].isEmpty()) {
+	            // 메인 이미지 업로드 및 파일 정보 업데이트
+	        	vo.setFile_main_name(file[0].getOriginalFilename());
+	    		vo.setGoods_main_image( common.fileUpload("goods", file[0], request) );
+	        }
+
+	        if (!file[1].isEmpty()) {
+	            // 서브 이미지 업로드 및 파일 정보 업데이트
+	    		vo.setFile_sub_name(file[1].getOriginalFilename());	
+	    		vo.setGoods_sub_image( common.fileUpload("goods", file[1], request) );
+	        }    
+	        sql.update("goods.update", vo);
+	        
+		return"redirect:/goods/list";
+	}
+	
+
+	@RequestMapping("/info")
+	public String info(int goods_no , Model model) {
+		GoodsVO vo = sql.selectOne("goods.info", goods_no);
+		
+		model.addAttribute("vo", vo);
+
+	        
+		return"goods/info";
+	}
+	
+	@RequestMapping("/modify/option")
+	public String modifyOption(int goods_no, Model model , HttpSession session) {
+		List<GoodsOptionVO> vo = sql.selectList("goods.goodsOption" , goods_no);
+		MemberVO loginInfo = (MemberVO) session.getAttribute("loginInfo");
+		int store_no = loginInfo.getStore_no();
+		
+		model.addAttribute("store_no", store_no);
+		model.addAttribute("goods_no", goods_no);
+		model.addAttribute("vo", vo);
+		return "goods/modifyOption";
+	}
+	
+
+	
+	
 	
 }

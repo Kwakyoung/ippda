@@ -153,10 +153,18 @@ public class GoodsController {
 		List<GoodsOptionVO> vo = sql.selectList("goods.goodsOption" , goods_no);
 		MemberVO loginInfo = (MemberVO) session.getAttribute("loginInfo");
 		int store_no = loginInfo.getStore_no();
-		
+	
 		model.addAttribute("store_no", store_no);
 		model.addAttribute("goods_no", goods_no);
 		model.addAttribute("vo", vo);
+		return "goods/modifyOption";
+	}
+	
+	@RequestMapping("/deleteOption")
+	public String deleteOption() {
+		
+		
+		
 		return "goods/modifyOption";
 	}
 	

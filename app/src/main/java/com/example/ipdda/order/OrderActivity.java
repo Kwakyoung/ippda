@@ -42,13 +42,11 @@ public class OrderActivity extends AppCompatActivity {
     int storeNo;
     String cleanedData;
 
-    ArrayList<GoodsBoardBuyCheckDTO> getBuyCheck;
+//    ArrayList<GoodsBoardBuyCheckDTO> getBuyCheck;
+    // 기본 생성자 추가
     public OrderActivity() {
-        // 기본 생성자
     }
-    public OrderActivity(ArrayList<GoodsBoardBuyCheckDTO> getBuyCheck) {
-        this.getBuyCheck = getBuyCheck;
-    }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -141,13 +139,15 @@ public class OrderActivity extends AppCompatActivity {
             int goodsPrice = goodsVO.getGoods_price();
             int salePercent = goodsVO.getGoods_sale_percent();
             int totalprice=0;
-            if (getBuyCheck != null) {
-                for (int i = 0; i <getBuyCheck.size(); i++) {
-                    totalprice+=getBuyCheck.get(i).getCheck_goods_price();
+            ArrayList<GoodsBoardBuyCheckDTO> receivedList = getIntent().getParcelableArrayListExtra("getBuyCheck");
+            if (receivedList != null) {
+                for (int i = 0; i <receivedList.size(); i++) {
+                    totalprice+=receivedList.get(i).getCheck_goods_price();
                 }
             }
 
             if(salePercent == 0){
+
                 binding.tvSalePrice.setText("0 원");
                 binding.tvPayPrice.setText(goodsVO.getGoods_price()+" 원");
                 binding.tvDeliveryTip1.setText(goodsVO.getStore_delivery_tip()+" 원");
@@ -156,6 +156,7 @@ public class OrderActivity extends AppCompatActivity {
 
                 //입다페이 사용하기 눌렀을 때 (상품 금액) 표시
                 binding.tvGoodsAmount.setText("-" + totalprice+" 원");
+
                 //입다페이 사용하기 눌렀을 때 (배달비) 표시
                 binding.tvDeliveryTip.setText("-" + goodsVO.getStore_delivery_tip()+" 원");
 
@@ -165,10 +166,12 @@ public class OrderActivity extends AppCompatActivity {
                 //결제 눌렀을 때 로직
                 OnclickPayment(remaingAmount, HoldingAmount, goodsPrice,  goodsVO.getStore_delivery_tip());
             }else {
+
                 binding.tvOriginalPrice.setText(goodsVO.getGoods_price()+" 원");
                 binding.tvSalePrice.setText((goodsVO.getGoods_price()*(salePercent/100))+" 원");
                 binding.tvDeliveryTip1.setText(goodsVO.getStore_delivery_tip()+" 원");
                 binding.tvPayPrice.setText(totalprice+" 원");
+
 
                 //입다페이 사용하기 눌렀을 때 (상품 금액) 표시
                 binding.tvGoodsAmount.setText("-" + totalprice+" 원");
@@ -272,13 +275,15 @@ public class OrderActivity extends AppCompatActivity {
                     int goodsPrice = goodsVO.getGoods_price();
                     int SalePercent = goodsVO.getGoods_sale_percent();
                     int totalprice=0;
-                    if (getBuyCheck != null) {
-                        for (int i = 0; i <getBuyCheck.size(); i++) {
-                            totalprice+=getBuyCheck.get(i).getCheck_goods_price();
+                    ArrayList<GoodsBoardBuyCheckDTO> receivedList = getIntent().getParcelableArrayListExtra("getBuyCheck");
+                    if (receivedList != null) {
+                        for (int i = 0; i <receivedList.size(); i++) {
+                            totalprice+=receivedList.get(i).getCheck_goods_price();
                         }
                     }
 
                     if(goodsVO.getGoods_sale_percent() == 0){
+
                         binding.tvSalePrice.setText("0 원");
                         binding.tvPayPrice.setText(goodsPrice+" 원");
                         binding.tvDeliveryTip1.setText(goodsVO.getStore_delivery_tip()+" 원");
@@ -300,6 +305,7 @@ public class OrderActivity extends AppCompatActivity {
                         OnclickPayment(remaingAmount, HoldingAmount, goodsPrice,  goodsVO.getStore_delivery_tip());
 
                     }else {
+
                         int goodsPayPrice = goodsPrice/(100/SalePercent);
                         int goodsSalePrice = goodsPrice-goodsPayPrice;
                         binding.tvOriginalPrice.setText(goodsPrice+" 원");

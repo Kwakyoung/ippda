@@ -54,6 +54,11 @@
 
 			<c:forEach var="option" items="${vo}">
 				<div class="options-container">
+				
+					<div class="option">
+						<p>옵션 번호</p>
+						<input type="text" class="p-2 g-col-6" name="goods_option_no" value="${option.goods_option_no}" id="goods_option_no">
+					</div>
 					<div class="option" id="option1">
 						<p>사이즈 :</p>
 						<input type="text" class="p-2 g-col-6" name="goods_size" value="${option.goods_size}">
@@ -64,12 +69,12 @@
 						<input type="text" class="p-2 g-col-6" name="goods_color" value="${option.goods_color}">
 					</div>
 					
-						<div class="option" id="option2">
+						<div class="option" id="option3">
 						<p>수량 :</p>
 						<input type="text" class="p-2 g-col-6" name="goods_cnt" value=" ${option.goods_cnt}">
 					</div>
 					
-					<button type="button" class="btn btn-secondary optionDelete" id="optionDelete" data-option-id="optionId">삭제</button>
+					<button type="button" class="btn btn-secondary optionDelete" id="btn-delete">삭제</button>
 
 				</div>
 			</c:forEach>
@@ -117,7 +122,7 @@ $(document).ready(function() {
 	  var selectedSize = "";
 	   var goodsColor;
 	   var goodsCnt;
-
+		var goods_option_no = document.getElementById("goods_option_no")
 	 
 	    document.getElementById("goods_size").addEventListener("change", function(event) {
 	        selectedSize = event.target.value; // 선택한 사이즈 업데이트
@@ -141,7 +146,7 @@ $(document).ready(function() {
 			 alert("수량을 입력해주세요")
 		 }else{
 			
-			var optionId = "option_" + optionCount;
+			var optionId = optionCount;
 			
 		    var newOption = '<div class="options-container" id="' + optionId + '">' +'<p>사이즈 : </p>' +
 		    '<div class="option">'+
@@ -167,16 +172,22 @@ $(document).ready(function() {
 
 	  });
 	  
-	    // 삭제 버튼 클릭 이벤트 처리
-	    $(document).on("click", ".optionDelete", function() {
-	        var optionIdToDelete = $(this).data("option-id");
-	        $("#" + optionIdToDelete).remove();
-	    });
+
 	 }
 	  
-});
-	  
-
+	  document.getElementById("optionDelete").addEventListener("click", function() {
+	        // AJAX 요청을 통해 스프링 컨트롤러에 데이터 전송
+	        $.ajax({
+	            type: "POST",
+	            url: "/deleteOption", // 해당 URL은 스프링 컨트롤러의 매핑과 일치해야 함
+	            success: function(response) {
+	                // 서버에서 응답을 받아서 처리하는 코드
+	            },
+	            error: function(xhr, status, error) {
+	                // 에러 처리 코드
+	            }
+	        });
+	    });
 
 
 </script>

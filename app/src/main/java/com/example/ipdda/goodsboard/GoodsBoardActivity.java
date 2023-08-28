@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -178,9 +179,9 @@ public class GoodsBoardActivity extends AppCompatActivity {
             }else{
                 Intent intent = new Intent(this, OrderActivity.class);
                 intent.putExtra("goods_no", goods_no);
-                orderActivity = new OrderActivity(getBuyCheck);
-
+                intent.putParcelableArrayListExtra("getBuyCheck" , (ArrayList<? extends Parcelable>) getBuyCheck);
                 startActivity(intent);
+
             }
         });
 

@@ -25,7 +25,7 @@
         	<a href="findpw">비밀번호 찾기</a>
         </div>
         	<h3 class="text-center">
-        		<a href="<c:url value='/sales'/>"><img src="<c:url value='/img/whitelogo.png'/>"></a>
+        		<img src="<c:url value='/img/whitelogo.png'/>">
         		<p>아이디 찾기</p>
         	</h3>
             <div class="card-body">
@@ -155,9 +155,10 @@ $(document).ready(function() {
 		        success: function(response) {
 		          // 서버 응답을 처리하는 코드 작성
 		          // 예: 로그인 성공 시 페이지 리다이렉트
+		          console.log(requestData);
 		          if (response === "success") {
 		            window.location.href = "findidresult";
-		            consol.log(requestData);
+		            
 		          } else {
 		            alert("입력하신 정보가 없습니다.");
 		          }

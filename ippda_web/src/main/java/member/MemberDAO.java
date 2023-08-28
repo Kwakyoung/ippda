@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.google.gson.Gson;
 
+import smart.member.MemberVO;
+
 
 
 
@@ -27,8 +29,8 @@ public class MemberDAO {
 
 	
 	
-	public MemberVO idcheck(String member_id) {
-		return sql.selectOne("member.idcheck",member_id);
+	public MemberVO idcheck(String store_id) {
+		return sql.selectOne("member.idcheck",store_id);
 	}
 	
 	public MemberVO	check(MemberVO vo) {
@@ -57,6 +59,12 @@ public class MemberDAO {
 		return sql.selectOne("member.info", store_id);
 	}
 	
+	public int	member_join(MemberVO vo) {	
+		return sql.insert("member.join",vo);
+		
+	}
 	
-	
+	public int member_resetPassword(MemberVO vo) {
+		return sql.update("member.resetPassword", vo);
+	}
 }

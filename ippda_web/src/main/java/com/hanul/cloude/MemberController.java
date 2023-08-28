@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.auth.oauth2.GoogleCredentials;
@@ -94,10 +95,23 @@ public class MemberController {
 		}
 		
 		
-		// 회원가입 화면
-		@RequestMapping("/register")
-		public String register() {
-			return "default/member/register";
+		
+		
+		//회원가입 화면 요청
+		@RequestMapping("/join")
+		public String join(HttpSession session) {
+			session.setAttribute("category", "join");
+			return "default/member/join";
+		}
+		
+		
+		//회원가입 처리 요청
+		@ResponseBody
+		@RequestMapping(value="/register", produces="text/html; charset=utf-8")
+		public String join(MemberVO vo, HttpSession session) {
+			dao.member_join(vo);
+			session.setAttribute("loginInfo", vo);
+			return "success";
 		}
 		
 		
@@ -108,26 +122,42 @@ public class MemberController {
 		}
 		
 		
+		// 아이디 중복체크
+		@RequestMapping("/idcheck")
+		@ResponseBody
+		public String idcheck(String store_id) {
+			MemberVO vo = dao.idcheck(store_id);
+			if(vo==null) {
+				return "success"; // 사용 가능
+			}else {
+				return "failure"; // 있는 아이디
+			}
+		}
+		
+		
 		
 		@RequestMapping("findingid")
 		@ResponseBody // 결과를 문자열로 반환
-		public String findingid(String store_ceo, String store_phone) {
+		public String findingid(String store_ceo, String store_phone, Model model) {
 		    HashMap<String, String> params = new HashMap<String, String>();
 		    params.put("store_ceo", store_ceo);
 		    params.put("store_phone", store_phone);
 		    MemberVO vo = dao.findid(params);
-		    if (vo == null) {
-		        return "failure"; // 정보틀림
+		    
+
+		    if (vo != null) {
+		    	model.addAttribute("findid", vo.getStore_id());
+		        return "success"; 
 		    } else {
-		    	return "success"; // 정보맞음
+		    	return "failure"; 
 		    }
 		}
 		
 		
 		// 아이디 수정 화면
 		@RequestMapping(value = "/findidresult", produces = "text/html;charset=utf-8")
-		public String findidresult() {
-			
+		public String findidresult(Model model) {
+			model.getAttribute("findid");
 			return "default/member/findidresult";
 		}
 		
@@ -189,6 +219,7 @@ public class MemberController {
 			return "default/member/findpw";
 		}
 		
+		
 		@RequestMapping("findingpw")
 		@ResponseBody // 결과를 문자열로 반환
 		public String findingpw(String store_id, String store_phone) {
@@ -207,19 +238,19 @@ public class MemberController {
 		
 		// 비밀번호 수정 화면
 		@RequestMapping(value = "/findpwresult", produces = "text/html;charset=utf-8")
-		public String findpwresult(String store_pw) {
+		public String findpwresult() {
 			
 			return "default/member/findpwresult";
 		}
 		
 		
 		
-		//새비밀번호 변경저장 처리 요청
-		@ResponseBody @RequestMapping("/updatePassword")
-		public boolean update(MemberVO vo) {
-			//화면에서 입력한 새 비밀번호가 DB에 변경저장
-			vo.setStore_pw(vo.getStore_pw());
-			return service.member_resetPassword(vo)==1 ? true : false;
-		}
+//		//새비밀번호 변경저장 처리 요청
+//		@ResponseBody @RequestMapping("/updatePassword")
+//		public boolean update(MemberVO vo) {
+//			//화면에서 입력한 새 비밀번호가 DB에 변경저장
+//			vo.setStore_pw(vo.getStore_pw());
+//			return service.member_resetPassword(vo)==1 ? true : false;
+//		}
 		
 }

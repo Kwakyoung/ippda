@@ -26,7 +26,7 @@
     <div class="col-md-9 col-lg-7 col-xl-5">
         <div class="card shadow-lg border-0 rounded-lg px-3 py-5">
         	<h3 class="text-center mb-3.5">
-        		<a href="<c:url value='/sales'/>"><img src="<c:url value='/img/whitelogo.png'/>"></a>
+        		<img src="<c:url value='/img/whitelogo.png'/>">
         	</h3>
             <div class="card-body">
                 <form method="post" action="ippdaLogin" id="loginForm">
@@ -41,7 +41,7 @@
                     </div>
              	
                 <div class="d-flex align-items-center justify-content-between mt-1 mb-4">
-                    <a class="small" href="register">회원가입</a>
+                    <a class="small" href="join">회원가입</a>
                     
                     <div class ="link-container">
                     <a class="small" href="findid">아이디 찾기</a>

@@ -20,9 +20,31 @@
 	where 	store_id = #{store_id} and store_phone = #{store_phone} 
 </select>
 
+
+
 <!-- 비번 변경저장 -->
 <update id="resetPassword">
-update store set store_pw = #{store_pw} where store_id = #{store_id}
+update  store
+set     store_pw = #{store_pw}
+where   store_id = #{store_id}
 </update>
+
+
+
+
+<insert id="join">
+insert into store 
+		(store_no, store_ceo, store_id, store_pw, store_email)
+values  (seq_store_no.nextval, #{store_ceo}, #{store_id}, #{store_pw}, #{store_email})
+</insert>
+
+
+
+<!-- id 중복체크 -->
+<select id="idcheck" resultType="member.MemberVO">
+	SELECT 	store_id
+	FROM 	store 
+	where 	store_id = #{store_id} 
+</select>
 
 </mapper>

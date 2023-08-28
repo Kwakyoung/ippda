@@ -143,7 +143,7 @@
                 android:maxLines="1"
                 android:maxLength="18"
                 android:textColorHint="#75000000"
-                android:hint="영문,숫자,특수문자 5~16자이내"
+                android:hint="영문,숫자,특수문자 6~16자이내"
                 android:layout_width="260dp"
                 android:layout_height="40dp"/>
 

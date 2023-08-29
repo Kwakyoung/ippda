@@ -22,6 +22,7 @@ import com.example.ipdda.common.CommonConn;
 import com.example.ipdda.databinding.ActivityGoodsBoardBinding;
 import com.example.ipdda.databinding.ActivityGoodsboardBuyBinding;
 import com.example.ipdda.home.GoodsVO;
+import com.example.ipdda.like.LikeDTO;
 import com.example.ipdda.order.OrderActivity;
 import com.example.ipdda.profile.SubActivity;
 import com.example.ipdda.search.SearchFragment;
@@ -53,22 +54,6 @@ public class GoodsBoardActivity extends AppCompatActivity {
         //리뷰 리사이클러
         binding.recvReview.setAdapter(new GoodsBoardReviewAdapter(GetGoodsBoardReview(),this));
         binding.recvReview.setLayoutManager(new LinearLayoutManager(this));
-
-
-
-// 테스트용 추가한 부분
-        binding.imgvLike.setOnClickListener(v -> {
-            if (like) {
-                binding.imgvLike.setImageResource(R.drawable.ic_like_blank);
-                like = false;
-            } else {
-                binding.imgvLike.setImageResource(R.drawable.ic_like_green);
-                like = true;
-
-
-
-            }
-        });
 
 
 
@@ -145,6 +130,32 @@ public class GoodsBoardActivity extends AppCompatActivity {
 
 
 
+        });
+
+
+        // 테스트용 추가한 부분
+        binding.imgvLike.setOnClickListener(v -> {
+            if (like) {
+                binding.imgvLike.setImageResource(R.drawable.ic_like_blank);
+                like = false;
+            } else {
+                binding.imgvLike.setImageResource(R.drawable.ic_like_green);
+                Toast.makeText(this, "찜목록에 추가되었습니다.", Toast.LENGTH_SHORT).show();
+                LikeDTO likeDTO = new LikeDTO(
+                        binding.imgvMainGoods.getImageAlpha(),
+                        R.drawable.ic_like_green, // 좋아요 이미지 (또는 R.drawable.ic_like_blank)
+                        binding.tvStoreName.getText().toString(), // 상점 이름
+                        binding.tvGoodsPrice.getText().toString() // 상품 가격
+                );
+
+                ArrayList<LikeDTO> likelist = new ArrayList<>();
+                likelist.add(likeDTO);
+
+                like = true;
+
+
+
+            }
         });
 
 

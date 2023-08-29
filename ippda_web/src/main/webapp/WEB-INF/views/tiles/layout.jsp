@@ -60,7 +60,7 @@
                             <div class="sb-sidenav-menu-heading">홈</div>
                             <a class="nav-link" href="sales">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                정보
+                                공지사항
                             </a>
                           
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
@@ -74,36 +74,12 @@
                                     <a class="nav-link" href="<c:url value='/goods/basicinfo'/>">상품 등록</a>
                                 </nav>
                             </div>
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                                Pages
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                       <a class="nav-link" href="<c:url value='/order/list'/>">
+                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                                주문
                             </a>
                             <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
-                                        정보
-                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                    </a>
-                                    <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
-                                        <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="login">로그인</a>
-                                            <a class="nav-link" href="register">회원가입</a>
-                                            <a class="nav-link" href="password">비밀번호 찾기</a>
-                                        </nav>
-                                    </div>
-                                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
-                                        Error
-                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                    </a>
-                                    <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
-                                        <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="error/401.html">401 Page</a>
-                                            <a class="nav-link" href="error/404.html">404 Page</a>
-                                            <a class="nav-link" href="error/500.html">500 Page</a>
-                                        </nav>
-                                    </div>
-                                </nav>
+                         
                             </div>
                             <div class="sb-sidenav-menu-heading">더보기</div>
                             <a class="nav-link" href="<c:url value='/test/home'/>">
@@ -146,7 +122,52 @@
                 </footer>
             </div>
         </div>
+        <jsp:include page="/WEB-INF/views/include/modal_alert.jsp"></jsp:include>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
      
+     <script>
+     const intervalID = setInterval(popAlarm, 3000);
+function orderNo(){
+	var orderNo = '';
+		 $('#modal-alert table tbody tr').each(function(){
+		orderNo += (orderNo=='' ? '' : ',') + $(this).data('order');
+		 })
+	return orderNo;
+}
+
+$(function(){
+// 	popAlarm() 
+	
+	$('#modal-alert  #confirmButton').click(function(){
+		$(this).attr( 'data-bs-dismiss',"modal"); 
+		
+		$.ajax({
+    		url: '<c:url value="/order/status/ing" />',
+    		data: { orderNo: orderNo() }
+    	}).done(function( ){
+    		$(this).attr( 'data-bs-dismiss',"");
+    	})
+	})
+	
+	$('#modal-alert  #cancel').click(function(){
+		$.ajax({
+    		url: '<c:url value="/order/status/cancel" />',
+    		data: { orderNo: orderNo() }
+    	}).done(function( ){
+    	})
+	})
+	
+})
+     function popAlarm(){
+    	$.ajax({
+    		url: '<c:url value="/order/alarm" />',
+    	}).done(function( response ){
+    		$('#modal-alert .modal-body').html(response)
+    		if( $('#modal-alert .modal-body table tbody tr').length > 0 ){
+    			new bootstrap.Modal( $('#modal-alert') ).show();
+    		}
+    	})
+     }
+     </script>
     </body>
 </html>

@@ -23,21 +23,7 @@ table img{
 
 
 <form method="post" action="list">
-	<div class="col-auto">
-		<div class="input-group">
-			<select class="form-select" name="search">
-				<option value="s1" ${page.search eq 's1' ? 'selected' : ''}>전체</option>
-				<option value="s2" ${page.search eq 's2' ? 'selected' : ''}>제목</option>
-				<option value="s3" ${page.search eq 's3' ? 'selected' : ''}>내용</option>
-				<option value="s4" ${page.search eq 's4' ? 'selected' : ''}>작성자</option>
-				<option value="s5" ${page.search eq 's5' ? 'selected' : ''}>제목+내용</option>
-			</select>
-			<input type="text" name="keyword" class="form-control" value="${page.keyword}">
-			<button class="btn btn-primary px-3">
-				<i class="fa-solid fa-magnifying-glass"></i>
-			</button>
-		</div>
-	</div>
+
 
 
 
@@ -60,10 +46,10 @@ table img{
             <th></th>
             <th></th>
     </tr> 
-    <c:if test="${empty goodslist}">
+    <c:if test="${empty page.list}">
         <tr><td colspan="5">상품정보가 없습니다</td></tr>
     </c:if>
-    <c:forEach items="${goodslist}" var="vo">
+    <c:forEach items="${page.list}" var="vo">
         <tr>
             <td><a class="text-link" href="info?goods_no=${vo.goods_no}">${vo.goods_name}</a></td>
         	<td>${vo.goods_sale_price} 원</td>
@@ -89,5 +75,8 @@ table img{
 <input type="hidden" name="curPage" value="1">
 <input type="hidden" name="id">
 </form>
+
+<jsp:include page="/WEB-INF/views/include/page.jsp"></jsp:include>
+
 </body>
 </html>

@@ -23,6 +23,7 @@ import com.example.ipdda.common.CommonVar;
 import com.example.ipdda.databinding.ActivityOrderBinding;
 import com.example.ipdda.databinding.ActivityTossPayBinding;
 import com.example.ipdda.goodsboard.GoodsBoardBuyCheckDTO;
+import com.example.ipdda.goodsboard.Goods_optionVO;
 import com.example.ipdda.home.GoodsOptionVO;
 import com.example.ipdda.home.GoodsVO;
 import com.example.ipdda.member.MemberVO;
@@ -33,6 +34,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class OrderActivity extends AppCompatActivity {
     ActivityOrderBinding binding;
@@ -144,6 +146,11 @@ public class OrderActivity extends AppCompatActivity {
             if (receivedList != null) {
                 for (int i = 0; i <receivedList.size(); i++) {
                     totalprice+=(receivedList.get(i).getCheck_goods_price()*receivedList.get(i).getCheck_goods_cnt());
+                    //23.08.29 추가 by 수봉  ---------------------------------------------------
+                    receivedList.get(i).setMember_no( CommonVar.loginInfo.getMember_no() );
+                    receivedList.get(i).setGoods_no( goodsVO.getGoods_no() );
+                    receivedList.get(i).setOrder_status( "결제완료" );
+                    //-------------------------------------------------------------------------
                 }
             }
             int cnt=0;
@@ -348,10 +355,38 @@ public class OrderActivity extends AppCompatActivity {
                 if(holdingAmount >= (goodsPrice + storeDeliverytip)){
                     if(binding.radioIppdapay.isChecked()){
                         ArrayList<GoodsBoardBuyCheckDTO> receivedList = getIntent().getParcelableArrayListExtra("getBuyCheck");
+
                         int totalprice=0;
                         if (receivedList != null) {
+                            CommonConn orderConn = new CommonConn(this, "order_ing/insert");
+                            //23.08.29 옵션전체 한번에 저장 요청으로 변경 by 수봉 ----------------------------------------
+//                            ArrayList<HashMap<String, Object>> list = new ArrayList< HashMap<String, Object>>();
                             for (int i = 0; i <receivedList.size(); i++) {
                                 totalprice+=(receivedList.get(i).getCheck_goods_price()*receivedList.get(i).getCheck_goods_cnt());
+//                                HashMap<String, Object> map = new HashMap<String, Object>();
+//                                map.put("member_no",  receivedList.get(i).getMember_no());
+//                                map.put("goods_no", receivedList.get(i).getGoods_no());
+//                                map.put("order_size",  receivedList.get(i).getCheck_goods_size());
+//                                map.put("order_cnt",  receivedList.get(i).getCheck_goods_cnt());
+//                                map.put("order_address",  CommonVar.loginInfo.getMember_address());
+//                                map.put("order_status",  "결제완료");
+//                                map.put("order_color",  receivedList.get(i).getCheck_goods_color());
+//                                list.add( map);
+//                                orderConn.addParamMap("order_list",  map);
+                                //---------------------------------------------------------------------------------------
+                                int StoreNo = getIntent().getIntExtra("storeNo", 0);
+                               orderConn.addParamMap("member_no", CommonVar.loginInfo.getMember_no());
+                                orderConn.addParamMap("goods_no", goods_no);
+                                orderConn.addParamMap("order_size",  receivedList.get(i).getCheck_goods_size());
+                                orderConn.addParamMap("order_cnt",  receivedList.get(i).getCheck_goods_cnt());
+                                orderConn.addParamMap("order_address",  CommonVar.loginInfo.getMember_address());
+                                orderConn.addParamMap("order_status",  "결제완료");
+                                orderConn.addParamMap("order_color",  receivedList.get(i).getCheck_goods_color());
+                                orderConn.addParamMap("store_no", StoreNo);
+
+                                orderConn.onExcute((isResult, data) -> {
+                                        Intent intent = new Intent()
+                                });
                             }
                         }
                         int cnt=0;
@@ -366,10 +401,8 @@ public class OrderActivity extends AppCompatActivity {
 
                         });
 
-                        CommonConn orderConn = new CommonConn(this, "order/ing");
-                        orderConn.addParamMap("member_no", CommonVar.loginInfo.getMember_no());
-                        orderConn.addParamMap("goods_no", goods_no);
-                        orderConn.addParamMap("store_no",  storeNo);
+
+
 
                         CommonConn conn3 = new CommonConn(this , "goods_option/order");
                         for (int i = 0; i < receivedList.size(); i++) {

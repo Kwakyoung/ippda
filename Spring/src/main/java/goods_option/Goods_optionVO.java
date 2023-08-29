@@ -1,6 +1,7 @@
 package goods_option;
 
 public class Goods_optionVO {
+   
 	private int goods_option_no, goods_no, store_no, goods_cnt, goods_star;
 	private String goods_color, goods_size;
 	public int getGoods_option_no() {

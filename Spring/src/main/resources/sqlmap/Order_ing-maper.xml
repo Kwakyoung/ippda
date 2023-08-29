@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="coupon">
+<insert id="insert">
+INSERT INTO "BTEAM"."ORDER_ING" (ORDER_NO, MEMBER_NO, GOODS_NO, GOODS_OPTION_NO, ORDER_DATE, ORDER_SIZE, ORDER_CNT, ORDER_STATUS, ORDER_COLOR)
+VALUES (#{order_no},#{member_no},#{goods_no}#{goods_option_no}#{order_date},#{order_size}#{order_cnt}#{order_status}#{order_color})
+
+</insert>
+
+</mapper>

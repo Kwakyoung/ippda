@@ -1,11 +1,9 @@
 package order_ing;
 
-import java.sql.Date;
 
 public class Order_ingVO {
-	private int order_no, member_no, goods_no, store_no, order_status;
-	private String  order_size, order_cnt, order_address, order_type, order_request;
-	private Date order_date;
+	private int order_no, member_no, goods_no, goods_option_no, order_cnt;
+	private String order_date, order_size, order_address, order_type, order_request, order_status, order_color;
 	public int getOrder_no() {
 		return order_no;
 	}
@@ -24,29 +22,29 @@ public class Order_ingVO {
 	public void setGoods_no(int goods_no) {
 		this.goods_no = goods_no;
 	}
-	public int getStore_no() {
-		return store_no;
+	public int getGoods_option_no() {
+		return goods_option_no;
 	}
-	public void setStore_no(int store_no) {
-		this.store_no = store_no;
+	public void setGoods_option_no(int goods_option_no) {
+		this.goods_option_no = goods_option_no;
 	}
-	public int getOrder_status() {
-		return order_status;
+	public int getOrder_cnt() {
+		return order_cnt;
 	}
-	public void setOrder_status(int order_status) {
-		this.order_status = order_status;
+	public void setOrder_cnt(int order_cnt) {
+		this.order_cnt = order_cnt;
+	}
+	public String getOrder_date() {
+		return order_date;
+	}
+	public void setOrder_date(String order_date) {
+		this.order_date = order_date;
 	}
 	public String getOrder_size() {
 		return order_size;
 	}
 	public void setOrder_size(String order_size) {
 		this.order_size = order_size;
-	}
-	public String getOrder_cnt() {
-		return order_cnt;
-	}
-	public void setOrder_cnt(String order_cnt) {
-		this.order_cnt = order_cnt;
 	}
 	public String getOrder_address() {
 		return order_address;
@@ -66,11 +64,17 @@ public class Order_ingVO {
 	public void setOrder_request(String order_request) {
 		this.order_request = order_request;
 	}
-	public Date getOrder_date() {
-		return order_date;
+	public String getOrder_status() {
+		return order_status;
 	}
-	public void setOrder_date(Date order_date) {
-		this.order_date = order_date;
+	public void setOrder_status(String order_status) {
+		this.order_status = order_status;
+	}
+	public String getOrder_color() {
+		return order_color;
+	}
+	public void setOrder_color(String order_color) {
+		this.order_color = order_color;
 	}
 	
 	

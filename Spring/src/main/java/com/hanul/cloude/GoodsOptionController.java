@@ -31,5 +31,16 @@ public class GoodsOptionController {
 		List<Goods_optionVO> vo = dao.check_size(params);
 		return new Gson().toJson(vo);
 	}
-
+	
+	@RequestMapping(value = "/order", produces = "text/html;charset=utf-8")
+	public String register(String goods_cnt, String goods_no, String goods_color, String goods_size) {
+	    HashMap<String, String> params = new HashMap<String, String>();
+	    params.put("goods_cnt", goods_cnt);
+	    params.put("goods_no", goods_no);
+	    params.put("goods_color", goods_color);
+	    params.put("goods_size", goods_size);
+	    int a = dao.Order(params);
+	    System.out.println("1");
+	    return new Gson().toJson(a);
+	}
 }

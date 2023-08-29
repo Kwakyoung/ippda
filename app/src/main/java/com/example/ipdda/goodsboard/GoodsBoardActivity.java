@@ -118,7 +118,6 @@ public class GoodsBoardActivity extends AppCompatActivity {
                 binding.tvSale.setVisibility(View.GONE);
                 binding.lnOrignalPrice.setVisibility(View.GONE);
             }else{
-                int goodsSalePrice = goodsPrice/(100/SalePercent);
                 binding.tvGoodsPrice.setText(goods_sale_price+" 원");
                 binding.tvGoodsOriginalPrice.setText(goodsPrice+" 원");
 
@@ -179,6 +178,7 @@ public class GoodsBoardActivity extends AppCompatActivity {
             }else{
                 Intent intent = new Intent(this, OrderActivity.class);
                 intent.putExtra("goods_no", goods_no);
+                intent.putExtra("goodsPrice", goodsPrice);
                 intent.putParcelableArrayListExtra("getBuyCheck" , (ArrayList<? extends Parcelable>) getBuyCheck);
                 startActivity(intent);
 

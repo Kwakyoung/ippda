@@ -99,7 +99,7 @@ public class GoodsController {
 	
 	
 	@RequestMapping("/list")
-	public String goodsList(HttpSession session, Model model, PageVO page) {
+	public String goodsList(HttpSession session, Model model ) {
 				
 		MemberVO loginInfo = (MemberVO) session.getAttribute("loginInfo");
 		
@@ -108,9 +108,6 @@ public class GoodsController {
 		model.addAttribute("goodslist", vo);
 		session.setAttribute("goodsInfo", vo);
 		
-		page.setTotalList( sql.selectOne("goods.totalList", page) );
-	 	//해당 페이지의 목록(기본10건)
-	 	page.setList(  sql.selectList("goods.list", page) );
 		return"goods/list";
 	}
 	

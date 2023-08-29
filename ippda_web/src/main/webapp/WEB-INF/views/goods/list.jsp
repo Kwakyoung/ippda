@@ -46,10 +46,10 @@ table img{
             <th></th>
             <th></th>
     </tr> 
-    <c:if test="${empty goodslist}">
+    <c:if test="${empty page.list}">
         <tr><td colspan="5">상품정보가 없습니다</td></tr>
     </c:if>
-    <c:forEach items="${goodslist}" var="vo">
+    <c:forEach items="${page.list}" var="vo">
         <tr>
             <td><a class="text-link" href="info?goods_no=${vo.goods_no}">${vo.goods_name}</a></td>
         	<td>${vo.goods_sale_price} 원</td>
@@ -75,5 +75,8 @@ table img{
 <input type="hidden" name="curPage" value="1">
 <input type="hidden" name="id">
 </form>
+
+<jsp:include page="/WEB-INF/views/include/page.jsp"></jsp:include>
+
 </body>
 </html>

@@ -36,7 +36,8 @@
 		#{goods_info},
 		#{goods_gender},
 		#{goods_status},
-		TO_DATE(SYSDATE, 'YY-MM-DD HH24:MI:SS'),
+		sysdate,
+<!-- 		TO_DATE(SYSDATE, 'YY-MM-DD HH24:MI:SS'), -->
 		#{goods_main_image}, 
 		#{goods_sub_image}, 
 		#{goods_middle_category}, 
@@ -77,10 +78,15 @@ goods_size, goods_cnt, goods_color )
     
 </insert>
 
+<select id="total" resultType="integer">
+select count(*)  from goods where store_no = #{store_no}
+</select>
+
 <select id="list" resultType="goods.GoodsVO">
-select * 
-from goods
-where store_no = #{store_no}
+select * from 
+(select  row_number() over(order by goods_date ) no, g.* from goods g where store_no = #{store_no} 
+order by no desc) g
+where no between #{page.beginList} and #{page.endList}
 </select>
 
 <select id="modify" resultType="goods.GoodsVO">

@@ -96,17 +96,20 @@ public class GoodsController {
 		
 		return "redirect:/goods/list";
 	}
-	
-	
+
 	@RequestMapping("/list")
-	public String goodsList(HttpSession session, Model model ) {
+	public String goodsList(HttpSession session, Model model, PageVO page ) {
 				
-		MemberVO loginInfo = (MemberVO) session.getAttribute("loginInfo");
+//		MemberVO loginInfo = (MemberVO) session.getAttribute("loginInfo");
 		
-		int store_no = loginInfo.getStore_no();
-		List<GoodsVO> vo = sql.selectList("goods.list", store_no);
-		model.addAttribute("goodslist", vo);
-		session.setAttribute("goodsInfo", vo);
+		int store_no = 1; //loginInfo.getStore_no();
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("store_no", store_no);
+		map.put("page", page);
+		page.setTotalList( sql.selectOne( "goods.total", map ) );
+		page.setList( sql.selectList("goods.list", map) );
+		model.addAttribute("page", page);
+		session.setAttribute("goodsInfo", page.getList());
 		
 		return"goods/list";
 	}

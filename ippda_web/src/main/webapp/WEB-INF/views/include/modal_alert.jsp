@@ -12,7 +12,7 @@
         사용 가능한 아이디입니다. 계속 진행하시겠습니까?
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancle">취소</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="cancel">취소</button>
         <button type="button" class="btn btn-primary" id="confirmButton">확인</button>
       </div>
     </div>

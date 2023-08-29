@@ -3,8 +3,15 @@ package com.example.ipdda.goodsboard;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class GoodsBoardBuyCheckDTO implements Parcelable {
-     private String check_goods_name,check_goods_size,check_goods_color;
+import java.io.Serializable;
+
+public class GoodsBoardBuyCheckDTO implements Parcelable, Serializable {
+     private String check_goods_name,check_goods_size,check_goods_color ;
+     //추가함:23.08.29 수봉 -------------
+     private int member_no, goods_no;
+     private String order_status;
+     //----------------------------------
+
      private int check_goods_cnt, check_goods_price;
 
     protected GoodsBoardBuyCheckDTO(Parcel in) {
@@ -13,6 +20,10 @@ public class GoodsBoardBuyCheckDTO implements Parcelable {
         check_goods_color = in.readString();
         check_goods_cnt = in.readInt();
         check_goods_price = in.readInt();
+
+        member_no = in.readInt();
+        goods_no = in.readInt();
+        order_status = in.readString();
     }
 
     @Override
@@ -22,6 +33,10 @@ public class GoodsBoardBuyCheckDTO implements Parcelable {
         dest.writeString(check_goods_color);
         dest.writeInt(check_goods_cnt);
         dest.writeInt(check_goods_price);
+
+        dest.writeInt(member_no);
+        dest.writeInt(goods_no);
+        dest.writeString(order_status);
     }
 
     @Override
@@ -87,6 +102,33 @@ public class GoodsBoardBuyCheckDTO implements Parcelable {
         this.check_goods_color = check_goods_color;
         this.check_goods_cnt = check_goods_cnt;
         this.check_goods_price = check_goods_price;
+        this.member_no = member_no;
+        this.goods_no = goods_no;
+        this.order_status = order_status;
+    }
+
+    public int getMember_no() {
+        return member_no;
+    }
+
+    public void setMember_no(int member_no) {
+        this.member_no = member_no;
+    }
+
+    public int getGoods_no() {
+        return goods_no;
+    }
+
+    public void setGoods_no(int goods_no) {
+        this.goods_no = goods_no;
+    }
+
+    public String getOrder_status() {
+        return order_status;
+    }
+
+    public void setOrder_status(String order_status) {
+        this.order_status = order_status;
     }
 }
 

@@ -39,7 +39,7 @@ public class GoodsBoardActivity extends AppCompatActivity {
     ActivityGoodsBoardBinding binding;
     ActivityGoodsboardBuyBinding dialogBinding;
     int totalPrice = 0,totalCnt = 0;
-    int goods_no,goodsPrice,goods_sale_price;
+    int goods_no,goodsPrice,goods_sale_price, store_no;
 
     static String select_size;
     ArrayList<GoodsBoardBuyCheckDTO> getBuyCheck= new ArrayList<>();
@@ -101,6 +101,8 @@ public class GoodsBoardActivity extends AppCompatActivity {
             ArrayList<GoodsVO> arrayList = new Gson().fromJson(data, new TypeToken<ArrayList<GoodsVO>>(){}.getType());
             GoodsVO goodsVO = arrayList.get(0);
 
+            store_no = goodsVO.getStore_no();
+
 
             String goodsName = goodsVO.getGoods_name();
             goodsPrice = goodsVO.getGoods_price();
@@ -122,7 +124,11 @@ public class GoodsBoardActivity extends AppCompatActivity {
                 binding.tvGoodsOriginalPrice.setText(goodsPrice+" 원");
 
             }
+
+
             binding.btnBuy.setOnClickListener(v -> {
+//                Intent intent = new Intent(this, OrderActivity.class);
+//                startActivity(intent);
                 showDialog_buy();
             });
 
@@ -179,6 +185,7 @@ public class GoodsBoardActivity extends AppCompatActivity {
                 Intent intent = new Intent(this, OrderActivity.class);
                 intent.putExtra("goods_no", goods_no);
                 intent.putExtra("goodsPrice", goodsPrice);
+                intent.putExtra("storeNo", store_no);
                 intent.putParcelableArrayListExtra("getBuyCheck" , (ArrayList<? extends Parcelable>) getBuyCheck);
                 startActivity(intent);
 
@@ -299,6 +306,10 @@ public class GoodsBoardActivity extends AppCompatActivity {
             Log.d("ServerResponse", "isResult: " + isResult + ", data: " + data);
             ArrayList<Goods_optionVO> list = new Gson().fromJson(data , new TypeToken<ArrayList<Goods_optionVO>>(){}.getType());
             // 어댑터 데이터 업데이트
+
+
+
+
             dialogBinding.recvColor.setAdapter(new GoodsBoardbuyAdapter(this,list, dialogBinding,getBuyCheck,goods_sale_price));
             dialogBinding.recvColor.setLayoutManager(new LinearLayoutManager(this));
         });

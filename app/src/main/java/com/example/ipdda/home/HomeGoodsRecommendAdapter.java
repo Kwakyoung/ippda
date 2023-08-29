@@ -49,7 +49,6 @@ public class HomeGoodsRecommendAdapter extends RecyclerView.Adapter<HomeGoodsRec
             h.binding.tvSalePercent.setVisibility(View.GONE);
             h.binding.tvSale.setVisibility(View.GONE);
 
-
         }
 
 
@@ -75,7 +74,6 @@ public class HomeGoodsRecommendAdapter extends RecyclerView.Adapter<HomeGoodsRec
             intent.putExtra("goods_no", list.get(i).getGoods_no());
 
             context.startActivity(intent);
-
         });
 
 

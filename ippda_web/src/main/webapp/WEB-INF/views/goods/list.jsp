@@ -23,19 +23,22 @@ table img{
 
 
 <form method="post" action="list">
-<div class="row my-3 justify-content-between">
-	<div class="col-auto d-flex align-items-center" >
-		<label class="me-3"></label>
-		<select name="goods_no" class="form-select col" onchange="submit()">
-			<option value="-1">전체</option>
-			<c:forEach  items="${goodslist}" var="g">
-			<option value="${g.goods_name }" ${g.goods_name eq goods_name ? 'selected' : '' }>${g.goods_name}</option>
-			</c:forEach>
-		</select>
+	<div class="col-auto">
+		<div class="input-group">
+			<select class="form-select" name="search">
+				<option value="s1" ${page.search eq 's1' ? 'selected' : ''}>전체</option>
+				<option value="s2" ${page.search eq 's2' ? 'selected' : ''}>제목</option>
+				<option value="s3" ${page.search eq 's3' ? 'selected' : ''}>내용</option>
+				<option value="s4" ${page.search eq 's4' ? 'selected' : ''}>작성자</option>
+				<option value="s5" ${page.search eq 's5' ? 'selected' : ''}>제목+내용</option>
+			</select>
+			<input type="text" name="keyword" class="form-control" value="${page.keyword}">
+			<button class="btn btn-primary px-3">
+				<i class="fa-solid fa-magnifying-glass"></i>
+			</button>
+		</div>
 	</div>
 
-</div>
-</form>
 
 
 
@@ -83,5 +86,8 @@ table img{
         </tr>
     </c:forEach>
 </table>
+<input type="hidden" name="curPage" value="1">
+<input type="hidden" name="id">
+</form>
 </body>
 </html>

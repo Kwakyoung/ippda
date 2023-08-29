@@ -130,5 +130,35 @@ where goods_option_no = #{option.goods_option_no}
 </foreach>
 </update>
 
+<!-- <!-- 방명록 글 총 건수 조회 --> -->
+<!-- <select id="totalList" resultType="integer"> -->
+<!-- select count(*) from board <include refid="searchWhere"/> -->
+<!-- </select> -->
+
+
+<!-- <!-- 검색조건 --> -->
+<!-- <sql id="searchWhere"> -->
+<!-- 	<choose> -->
+<!-- 		<when test=" search == 's1' "> 전체 -->
+<!-- 		where title like '%' || #{keyword} || '%' -->
+<!-- 		or  content like '%' || #{keyword} || '%' -->
+<!-- 		or  writer  in (select userid from member where name like '%' || #{keyword} || '%' )		  -->
+<!-- 		</when>  -->
+<!-- 		<when test=" search == 's2' "> 제목 -->
+<!-- 		where title like '%' || #{keyword} || '%' -->
+<!-- 		</when>  -->
+<!-- 		<when test=" search == 's3' "> 내용 -->
+<!-- 		where content like '%' || #{keyword} || '%' -->
+<!-- 		</when>  -->
+<!-- 		<when test=" search == 's4' "> 작성자 -->
+<!-- 		where writer  in (select userid from member where name like '%' || #{keyword} || '%' ) -->
+<!-- 		</when>  -->
+<!-- 		<when test=" search == 's5' "> 제목+내용 -->
+<!-- 		where title like '%' || #{keyword} || '%' -->
+<!-- 		or  content like '%' || #{keyword} || '%' -->
+<!-- 		</when> -->
+<!-- 	</choose> -->
+
+<!-- </sql> -->
 
 </mapper>

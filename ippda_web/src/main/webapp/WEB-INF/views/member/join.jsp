@@ -41,6 +41,7 @@
                         <input class="form-control" name="store_pw" id="store_pw" required  type="password" placeholder="비밀번호">
                         <label>비밀번호</label>
                     </div>
+                    <div class="form-text" id="pwMessage"></div>
                     <div class="form-floating mb-3">
                         <input class="form-control" name="store_pw_check" id="store_pw_check" required  type="password" placeholder="비밀번호 확인" >
                         <label>비밀번호 확인</label>
@@ -104,13 +105,13 @@ $(document).ready(function() {
     	$("#btn_idcheck").prop("disabled", true);
     	$("#btn_idcheck").text("중복확인 완료");
         // 모달 닫기
-        $("#confirmModal").modal("hide");
+        $("#modal-alert").modal("hide");
     });
     
     
     // 취소 버튼 클릭 시 동작
     $("#cancle").click(function() {
-        $("#confirmModal").modal("hide");
+        $("#modal-alert").modal("hide");
     });
     
 
@@ -118,12 +119,13 @@ $(document).ready(function() {
     $("#btn_success").click(function(event) {
         
         var btn_idcheck = $("#btn_idcheck").text();
+        var pwMessage = $("#pwMessage").text();
         var store_id = $("#store_id").val();
 		var store_ceo = $("#store_ceo").val();
         var store_pw = $("#store_pw").val();
         var store_email = $("#store_email").val();
  
-		  if (btn_idcheck === "중복확인 완료") {
+		  if (btn_idcheck === "중복확인 완료" && pwMessage === "비밀번호 조건을 충족합니다.") {
 			  $.ajax({
 		            url: "register", // 서버의 URL 설정
 		            type: "POST",
@@ -145,7 +147,7 @@ $(document).ready(function() {
 
 		  } else {
 			event.preventDefault(); // 기본 제출 동작 방지
-		    alert("아이디 중복확인을 해주세요.");
+		    alert("아이디 중복확인 또는 비밀번호 조건을 확인해주세요.");
 		  }
     });
     
@@ -156,17 +158,17 @@ $(document).ready(function() {
 
 function checkPasswordStrength() {
     var password = $("#store_pw").val();
-    var passwordMessage = $("#passwordMessage");
+    var pwMessage = $("#pwMessage");
     var strongRegex = new RegExp(
         "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})"
     );
 
     if (strongRegex.test(password)) {
-        passwordMessage.text("비밀번호 조건을 충족합니다.");
-        passwordMessage.css("color", "green");
+    	pwMessage.text("비밀번호 조건을 충족합니다.");
+    	pwMessage.css("color", "green");
     } else {
-        passwordMessage.text("비밀번호는 영문 대/소문자, 숫자, 특수문자를 조합하여 8자 이상 입력해야 합니다.");
-        passwordMessage.css("color", "red");
+    	pwMessage.text("비밀번호는 영문 대/소문자, 숫자, 특수문자를 조합하여 8자 이상 입력해야 합니다.");
+    	pwMessage.css("color", "red");
     }
 
     matchPasswords();
@@ -175,17 +177,24 @@ function checkPasswordStrength() {
 function matchPasswords() {
     var password = $("#store_pw").val();
     var passwordCheck = $("#store_pw_check").val();
+    
     var passwordMessage = $("#passwordMessage");
 
-    if (password === passwordCheck) {
+    if (passwordCheck === "") {
+        // passwordCheck 값이 비어있을 때 처리
+        passwordMessage.text(""); // 문구를 비우거나 원하는 내용을 추가
+        $("#btn_success").prop("disabled", true); // 버튼 비활성화
+    } else if (password === passwordCheck) {
         passwordMessage.text("비밀번호 일치");
         passwordMessage.css("color", "green");
         $("#btn_success").prop("disabled", false); // 비밀번호가 일치하면 버튼 활성화
+        
     } else {
         passwordMessage.text("비밀번호 불일치");
         passwordMessage.css("color", "red");
         $("#btn_success").prop("disabled", true); // 비밀번호가 불일치하면 버튼 비활성화
     }
+
 }
 
 

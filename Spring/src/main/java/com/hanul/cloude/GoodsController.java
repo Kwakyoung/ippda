@@ -51,6 +51,11 @@ public class GoodsController {
 	}
 	
 	
+	@RequestMapping("/goodslike")
+	public String goodslike () {
+		
+		return new Gson().toJson(null);
+	}
 	
 	
 	

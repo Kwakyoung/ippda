@@ -107,10 +107,7 @@ public class GoodsController {
 		List<GoodsVO> vo = sql.selectList("goods.list", store_no);
 		model.addAttribute("goodslist", vo);
 		session.setAttribute("goodsInfo", vo);
-		
-		page.setTotalList( sql.selectOne("goods.totalList", page) );
-	 	//해당 페이지의 목록(기본10건)
-	 	page.setList(  sql.selectList("goods.list", page) );
+
 		return"goods/list";
 	}
 	

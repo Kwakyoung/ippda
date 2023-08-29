@@ -31,7 +31,7 @@ img {
 			data-tab="basicInfo">기본정보</a></li>
 	</ul>
 
-	<form action="update" method="post" enctype="multipart/form-data">
+	<form action="update" method="post" enctype="multipart/form-data" id="update">
 
 
 		<div class="form-group my-4" style="display: none;">
@@ -119,8 +119,7 @@ img {
 			</select>
 		</div>
 
-		<button type="button" class="btn btn-secondary my-4" id="btn">상품가격
-			확인하기</button>
+		<button type="button" class="btn btn-secondary my-4" id="checkPriceBtn">상품가격 확인하기</button>
 		<div class="form-group">
 			<h3 id="calculated_price_display"></h3>
 			<input id="calculated_price" name="goods_sale_price"
@@ -177,7 +176,7 @@ img {
 
 
 
-		<button type="submit" class="btn btn-secondary my-4">입력완료</button>
+	<a type="submit" class="btn btn-secondary my-4" id="submit">입력완료</a>
 	</form>
 </body>
 
@@ -263,7 +262,7 @@ img {
 							Gender.val(goodsGender);
 						});
 
-						$("#btn")
+						$("#checkPriceBtn")
 								.click(
 										function() {
 											const goodsPriceInput = document
@@ -283,17 +282,63 @@ img {
 												const calculatedPrice = goodsPrice
 														- (goodsPrice
 																* salePercent / 100);
-												console.log(calculatedPrice);
-												calculatedPriceDisplay.textContent = "총 상품가격: "
-														+ calculatedPrice + "원";
-												document
-														.getElementById("calculated_price").value = calculatedPrice;
+												   if(calculatedPrice % 10 !== 0){
+									                	alert("총 상품가격은 10원단위로만 가능합니다.")
+									                }else{
+									                    calculatedPriceDisplay.textContent = "총 상품가격: " + calculatedPrice + "원";
+										                document.getElementById("calculated_price").value = calculatedPrice;
+									                }
 											} else {
 												alert("상품가격과 세일퍼센트를 입력해주세요")
 											}
 
 										});
+						
+						
+
 
 					});
+	
+	  // 등록완료 버튼 눌렀을 때 처리
+	  $("#submit").click(function() {
+			 goodsCategoryMain = document.getElementById("item_catemain").value;
+			 goodsCategorySub = document.getElementById("item_catesub").value;
+			 goodsStyle = document.getElementById("goods_style").value;
+		     goodsName = $("#goods_name").val();		    
+		     goodsPrice = $("#goods_price").val();
+		     goodsSalePercent = $("goods_sale_percent").val();
+		     resultPrice = $("#calculated_price").val();
+		     goodsInfo = $("#goods_info").val();
+			 const fileInput = document.getElementById("itemMainImg");
+			 const fileInput1 = document.getElementById("itemSubImg");
+		        const selectedFile = fileInput.files[0]; // 선택된 파일
+		        const selectedFile1 = fileInput1.files[0]; // 선택된 파일
+		     
+
+		     
+		 if(goodsCategoryMain === ""){
+			 alert("카테고리를 입력해주세요")
+		 }else if(goodsStyle === ""){
+			 alert("스타일을 입력해주세요")
+		 }else if (goodsName === "") {
+			 alert("상품명을 입력해주세요")
+		 }else if (goodsPrice === "") {
+			 alert("가격을 입력해주세요")
+		 }else if (goodsSalePercent === "") {
+			alert("세일퍼센트를 입력해주세요")
+		}else if(resultPrice === ""){
+			alert("상품가격확인하기 버튼을 눌러주세요")
+		}else if (goodsInfo === "") {
+			alert("상품내용을 입력해주세요")
+		}
+		else{
+			        const form = document.getElementById("update"); // 폼 ID를 실제로 사용한 값으로 바꾸세요
+			        form.submit();
+		}
+	
+		
+	
+	  
+		});
 </script>
 </html>

@@ -45,8 +45,8 @@ public class OrderController {
 	@RequestMapping("/list")
 	public String orderList(HttpSession session, Model model , PageVO page) {
 		MemberVO member = (MemberVO)session.getAttribute("loginInfo");
-		
-		page.setTotalList(sql.selectOne("order.total", 1)) ; // member.getStore_no()
+		int totalList = sql.selectOne("order.total", 1);
+		page.setTotalList(totalList) ; // member.getStore_no()
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("store_no", 1); //member.getStore_no()
 		map.put("page", page);

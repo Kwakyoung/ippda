@@ -99,7 +99,10 @@ public class GoodsController {
 
 	@RequestMapping("/list")
 	public String goodsList(HttpSession session, Model model, PageVO page ) {
-				
+		session.setAttribute("category", "상품");
+		session.setAttribute("category_sub", "상품목록");
+		session.setAttribute("category_url", "/goods/list");
+		
 //		MemberVO loginInfo = (MemberVO) session.getAttribute("loginInfo");
 		
 		int store_no = 1; //loginInfo.getStore_no();

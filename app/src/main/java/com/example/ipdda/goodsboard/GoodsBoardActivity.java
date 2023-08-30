@@ -134,8 +134,6 @@ public class GoodsBoardActivity extends AppCompatActivity {
                     .load(subImageUrl)
                     .into(binding.imgvSubGoods);
 
-
-
         });
 
 

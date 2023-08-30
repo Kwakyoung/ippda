@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ipdda.databinding.ActivityOrderBinding;
 import com.example.ipdda.databinding.ItemOrderGoodsBinding;
+import com.example.ipdda.goodsboard.GoodsBoardBuyCheckDTO;
 import com.example.ipdda.home.GoodsVO;
 
 import java.text.NumberFormat;
@@ -17,11 +18,14 @@ import java.util.Locale;
 
 public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder>{
 
-    ArrayList<GoodsVO> list ;
+    ArrayList<GoodsBoardBuyCheckDTO> list ;
+    ArrayList<GoodsVO> arrayList ;
+
     ItemOrderGoodsBinding binding;
 
-    public OrderAdapter(ArrayList<GoodsVO> list) {
+    public OrderAdapter( ArrayList<GoodsVO> arrayList,ArrayList<GoodsBoardBuyCheckDTO> list) {
         this.list = list;
+        this.arrayList = arrayList;
     }
 
     @NonNull
@@ -34,30 +38,22 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder h, int i) {
-        int goodsPrice = list.get(i).getGoods_price();
-        int SalePercent = list.get(i).getGoods_sale_percent();
-
+        int SalePercent = arrayList.get(0).getGoods_sale_percent();
 
         if(SalePercent == 0){
-            String goodsPriceStr = NumberFormat.getNumberInstance(Locale.getDefault()).format(list.get(i).getGoods_price());
-            h.binding.tvOrginalPrice.setText(goodsPriceStr);
+            h.binding.tvOriginalPrice.setText(""+arrayList.get(0).getGoods_price()*list.get(i).getCheck_goods_cnt());
             h.binding.tvSalePrice.setVisibility(View.GONE);
             h.binding.tvPayPrice.setVisibility(View.GONE);
         }else {
-        int goodsSalePrice = goodsPrice/(100/SalePercent);
-
-            String formattedGoodsPrice = NumberFormat.getNumberInstance(Locale.getDefault()).format(goodsSalePrice);
-            String goodsName = list.get(i).getGoods_name();
-            String goodsPriceStr = NumberFormat.getNumberInstance(Locale.getDefault()).format(list.get(i).getGoods_price());
-
-            h.binding.tvGoods.setText(goodsName);
-            h.binding.tvOrginalPrice.setText(goodsPriceStr);
-            h.binding.tvPayPrice.setText(formattedGoodsPrice);
+            h.binding.tvGoods.setText(arrayList.get(0).getGoods_name());
+            h.binding.tvOriginalPrice.setText(""+arrayList.get(0).getGoods_price()*list.get(i).getCheck_goods_cnt());
+            h.binding.tvPayPrice.setText(""+((arrayList.get(0).getGoods_price()-arrayList.get(0).getGoods_sale_price())*list.get(i).getCheck_goods_cnt()));
 
         }
 
-        h.binding.tvStore.setText(list.get(i).getStore_name()+"");
-        h.binding.tvGoods.setText(list.get(i).getGoods_name()+"");
+        h.binding.tvStore.setText(arrayList.get(0).getStore_name()+"");
+        h.binding.tvGoods.setText(arrayList.get(0).getGoods_name()+"");
+        h.binding.tvOption.setText("옵션("+list.get(i).getCheck_goods_size()+","+list.get(i).getCheck_goods_color()+") x "+list.get(i).getCheck_goods_cnt());
 
 
 

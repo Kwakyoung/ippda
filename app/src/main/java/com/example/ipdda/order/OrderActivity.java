@@ -31,7 +31,6 @@ import com.example.ipdda.R;
 import com.example.ipdda.common.CommonConn;
 import com.example.ipdda.common.CommonVar;
 import com.example.ipdda.databinding.ActivityOrderBinding;
-import com.example.ipdda.databinding.ActivityTossPayBinding;
 import com.example.ipdda.goodsboard.GoodsBoardBuyCheckDTO;
 import com.example.ipdda.goodsboard.Goods_optionVO;
 import com.example.ipdda.home.GoodsOptionVO;
@@ -141,17 +140,17 @@ public class OrderActivity extends AppCompatActivity {
         CommonConn conn = new CommonConn(this, "goods/goodsboard");
         conn.addParamMap("goods_no" , goods_no);
         conn.onExcute((isResult, data) -> {
-                    ArrayList<GoodsVO> arrayList = new Gson().fromJson(data, new TypeToken<ArrayList<GoodsVO>>() {}.getType());
+            ArrayList<GoodsBoardBuyCheckDTO> receivedList = getIntent().getParcelableArrayListExtra("getBuyCheck");
+            ArrayList<GoodsVO> arrayList = new Gson().fromJson(data, new TypeToken<ArrayList<GoodsVO>>() {}.getType());
                     GoodsVO goodsVO = arrayList.get(0);
                     goods_name=goodsVO.getGoods_name();
                     storeNo = goodsVO.getStore_no();
             binding.recvOrderGoods.setLayoutManager(new LinearLayoutManager(this));
-            binding.recvOrderGoods.setAdapter(new OrderAdapter(arrayList));
+            binding.recvOrderGoods.setAdapter(new OrderAdapter(arrayList, receivedList));
 
             int goodsPrice = goodsVO.getGoods_price();
             int salePercent = goodsVO.getGoods_sale_percent();
             int totalprice=0;
-            ArrayList<GoodsBoardBuyCheckDTO> receivedList = getIntent().getParcelableArrayListExtra("getBuyCheck");
             if (receivedList != null) {
                 for (int i = 0; i <receivedList.size(); i++) {
                     totalprice+=(receivedList.get(i).getCheck_goods_price()*receivedList.get(i).getCheck_goods_cnt());
@@ -284,14 +283,14 @@ public class OrderActivity extends AppCompatActivity {
                 conn2.onExcute((isResult2, data2) -> {
                     ArrayList<GoodsVO> arrayList = new Gson().fromJson(data2, new TypeToken<ArrayList<GoodsVO>>() {}.getType());
                     GoodsVO goodsVO = arrayList.get(0);
+                    ArrayList<GoodsBoardBuyCheckDTO> receivedList = getIntent().getParcelableArrayListExtra("getBuyCheck");
 
                     binding.recvOrderGoods.setLayoutManager(new LinearLayoutManager(this));
-                    binding.recvOrderGoods.setAdapter(new OrderAdapter(arrayList));
+                    binding.recvOrderGoods.setAdapter(new OrderAdapter(arrayList, receivedList));
 
                     int goodsPrice = goodsVO.getGoods_price();
                     int SalePercent = goodsVO.getGoods_sale_percent();
                     int totalprice=0;
-                    ArrayList<GoodsBoardBuyCheckDTO> receivedList = getIntent().getParcelableArrayListExtra("getBuyCheck");
                     if (receivedList != null) {
                         for (int i = 0; i <receivedList.size(); i++) {
                             totalprice+=(receivedList.get(i).getCheck_goods_price()*receivedList.get(i).getCheck_goods_cnt());

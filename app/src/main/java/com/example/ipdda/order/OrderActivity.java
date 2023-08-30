@@ -291,7 +291,6 @@ public class OrderActivity extends AppCompatActivity {
                     int goodsPrice = goodsVO.getGoods_price();
                     int SalePercent = goodsVO.getGoods_sale_percent();
                     int totalprice=0;
-                    ArrayList<GoodsBoardBuyCheckDTO> receivedList = getIntent().getParcelableArrayListExtra("getBuyCheck");
                     if (receivedList != null) {
                         for (int i = 0; i <receivedList.size(); i++) {
                             totalprice+=(receivedList.get(i).getCheck_goods_price()*receivedList.get(i).getCheck_goods_cnt());

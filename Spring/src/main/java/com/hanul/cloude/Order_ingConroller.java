@@ -47,7 +47,7 @@ public class Order_ingConroller {
 	
 	
 	@RequestMapping(value = "/insert", produces = "text/html;charset=utf-8")
-	public void Insert( String member_no,  String store_no,  String goods_no, String order_size, String order_cnt, String order_address, String order_status, String order_color ,String order_price ) {
+	public void Insert( String member_no,  String store_no,  String goods_no, String order_size, String order_cnt, String order_address, String order_status, String order_color ,String order_price ,String order_goods_name ) {
 		
 		GoodsBoardBuyCheckDTO dto = new GoodsBoardBuyCheckDTO();
 			dto.setMember_no( Integer.parseInt( member_no ) );
@@ -59,6 +59,7 @@ public class Order_ingConroller {
 			dto.setGoods_no( Integer.parseInt(goods_no) );
 			dto.setStore_no( Integer.parseInt(store_no) );
 			dto.setOrder_price( Integer.parseInt(order_price) );
+			dto.setOrder_goods_name(order_goods_name);
 			sql.insert("order.insert", dto);
 			
 		System.out.println();

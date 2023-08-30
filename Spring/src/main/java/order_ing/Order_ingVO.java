@@ -3,9 +3,15 @@ package order_ing;
 
 public class Order_ingVO {
 	private int order_no, member_no, goods_no, goods_option_no, order_cnt,order_price;
-	private String order_date, order_size, order_address, order_type, order_request, order_status, order_color;
+	private String order_date, order_size, order_address, order_type, order_request, order_status, order_color,order_goods_name;
 	
 	
+	public String getOrder_goods_name() {
+		return order_goods_name;
+	}
+	public void setOrder_goods_name(String order_goods_name) {
+		this.order_goods_name = order_goods_name;
+	}
 	public int getOrder_price() {
 		return order_price;
 	}

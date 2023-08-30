@@ -2,10 +2,16 @@ package goods_option;
 
 public class GoodsBoardBuyCheckDTO {
 	
-	private String order_size, order_color,order_status, order_address;
+	private String order_size, order_color,order_status, order_address,order_goods_name;
     private int member_no, goods_no, order_cnt, store_no,order_price;
     
     
+	public String getOrder_goods_name() {
+		return order_goods_name;
+	}
+	public void setOrder_goods_name(String order_goods_name) {
+		this.order_goods_name = order_goods_name;
+	}
 	public int getOrder_price() {
 		return order_price;
 	}

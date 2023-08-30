@@ -38,22 +38,16 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder h, int i) {
-        int goodsPrice = arrayList.get(0).getGoods_price();
         int SalePercent = arrayList.get(0).getGoods_sale_percent();
-
 
         if(SalePercent == 0){
             h.binding.tvOriginalPrice.setText(""+arrayList.get(0).getGoods_price()*list.get(i).getCheck_goods_cnt());
             h.binding.tvSalePrice.setVisibility(View.GONE);
             h.binding.tvPayPrice.setVisibility(View.GONE);
         }else {
-        int goodsSalePrice = goodsPrice/(100/SalePercent);
-
-            String formattedGoodsPrice = NumberFormat.getNumberInstance(Locale.getDefault()).format(goodsSalePrice);
-
             h.binding.tvGoods.setText(arrayList.get(0).getGoods_name());
-            h.binding.tvOriginalPrice.setText(arrayList.get(0).getGoods_price()*list.get(i).getCheck_goods_cnt());
-            h.binding.tvPayPrice.setText(arrayList.get(0).getGoods_price()*(100-arrayList.get(0).getGoods_sale_price())/100);
+            h.binding.tvOriginalPrice.setText(""+arrayList.get(0).getGoods_price()*list.get(i).getCheck_goods_cnt());
+            h.binding.tvPayPrice.setText(""+((arrayList.get(0).getGoods_price()-arrayList.get(0).getGoods_sale_price())*list.get(i).getCheck_goods_cnt()));
 
         }
 

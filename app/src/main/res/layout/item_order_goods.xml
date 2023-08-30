@@ -57,22 +57,51 @@
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"/>
 
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:orientation="horizontal"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/tv_price"
+                        android:textSize="15dp"
+                        android:text="가격 : "
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
                 <TextView
                     android:id="@+id/tv_orginal_price"
-                    android:layout_weight="1"
-                    android:textSize="12dp"
+                    android:textSize="17dp"
                     android:text="16,800원"
                     android:layout_width="wrap_content"
-                    android:layout_height="0dp"/>
+                    android:layout_height="wrap_content"/>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:orientation="horizontal"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/tv_sale_price"
+                        android:textSize="12dp"
+                        android:text="할인금액 : "
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
 
                 <TextView
+                    android:textColor="@color/green"
                     android:id="@+id/tv_pay_price"
-                    android:layout_weight="1"
-                    android:textStyle="bold"
                     android:textSize="15dp"
-                    android:text="16,800원"
+                    android:text="1000"
                     android:layout_width="wrap_content"
-                    android:layout_height="0dp"/>
+                    android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+
             </LinearLayout>
 
         </LinearLayout>

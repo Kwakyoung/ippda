@@ -95,7 +95,7 @@ public class HomeFragment extends Fragment {
 
     public ArrayList<HomeGoodsRecommendCategoryDTO> GetGoodsCategoryList(){
         ArrayList<HomeGoodsRecommendCategoryDTO> list = new ArrayList<>();
-        list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.top, "상의"));
+        list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.top1, "상의"));
         list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.outer, "아우터"));
         list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.pants, "하의"));
         list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.onepeecs, "원피스"));

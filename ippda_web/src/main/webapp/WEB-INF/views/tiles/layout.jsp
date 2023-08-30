@@ -78,24 +78,10 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 주문
                             </a>
-                            <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
-                         
-                            </div>
-                            <div class="sb-sidenav-menu-heading">더보기</div>
-                            <a class="nav-link" href="<c:url value='/test/home'/>">
+                               <a class="nav-link" href="<c:url value='/order/list'/>">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                                테스트
+                                데이터
                             </a>
-                            <a class="nav-link" href="tables.html">
-                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                테이블
-                            </a>
-                        </div>
-                    </div>
-                    <div class="sb-sidenav-footer">
-                        <div class="small">Logged in as:</div>
-                        Start Bootstrap
-                    </div>
                 </nav>
             
             </div>
@@ -126,7 +112,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
      
      <script>
-     const intervalID = setInterval(popAlarm, 3000);
+     const intervalID = setInterval(popAlarm, 5000);
 function orderNo(){
 	var orderNo = '';
 		 $('#modal-alert table tbody tr').each(function(){
@@ -135,8 +121,12 @@ function orderNo(){
 	return orderNo;
 }
 
+var modalTitle = document.getElementById('confirmModalLabel');
+modalTitle.innerText = '주문내역';
+
 $(function(){
 // 	popAlarm() 
+
 	
 	$('#modal-alert  #confirmButton').click(function(){
 		$(this).attr( 'data-bs-dismiss',"modal"); 

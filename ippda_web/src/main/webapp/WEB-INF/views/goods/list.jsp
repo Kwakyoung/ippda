@@ -29,7 +29,7 @@ vertical-align : middle;}
     <section id="breadcrumbs" class="breadcrumbs">
       <div class="container">
 		<ol>
-          <li><a href="<c:url value="${category_url }"/>">${category}</a></li>
+          <li><a href="<c:url value="${category_url }"/>">${category_main}</a></li>
           <li>${category_sub}</li>
         </ol>
         <h2>${category_sub}</h2>		

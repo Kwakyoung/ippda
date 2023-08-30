@@ -37,7 +37,7 @@ public class SalesController {
 	// 홈 화면
 		@RequestMapping("/sales")
 		public String login(HttpSession session) {
-			session.setAttribute("category", "login");
+			session.setAttribute("category", "home");
 			return "home/sales";
 		}
 		

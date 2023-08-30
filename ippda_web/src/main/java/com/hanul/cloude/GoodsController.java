@@ -106,7 +106,8 @@ public class GoodsController {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("store_no", store_no);
 		map.put("page", page);
-		page.setTotalList( sql.selectOne( "goods.total", map ) );
+		int totalList =  sql.selectOne( "goods.total", map );
+		page.setTotalList(totalList );
 		page.setList( sql.selectList("goods.list", map) );
 		model.addAttribute("page", page);
 		session.setAttribute("goodsInfo", page.getList());

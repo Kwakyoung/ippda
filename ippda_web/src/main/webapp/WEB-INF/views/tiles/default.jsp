@@ -18,9 +18,7 @@
         <link rel="icon" type="image/x-icon" href="<c:url value='/img/logo.png' />" />
         
         
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="<c:url value='/css/styles.css?${now }'/>" rel="stylesheet" />
-        <link href="<c:url value='/css/common.css?${now }'/>" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" >
         <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
   
 <!--  cdnjs.com > fontawesome 검색 > styling, javascript 선언문 복사해서 넣기 -->        

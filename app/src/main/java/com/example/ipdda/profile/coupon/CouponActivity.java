@@ -70,7 +70,7 @@ public class CouponActivity extends AppCompatActivity {
             conn.onExcute((isResult, data) -> {
                 ArrayList<CouponVO> list = new Gson().fromJson(data , new TypeToken<ArrayList<CouponVO>>(){}.getType());
                 //if문으로 list의 사이즈처리 , 해야함.
-                CouponAdapter adapter = new CouponAdapter(list,1);
+                CouponAdapter adapter = new CouponAdapter(list,2);
                 binding.recv.setAdapter(adapter);
                 binding.recv.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL , false));
                 handleCouponData(data,a);
@@ -85,7 +85,7 @@ public class CouponActivity extends AppCompatActivity {
             conn.onExcute((isResult, data) -> {
                 ArrayList<CouponVO> list = new Gson().fromJson(data , new TypeToken<ArrayList<CouponVO>>(){}.getType());
                 //if문으로 list의 사이즈처리 , 해야함.
-                CouponAdapter adapter = new CouponAdapter(list,1);
+                CouponAdapter adapter = new CouponAdapter(list,3);
                 binding.recv.setAdapter(adapter);
                 binding.recv.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL , false));
                 handleCouponData(data,a);
@@ -99,7 +99,7 @@ public class CouponActivity extends AppCompatActivity {
             conn.onExcute((isResult, data) -> {
                 ArrayList<CouponVO> list = new Gson().fromJson(data , new TypeToken<ArrayList<CouponVO>>(){}.getType());
                 //if문으로 list의 사이즈처리 , 해야함.
-                CouponAdapter adapter = new CouponAdapter(list,1);
+                CouponAdapter adapter = new CouponAdapter(list,4);
                 binding.recv.setAdapter(adapter);
                 binding.recv.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL , false));
                 handleCouponData(data,a);

@@ -40,10 +40,8 @@ public class OrderActivity extends AppCompatActivity {
     ActivityOrderBinding binding;
     String TAG = "ippda";
 
-    int goods_no;
-
-    int storeNo;
-    String cleanedData;
+    int goods_no, storeNo;
+    String cleanedData, goods_name;
 
 //    ArrayList<GoodsBoardBuyCheckDTO> getBuyCheck;
     // 기본 생성자 추가
@@ -134,7 +132,7 @@ public class OrderActivity extends AppCompatActivity {
         conn.onExcute((isResult, data) -> {
                     ArrayList<GoodsVO> arrayList = new Gson().fromJson(data, new TypeToken<ArrayList<GoodsVO>>() {}.getType());
                     GoodsVO goodsVO = arrayList.get(0);
-
+                    goods_name=goodsVO.getGoods_name();
                     storeNo = goodsVO.getStore_no();
             binding.recvOrderGoods.setLayoutManager(new LinearLayoutManager(this));
             binding.recvOrderGoods.setAdapter(new OrderAdapter(arrayList));
@@ -174,7 +172,7 @@ public class OrderActivity extends AppCompatActivity {
 
                 binding.tvRemainingAmount.setText(remaingAmount+" 원");
                 //결제 눌렀을 때 로직
-                OnclickPayment(remaingAmount, HoldingAmount, goodsPrice,  goodsVO.getStore_delivery_tip());
+                OnclickPayment(remaingAmount, HoldingAmount, goodsPrice,  goodsVO);
             }else {
 
                 binding.tvOriginalPrice.setText((goodsPrice*cnt)+" 원");
@@ -191,7 +189,7 @@ public class OrderActivity extends AppCompatActivity {
                 binding.tvDeliveryTip.setText("-" + goodsVO.getStore_delivery_tip()+" 원");
 
                 //결제 눌렀을 때 로직
-                OnclickPayment(remaingAmount, HoldingAmount, totalprice,  goodsVO.getStore_delivery_tip());
+                OnclickPayment(remaingAmount, HoldingAmount, totalprice,  goodsVO);
             }
 
 
@@ -310,7 +308,7 @@ public class OrderActivity extends AppCompatActivity {
                         binding.tvDeliveryTip.setText("-" + goodsVO.getStore_delivery_tip()+" 원");
 
 //                        결제 눌렀을 때 로직
-                        OnclickPayment(remaingAmount, HoldingAmount, goodsPrice,  goodsVO.getStore_delivery_tip());
+                        OnclickPayment(remaingAmount, HoldingAmount, goodsPrice,  goodsVO);
 
                     }else {
 
@@ -331,7 +329,7 @@ public class OrderActivity extends AppCompatActivity {
                         binding.tvDeliveryTip.setText("-" + goodsVO.getStore_delivery_tip()+" 원");
 
                         //                        결제 눌렀을 때 로직
-                        OnclickPayment(remaingAmount, HoldingAmount, goodsPayPrice,  goodsVO.getStore_delivery_tip());
+                        OnclickPayment(remaingAmount, HoldingAmount, goodsPayPrice,  goodsVO);
                     }
 
 
@@ -348,11 +346,11 @@ public class OrderActivity extends AppCompatActivity {
 
     }
 
-    private void OnclickPayment(int remaingAmount, int holdingAmount, int goodsPrice, int storeDeliverytip) {
+    private void OnclickPayment(int remaingAmount, int holdingAmount, int goodsPrice,  GoodsVO goodsVO) {
 
 
             binding.btnPayment.setOnClickListener(v -> {
-                if( 0 < holdingAmount-(goodsPrice + storeDeliverytip)){
+                if( 0 < holdingAmount-(goodsPrice + goodsVO.getStore_delivery_tip())){
                     if(binding.radioIppdapay.isChecked()){
                         ArrayList<GoodsBoardBuyCheckDTO> receivedList = getIntent().getParcelableArrayListExtra("getBuyCheck");
 
@@ -385,6 +383,8 @@ public class OrderActivity extends AppCompatActivity {
                                 orderConn.addParamMap("order_color",  receivedList.get(i).getCheck_goods_color());
                                 orderConn.addParamMap("store_no", StoreNo);
                                 orderConn.addParamMap("order_price", totalprice);
+                                orderConn.addParamMap("order_goods_name", goodsVO.getGoods_name());
+
                                 orderConn.onExcute((isResult, data) -> {
                                 });
                             }
@@ -412,9 +412,9 @@ public class OrderActivity extends AppCompatActivity {
 
                         finish();
                         Intent intent = new Intent(this, OrderCompleteActivity.class);
-                        intent.putExtra("holdingAmount", totalprice+storeDeliverytip);
+                        intent.putExtra("holdingAmount", totalprice+goodsVO.getStore_delivery_tip());
                         intent.putExtra("totalprice" ,totalprice);
-                        intent.putExtra("storeDeliverytip", storeDeliverytip);
+                        intent.putExtra("storeDeliverytip",goodsVO.getStore_delivery_tip());
                         startActivity(intent);
 
                     }else {

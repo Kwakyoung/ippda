@@ -25,6 +25,7 @@ public class OrderCompleteActivity extends AppCompatActivity {
 
 
         Intent intent = getIntent();
+        //binding.tvOrderNum.setText();
         binding.tvPayPrice.setText(intent.getExtras().getInt("holdingAmount")+" 원");
         binding.tvGoodsPrice.setText(intent.getExtras().getInt("totalprice")+ " 원");
         binding.tvDeliveryTip.setText(intent.getExtras().getInt("storeDeliverytip")+ " 원");

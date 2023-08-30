@@ -39,5 +39,12 @@ where g.goods_no = #{goods_no}
 </select>	
 
 
+<select id="search" resultType="goods.GoodsVO">
+    SELECT *
+     FROM GOODS 
+     WHERE GOODS_NAME LIKE '%' || #{keyword} || '%'
+</select>	
+
+
 
 </mapper>

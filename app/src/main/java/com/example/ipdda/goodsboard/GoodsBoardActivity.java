@@ -88,7 +88,6 @@ public class GoodsBoardActivity extends AppCompatActivity {
             GoodsVO goodsVO = arrayList.get(0);
 
             store_no = goodsVO.getStore_no();
-            imgvRecommendGoods1 = goodsVO.getGoods_main_image();
 
             String goodsName = goodsVO.getGoods_name();
             goodsPrice = goodsVO.getGoods_price();

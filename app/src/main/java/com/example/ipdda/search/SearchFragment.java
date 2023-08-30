@@ -23,7 +23,7 @@ import java.util.Date;
 public class SearchFragment extends DialogFragment {
     FragmentSearchBinding binding;
     ArrayList<SearchHistoryDTO> list ;
-
+    ArrayList<SearchHotDTO> list1;
     private SimpleDateFormat mFormat = new SimpleDateFormat("MM.dd");
 
     @Override
@@ -38,6 +38,7 @@ public class SearchFragment extends DialogFragment {
         binding.recvSearchCategory.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
         list = getlist();
         binding.grid.setAdapter(new SearchHotAdapter(getLayoutInflater()));
+
 
         binding.tvHistoryDelete.setOnClickListener(v -> {
             binding.recvSearchHistory.clearOnScrollListeners();

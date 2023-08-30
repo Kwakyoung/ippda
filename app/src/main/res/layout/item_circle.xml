@@ -16,7 +16,7 @@
             android:id="@+id/imgv_img"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:background="@drawable/ic_launcher_foreground"/>
+            android:background="@color/white"/>
     </androidx.cardview.widget.CardView>
     <TextView
         android:id="@+id/tv_text"

@@ -28,7 +28,7 @@ public class LikeFragment extends Fragment {
 
         ArrayList<LikeDTO> list = new ArrayList<>();
         list.add(new LikeDTO(R.drawable.clothes_top,R.drawable.ic_like_green,"광주화정점","50,000원"));
-        list.add(new LikeDTO(R.drawable.test,R.drawable.ic_like_green,"목포점","70,000원"));
+        list.add(new LikeDTO(R.drawable.pants,R.drawable.ic_like_green,"목포점","70,000원"));
         list.add(new LikeDTO(R.drawable.test,R.drawable.ic_like_green,"목포점","70,000원"));
 
 

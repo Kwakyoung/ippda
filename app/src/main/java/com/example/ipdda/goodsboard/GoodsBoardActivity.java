@@ -41,6 +41,7 @@ public class GoodsBoardActivity extends AppCompatActivity {
     ActivityGoodsboardBuyBinding dialogBinding;
     int totalPrice = 0,totalCnt = 0;
     int goods_no,goodsPrice,goods_sale_price, store_no;
+    
 
     static String select_size;
     ArrayList<GoodsBoardBuyCheckDTO> getBuyCheck= new ArrayList<>();
@@ -87,7 +88,7 @@ public class GoodsBoardActivity extends AppCompatActivity {
             GoodsVO goodsVO = arrayList.get(0);
 
             store_no = goodsVO.getStore_no();
-
+            imgvRecommendGoods1 = goodsVO.getGoods_main_image();
 
             String goodsName = goodsVO.getGoods_name();
             goodsPrice = goodsVO.getGoods_price();
@@ -156,9 +157,6 @@ public class GoodsBoardActivity extends AppCompatActivity {
                 likelist.add(likeDTO);
 
                 like = true;
-
-
-
             }
         });
 
@@ -195,6 +193,7 @@ public class GoodsBoardActivity extends AppCompatActivity {
                 intent.putExtra("goods_no", goods_no);
                 intent.putExtra("goodsPrice", totalPrice);
                 intent.putExtra("storeNo", store_no);
+
 
                 intent.putParcelableArrayListExtra("getBuyCheck" , (ArrayList<? extends Parcelable>) getBuyCheck);
                 startActivity(intent);

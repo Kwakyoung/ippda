@@ -375,17 +375,17 @@ public class OrderActivity extends AppCompatActivity {
 //                                orderConn.addParamMap("order_list",  map);
                                 //---------------------------------------------------------------------------------------
                                 int StoreNo = getIntent().getIntExtra("storeNo", 0);
+                                int OrderPrice = getIntent().getIntExtra("goodsPrice", 0);
                                orderConn.addParamMap("member_no", CommonVar.loginInfo.getMember_no());
                                 orderConn.addParamMap("goods_no", goods_no);
                                 orderConn.addParamMap("order_size",  receivedList.get(i).getCheck_goods_size());
                                 orderConn.addParamMap("order_cnt",  receivedList.get(i).getCheck_goods_cnt());
-                                orderConn.addParamMap("order_address",  CommonVar.loginInfo.getMember_address());
+                                orderConn.addParamMap("order_address",  CommonVar.loginInfo.getMember_address()+"");
                                 orderConn.addParamMap("order_status",  "결제완료");
                                 orderConn.addParamMap("order_color",  receivedList.get(i).getCheck_goods_color());
                                 orderConn.addParamMap("store_no", StoreNo);
                                 orderConn.addParamMap("order_price", totalprice);
                                 orderConn.onExcute((isResult, data) -> {
-                                        Intent intent = new Intent();
                                 });
                             }
                         }

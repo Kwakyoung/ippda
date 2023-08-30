@@ -195,8 +195,9 @@ public class GoodsBoardActivity extends AppCompatActivity {
             }else{
                 Intent intent = new Intent(this, OrderActivity.class);
                 intent.putExtra("goods_no", goods_no);
-                intent.putExtra("goodsPrice", goodsPrice);
+                intent.putExtra("goodsPrice", totalPrice);
                 intent.putExtra("storeNo", store_no);
+
                 intent.putParcelableArrayListExtra("getBuyCheck" , (ArrayList<? extends Parcelable>) getBuyCheck);
                 startActivity(intent);
 
@@ -269,6 +270,7 @@ public class GoodsBoardActivity extends AppCompatActivity {
                 dialogBinding.tvTotalGoods.setText("상품 "+totalCnt+"개");
                 for (int i = 0; i < list.size(); i++) {
                     totalPrice+=list.get(i).getCheck_goods_price()*list.get(i).getCheck_goods_cnt();
+
                 }
                 dialogBinding.tvTotalPrice.setText(totalPrice+"원");
             }

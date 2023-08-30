@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
 
 <div class="modal fade" id="modal-alert" data-bs-backdrop="static" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content"  data-no='0'>
       <div class="modal-header">
         <h5 class="modal-title" id="confirmModalLabel">아이디 사용 가능</h5>

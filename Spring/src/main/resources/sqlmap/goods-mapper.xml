@@ -40,5 +40,4 @@ where g.goods_no = #{goods_no}
 
 
 
-
 </mapper>

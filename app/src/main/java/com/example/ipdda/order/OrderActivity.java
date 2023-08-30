@@ -2,14 +2,23 @@ package com.example.ipdda.order;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.Manifest;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -17,6 +26,7 @@ import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.Toast;
 
+import com.example.ipdda.MainActivity;
 import com.example.ipdda.R;
 import com.example.ipdda.common.CommonConn;
 import com.example.ipdda.common.CommonVar;
@@ -29,6 +39,7 @@ import com.example.ipdda.home.GoodsVO;
 import com.example.ipdda.member.MemberVO;
 import com.example.ipdda.pay.IppdaPayActivity;
 import com.example.ipdda.pay.TossPayActivity;
+import com.example.ipdda.profile.TrackDeliveryActivity;
 import com.google.android.gms.common.internal.service.Common;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -40,10 +51,8 @@ public class OrderActivity extends AppCompatActivity {
     ActivityOrderBinding binding;
     String TAG = "ippda";
 
-    int goods_no;
-
-    int storeNo;
-    String cleanedData;
+    int goods_no, storeNo;
+    String cleanedData, goods_name;
 
 //    ArrayList<GoodsBoardBuyCheckDTO> getBuyCheck;
     // 기본 생성자 추가
@@ -134,7 +143,7 @@ public class OrderActivity extends AppCompatActivity {
         conn.onExcute((isResult, data) -> {
                     ArrayList<GoodsVO> arrayList = new Gson().fromJson(data, new TypeToken<ArrayList<GoodsVO>>() {}.getType());
                     GoodsVO goodsVO = arrayList.get(0);
-
+                    goods_name=goodsVO.getGoods_name();
                     storeNo = goodsVO.getStore_no();
             binding.recvOrderGoods.setLayoutManager(new LinearLayoutManager(this));
             binding.recvOrderGoods.setAdapter(new OrderAdapter(arrayList));
@@ -174,7 +183,7 @@ public class OrderActivity extends AppCompatActivity {
 
                 binding.tvRemainingAmount.setText(remaingAmount+" 원");
                 //결제 눌렀을 때 로직
-                OnclickPayment(remaingAmount, HoldingAmount, goodsPrice,  goodsVO.getStore_delivery_tip());
+                OnclickPayment(remaingAmount, HoldingAmount, goodsPrice,  goodsVO);
             }else {
 
                 binding.tvOriginalPrice.setText((goodsPrice*cnt)+" 원");
@@ -191,7 +200,7 @@ public class OrderActivity extends AppCompatActivity {
                 binding.tvDeliveryTip.setText("-" + goodsVO.getStore_delivery_tip()+" 원");
 
                 //결제 눌렀을 때 로직
-                OnclickPayment(remaingAmount, HoldingAmount, totalprice,  goodsVO.getStore_delivery_tip());
+                OnclickPayment(remaingAmount, HoldingAmount, totalprice,  goodsVO);
             }
 
 
@@ -310,7 +319,7 @@ public class OrderActivity extends AppCompatActivity {
                         binding.tvDeliveryTip.setText("-" + goodsVO.getStore_delivery_tip()+" 원");
 
 //                        결제 눌렀을 때 로직
-                        OnclickPayment(remaingAmount, HoldingAmount, goodsPrice,  goodsVO.getStore_delivery_tip());
+                        OnclickPayment(remaingAmount, HoldingAmount, goodsPrice,  goodsVO);
 
                     }else {
 
@@ -331,7 +340,7 @@ public class OrderActivity extends AppCompatActivity {
                         binding.tvDeliveryTip.setText("-" + goodsVO.getStore_delivery_tip()+" 원");
 
                         //                        결제 눌렀을 때 로직
-                        OnclickPayment(remaingAmount, HoldingAmount, goodsPayPrice,  goodsVO.getStore_delivery_tip());
+                        OnclickPayment(remaingAmount, HoldingAmount, goodsPayPrice,  goodsVO);
                     }
 
 
@@ -348,11 +357,14 @@ public class OrderActivity extends AppCompatActivity {
 
     }
 
-    private void OnclickPayment(int remaingAmount, int holdingAmount, int goodsPrice, int storeDeliverytip) {
-
-
+    private void OnclickPayment(int remaingAmount, int holdingAmount, int goodsPrice,  GoodsVO goodsVO) {
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.TIRAMISU){
+            if(ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED){
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.POST_NOTIFICATIONS}, 101);
+            }
+        }
             binding.btnPayment.setOnClickListener(v -> {
-                if( 0 < holdingAmount-(goodsPrice + storeDeliverytip)){
+                if( 0 < holdingAmount-(goodsPrice + goodsVO.getStore_delivery_tip())){
                     if(binding.radioIppdapay.isChecked()){
                         ArrayList<GoodsBoardBuyCheckDTO> receivedList = getIntent().getParcelableArrayListExtra("getBuyCheck");
 
@@ -385,6 +397,8 @@ public class OrderActivity extends AppCompatActivity {
                                 orderConn.addParamMap("order_color",  receivedList.get(i).getCheck_goods_color());
                                 orderConn.addParamMap("store_no", StoreNo);
                                 orderConn.addParamMap("order_price", totalprice);
+                                orderConn.addParamMap("order_goods_name", goodsVO.getGoods_name());
+
                                 orderConn.onExcute((isResult, data) -> {
                                 });
                             }
@@ -411,10 +425,13 @@ public class OrderActivity extends AppCompatActivity {
                         }
 
                         finish();
+
+                        makeNotification();
+
                         Intent intent = new Intent(this, OrderCompleteActivity.class);
-                        intent.putExtra("holdingAmount", totalprice+storeDeliverytip);
+                        intent.putExtra("holdingAmount", totalprice+goodsVO.getStore_delivery_tip());
                         intent.putExtra("totalprice" ,totalprice);
-                        intent.putExtra("storeDeliverytip", storeDeliverytip);
+                        intent.putExtra("storeDeliverytip",goodsVO.getStore_delivery_tip());
                         startActivity(intent);
 
                     }else {
@@ -432,7 +449,33 @@ public class OrderActivity extends AppCompatActivity {
 
     }
 
+    public void makeNotification(){
+        String chanelID="CHANNEL_ID_NOTIFICATION";
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(),chanelID);
+        builder.setSmallIcon(R.drawable.ippda_logo)
+                .setContentTitle("IPPDA")
+                .setContentText("주문이 완료되었습니다.")
+                .setAutoCancel(true).setPriority(NotificationCompat.PRIORITY_DEFAULT);
+        Intent intent = new Intent(getApplicationContext(), TrackDeliveryActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        //        .putExtra("data","Somevalue to be passed here");//이거 데이터 값 넘겨주는거
 
+        PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(),0,intent,PendingIntent.FLAG_MUTABLE);
+        builder.setContentIntent(pendingIntent);
+        NotificationManager notificationManager= (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            NotificationChannel notificationChannel = notificationManager.getNotificationChannel(chanelID);
+            if (notificationChannel==null){
+                int importance = NotificationManager.IMPORTANCE_HIGH;
+                notificationChannel = new NotificationChannel(chanelID,"Some description", importance);
+                notificationChannel.setLightColor(Color.GREEN);
+                notificationChannel.enableVibration(true);
+                notificationManager.createNotificationChannel(notificationChannel);
+            }
+        }
+        notificationManager.notify(0,builder.build());
+    }
 
 
 }

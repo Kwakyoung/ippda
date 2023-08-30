@@ -11,7 +11,9 @@ import com.example.ipdda.databinding.ActivityOrderBinding;
 import com.example.ipdda.databinding.ItemOrderGoodsBinding;
 import com.example.ipdda.home.GoodsVO;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder>{
 
@@ -37,13 +39,21 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder>{
 
 
         if(SalePercent == 0){
-            h.binding.tvPayPrice.setText(list.get(i).getGoods_price()+"원");
-            h.binding.tvOrginalPrice.setVisibility(View.GONE);
+            String goodsPriceStr = NumberFormat.getNumberInstance(Locale.getDefault()).format(list.get(i).getGoods_price());
+            h.binding.tvOrginalPrice.setText(goodsPriceStr);
+            h.binding.tvSalePrice.setVisibility(View.GONE);
+            h.binding.tvPayPrice.setVisibility(View.GONE);
         }else {
         int goodsSalePrice = goodsPrice/(100/SalePercent);
-            h.binding.tvGoods.setText(list.get(i).getGoods_name()+"");
-            h.binding.tvOrginalPrice.setText(list.get(i).getGoods_price()+"");
-            h.binding.tvPayPrice.setText(goodsSalePrice+"");
+
+            String formattedGoodsPrice = NumberFormat.getNumberInstance(Locale.getDefault()).format(goodsSalePrice);
+            String goodsName = list.get(i).getGoods_name();
+            String goodsPriceStr = NumberFormat.getNumberInstance(Locale.getDefault()).format(list.get(i).getGoods_price());
+
+            h.binding.tvGoods.setText(goodsName);
+            h.binding.tvOrginalPrice.setText(goodsPriceStr);
+            h.binding.tvPayPrice.setText(formattedGoodsPrice);
+
         }
 
         h.binding.tvStore.setText(list.get(i).getStore_name()+"");

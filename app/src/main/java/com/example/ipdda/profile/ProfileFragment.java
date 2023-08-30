@@ -76,19 +76,19 @@ public class ProfileFragment extends Fragment {
 
     ArrayList<RecvCircleDTO> getTrackDeliveryList(){
         ArrayList<RecvCircleDTO> list= new ArrayList<>();
-            list.add(new RecvCircleDTO(R.drawable.ic_launcher_background,"입금/결제"));
-            list.add(new RecvCircleDTO(R.drawable.ic_launcher_background,"배송 준비중"));
-            list.add(new RecvCircleDTO(R.drawable.ic_launcher_background,"배송중"));
-            list.add(new RecvCircleDTO(R.drawable.ic_launcher_background,"배송완료"));
+            list.add(new RecvCircleDTO(R.drawable.monitor,"입금/결제"));
+            list.add(new RecvCircleDTO(R.drawable.ready,"배송 준비중"));
+            list.add(new RecvCircleDTO(R.drawable.shopping,"배송중"));
+            list.add(new RecvCircleDTO(R.drawable.home,"배송완료"));
             //list.add(new RecvCircleDTO(R.drawable.ic_launcher_background, "취소,교환,환불"));
         return list;
     }
     ArrayList<RecvCircleDTO> getUserAction(){
         ArrayList<RecvCircleDTO> list= new ArrayList<>();
-            list.add(new RecvCircleDTO(R.drawable.ic_launcher_background,"장바구니"));
-            list.add(new RecvCircleDTO(R.drawable.ic_launcher_background,"좋아요"));
-            list.add(new RecvCircleDTO(R.drawable.ic_launcher_background,"즐겨찾기"));
-            list.add(new RecvCircleDTO(R.drawable.ic_launcher_background, "리뷰"));
+            list.add(new RecvCircleDTO(R.drawable.cart,"장바구니"));
+            list.add(new RecvCircleDTO(R.drawable.ic_like_blank,"좋아요"));
+            list.add(new RecvCircleDTO(R.drawable.star,"즐겨찾기"));
+            list.add(new RecvCircleDTO(R.drawable.chat, "리뷰"));
         return list;
     }
 

@@ -352,7 +352,7 @@ public class OrderActivity extends AppCompatActivity {
 
 
             binding.btnPayment.setOnClickListener(v -> {
-                if(holdingAmount >= (goodsPrice + storeDeliverytip)){
+                if( 0 < holdingAmount-(goodsPrice + storeDeliverytip)){
                     if(binding.radioIppdapay.isChecked()){
                         ArrayList<GoodsBoardBuyCheckDTO> receivedList = getIntent().getParcelableArrayListExtra("getBuyCheck");
 
@@ -383,16 +383,13 @@ public class OrderActivity extends AppCompatActivity {
                                 orderConn.addParamMap("order_status",  "결제완료");
                                 orderConn.addParamMap("order_color",  receivedList.get(i).getCheck_goods_color());
                                 orderConn.addParamMap("store_no", StoreNo);
-
+                                orderConn.addParamMap("order_price", totalprice);
                                 orderConn.onExcute((isResult, data) -> {
-                                        Intent intent = new Intent()
+                                        Intent intent = new Intent();
                                 });
                             }
                         }
-                        int cnt=0;
-                        for (int i = 0; i < receivedList.size(); i++) {
-                            cnt=receivedList.get(i).getCheck_goods_cnt();
-                        }
+
                         //페이 줄어드는 로직
                         CommonConn conn = new CommonConn(this , "member/payment");
                         conn.addParamMap("member_money", remaingAmount);

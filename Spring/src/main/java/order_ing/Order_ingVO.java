@@ -2,8 +2,16 @@ package order_ing;
 
 
 public class Order_ingVO {
-	private int order_no, member_no, goods_no, goods_option_no, order_cnt;
+	private int order_no, member_no, goods_no, goods_option_no, order_cnt,order_price;
 	private String order_date, order_size, order_address, order_type, order_request, order_status, order_color;
+	
+	
+	public int getOrder_price() {
+		return order_price;
+	}
+	public void setOrder_price(int order_price) {
+		this.order_price = order_price;
+	}
 	public int getOrder_no() {
 		return order_no;
 	}

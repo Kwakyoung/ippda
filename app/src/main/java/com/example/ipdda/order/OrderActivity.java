@@ -385,7 +385,7 @@ public class OrderActivity extends AppCompatActivity {
                                 orderConn.addParamMap("store_no", StoreNo);
 
                                 orderConn.onExcute((isResult, data) -> {
-                                        Intent intent = new Intent()
+                                        Intent intent = new Intent();
                                 });
                             }
                         }

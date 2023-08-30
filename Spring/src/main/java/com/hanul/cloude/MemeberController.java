@@ -105,13 +105,17 @@ public class MemeberController {
 
 		try {
 			// send 메소드로 ArrayList<Message> 객체를 넣어도 동작합니다!
+			System.out.println(" 인증번호는 : " + resultNum);
 			messageService.send(message);
 		} catch (NurigoMessageNotReceivedException exception) {
 			// 발송에 실패한 메시지 목록을 확인할 수 있습니다!
+			System.out.println(" 인증번호는 : " + resultNum);
 			System.out.println(exception.getFailedMessageList());
 			System.out.println(exception.getMessage());
 		} catch (Exception exception) {
+			System.out.println(" 인증번호는 : " + resultNum);
 			System.out.println(exception.getMessage());
+			
 		}
 
 		return resultNum;

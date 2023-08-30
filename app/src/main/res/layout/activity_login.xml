@@ -137,15 +137,15 @@
             android:layout_height="wrap_content"/>
     </RelativeLayout>
 
-    <View
+  <!--  <View
         android:layout_gravity="center"
         android:layout_marginVertical="30dp"
         android:background="#666"
         android:layout_width="320dp"
-        android:layout_height="1dp"/>
+        android:layout_height="1dp"/>-->
 
 
-    <LinearLayout
+   <!-- <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -166,7 +166,7 @@
         android:layout_width="0dp"
         android:layout_height="50dp"/>
 
-</LinearLayout>
+</LinearLayout>-->
 
 
 

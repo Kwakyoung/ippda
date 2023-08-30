@@ -1,6 +1,8 @@
 package com.example.ipdda.login;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +16,7 @@ import com.example.ipdda.R;
 import com.example.ipdda.common.CommonConn;
 import com.example.ipdda.common.CommonVar;
 import com.example.ipdda.databinding.ActivityResultBinding;
+import com.example.ipdda.home.HomeFragment;
 import com.example.ipdda.member.MemberVO;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -53,6 +56,14 @@ public class ResultActivity extends AppCompatActivity {
             }
         });
 
+        binding.btnActivitylogin.setOnClickListener(v -> {
+            Intent intent1 = new Intent(this, LoginActivity.class);
+            startActivity(intent1);
+        });
 
+        binding.tvFindPw.setOnClickListener(v -> {
+            FragmentManager manager = getSupportFragmentManager();
+            manager.beginTransaction().replace(R.id.container, new FindpwFragment()).commit();
+        });
     }
 }

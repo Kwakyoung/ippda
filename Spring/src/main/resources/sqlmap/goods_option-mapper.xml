@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="goods_option">
+
+	<select id="check_size" resultType="goods_option.Goods_optionVO">
+		SELECT U.*
+		FROM GOODS_OPTION U
+		INNER JOIN GOODS F ON U.GOODS_NO = F.GOODS_NO
+		WHERE U.GOODS_SIZE =#{goods_size} AND U.goods_no=#{goods_no}
+	</select>
+	
+	<update id="order">
+        UPDATE GOODS_OPTION
+        SET GOODS_CNT = GOODS_CNT - #{goods_cnt}
+        WHERE GOODS_NO = #{goods_no} AND GOODS_COLOR = #{goods_color} AND GOODS_SIZE=#{goods_size}
+	</update>
+
+</mapper>

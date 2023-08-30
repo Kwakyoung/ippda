@@ -31,10 +31,10 @@
     </RelativeLayout>
 
     <View
-        android:layout_marginVertical="10dp"
-        android:background="#666"
         android:layout_width="match_parent"
-        android:layout_height="1dp"/>
+        android:layout_height="4dp"
+        android:layout_marginVertical="30dp"
+        android:background="#BFBFBF" />
 
     <ScrollView
         android:layout_weight="1"
@@ -52,6 +52,7 @@
         android:orientation="vertical">
 
         <RelativeLayout
+
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginHorizontal="10dp">
@@ -62,13 +63,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView
+                android:layout_centerVertical="true"
                 android:id="@+id/btn_change_address"
                 android:layout_alignParentRight="true"
                 android:textColor="@color/green"
                 android:text="변경하기"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
-        </RelativeLayout>
+        </RelativeLayout
+            >
 
 
         <View
@@ -162,18 +165,13 @@
             </RelativeLayout>
 
             <EditText
-                android:textSize="15dp"
-                android:textColorHint="@color/gray"
-                android:textColor="@color/white"
-                android:hint="여기에 입력하세요"
                 android:id="@+id/edt_delivery_request"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"/>
-
-
-
-
-
+                android:layout_height="150dp"
+                android:hint="여기에 입력하세요"
+                android:textColor="@color/white"
+                android:textColorHint="@color/gray"
+                android:textSize="15dp" />
 
 
         </LinearLayout>
@@ -282,7 +280,7 @@
                                     android:layout_centerVertical="true"
                                     android:textSize="16dp"
                                     android:textColor="#010101"
-                                    android:text="잔액"
+                                    android:text="보유 금액"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"/>
                                 <TextView

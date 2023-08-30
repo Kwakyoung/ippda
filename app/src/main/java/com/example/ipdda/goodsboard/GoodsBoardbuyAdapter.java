@@ -1,12 +1,8 @@
 package com.example.ipdda.goodsboard;
 
-import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -14,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ipdda.databinding.ActivityGoodsboardBuyBinding;
 import com.example.ipdda.databinding.ItemGoodsboardRecvBinding;
-import com.example.ipdda.inventory.InventoryVO;
 
 import java.util.ArrayList;
 
@@ -22,19 +17,19 @@ public class GoodsBoardbuyAdapter extends RecyclerView.Adapter<GoodsBoardbuyAdap
 
     ItemGoodsboardRecvBinding binding;
 
-    ArrayList<InventoryVO> list;
+    ArrayList<Goods_optionVO> list;
     ActivityGoodsboardBuyBinding dialogBinding;
     GoodsBoardActivity activity;
     ArrayList<GoodsBoardBuyCheckDTO> getBuyCheck;
 
+    boolean same=false;
 
-
-    int goods_price;
-    public GoodsBoardbuyAdapter(GoodsBoardActivity activity , ArrayList<InventoryVO> list, ActivityGoodsboardBuyBinding dialogBinding, ArrayList<GoodsBoardBuyCheckDTO> getBuyCheck,int goods_price) {
+    int goods_sale_price;
+    public GoodsBoardbuyAdapter(GoodsBoardActivity activity , ArrayList<Goods_optionVO> list, ActivityGoodsboardBuyBinding dialogBinding, ArrayList<GoodsBoardBuyCheckDTO> getBuyCheck, int goods_sale_price) {
         this.list = list;
         this.dialogBinding = dialogBinding;
         this.getBuyCheck=getBuyCheck;
-        this.goods_price=goods_price;
+        this.goods_sale_price=goods_sale_price;
         this.activity=activity;
     }
 
@@ -47,14 +42,26 @@ public class GoodsBoardbuyAdapter extends RecyclerView.Adapter<GoodsBoardbuyAdap
     }
 
     @Override
-    public void onBindViewHolder(@NonNull GoodsBoardbuyAdapter.ViewHolder h, int i) {
+    public void onBindViewHolder(@NonNull ViewHolder h, int i) {
         h.binding.btnOption.setText(list.get(i).getGoods_color());
         h.binding.btnOption.setOnClickListener(v -> {
             dialogBinding.recvColor.setVisibility(View.GONE);
-
-            getBuyCheck.add(new GoodsBoardBuyCheckDTO(list.get(i).getGoods_color()+ "/" +
-                    GoodsBoardActivity.select_size,list.get(i).getGoods_size(),list.get(i).getGoods_color(),
-                    1,goods_price));
+            if (getBuyCheck != null) {
+                for (int j = 0; j < getBuyCheck.size(); j++) {
+                    if (getBuyCheck.get(j).getCheck_goods_name().equals(list.get(i).getGoods_color() + "/" + GoodsBoardActivity.select_size)) {
+                        // 이미 있는 상품인 경우 수량을 1 증가
+                        GoodsBoardBuyCheckDTO existingItem = getBuyCheck.get(j);
+                        existingItem.setCheck_goods_cnt(existingItem.getCheck_goods_cnt() + 1);
+                        same = true;
+                        break; // 이미 있는 경우 처리를 마치고 루프를 종료
+                    }
+                }
+            }
+            if (!same){
+                getBuyCheck.add(new GoodsBoardBuyCheckDTO(list.get(i).getGoods_color()+ "/" +
+                        GoodsBoardActivity.select_size,list.get(i).getGoods_size(),list.get(i).getGoods_color(),
+                        1,goods_sale_price));
+            }
 
 
             dialogBinding.recvBuyCheck.setAdapter(new GoodsBuyCheckAdapter(activity , getBuyCheck));

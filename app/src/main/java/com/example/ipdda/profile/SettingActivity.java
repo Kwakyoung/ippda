@@ -36,7 +36,7 @@ public class SettingActivity extends AppCompatActivity {
         list.add(new SettingDTO("팝업 알림 설정",true));
         list.add(new SettingDTO("SMS서비스 설정",true));
         list.add(new SettingDTO("로그아웃",false));
-        list.add(new SettingDTO("탈퇴하기",false));
+
 
         return list;
     }

@@ -15,6 +15,7 @@ import com.example.ipdda.databinding.ItemGoodsSubCategoryBinding;
 import com.example.ipdda.databinding.ItemHomeRecommendRecvBinding;
 import com.example.ipdda.goodsboard.GoodsBoardActivity;
 import com.example.ipdda.home.GoodsVO;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -51,8 +52,8 @@ public class GoodsListAdapter extends RecyclerView.Adapter<GoodsListAdapter.View
 
 
         if( list.get(i).getGoods_sale_percent() != 0){
-            int getGoodsPrice = list.get(i).getGoods_price()/(100/list.get(i).getGoods_sale_percent());
-            h.binding.tvGoodsPrice1.setText(getGoodsPrice+"");
+            h.binding.tvGoodsPrice1.setText(list.get(i).getGoods_sale_price()+" 원");
+            h.binding.tvSalePercent1.setText(list.get(i).getGoods_sale_percent()+"");
         }else{
             h.binding.tvGoodsPrice1.setText(list.get(i).getGoods_price()+"");
             h.binding.tvSalePercent1.setVisibility(View.GONE);
@@ -60,6 +61,11 @@ public class GoodsListAdapter extends RecyclerView.Adapter<GoodsListAdapter.View
         }
 
 
+        String imageUrl = list.get(i).getGoods_main_image(); // 이미지의 실제 URL을 입력해주세요
+
+        Picasso.get()
+                .load(imageUrl)
+                .into(h.binding.imgvGoods1);
 
 
 

@@ -1,27 +1,17 @@
 package com.example.ipdda.goodsboard;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.os.PersistableBundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -29,24 +19,16 @@ import android.widget.Toast;
 import com.example.ipdda.MainActivity;
 import com.example.ipdda.R;
 import com.example.ipdda.common.CommonConn;
-import com.example.ipdda.common.CommonVar;
-import com.example.ipdda.databinding.ActivityCouponRegisterBinding;
 import com.example.ipdda.databinding.ActivityGoodsBoardBinding;
 import com.example.ipdda.databinding.ActivityGoodsboardBuyBinding;
 import com.example.ipdda.home.GoodsVO;
-import com.example.ipdda.inventory.InventoryVO;
-import com.example.ipdda.order.OrderActivity;
-import com.example.ipdda.pay.TossPayActivity;
 import com.example.ipdda.like.LikeDTO;
-import com.example.ipdda.like.LikeFragment;
-import com.example.ipdda.profile.RecvCircleDTO;
-import com.example.ipdda.profile.SettingDTO;
+import com.example.ipdda.order.OrderActivity;
 import com.example.ipdda.profile.SubActivity;
-import com.example.ipdda.profile.TrackDeliveryAdepter;
-import com.example.ipdda.profile.coupon.CouponVO;
 import com.example.ipdda.search.SearchFragment;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.squareup.picasso.Picasso;
 
 
 import java.util.ArrayList;
@@ -58,11 +40,12 @@ public class GoodsBoardActivity extends AppCompatActivity {
     ActivityGoodsBoardBinding binding;
     ActivityGoodsboardBuyBinding dialogBinding;
     int totalPrice = 0,totalCnt = 0;
-    int goods_no,goodsPrice;
+    int goods_no,goodsPrice,goods_sale_price, store_no;
 
     static String select_size;
     ArrayList<GoodsBoardBuyCheckDTO> getBuyCheck= new ArrayList<>();
 
+    OrderActivity orderActivity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,22 +54,6 @@ public class GoodsBoardActivity extends AppCompatActivity {
         //리뷰 리사이클러
         binding.recvReview.setAdapter(new GoodsBoardReviewAdapter(GetGoodsBoardReview(),this));
         binding.recvReview.setLayoutManager(new LinearLayoutManager(this));
-
-
-
-// 테스트용 추가한 부분
-        binding.imgvLike.setOnClickListener(v -> {
-            if (like) {
-                binding.imgvLike.setImageResource(R.drawable.ic_like_blank);
-                like = false;
-            } else {
-                binding.imgvLike.setImageResource(R.drawable.ic_like_green);
-                like = true;
-
-
-
-            }
-        });
 
 
 
@@ -119,6 +86,8 @@ public class GoodsBoardActivity extends AppCompatActivity {
             ArrayList<GoodsVO> arrayList = new Gson().fromJson(data, new TypeToken<ArrayList<GoodsVO>>(){}.getType());
             GoodsVO goodsVO = arrayList.get(0);
 
+            store_no = goodsVO.getStore_no();
+
 
             String goodsName = goodsVO.getGoods_name();
             goodsPrice = goodsVO.getGoods_price();
@@ -126,6 +95,7 @@ public class GoodsBoardActivity extends AppCompatActivity {
             String storeName = goodsVO.getStore_name()+"";
             String starCnt = goodsVO.getGoods_star()+"";
             String goodsContext = goodsVO.getGoods_info()+"";
+            goods_sale_price = goodsVO.getGoods_sale_price();
 
             if(SalePercent == 0){
                 binding.tvGoodsPrice.setText(goodsPrice+" 원");
@@ -135,12 +105,15 @@ public class GoodsBoardActivity extends AppCompatActivity {
                 binding.tvSale.setVisibility(View.GONE);
                 binding.lnOrignalPrice.setVisibility(View.GONE);
             }else{
-                int goodsSalePrice = goodsPrice/(100/SalePercent);
-                binding.tvGoodsPrice.setText(goodsSalePrice+" 원");
+                binding.tvGoodsPrice.setText(goods_sale_price+" 원");
                 binding.tvGoodsOriginalPrice.setText(goodsPrice+" 원");
 
             }
+
+
             binding.btnBuy.setOnClickListener(v -> {
+//                Intent intent = new Intent(this, OrderActivity.class);
+//                startActivity(intent);
                 showDialog_buy();
             });
 
@@ -150,7 +123,46 @@ public class GoodsBoardActivity extends AppCompatActivity {
             binding.tvGoodsContext.setText(goodsContext);
             binding.tvSalePercent.setText(SalePercent+"");
             binding.tvDeliveryTip.setText(goodsVO.getStore_delivery_tip()+" 원");
+            String mainImageUrl = goodsVO.getGoods_main_image(); // 이미지의 실제 URL을 입력해주세요
+            String subImageUrl = goodsVO.getGoods_sub_image();
+
+            Picasso.get()
+                    .load(mainImageUrl)
+                    .into(binding.imgvMainGoods);
+
+            Picasso.get()
+                    .load(subImageUrl)
+                    .into(binding.imgvSubGoods);
+
         });
+
+
+        // 테스트용 추가한 부분
+        binding.imgvLike.setOnClickListener(v -> {
+            if (like) {
+                binding.imgvLike.setImageResource(R.drawable.ic_like_blank);
+                like = false;
+            } else {
+                binding.imgvLike.setImageResource(R.drawable.ic_like_green);
+                Toast.makeText(this, "찜목록에 추가되었습니다.", Toast.LENGTH_SHORT).show();
+                LikeDTO likeDTO = new LikeDTO(
+                        binding.imgvMainGoods.getImageAlpha(),
+                        R.drawable.ic_like_green, // 좋아요 이미지 (또는 R.drawable.ic_like_blank)
+                        binding.tvStoreName.getText().toString(), // 상점 이름
+                        binding.tvGoodsPrice.getText().toString() // 상품 가격
+                );
+
+                ArrayList<LikeDTO> likelist = new ArrayList<>();
+                likelist.add(likeDTO);
+
+                like = true;
+
+
+
+            }
+        });
+
+
 
         setContentView(binding.getRoot());
     }
@@ -176,9 +188,18 @@ public class GoodsBoardActivity extends AppCompatActivity {
         write_dialog.setContentView(dialogBinding.getRoot());
 
         dialogBinding.btnBuy.setOnClickListener(v -> {
-            Intent intent = new Intent(this, OrderActivity.class);
-            intent.putExtra("goods_no", goods_no);
-            startActivity(intent);
+            if (getBuyCheck.size()==0){
+                Toast.makeText(this, "상품을 선택해주세요.", Toast.LENGTH_SHORT).show();
+            }else{
+                Intent intent = new Intent(this, OrderActivity.class);
+                intent.putExtra("goods_no", goods_no);
+                intent.putExtra("goodsPrice", totalPrice);
+                intent.putExtra("storeNo", store_no);
+
+                intent.putParcelableArrayListExtra("getBuyCheck" , (ArrayList<? extends Parcelable>) getBuyCheck);
+                startActivity(intent);
+
+            }
         });
 
         size_click(dialogBinding.btnXS,dialogBinding.btnSelectSize,dialogBinding.linSize);
@@ -247,6 +268,7 @@ public class GoodsBoardActivity extends AppCompatActivity {
                 dialogBinding.tvTotalGoods.setText("상품 "+totalCnt+"개");
                 for (int i = 0; i < list.size(); i++) {
                     totalPrice+=list.get(i).getCheck_goods_price()*list.get(i).getCheck_goods_cnt();
+
                 }
                 dialogBinding.tvTotalPrice.setText(totalPrice+"원");
             }
@@ -256,11 +278,11 @@ public class GoodsBoardActivity extends AppCompatActivity {
 
 
     public void size(Button btn){
-        CommonConn conn = new CommonConn(this, "inventory/check_size");
+        CommonConn conn = new CommonConn(this, "goods_option/check_size");
         conn.addParamMap("goods_no" , goods_no);
         conn.addParamMap("goods_size", btn.getText().toString());
         conn.onExcute(((isResult, data) -> {
-            ArrayList<InventoryVO> list = new Gson().fromJson(data , new TypeToken<ArrayList<InventoryVO>>(){}.getType());
+            ArrayList<Goods_optionVO> list = new Gson().fromJson(data , new TypeToken<ArrayList<Goods_optionVO>>(){}.getType());
             btn.setText(btn.getText());
             if ((list.size())==0){
                 btn.setVisibility(View.GONE);
@@ -288,14 +310,18 @@ public class GoodsBoardActivity extends AppCompatActivity {
         });
     }
     public void color() {
-        CommonConn conn = new CommonConn(this, "inventory/check_size");
+        CommonConn conn = new CommonConn(this, "goods_option/check_size");
         conn.addParamMap("goods_no" , goods_no);
         conn.addParamMap("goods_size", select_size);
         conn.onExcute((isResult, data) -> {
             Log.d("ServerResponse", "isResult: " + isResult + ", data: " + data);
-            ArrayList<InventoryVO> list = new Gson().fromJson(data , new TypeToken<ArrayList<InventoryVO>>(){}.getType());
+            ArrayList<Goods_optionVO> list = new Gson().fromJson(data , new TypeToken<ArrayList<Goods_optionVO>>(){}.getType());
             // 어댑터 데이터 업데이트
-            dialogBinding.recvColor.setAdapter(new GoodsBoardbuyAdapter(this,list, dialogBinding,getBuyCheck,goodsPrice));
+
+
+
+
+            dialogBinding.recvColor.setAdapter(new GoodsBoardbuyAdapter(this,list, dialogBinding,getBuyCheck,goods_sale_price));
             dialogBinding.recvColor.setLayoutManager(new LinearLayoutManager(this));
         });
     }

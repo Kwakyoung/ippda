@@ -31,6 +31,8 @@ public class LikeFragment extends Fragment {
         list.add(new LikeDTO(R.drawable.test,R.drawable.ic_like_green,"목포점","70,000원"));
         list.add(new LikeDTO(R.drawable.test,R.drawable.ic_like_green,"목포점","70,000원"));
 
+
+
         binding.imgvSearch.setOnClickListener(v -> {
             FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
             SearchFragment searchFragment = new SearchFragment();

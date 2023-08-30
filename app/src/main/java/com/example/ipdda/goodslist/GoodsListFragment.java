@@ -143,7 +143,6 @@ public class GoodsListFragment extends Fragment {
             list.add(new GoodsListSubCategoryDTO("플리스/뽀글이"));
             list.add(new GoodsListSubCategoryDTO("트레이닝 재킷"));
             list.add(new GoodsListSubCategoryDTO("환절기 코트"));
-            list.add(new GoodsListSubCategoryDTO("트레이닝 재킷"));
             list.add(new GoodsListSubCategoryDTO("겨울 싱글 코트"));
             list.add(new GoodsListSubCategoryDTO("겨울 더블 코트"));
             list.add(new GoodsListSubCategoryDTO("겨울 기타 코트"));
@@ -218,17 +217,7 @@ public class GoodsListFragment extends Fragment {
             list.add(new GoodsListSubCategoryDTO("브로치/배지"));
             list.add(new GoodsListSubCategoryDTO("헤어 악세사리"));
             list.add(new GoodsListSubCategoryDTO("기타 악세사리"));
-        }else if (goodsListMainCategoryDTO.getGoodsMainCategory().equals("악세사리")) {
-            list.add(new GoodsListSubCategoryDTO("전체"));
-            list.add(new GoodsListSubCategoryDTO("팔찌"));
-            list.add(new GoodsListSubCategoryDTO("반지"));
-            list.add(new GoodsListSubCategoryDTO("목걸이/펜던트"));
-            list.add(new GoodsListSubCategoryDTO("귀걸이"));
-            list.add(new GoodsListSubCategoryDTO("발찌"));
-            list.add(new GoodsListSubCategoryDTO("브로치/배지"));
-            list.add(new GoodsListSubCategoryDTO("헤어 악세사리"));
-            list.add(new GoodsListSubCategoryDTO("기타 악세사리"));
-        }else if (goodsListMainCategoryDTO.getGoodsMainCategory().equals("양말")) {
+        } else if (goodsListMainCategoryDTO.getGoodsMainCategory().equals("양말")) {
             list.add(new GoodsListSubCategoryDTO("전체"));
             list.add(new GoodsListSubCategoryDTO("양말"));
             list.add(new GoodsListSubCategoryDTO("스타킹"));

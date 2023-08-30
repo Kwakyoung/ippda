@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="goods">
+	
+		<insert id="insert" parameterType="goods.GoodsVO"
+		useGeneratedKeys="true" keyProperty="goods_no">
+		<selectKey keyProperty="goods_no" resultType="int" order="BEFORE">
+			select
+			seq_goods_no.nextval from dual
+		</selectKey>
+		
+		insert into goods(
+		goods_no,
+		store_no,
+		goods_name,
+		goods_price,
+		goods_sale_percent,
+		goods_info,
+		goods_gender,
+		goods_status,
+		goods_date,
+		goods_main_image, 
+		goods_sub_image, 
+		goods_middle_category, 
+		goods_sub_category, 
+		goods_style,
+		goods_sale_price,
+		file_main_name,
+		file_sub_name
+		) values(
+		#{goods_no},
+		#{store_no},
+		#{goods_name},
+		#{goods_price},
+		#{goods_sale_percent},
+		#{goods_info},
+		#{goods_gender},
+		#{goods_status},
+		sysdate,
+<!-- 		TO_DATE(SYSDATE, 'YY-MM-DD HH24:MI:SS'), -->
+		#{goods_main_image}, 
+		#{goods_sub_image}, 
+		#{goods_middle_category}, 
+		#{goods_sub_category}, 
+		#{goods_style},
+		#{goods_sale_price},
+		#{file_main_name},
+		#{file_sub_name}
+		)
+
+	</insert>
+	
+<!-- 방명록에 딸린 첨부파일 정보 저장 -->
+<insert id="fileRegister">
+<foreach collection="fileList" item="file" open="insert all" separator=" " 
+													close="select * from dual">
+	into file_board ( file_name, file_path, writing_type , writing_no)
+	values ( #{file.file_name}, #{file.file_path}, 'g', #{goods_no})
+</foreach>
+
+</insert>
+
+<insert id="optionInsert">
+<!--  
+insert into goods_option(goods_option_no, goods_no, store_no, goods_middle_category, goods_sub_category, 
+goods_size, goods_cnt, goods_style, goods_color) 
+values(seq_goods_option_no.nextval, #{goods_no}, #{store_no}, #{goods_middle_category}, #{goods_sub_category}
+, #{goods_size}, #{goods_cnt}, #{goods_style}, #{goods_color})
+-->
+
+<foreach collection="optionList" item="option" open="insert all" separator=" " 
+													close="select * from dual">
+	into goods_option (  goods_no, store_no,
+goods_size, goods_cnt, goods_color )
+	values( #{goods_no}, #{store_no}
+, #{option.goods_size}, #{option.goods_cnt}, #{option.goods_color})
+</foreach>
+    
+</insert>
+
+<select id="total" resultType="integer">
+select count(*)  from goods where store_no = #{store_no}
+</select>
+
+<select id="list" resultType="goods.GoodsVO">
+select * from 
+(select  row_number() over(order by goods_date ) no, g.* from goods g where store_no = #{store_no} 
+order by no desc) g
+where no between #{page.beginList} and #{page.endList}
+</select>
+
+<select id="modify" resultType="goods.GoodsVO">
+select * 
+from goods
+where goods_no = #{goods_no}
+</select>
+
+<update id="update">
+update goods
+set goods_name = #{goods_name}, goods_price = #{goods_price}, goods_sale_percent = #{goods_sale_percent}, goods_info = #{goods_info}, 
+goods_main_image =#{goods_main_image}, goods_gender=#{goods_gender}, goods_sub_image=#{goods_sub_image}, goods_middle_category=#{goods_middle_category}, goods_sub_category=#{goods_sub_category}, goods_style=#{goods_style},
+goods_sale_price=#{goods_sale_price}, file_main_name=#{file_main_name}, file_sub_name=#{file_sub_name} 
+where goods_no = #{goods_no}
+
+
+
+</update>
+
+
+<select id="info" resultType="goods.GoodsVO">
+select *
+from goods
+where goods_no = #{goods_no}
+</select>
+
+
+<select id="goodsOption" resultType="goods.GoodsOptionVO">
+select *
+from goods_option
+where goods_no = #{goods_no}
+</select>
+
+
+<delete id="optionDelete">
+delete from goods_option where goods_option_no = #{goods_option_no}
+
+</delete>
+
+
+<update id="optionUpdate">
+<foreach collection="list" item="option" open="DECLARE BEGIN" separator=";" 
+													close="; END;">
+update goods_option
+set	goods_cnt = #{option.goods_cnt} , goods_color = #{option.goods_color}, goods_size = #{option.goods_size}
+where goods_option_no = #{option.goods_option_no}
+</foreach>
+</update>
+
+
+</mapper>

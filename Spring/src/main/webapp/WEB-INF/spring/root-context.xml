@@ -8,6 +8,6 @@
 
 	<!-- Root Context: defines shared resources visible to all other web components -->
 					<context:component-scan 
-			base-package="coupon,member,store,goods,delivery_address,inventory"/> 
+			base-package="coupon,member,store,goods,delivery_address,goods_option,order_ing"/> 
 			<import resource="classpath:data/default.xml"/>
 </beans>

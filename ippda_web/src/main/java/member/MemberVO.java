@@ -3,7 +3,7 @@ package member;
 public class MemberVO {
 	private String
 	store_id,
-	sotre_pw,
+	store_pw,
 	store_name,
 	store_email,
 	store_main_image,
@@ -18,6 +18,18 @@ public class MemberVO {
 	store_registration_no,
 	store_delivery_tip,
 	store_phone;
+
+
+	
+	
+	public String getStore_pw() {
+		return store_pw;
+	}
+
+
+	public void setStore_pw(String store_pw) {
+		this.store_pw = store_pw;
+	}
 
 
 	public String getStore_ceo() {
@@ -40,14 +52,7 @@ public class MemberVO {
 	}
 
 
-	public String getSotre_pw() {
-		return sotre_pw;
-	}
 
-
-	public void setSotre_pw(String sotre_pw) {
-		this.sotre_pw = sotre_pw;
-	}
 
 
 	public String getStore_name() {

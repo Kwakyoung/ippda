@@ -29,7 +29,7 @@ public class DeliveryStoreCategoryAdapter extends RecyclerView.Adapter<DeliveryS
     public DeliveryStoreCategoryAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         binding = ItemDeliveryStoreCategoryBinding.inflate(inflater,parent,false);
-        return new ViewHolder(binding);
+        return new ViewHolder(binding); 
     }
 
     @Override

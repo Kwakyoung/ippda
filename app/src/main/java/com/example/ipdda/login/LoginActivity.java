@@ -85,9 +85,9 @@ public class LoginActivity extends AppCompatActivity {
 
 
         getHashKey();
-        binding.kakaoLogin.setOnClickListener(v -> {
-            kakaoLogin(this);
-        });
+//        binding.kakaoLogin.setOnClickListener(v -> {
+//            kakaoLogin(this);
+//        });
 
 
 

@@ -13,7 +13,7 @@ public interface MemberService {
 	int member_update(MemberVO vo); 		// 마이페이지에서 회원정보 변경 저장
 	int member_delete(String member_id); 		// 회원탈퇴시 회원정보 삭제
 	
-	String member_userid_email(MemberVO vo);  	// 아이디와 이메일이 일치하는 회원정보(회원명) 조회
+	String member_ceo_phone(MemberVO vo);  	    // 사장과 전화번호 일치하는지 확인
 	int member_resetPassword(MemberVO vo);  	// 비번 변경저장
 	
 }

@@ -15,6 +15,7 @@ import com.google.gson.Gson;
 
 
 
+
 @Repository
 public class MemberDAO {
 	
@@ -27,8 +28,8 @@ public class MemberDAO {
 
 	
 	
-	public MemberVO idcheck(String member_id) {
-		return sql.selectOne("member.idcheck",member_id);
+	public MemberVO idcheck(String store_id) {
+		return sql.selectOne("member.idcheck",store_id);
 	}
 	
 	public MemberVO	check(MemberVO vo) {
@@ -43,13 +44,13 @@ public class MemberDAO {
 	
 
 	
-	public MemberVO findid(MemberVO vo) {
-		return sql.selectOne("member.findid",vo);
+	public MemberVO findid(HashMap<String, String> params) {
+		return sql.selectOne("member.findid",params);
 	}
 	
 	
-	public int resetPw(MemberVO vo) {
-		return sql.update("member.resetPw", vo);
+	public MemberVO findpw(HashMap<String, String> params) {
+		return sql.selectOne("member.findpw",params);
 	}
 	
 	
@@ -57,6 +58,12 @@ public class MemberDAO {
 		return sql.selectOne("member.info", store_id);
 	}
 	
+	public int	member_join(MemberVO vo) {	
+		return sql.insert("member.join",vo);
+		
+	}
 	
-	
+	public int member_resetPassword(MemberVO vo) {
+		return sql.update("member.resetPassword", vo);
+	}
 }

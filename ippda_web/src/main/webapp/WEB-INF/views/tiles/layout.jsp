@@ -16,9 +16,11 @@
         
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
              <link href="<c:url value='/css/styles.css?${now }'/>" rel="stylesheet" />
-        <link href="<c:url value='/css/common.css?${now }'/>" rel="stylesheet" />
+<%--         <link href="<c:url value='/css/common.css?${now }'/>" rel="stylesheet" /> --%>
         <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="<c:url value='/js/common.js'/>"></script>
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -56,9 +58,9 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">홈</div>
-                            <a class="nav-link" href="sales">
+                            <a class="nav-link" href="<c:url value='/sales'/>">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                정보
+                                공지사항
                             </a>
                           
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
@@ -68,56 +70,18 @@
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="goods/list">상품 목록</a>
-                                    <a class="nav-link" href="goods/insert">상품 등록</a>
+                                    <a class="nav-link" href="<c:url value="/goods/list"/>">상품 목록</a>
+                                    <a class="nav-link" href="<c:url value='/goods/basicinfo'/>">상품 등록</a>
                                 </nav>
                             </div>
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                                Pages
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
-                                        정보
-                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                    </a>
-                                    <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
-                                        <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="login">로그인</a>
-                                            <a class="nav-link" href="register">회원가입</a>
-                                            <a class="nav-link" href="password">비밀번호 찾기</a>
-                                        </nav>
-                                    </div>
-                                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
-                                        Error
-                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                    </a>
-                                    <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
-                                        <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="error/401.html">401 Page</a>
-                                            <a class="nav-link" href="error/404.html">404 Page</a>
-                                            <a class="nav-link" href="error/500.html">500 Page</a>
-                                        </nav>
-                                    </div>
-                                </nav>
-                            </div>
-                            <div class="sb-sidenav-menu-heading">더보기</div>
-                            <a class="nav-link" href="charts.html">
+                       <a class="nav-link" href="<c:url value='/order/list'/>">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                                차트
+                                주문
                             </a>
-                            <a class="nav-link" href="tables.html">
-                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                테이블
+                               <a class="nav-link" href="<c:url value='/order/list'/>">
+                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                                데이터
                             </a>
-                        </div>
-                    </div>
-                    <div class="sb-sidenav-footer">
-                        <div class="small">Logged in as:</div>
-                        Start Bootstrap
-                    </div>
                 </nav>
             
             </div>
@@ -144,8 +108,56 @@
                 </footer>
             </div>
         </div>
+        <jsp:include page="/WEB-INF/views/include/modal_alert.jsp"></jsp:include>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
      
+     <script>
+     const intervalID = setInterval(popAlarm, 5000);
+function orderNo(){
+	var orderNo = '';
+		 $('#modal-alert table tbody tr').each(function(){
+		orderNo += (orderNo=='' ? '' : ',') + $(this).data('order');
+		 })
+	return orderNo;
+}
+
+var modalTitle = document.getElementById('confirmModalLabel');
+modalTitle.innerText = '주문내역';
+
+$(function(){
+// 	popAlarm() 
+
+	
+	$('#modal-alert  #confirmButton').click(function(){
+		$(this).attr( 'data-bs-dismiss',"modal"); 
+		
+		$.ajax({
+    		url: '<c:url value="/order/status/ing" />',
+    		data: { orderNo: orderNo() }
+    	}).done(function( ){
+    		$(this).attr( 'data-bs-dismiss',"");
+    	})
+	})
+	
+	$('#modal-alert  #cancel').click(function(){
+		$.ajax({
+    		url: '<c:url value="/order/status/cancel" />',
+    		data: { orderNo: orderNo() }
+    	}).done(function( ){
+    	})
+	})
+	
+})
+     function popAlarm(){
+    	$.ajax({
+    		url: '<c:url value="/order/alarm" />',
+    	}).done(function( response ){
+    		$('#modal-alert .modal-body').html(response)
+    		if( $('#modal-alert .modal-body table tbody tr').length > 0 ){
+    			new bootstrap.Modal( $('#modal-alert') ).show();
+    		}
+    	})
+     }
+     </script>
     </body>
 </html>

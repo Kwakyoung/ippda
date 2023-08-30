@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="order">
+<mapper namespace="order_ing">
 <insert id="insert">
 INSERT INTO "BTEAM"."ORDER_ING" (MEMBER_NO, GOODS_NO, GOODS_OPTION_NO, STORE_NO, ORDER_DATE, ORDER_SIZE, ORDER_CNT, ORDER_STATUS, ORDER_COLOR,ORDER_PRICE,ORDER_GOODS_NAME)
 VALUES (#{member_no},#{goods_no}, (select goods_option_no from goods_option where goods_no = #{goods_no} and goods_color= #{order_color} and goods_size=#{order_size})
 , #{store_no},TO_DATE(SYSDATE, 'YY-MM-DD HH24:MI:SS'),#{order_size},#{order_cnt},#{order_status},#{order_color},#{order_price},#{order_goods_name})
 
 </insert>
+
+<select id="check" resultType="order_ing.Order_ingVO">
+ 	SELECT *
+	FROM ORDER_ING
+	WHERE MEMBER_NO = #{member_no}
+	AND ORDER_STATUS = #{order_status}
+	ORDER BY ORDER_DATE DESC
+</select>
 
 </mapper>

@@ -82,7 +82,7 @@ table img{
   <button type="button" class="btn btn-light"onclick="location='modify/option?goods_no=${vo.goods_no}'">옵션수정</button> </li>
               </ul>
             </div>
-            <div class="portfolio-description">
+            <div class="portfolio-info" style="padding: 5px;">
             <table class="table table-striped">
   <thead>
     <tr>

@@ -431,7 +431,7 @@ var stepper2 = new Stepper(document.querySelector('#stepper2'), {
 	}	
 	
 	$('#goods_name').blur(function() {
-		  $('#goods_info_name').hide();
+		  $('#goods_info_name').text(this.value);
 	});
 	
 	$('#item_catesub').change(function() {

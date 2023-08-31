@@ -12,9 +12,14 @@
 	UPDATE COUPON
 	SET COUPON_STATUS = '보유' , MEMBER_NO = #{member_no}
 	WHERE COUPON_NO = #{coupon_no} AND COUPON_STATUS = '미보유'
-</update>
+</update>	
 
-
+<select id="count" resultType="Integer">
+	SELECT COUNT(*)
+	FROM coupon
+	WHERE MEMBER_NO=#{member_no}
+	AND COUPON_STATUS = #{coupon_status}
+</select>
 
 
 </mapper>

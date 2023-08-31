@@ -20,11 +20,15 @@ public class CouponDAO {
 		List< CouponVO > vo = sql.selectList("coupon.load", params);
 		return vo;
 	}
+	
 	public int register(HashMap<String, String> params) {
 		int result = sql.update("coupon.register", params);
 		return result;
 	}
 
-	
+	public int count(CouponVO vo) {
+		int count = sql.selectOne("coupon.count", vo);
+		return count;
+	}
 	
 }

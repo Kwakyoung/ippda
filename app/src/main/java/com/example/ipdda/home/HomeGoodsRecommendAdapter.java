@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ipdda.databinding.ItemHomeRecommendRecvBinding;
 import com.example.ipdda.goodsboard.GoodsBoardActivity;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -40,21 +41,27 @@ public class HomeGoodsRecommendAdapter extends RecyclerView.Adapter<HomeGoodsRec
     public void onBindViewHolder(@NonNull HomeGoodsRecommendAdapter.ViewHolder h, int i) {
 
         if(list.get(i).getGoods_sale_percent() != 0){
-            int getGoodsPrice = list.get(i).getGoods_price()/(100/list.get(i).getGoods_sale_percent());
-            h.binding.tvRecommendPrice1.setText(getGoodsPrice+"");
-
+            h.binding.tvRecommendPrice1.setText(list.get(i).getGoods_sale_price() + "원");
+            h.binding.tvSalePercent.setText(list.get(i).getGoods_sale_percent()+"");
         }else {
-            h.binding.tvRecommendPrice1.setText(list.get(i).getGoods_price()+"");
+            h.binding.tvRecommendPrice1.setText(list.get(i).getGoods_price()+" 원");
             h.binding.tvSalePercent.setText(list.get(i).getGoods_sale_percent()+"");
             h.binding.tvSalePercent.setVisibility(View.GONE);
             h.binding.tvSale.setVisibility(View.GONE);
+
         }
 
 
+        String imageUrl = list.get(i).getGoods_main_image(); // 이미지의 실제 URL을 입력해주세요
+
+        Picasso.get()
+                .load(imageUrl)
+                .into(h.binding.imgvRecommendGoods1);
 
         h.binding.tvRecommendStore1.setText(list.get(i).getStore_name()+"");
 
         h.binding.tvRecommendGoods1.setText(list.get(i).getGoods_name()+"");
+
 
 
 
@@ -67,7 +74,6 @@ public class HomeGoodsRecommendAdapter extends RecyclerView.Adapter<HomeGoodsRec
             intent.putExtra("goods_no", list.get(i).getGoods_no());
 
             context.startActivity(intent);
-
         });
 
 

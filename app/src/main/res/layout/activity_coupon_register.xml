@@ -55,7 +55,8 @@
                         android:maxLength="21"
                         android:textColorHint="#838383"
                         android:textColor="@color/white"
-                        android:textSize="14dp"/>
+                        android:textSize="14dp"
+                        android:inputType="number"/>
 
                 </LinearLayout>
 
@@ -81,7 +82,7 @@
                         android:layout_width="0dp"
                         android:layout_height="39dp"
                         android:text="쿠폰 등록"
-                        android:textSize="15dp"/>
+                        android:textSize="15dp" />
 
                 </LinearLayout>
             </LinearLayout>

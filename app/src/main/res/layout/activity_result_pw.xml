@@ -65,10 +65,11 @@
                 android:layout_height="50dp"/>
 
             <TextView
+                android:id="@+id/tv_member_id"
                 android:background="@null"
                 android:gravity="center"
                 android:textColor="#010101"
-                android:hint="아이디 적혀있음"
+                android:text="아이디 적혀있음"
                 android:layout_weight="3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"/>
@@ -107,11 +108,9 @@
         </LinearLayout>
 
         <TextView
-            android:visibility="gone"
             android:paddingLeft="10dp"
-            android:id="@+id/feedback"
-            android:textColor="#F44336"
-            android:text="영문, 숫자, 특수문자 8~16자리를 입력해주세요."
+            android:id="@+id/tv_pw_feedback"
+            android:text=""
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />
@@ -150,11 +149,9 @@
         </LinearLayout>
 
         <TextView
-            android:visibility="gone"
             android:paddingLeft="10dp"
-            android:id="@+id/feedback2"
-            android:textColor="#4CAF50"
-            android:text="비밀번호와 일치합니다."
+            android:id="@+id/tv_pw_check"
+            android:text=""
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         </LinearLayout>
@@ -164,7 +161,7 @@
             android:layout_gravity="center"
             android:background="@drawable/button_radius"
             android:textColor="#0E0E0E"
-            android:text="로그인 하러가기"
+            android:text="비밀번호 변경하기"
             android:layout_width="320dp"
             android:layout_height="50dp"/>
 

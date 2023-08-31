@@ -90,15 +90,16 @@
         android:orientation="vertical">
 
         <EditText
-            android:paddingLeft="10dp"
-            android:inputType="textMultiLine|textNoSuggestions"
-            android:background="@drawable/radius"
-            android:maxLines="1"
-            android:maxLength="20"
-            android:textColorHint="#75000000"
-            android:hint="이름"
+            android:id="@+id/edt_name"
             android:layout_width="match_parent"
-            android:layout_height="50dp"/>
+            android:layout_height="50dp"
+            android:background="@drawable/radius"
+            android:hint="이름"
+            android:inputType="textMultiLine|textNoSuggestions"
+            android:maxLength="20"
+            android:maxLines="1"
+            android:paddingLeft="10dp"
+            android:textColorHint="#75000000" />
 
         <RelativeLayout
             android:layout_marginVertical="20dp"
@@ -106,8 +107,9 @@
             android:layout_height="wrap_content">
 
             <EditText
+                android:id="@+id/edt_phonenum"
                 android:paddingLeft="10dp"
-                android:inputType="textMultiLine|textNoSuggestions"
+                android:inputType="number"
                 android:background="@drawable/radius"
                 android:maxLines="1"
                 android:maxLength="15"
@@ -117,6 +119,7 @@
                 android:layout_height="50dp"/>
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_phonecheck"
                 android:background="@drawable/custom_button"
                 android:layout_marginRight="5dp"
                 android:layout_centerVertical="true"
@@ -135,8 +138,9 @@
             android:layout_height="wrap_content">
 
             <EditText
+                android:id="@+id/edt_phonenum_check"
                 android:paddingLeft="10dp"
-                android:inputType="textMultiLine|textNoSuggestions"
+                android:inputType="number"
                 android:background="@drawable/radius"
                 android:maxLines="1"
                 android:maxLength="6"
@@ -146,6 +150,8 @@
                 android:layout_height="50dp"/>
 
             <Button
+                android:enabled="false"
+                android:id="@+id/btn_phonecheck_last"
                 android:layout_marginRight="5dp"
                 android:background="@drawable/custom_button"
                 android:layout_centerVertical="true"

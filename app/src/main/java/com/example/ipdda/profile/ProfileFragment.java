@@ -12,9 +12,13 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.ipdda.R;
+import com.example.ipdda.common.CommonConn;
+import com.example.ipdda.common.CommonVar;
 import com.example.ipdda.databinding.FragmentProfileBinding;
 import com.example.ipdda.goodslist.GoodsListDTO;
+import com.example.ipdda.member.MemberVO;
 import com.example.ipdda.profile.coupon.CouponActivity;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
@@ -33,7 +37,16 @@ public class ProfileFragment extends Fragment {
         binding.recvUserActions.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL , false));
 
         binding.gridvViewed.setAdapter(new ViewedAdepter(GoodsList(),getContext()));
-        binding.gridvViewed.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.recvUserActions.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL , false));
+
+        binding.user.setText(CommonVar.loginInfo.getMember_nickname());
+        binding.userEmail.setText(CommonVar.loginInfo.getMember_email());
+        CommonConn conn = new CommonConn(getContext(),"coupon/count");
+        conn.addParamMap("coupon_status","보유");
+        conn.addParamMap("member_no",CommonVar.loginInfo.getMember_no());
+        conn.onExcute(((isResult, data) -> {
+            binding.tvCoupon.setText("쿠폰\n"+Integer.parseInt(data));
+        }));
 
         binding.editInfo.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), ChangeInfoActivity.class);
@@ -63,24 +76,25 @@ public class ProfileFragment extends Fragment {
 
     ArrayList<RecvCircleDTO> getTrackDeliveryList(){
         ArrayList<RecvCircleDTO> list= new ArrayList<>();
-            list.add(new RecvCircleDTO(R.drawable.ic_launcher_background,"입금/결제"));
-            list.add(new RecvCircleDTO(R.drawable.ic_launcher_background,"배송 준비중"));
-            list.add(new RecvCircleDTO(R.drawable.ic_launcher_background,"배송중"));
-            list.add(new RecvCircleDTO(R.drawable.ic_launcher_background,"배송완료"));
+            list.add(new RecvCircleDTO(R.drawable.monitor,"입금/결제"));
+            list.add(new RecvCircleDTO(R.drawable.ready,"배송 준비중"));
+            list.add(new RecvCircleDTO(R.drawable.shopping,"배송중"));
+            list.add(new RecvCircleDTO(R.drawable.home,"배송완료"));
             //list.add(new RecvCircleDTO(R.drawable.ic_launcher_background, "취소,교환,환불"));
         return list;
     }
     ArrayList<RecvCircleDTO> getUserAction(){
         ArrayList<RecvCircleDTO> list= new ArrayList<>();
-            list.add(new RecvCircleDTO(R.drawable.ic_launcher_background,"장바구니"));
-            list.add(new RecvCircleDTO(R.drawable.ic_launcher_background,"좋아요"));
-            list.add(new RecvCircleDTO(R.drawable.ic_launcher_background,"즐겨찾기"));
-            list.add(new RecvCircleDTO(R.drawable.ic_launcher_background, "리뷰"));
+            list.add(new RecvCircleDTO(R.drawable.cart,"장바구니"));
+            list.add(new RecvCircleDTO(R.drawable.ic_like_blank,"좋아요"));
+            list.add(new RecvCircleDTO(R.drawable.star,"즐겨찾기"));
+            list.add(new RecvCircleDTO(R.drawable.chat, "리뷰"));
         return list;
     }
 
     ArrayList<GoodsListDTO> GoodsList(){
         ArrayList<GoodsListDTO> list = new ArrayList<>();
+        list.add(new GoodsListDTO(0,2000,"후드","입다"));
 
         return list;
     }

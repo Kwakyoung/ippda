@@ -19,9 +19,11 @@ public class SettingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(binding.getRoot());
 
+        binding.recvSettingRecv.setVerticalScrollBarEnabled(false);
+        binding.recvSettingRecv.setHorizontalScrollBarEnabled(false);
         binding.recvSettingRecv.setAdapter(new SettingAdapter(getSetting(), this));
         binding.recvSettingRecv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-
+        binding.recvSettingRecv.setOverScrollMode(View.OVER_SCROLL_NEVER);
 
         binding.btnBack.setOnClickListener(v -> this.finish());
     }
@@ -34,7 +36,7 @@ public class SettingActivity extends AppCompatActivity {
         list.add(new SettingDTO("팝업 알림 설정",true));
         list.add(new SettingDTO("SMS서비스 설정",true));
         list.add(new SettingDTO("로그아웃",false));
-        list.add(new SettingDTO("탈퇴하기",false));
+
 
         return list;
     }

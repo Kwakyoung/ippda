@@ -53,9 +53,10 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp">
                             <ImageView
+                                android:src="@drawable/profile_circle"
                                 android:layout_width="60dp"
                                 android:layout_height="60dp"
-                                android:backgroundTint="@color/black"
+
                                 android:background="@drawable/radius"/>
                         <LinearLayout
                             android:layout_marginLeft="13dp"
@@ -65,12 +66,14 @@
                             android:orientation="vertical"
                             android:gravity="center">
                             <TextView
+                                android:id="@+id/user"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="홍길동"
                                 android:textColor="@color/black"
                                 android:textSize="16dp"/>
                             <TextView
+                                android:id="@+id/user_email"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="email@gmail.com"

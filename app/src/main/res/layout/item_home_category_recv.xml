@@ -6,12 +6,20 @@
     android:paddingRight="10dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
-    
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="30dp">
     <ImageView
         android:id="@+id/imgv_category"
         android:layout_width="80dp"
         android:layout_height="80dp"
         />
+    </androidx.cardview.widget.CardView>
+
+
     <TextView
         android:textColor="@color/white"
         android:layout_marginTop="5dp"

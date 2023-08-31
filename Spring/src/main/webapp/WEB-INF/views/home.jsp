@@ -1,14 +1,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<%@ page language="java" pageEncoding="utf-8" contentType="text/html; charset=utf-8" %>
 <html>
 <head>
 	<title>Home</title>
 </head>
 <body>
-<h1>
-	Hello world!  
-</h1>
+<h3 class="my-4">IPPDA</h3>
 
-<P>  The time on the server is ${serverTime}. </P>
 </body>
 </html>

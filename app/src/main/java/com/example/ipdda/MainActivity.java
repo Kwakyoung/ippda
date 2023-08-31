@@ -29,7 +29,10 @@ public class MainActivity extends AppCompatActivity {
     LikeFragment likeFragment = new LikeFragment();
     ProfileFragment profileFragment = new ProfileFragment();
 
+    private static final String BASE_URL = "https://api.192.168.0.14.com/";
 
+    private Retrofit retrofit;
+    private ApiService apiService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +71,9 @@ public class MainActivity extends AppCompatActivity {
         }
         return true;
         });
+
+
+
 
     }
 

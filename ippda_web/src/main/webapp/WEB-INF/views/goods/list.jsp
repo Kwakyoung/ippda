@@ -18,7 +18,8 @@ table img{
 table td{text-align: center;
 vertical-align : middle;}
 
-
+table th {
+text-align: center;}
 
 </style>
 
@@ -43,10 +44,10 @@ vertical-align : middle;}
      	 <table class="table table-striped align-middle mb-0 bg-white">
   <thead class="table-dark">
     <tr >
-      <th colspan="2">상품명</th>
-      <th>총 상품가격</th>
+      <th style="text-align: center;">상품명</th>
+      <th>상품가격</th>
       <th>가격</th>
-      <th>세일퍼센트</th>
+      <th>할인율</th>
       <th>상태</th>
       <th>등록일자</th>
       <th></th>
@@ -58,31 +59,34 @@ vertical-align : middle;}
     <tr>
     <td>
       <!--${vo.goods_main_image}  -->
+      <a  href="info?goods_no=${vo.goods_no}">
       <img
   src="${vo.goods_main_image}"
+  
   class="img-thumbnail"
   alt="상품 이미지"
   onerror="this.onerror=null; this.src='https://www.bizforms.co.kr/form/image/thumb_ing.gif';"
-/></td>
-    
-      <td >
+/>
+    </a>
         <div class="d-flex align-items-center justify-content-center">
-      		<a class="text-link" href="info?goods_no=${vo.goods_no}">${vo.goods_name}</a>
+      		<a class="btn btn-default-bold" href="info?goods_no=${vo.goods_no}">${vo.goods_name}</a>
           </div>
       </td>
-      <td>
+      
+        <td>
+           <p class="fw-normal mb-1">
+            <fmt:formatNumber value="${vo.goods_price}" type="currency"  />
+           </p>
+      </td>
+    <td>
         <p class="fw-normal mb-1 d-flex align-items-center justify-content-center">
         
         <fmt:formatNumber value="${vo.goods_sale_price}" type="currency"  />
       
 		</p>
       </td>
-      <td>
-           <p class="fw-normal mb-1">
-            <fmt:formatNumber value="${vo.goods_price}" type="currency"  />
-           </p>
-      </td>
-      <td> 
+  
+    <td> 
   
       <c:choose>
       	<c:when test="${vo.goods_sale_percent  != 0}">
@@ -102,7 +106,7 @@ vertical-align : middle;}
  			<td><span class="badge badge-success rounded-pill d-inline" style="padding: 5px;">판매중</span></td>
       	</c:when>
       	 	<c:when test="${vo.goods_status eq '품절'}">
- 			<td><span class="badge badge-danger rounded-pill d-inline" style="padding: 5px;">품절&nbsp; &nbsp;</span></td>
+ 			<td><span class="badge badge-danger rounded-pill d-inline" style="padding: 5px;">품&nbsp; &nbsp;절</span></td>
       	</c:when>
       	<c:otherwise>
       		<td>${vo.goods_status}</td>
@@ -141,7 +145,9 @@ vertical-align : middle;}
                                                               
          
      
-
+<input type="hidden" name="curPage" value="${page.curPage}">
+<input type="hidden" name="id">
+<input type="hidden" name="test" value="aa">
 
 
 
@@ -203,8 +209,7 @@ vertical-align : middle;}
     </c:forEach>
 
 </table> --%>
-<input type="hidden" name="curPage" value="1">
-<input type="hidden" name="id">
+
 </form>
 
 <jsp:include page="/WEB-INF/views/include/page.jsp"></jsp:include>
@@ -212,6 +217,7 @@ vertical-align : middle;}
 
 $(document).ready(function(){
 	$('td').addClass('align-middle');
+	
 });
 </script>
 </body>

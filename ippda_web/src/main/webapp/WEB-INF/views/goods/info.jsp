@@ -41,16 +41,20 @@ table img{
         <div class="row gy-4">
 
           <div class="col-lg-8">
-            <div class="portfolio-details-slider swiper">
+            <div class="portfolio-info">
               <div class="swiper-wrapper align-items-center">
 
                 <div class="swiper-slide">
-                  <img src="<c:url value='/img/portfolio/portfolio-1.jpg' />" alt="상품이미지준비중">
+                   <img
+  src="${vo.goods_main_image}"
+  
+  class="img-thumbnail"
+  alt="상품 이미지"
+  onerror="this.onerror=null; this.src='https://www.bizforms.co.kr/form/image/thumb_ing.gif';"
+/>
                 </div>
 
-                <div class="swiper-slide">
-                  <img src="<c:url value='/img/portfolio/portfolio-2.jpg' />" alt="상품이미지준비중">
-                </div>
+       
 
               </div>
               <div class="swiper-pagination"></div>
@@ -115,10 +119,6 @@ table img{
                 <td ><pre>상세페이지 참고</pre></td>
             </tr>
                
-                    <tr>
-                <th scope="row">A/S책임자 ∙ 전화번호</th>
-                <td ><pre>OOFOS 담당자</pre></td>
-            </tr>
     
     
     

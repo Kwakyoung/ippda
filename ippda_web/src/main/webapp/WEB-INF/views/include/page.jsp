@@ -16,10 +16,10 @@
     
     <c:forEach var="no" begin="${page.beginPage}" end="${page.endPage}">
 	    <c:if test="${no eq page.curPage}">
-	    	<li class="page-item"><a class="page-link active">${no}</a></li>
+	    	<li class="page-item"  aria-current="page"><a class="page-link active btn-dark">${no}</a></li>
 	    </c:if>
 	    <c:if test="${no ne page.curPage}">
-	   	 	<li class="page-item"><a class="page-link" onclick="page(${no})">${no}</a></li>
+	   	 	<li class="page-item "><a class="page-link" onclick="page(${no})">${no}</a></li>
 	    </c:if>
     </c:forEach>
     <!-- 다음블럭 -->    

@@ -98,7 +98,7 @@ public class GoodsController {
 	}
 
 	@RequestMapping("/list")
-	public String goodsList(HttpSession session, Model model, PageVO page ) {
+	public String goodsList(HttpSession session, Model model, PageVO page , String test ) {
 		session.setAttribute("category", "goods");
 		session.setAttribute("category_main", "상품");
 		session.setAttribute("category_sub", "상품목록");
@@ -121,6 +121,13 @@ public class GoodsController {
 	
 	@RequestMapping("/modify")
 	public String modify(@RequestParam("goods_no") int goods_no , Model model , HttpSession session , MultipartFile file[]) {
+		session.setAttribute("category", "goods");
+		session.setAttribute("category_main", "상품");
+		session.setAttribute("category_sub", "상품 수정");
+		session.setAttribute("category_url", "/goods/list");
+		
+		
+		
 		GoodsVO vo = sql.selectOne("goods.modify", goods_no);
 			
 		model.addAttribute("vo", vo);

@@ -9,7 +9,7 @@
 <body>
 
 
-
+		<div class="col mx-auto">
 	<h3 class="my-4">상품 등록</h3>
 
 	<ul class="nav nav-tabs">
@@ -155,6 +155,7 @@
 		
 
 		<a type="submit" class="btn btn-secondary my-4" id="submit">입력완료</a>
+		</div>
 	</form>
 </body>
 

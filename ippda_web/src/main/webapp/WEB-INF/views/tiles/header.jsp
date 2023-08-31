@@ -33,7 +33,7 @@
              </ul>
               
           <li><a class="nav-link" href="<c:url value='/order/list'/>">주문</a></li>
-          <li><a class="nav-link"href="<c:url value='/order/list'/>">데이터</a></li>
+          <li><a class="nav-link"href="<c:url value='/data/list'/>">데이터</a></li>
          <!--  <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="#">Drop Down 1</a></li>

@@ -24,5 +24,19 @@ select * from
 order by no desc) g
 where no between #{page.beginList} and #{page.endList}
 </select>
+
+<select id="info" resultType="order.OrderVO">
+select *
+from order_ing
+where order_no = #{order_no}
+
+</select>
+
+<update id="update">
+update order_ing
+set order_status = #{order_status}
+where order_no = #{order_no}
+
+</update>
 	
 </mapper>

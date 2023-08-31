@@ -10,10 +10,12 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import common.PageVO;
 import member.MemberVO;
+import order.OrderVO;
 
 @Controller @RequestMapping("/order")
 public class OrderController {
@@ -44,18 +46,36 @@ public class OrderController {
 	
 	@RequestMapping("/list")
 	public String orderList(HttpSession session, Model model , PageVO page) {
-		MemberVO member = (MemberVO)session.getAttribute("loginInfo");
-		int totalList = sql.selectOne("order.total", 1);
-		page.setTotalList(totalList) ; // member.getStore_no()
+//		MemberVO member = (MemberVO)session.getAttribute("loginInfo");
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("store_no", 1); //member.getStore_no()
 		map.put("page", page);
-		
+		int totalList = sql.selectOne("order.total", 1);
+		page.setTotalList(totalList) ; // member.getStore_no()
 		page.setList( sql.selectList("order.list", map) );
 		model.addAttribute("page", page); 
 		
 		
+		
+		
 		return "order/list";
+	}
+	
+	@RequestMapping("/info")
+	public String orderInfo(int order_no, Model model) {
+		OrderVO vo = sql.selectOne("order.info", order_no);
+		model.addAttribute("orderInfo", vo);
+		return "order/info";
+	}
+	
+	@RequestMapping("/update")
+	public String orderModify(@RequestParam("order_status") String order_status , @RequestParam("order_no") int order_no) {
+		HashMap<String , Object> map = new HashMap<String, Object>();
+		map.put("order_no", order_no);
+		map.put("order_status", order_status);
+		
+		sql.update("order.update" , map);
+		return "redirect:/order/list";
 	}
 	
 }

@@ -197,6 +197,14 @@ img {
 									<option value="남여공용">남녀공용</option>
 								</select>
 							</div>
+								<div class="form-group my-4">
+										<h4>상태</h4>
+										<select class="form-control" name="goods_status"
+											id="goods_status" title="상태">
+											<option value="판매중">판매중</option>
+											<option value="품절">품절</option>
+										</select>
+									</div>
 							<div class="d-flex justify-content-between  mb-5">
 							<a class="btn btn-info text-white justify-content-start" onclick="stepper2.previous()">이전</a>
 							<a class="btn btn-primary text-white justify-content-start" onclick="stepper2.next()">다음</a>
@@ -245,12 +253,10 @@ img {
  			 <div class="col-lg-4">
  			  <section id="portfolio-details" class="portfolio-details">
             <div class="portfolio-info">
-              <h3>${vo.goods_name }</h3>
+              <h3 id="goods_info_name">${vo.goods_name }</h3>
               <ul style="cursor: pointer">
                 <li onclick="moveStep(1);"><strong>분류</strong>:<a id="categorys"></a>
                 </li>
-                <li onclick="moveStep(2);" ><strong>상품명</strong>:<a id="goods_info_name">${vo.goods_name}</a></li>
-               
           <li onclick="moveStep(2);"><strong>가격정보</strong>: <a id="price1">${vo.goods_sale_price}</a></li>
                 <li onclick="moveStep(3);"><strong>성별</strong>:<a id="gender_info">${vo.goods_gender}</a> </li>
                 <li onclick="moveStep(3);"><strong>상세정보</strong>:<a id="goods_info_text">${vo.goods_info}</a> </li>

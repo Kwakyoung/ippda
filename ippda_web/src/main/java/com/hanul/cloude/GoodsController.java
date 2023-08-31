@@ -68,7 +68,10 @@ public class GoodsController {
 	
 	@RequestMapping("/option")
 	public String option(@RequestParam("goods_no") int goods_no , Model model , HttpSession session) {
-	
+		session.setAttribute("category", "goods");
+		session.setAttribute("category_main", "상품");
+		session.setAttribute("category_sub", "옵션 등록");
+		session.setAttribute("category_url", "/goods/list");
 		
 		MemberVO loginInfo = (MemberVO) session.getAttribute("loginInfo");
 		GoodsVO vo = sql.selectOne("goods.info" , goods_no);
@@ -85,6 +88,9 @@ public class GoodsController {
 							, String goods_option_cnt
 							, String goods_option_color
 							, HttpSession session) {
+		
+		
+		
 		String size[] = goods_option_size.split(",");
 		String cnt[] = goods_option_cnt.split(",");
 		String color[] = goods_option_color.split(",");
@@ -113,11 +119,8 @@ public class GoodsController {
 		session.setAttribute("category_sub", "상품목록");
 		session.setAttribute("category_url", "/goods/list");
 		
-//		MemberVO loginInfo = (MemberVO) session.getAttribute("loginInfo");
-		
-		int store_no = 1; //loginInfo.getStore_no();
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("store_no", store_no);
+		map.put("store_no", 		 ((MemberVO) session.getAttribute("loginInfo")).getStore_no() );
 		map.put("page", page);
 		int totalList =  sql.selectOne( "goods.total", map );
 		page.setTotalList(totalList );
@@ -179,6 +182,11 @@ public class GoodsController {
 	
 	@RequestMapping("/modify/option")
 	public String modifyOption(int goods_no, Model model , HttpSession session) {
+		session.setAttribute("category", "goods");
+		session.setAttribute("category_main", "상품");
+		session.setAttribute("category_sub", "옵션 수정");
+		session.setAttribute("category_url", "/goods/list");
+		
 		List<GoodsOptionVO> vo = sql.selectList("goods.goodsOption" , goods_no);
 		MemberVO loginInfo = (MemberVO) session.getAttribute("loginInfo");
 		int store_no = loginInfo.getStore_no();

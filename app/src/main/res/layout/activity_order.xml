@@ -209,11 +209,10 @@
            <androidx.recyclerview.widget.RecyclerView
                android:id="@+id/recv_order_goods"
                android:layout_width="match_parent"
-               android:layout_height="match_parent"
-               android:layout_marginHorizontal="10dp">
+               android:layout_height="wrap_content"
+               android:layout_marginHorizontal="10dp"
+               android:scrollbars="none"/>
 
-
-           </androidx.recyclerview.widget.RecyclerView>
 
 
         </LinearLayout>

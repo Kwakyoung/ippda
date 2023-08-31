@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.google.gson.Gson;
 
 import goods.GoodsVO;
+import order_ing.Order_ingVO;
 
 
 @RestController @RequestMapping("/goods")
@@ -57,6 +58,9 @@ public class GoodsController {
 		return new Gson().toJson(null);
 	}
 	
-
-	
+	@RequestMapping(value = "/search" , produces = "text/html;charset=utf-8")
+	public String goodsboard(String keyword) {
+		List<GoodsVO> list = sql.selectList("goods.search" , keyword); 
+		return new Gson().toJson(list);
+	}
 }

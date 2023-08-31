@@ -25,10 +25,10 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto active" href="<c:url value='/sales'/>">홈</a></li>
-          <li class="dropdown"><a  href="<c:url value="/goods/list"/>"><span>상품</span> <i class="bi bi-chevron-down"></i></a>
+          <li><a class="nav-link scrollto  ${category eq 'home' ? 'active' : '' }"  href="<c:url value='/sales'/>">홈</a></li>
+          <li class="dropdown"><a class=" ${category eq 'goods' ? 'active' : '' }"  href="<c:url value="/goods/list"/>"><span>상품</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a  href="<c:url value="/goods/list"/>">상품 목록</a></li> 
+              <li><a   href="<c:url value="/goods/list"/>">상품 목록</a></li> 
               <li><a   href="<c:url value="/goods/basicinfo"/>">상품 등록</a></li> 
              </ul>
               

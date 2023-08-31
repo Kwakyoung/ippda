@@ -16,5 +16,7 @@ public class GoodsDAO {
 		int  result = sql.insert("customer.insert" , vo);
 		System.out.println("성공여부 : " + result);
 	}
-
+	public void search(HashMap<String, String> params) {
+		int result = sql.update("goods.search", params);
+	}
 }

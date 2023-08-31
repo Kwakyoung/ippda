@@ -47,6 +47,9 @@ public class GoodsController {
 		return"goods/basicinfo";
 	}
 	
+	
+	
+	
 	@RequestMapping("/insert")
 	public String insert(GoodsVO vo, MultipartFile file[] , HttpServletRequest request ,HttpSession session) {
 		vo.setGoods_main_image( common.fileUpload("goods", file[0], request) );

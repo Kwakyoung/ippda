@@ -11,7 +11,7 @@
 <style>
 
 table img{
-
+	content-visibility : auto;
 	max-height: 120px;
 
 }

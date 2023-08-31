@@ -167,8 +167,8 @@ img {
 								</select>
 							</div>
 
-							<button type="button" class="btn btn-secondary my-4"
-								id="checkPriceBtn">상품가격 확인하기</button>
+						<!-- 	<button type="button" class="btn btn-secondary my-4"
+								id="checkPriceBtn">상품가격 확인하기</button> -->
 							<div class="form-group">
 								<h3 id="calculated_price_display"></h3>
 								<input id="calculated_price" name="goods_sale_price"
@@ -245,16 +245,16 @@ img {
  			 <div class="col-lg-4">
  			  <section id="portfolio-details" class="portfolio-details">
             <div class="portfolio-info">
-              <h3>${vo.goods_info }</h3>
-              <ul>
-                <li><strong>분류</strong>:<a id="categorys"></a>
+              <h3>${vo.goods_name }</h3>
+              <ul style="cursor: pointer">
+                <li onclick="moveStep(1);"><strong>분류</strong>:<a id="categorys"></a>
                 </li>
-                <li><strong>상품명</strong>:<a id="goods_info_name">${vo.goods_name}</a></li>
+                <li onclick="moveStep(2);" ><strong>상품명</strong>:<a id="goods_info_name">${vo.goods_name}</a></li>
                
-          <li><strong>가격정보</strong>: <del>${vo.goods_price} ( ${vo.goods_sale_percent} )</del>  ${vo.goods_sale_price}</li>
-                <li><strong>성별</strong>:${vo.goods_gender} </li>
-                <li><strong>상세정보</strong>:${vo.goods_info} </li>
-                <li>
+          <li onclick="moveStep(2);"><strong>가격정보</strong>: <a id="price1">${vo.goods_sale_price}</a></li>
+                <li onclick="moveStep(3);"><strong>성별</strong>:<a id="gender_info">${vo.goods_gender}</a> </li>
+                <li onclick="moveStep(3);"><strong>상세정보</strong>:<a id="goods_info_text">${vo.goods_info}</a> </li>
+                <li onclick="moveStep(4);">
                 이미지
                 <div class="row">
                 	<div class="col-４">
@@ -372,80 +372,103 @@ var stepper2 = new Stepper(document.querySelector('#stepper2'), {
 
 						});//document ready func
 
-						$("#checkPriceBtn").click(
-										function() {
-											const goodsPriceInput = document
-													.getElementById("goods_price");
-											const salePercentSelect = document
-													.getElementById("goods_sale_percent");
-											const calculatedPriceDisplay = document
-													.getElementById("calculated_price_display");
 
-											const goodsPrice = parseFloat(goodsPriceInput.value);
-											const salePercent = parseFloat(salePercentSelect.value);
-											console.log(goodsPrice);
-											console.log(salePercent);
+	function checkPrice() {
+		const goodsPriceInput = document.getElementById("goods_price");
+		const salePercentSelect = document.getElementById("goods_sale_percent");
+		const calculatedPriceDisplay = document
+				.getElementById("calculated_price_display");
 
-											if (!isNaN(goodsPrice)
-													&& !isNaN(salePercent)) {
-												const calculatedPrice = goodsPrice
-														- (goodsPrice
-																* salePercent / 100);
-												if (calculatedPrice % 10 !== 0) {
-													alert("총 상품가격은 10원단위로만 가능합니다.")
-												} else {
-													calculatedPriceDisplay.textContent = "총 상품가격: "
-															+ calculatedPrice
-															+ "원";
-													document
-															.getElementById("calculated_price").value = calculatedPrice;
-												}
-											} else {
-												alert("상품가격과 세일퍼센트를 입력해주세요")
-											}
+		const goodsPrice = parseFloat(goodsPriceInput.value);
+		const salePercent = parseFloat(salePercentSelect.value);
+		console.log(goodsPrice);
+		console.log(salePercent);
 
-										});
-						
-						
-						
-					
+		if (!isNaN(goodsPrice) && !isNaN(salePercent)) {
+			const calculatedPrice = goodsPrice
+					- (goodsPrice * salePercent / 100);
+			if (calculatedPrice % 10 !== 0) {
+				alert("총 상품가격은 10원단위로만 가능합니다.")
+			} else {
+				calculatedPriceDisplay.textContent = "총 상품가격: "
+						+ calculatedPrice + "원";
+				document.getElementById("calculated_price").value = calculatedPrice;
+				$('#price1').empty();
+				$('#price1').text(calculatedPrice);
+				$('#price1').append(
+						'<del>(' + goodsPrice + ')%(' + salePercent + ')</p>');
+			}
+		} else {
+			alert("상품가격과 세일퍼센트를 입력해주세요")
+		}
 
-						
-	function getCategories(no1 , no2) {
-		return subCategories[no1][no2-1];
 	}
-	
+
+	function getCategories(no1, no2) {
+		return subCategories[no1][no2 - 1];
+	}
+
 	function getMainCategory(no) {
-		return mainCategories[no-1];
+		return mainCategories[no - 1];
 	}
 	function getStyleCategory(no) {
-		return styleCategories[no-1];
+		return styleCategories[no - 1];
 	}
 
 	function setCategorys() {
 		$('#categorys').empty();
-		$('#categorys').append('<a  class="badge badge-primary text-white m-1">' + $('#item_catemain option:checked').text() + '</a>');
-		$('#categorys').append('<a  class="badge badge-info text-white m-1">' +$('#item_catesub option:checked').text() + '</a>');
-		$('#categorys').append('<a  class="badge badge-success text-white m-1">' + $('#goods_style option:checked').text() + '</a>');
-			
-	}	
+		$('#categorys').append(
+				'<a  class="badge badge-primary text-white m-1">'
+						+ $('#item_catemain option:checked').text() + '</a>');
+		$('#categorys').append(
+				'<a  class="badge badge-info text-white m-1">'
+						+ $('#item_catesub option:checked').text() + '</a>');
+		$('#categorys').append(
+				'<a  class="badge badge-success text-white m-1">'
+						+ $('#goods_style option:checked').text() + '</a>');
+
+	}
 	
-	$('#goods_name').blur(function() {
-		  $('#goods_info_name').text(this.value);
+	
+	function moveStep(no) {
+		stepper2.to(no);
+	}
+
+	$('#goods_price').change(function name() {
+		checkPrice();
 	});
-	
+
+	$('#goods_sale_percent').change(function() {
+		checkPrice();
+	});
+
+	$('#goods_gender').change(function() {
+		$('#gender_info').text(this.value);
+	});
+
+	$('#goods_info').blur(function() {
+		$('#goods_info_text').text(this.value);
+	});
+
+	$('#goods_name').blur(function() {
+		$('#goods_info_name').text(this.value);
+	});
+	$('#goods_name').blur(function() {
+		$('#goods_info_name').text(this.value);
+	});
+
 	$('#item_catesub').change(function() {
-		if( this.selectedIndex != 0){
-		setCategorys();
+		if (this.selectedIndex != 0) {
+			setCategorys();
 		}
-	});			
-	
+	});
+
 	$('#goods_style').change(function() {
-		if( this.selectedIndex != 0){
-		setCategorys();
+		if (this.selectedIndex != 0) {
+			setCategorys();
 		}
-	});			
-	
+	});
+
 	function change_catemainSelect() {
 		const selectedCatemain = catemainSelect.value;
 		catesubSelect.innerHTML = ""; // 먼저 기존의 소분류 옵션들을 지웁니다.
@@ -458,13 +481,12 @@ var stepper2 = new Stepper(document.querySelector('#stepper2'), {
 			option.textContent = subCat;
 			catesubSelect.appendChild(option);
 		}
-	}					
-					
-	catemainSelect.addEventListener("change", function() {
-			change_catemainSelect();
-			setCategorys();
-	});			
+	}
 
+	catemainSelect.addEventListener("change", function() {
+		change_catemainSelect();
+		setCategorys();
+	});
 
 	// 등록완료 버튼 눌렀을 때 처리
 	$("#submit").click(function() {
@@ -480,21 +502,28 @@ var stepper2 = new Stepper(document.querySelector('#stepper2'), {
 		const fileInput1 = document.getElementById("itemSubImg");
 		const selectedFile = fileInput.files[0]; // 선택된 파일
 		const selectedFile1 = fileInput1.files[0]; // 선택된 파일
-
+		
 		if (goodsCategoryMain === "") {
-			alert("카테고리를 입력해주세요")
+			alert("카테고리를 입력해주세요");
+			moveStep(1);
 		} else if (goodsStyle === "") {
-			alert("스타일을 입력해주세요")
+			alert("스타일을 입력해주세요");
+			moveStep(1);
 		} else if (goodsName === "") {
 			alert("상품명을 입력해주세요")
+			moveStep(2);
 		} else if (goodsPrice === "") {
 			alert("가격을 입력해주세요")
+			moveStep(2);
 		} else if (goodsSalePercent === "") {
 			alert("세일퍼센트를 입력해주세요")
+			moveStep(2);
 		} else if (resultPrice === "") {
 			alert("상품가격확인하기 버튼을 눌러주세요")
+			moveStep(2);
 		} else if (goodsInfo === "") {
 			alert("상품내용을 입력해주세요")
+			moveStep(3);
 		} else {
 			const form = document.getElementById("update"); // 폼 ID를 실제로 사용한 값으로 바꾸세요
 			form.submit();

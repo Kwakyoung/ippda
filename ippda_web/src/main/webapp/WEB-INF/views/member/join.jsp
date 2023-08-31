@@ -5,66 +5,93 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+.gradient-custom {
+/* fallback for old browsers */
+background: #534A5C;
 
+/* Chrome 10-25, Safari 5.1-6 */
+background: -webkit-linear-gradient(to right, rgba(83, 74, 92, 1), rgba(89, 75, 90, 1));
+
+/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+background: linear-gradient(to right, rgba(83, 74, 92, 1), rgba(89, 75, 90, 1));
+}
+
+.btn-text {
+        font-size: 0.7rem; /* 원하는 크기로 조정 */
+    }
+    
+.btn.btn-outline-success.opacity-50.form-control.form-control-lg {
+    height: auto;
+}
+    
+</style>
 </head>
 <body>
 
-<div class="row justify-content-center h-100 align-items-center">
-    <div class="col-md-9 col-lg-7 col-xl-5">
-        <div class="card shadow-lg border-0 rounded-lg px-3 py-5">
-        	<h3 class="text-center">
-        		<img src="<c:url value='/img/whitelogo.png'/>">
+         
+ <section class="vh-100 gradient-custom">
+ 
+ <form method="post" action="register">
+                <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+ 
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card bg-dark text-white" style="border-radius: 1rem;">
+          <div class="card-body p-5 text-center">
+          
+          <div class="mb-md-5 mt-md-4 pb-5">
+                <div class="text-center mb-4">
+        		<img src="<c:url value='/img/goodlogo.png'/>">
         		<p>회원 정보를 입력 후, 가입을 <br> 완료해주세요</p>
-        	</h3>
-        	
-            <div class="card-body">
-            
-                <form method="post" action="register">
-                
-                	<div class="form-floating mb-3">
-					    <input class="form-control" type="text" name="store_ceo" id="store_ceo" required  placeholder="이름">
-					    <label>회원명</label>
+        		</div>
+                	<div class="form-floating mb-4">
+					    <input class="form-control form-control-lg" type="text" name="store_ceo" id="store_ceo" required  placeholder="이름">
 					</div>
 					
-					<div class=row>
-						<div class="form-floating mb-3 col-md-8">
-						    <input class="form-control" type="text" name="store_id" id="store_id" required  placeholder="아이디">
-						    <label style="left:10px;">아이디</label>
+					<div class="row">
+						<div class="form-floating mb-4 col-md-9">
+						    <input class="form-control form-control-lg" type="text" name="store_id" id="store_id" required  placeholder="아이디">
 						</div>
-						<div class="col-md-4">
-			 				<button class="btn btn-success opacity-50 form-control py-3"  id="btn_idcheck">
-			 				중복확인</button>
-			 			</div>
+						<div class="col-md-3 mb-4 align-self-end">
+					        <button class="btn btn-outline-success opacity-50 form-control form-control-lg" id="btn_idcheck">
+					            <span class="btn-text">중복 확인</span>
+					        </button>
+					    </div>
 					</div>
 					
-                    <div class="form-floating mb-3">
-                        <input class="form-control" name="store_pw" id="store_pw" required  type="password" placeholder="비밀번호">
-                        <label>비밀번호</label>
+                    <div class="form-floating">
+                        <input class="form-control form-control-lg" name="store_pw" id="store_pw" required  type="password" placeholder="비밀번호">
+                       
                     </div>
-                    <div class="form-text" id="pwMessage"></div>
-                    <div class="form-floating mb-3">
-                        <input class="form-control" name="store_pw_check" id="store_pw_check" required  type="password" placeholder="비밀번호 확인" >
-                        <label>비밀번호 확인</label>
+                    <div class="form-text mb-4" id="pwMessage"></div>
+                    <div class="form-floating">
+                        <input class="form-control form-control-lg" name="store_pw_check" id="store_pw_check" required  type="password" placeholder="비밀번호 확인" >
+                        
                     </div>
-                    <div class="form-text" id="passwordMessage"></div>
+                    <div class="form-text mb-4" id="passwordMessage"></div>
                     
                     
-                    <div class="form-floating mb-3">
-                        <input class="form-control" name="store_email" id="store_email" required  type="email" placeholder="이메일">
-                        <label>이메일</label>
+                    <div class="form-floating mb-4">
+                        <input class="form-control form-control-lg" name="store_email" id="store_email" required  type="email" placeholder="이메일">
+                       
                     </div>
                           		
                 
-                    <button class="btn btn-success opacity-50 form-control py-2 mt-3" id="btn_success">완료</button>
-       
+                    <button class="btn btn-outline-light btn-lg px-5" id="btn_success">완료</button>
+                    
+                    </div>
+                   
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+       </div>
                 </form>
-            </div>
-        </div>
-    </div>
-   
+            </section>
+           
+           
     
-</div>
-
 <jsp:include page="/WEB-INF/views/include/modal_alert.jsp"/>
 
 
@@ -103,7 +130,7 @@ $(document).ready(function() {
         // 예를 들어, 회원 가입 등의 프로세스를 계속 진행할 수 있습니다.
 	    $("#store_id").prop("disabled", true);
     	$("#btn_idcheck").prop("disabled", true);
-    	$("#btn_idcheck").text("중복확인 완료");
+    	$(".btn-text").text("확인 완료");
         // 모달 닫기
         $("#modal-alert").modal("hide");
     });
@@ -118,14 +145,14 @@ $(document).ready(function() {
     // 회원가입 처리
     $("#btn_success").click(function(event) {
         
-        var btn_idcheck = $("#btn_idcheck").text();
+        var btn_idcheck = $(".btn-text").text();
         var pwMessage = $("#pwMessage").text();
         var store_id = $("#store_id").val();
 		var store_ceo = $("#store_ceo").val();
         var store_pw = $("#store_pw").val();
         var store_email = $("#store_email").val();
  
-		  if (btn_idcheck === "중복확인 완료" && pwMessage === "비밀번호 조건을 충족합니다.") {
+		  if (btn_idcheck === "확인 완료" && pwMessage === "비밀번호 조건을 충족합니다.") {
 			  $.ajax({
 		            url: "register", // 서버의 URL 설정
 		            type: "POST",

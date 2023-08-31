@@ -74,8 +74,8 @@ public class TrackDeliveryListAdapter  extends RecyclerView.Adapter<TrackDeliver
                     .into(h.binding.imgGoodsList);
             h.binding.goodsName.setText(a.get(0).getGoods_name());
             h.binding.goodsCnt.setVisibility(View.GONE);
-            h.binding.choiceNum.setText("수량 "+list.get(i).getOrder_size()+"개 | "+list.get(i).getOrder_size());
-            h.binding.goodsPrice.setText((a.get(0).getGoods_price()*list.get(i).getOrder_cnt())+"원");
+            h.binding.choiceNum.setText("수량 "+list.get(i).getOrder_cnt()+"개 | "+list.get(i).getOrder_size());
+            h.binding.goodsPrice.setText((a.get(0).getGoods_sale_price()*list.get(i).getOrder_cnt())+"원");
         });
 
     }

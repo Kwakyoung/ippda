@@ -2,7 +2,7 @@ package order;
 
 public class OrderVO {
 	private int order_no, member_no, goods_no, goods_option_no, order_cnt, store_no, order_price;
-	private String order_date, order_size, order_address, order_type, order_request, order_status, order_color;
+	private String order_date, order_size, order_address, order_type, order_request, order_status, order_color,order_goods_name;
 	
 	public int getStore_no() {
 		return store_no;
@@ -87,5 +87,11 @@ public class OrderVO {
 	}
 	public void setOrder_price(int order_price) {
 		this.order_price = order_price;
+	}
+	public String getOrder_goods_name() {
+		return order_goods_name;
+	}
+	public void setOrder_goods_name(String order_goods_name) {
+		this.order_goods_name = order_goods_name;
 	}
 }

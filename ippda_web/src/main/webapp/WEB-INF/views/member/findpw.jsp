@@ -13,61 +13,98 @@
 	 a:hover {
 	 	color : #000;
 	 }
+	 .gradient-custom {
+/* fallback for old browsers */
+background: #534A5C;
+
+/* Chrome 10-25, Safari 5.1-6 */
+background: -webkit-linear-gradient(to right, rgba(83, 74, 92, 1), rgba(89, 75, 90, 1));
+
+/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+background: linear-gradient(to right, rgba(83, 74, 92, 1), rgba(89, 75, 90, 1));
+}
+.btn-text, .btn-text-check {
+        font-size: 0.7rem; /* 원하는 크기로 조정 */
+    }
+    
+.btn.btn-outline-success.opacity-50.form-control.form-control-lg {
+    height: auto;
+} 
+ 
  </style>
 </head>
 <body>
-
-<div class="row justify-content-center h-100 align-items-center">
-    <div class="col-md-9 col-lg-7 col-xl-5">
-        <div class="card shadow-lg border-0 rounded-lg px-3 py-4">
-        <div style="display: flex; justify-content: space-between;">
+<section class="vh-100 gradient-custom">
+           
+   <form method="post" action="findingpw" id="findpw">
+		
+		<div class="container py-5 h-100">
+   	 <div class="row d-flex justify-content-center align-items-center h-100">
+ 
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card bg-dark text-white" style="border-radius: 1rem;">
+        
+          <div class="card-body p-5 text-center">
+          
+          <div class="mb-md-5 mt-md-4 pb-5">
+                <div class="text-center mb-4">
+		
+		<div style="display: flex; justify-content: space-between;">
         	<a href="login">로그인 하러가기</a>
         	<a href="findid">아이디 찾기</a>
-        </div>
-        	<h3 class="text-center">
-        		<img src="<c:url value='/img/whitelogo.png'/>">
-        		<p>비밀번호 찾기</p>
-        	</h3>
-            <div class="card-body">
-            
-                <form method="post" action="findingpw" id="findpw">
+       	</div>
 					
-					<div class="form-floating mb-3">
-					    <input class="form-control" type="text" name="store_id" id="store_id" required  placeholder="아이디">
-					    <label>아이디</label>
-					</div>
+		<div class="mb-md-5 mt-md-4 pb-5">
+               <div class="text-center mb-4">
+       		<img src="<c:url value='/img/goodlogo.png'/>">
+       		<p class="text-white-75 mb-5">비밀번호 찾기</p>
+       	</div>
+					
+					
+				<div class="form-floating mb-3">
+				    <input class="form-control form-control-lg" type="text" name="store_id" id="store_id" required  placeholder="아이디">
+				    
+				</div>
 					
 					<div class="row">
 			 			<div class="form-floating mb-3 col-md-8">
-                        	<input class="form-control" name="store_phone"  required  id="store_phone" type="text" placeholder="휴대폰 번호" autocomplete="off">
-                        	<label style="left:10px;">휴대폰 번호 입력</label>
+                        	<input class="form-control form-control-lg" name="store_phone"  required  id="store_phone" type="text" placeholder="휴대폰 번호" autocomplete="off">
+                       
                     	</div>
 			 			<div class="col-md-4">
-			 				<button class="btn btn-success opacity-50 form-control py-3"  id="btn_phone">
-			 				인증번호 발송</button>
+			 				<button class="btn btn-outline-success opacity-50 form-control form-control-lg"  id="btn_phone">
+			 				<span class="btn-text">인증번호<br>발송</span></button>
 			 			</div>
 			 		</div>
 
 	                <div class="row">    
 	                    <div class="form-floating mb-3 col-md-8">
-                        	<input class="form-control" name="store_phone_check"  required disabled id="store_phone_check" type="text" placeholder="인증 번호" autocomplete="off">
-                        	<label style="left:10px;">인증번호 입력</label>
+                        	<input class="form-control form-control-lg" name="store_phone_check"  required disabled id="store_phone_check" type="text" placeholder="인증 번호" autocomplete="off">
+                        	
                     	</div>
 	                    <div class="col-md-4">
-			 				<button class="btn btn-success opacity-50 form-control py-3" disabled id="btn_check">
-			 				인증 확인</button>
+			 				<button class="btn btn-outline-success opacity-50 form-control form-control-lg" disabled id="btn_check">
+			 				<span class="btn-text-check">인증번호<br>확인</span></button>
 			 			</div>
                     </div>
                     
-	                    <button class="btn btn-success opacity-50 form-control mt-2 mb-3" type="submit" id="btn_findpw">비밀번호 찾기</button>
+                    <div class="mt-3">
+	                    <button class="btn btn-outline-light btn-lg" type="submit" id="btn_findpw">비밀번호 찾기</button>
+	                </div>  
+	                    
+	                    </div>
+	                    </div>
+	                    </div>
+	                    </div>
+	                    </div>
+	                    </div>
+	                    </div>
+	                    </div>
+	                   
                 </form>
                 
-            </div>
-        </div>
-    </div>
-   
+          </section>
     
-</div>
 
 <jsp:include page="/WEB-INF/views/include/modal_alert.jsp"/>
 
@@ -118,7 +155,7 @@ $(document).ready(function() {
 		      alert("인증이 완료되었습니다.");
 		      $("#store_phone_check").prop("disabled", true);
 		      $("#btn_check").prop("disabled", true);
-		      $("#btn_check").text("인증 완료");
+		      $(".btn-text-check").text("인증 완료");
 
 		    } else {
 		      alert("인증번호가 일치하지 않습니다.");
@@ -126,7 +163,7 @@ $(document).ready(function() {
 		  });
 	  
 	  $("#btn_findpw").click(function(event) {
-		  var btnCheckText = $("#btn_check").text();
+		  var btnCheckText = $(".btn-text-check").text();
 		  
 		  if (btnCheckText === "인증 완료") {
 		    

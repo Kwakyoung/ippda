@@ -29,17 +29,15 @@ background: linear-gradient(to right, rgba(83, 74, 92, 1), rgba(89, 75, 90, 1));
           <div class="card-body p-5 text-center">
 
             <div class="mb-md-5 mt-md-4 pb-5">
-			<img class="fw-bold mb-2 text-uppercase" src="/cloude/img/logotrans.png">
-              <p class="text-white-50 mb-5">상점 아이디와 비밀번호를 입력해주세요!</p>
+				<img src="<c:url value='/img/goodlogo.png'/>">
+              	<p class="text-white-50 mb-5">상점 아이디와 비밀번호를 입력해주세요!</p>
 
               <div class="form-outline form-white mb-4">
                 <input type="text" id="typeEmailX" class="form-control form-control-lg" placeholder="아이디" name="store_id" />
-                <label class="form-label" for="typeEmailX">아이디</label>
               </div>
 
               <div class="form-outline form-white mb-4">
                 <input type="password" id="typePasswordX" class="form-control form-control-lg" placeholder="비밀번호" name="store_pw" required="required" />
-                <label class="form-label" for="typePasswordX">비밀번호</label>
               </div>
 
               <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="findid">아이디</a> 또는 <a class="text-white-50" href="findpw"> 비밀번호를 잊으셨나요?</a></p>

@@ -65,8 +65,7 @@ text-align: center;}
   
   class="img-thumbnail"
   alt="상품 이미지"
-  onerror="this.onerror=null; this.src='https://www.bizforms.co.kr/form/image/thumb_ing.gif';"
-/>
+  onerror="this.onerror=null; this.src='<c:url value="/img/error_img.gif"/>;'"/>
     </a>
         <div class="d-flex align-items-center justify-content-center">
       		<a class="btn btn-default-bold" href="info?goods_no=${vo.goods_no}">${vo.goods_name}</a>

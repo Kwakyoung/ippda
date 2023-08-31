@@ -16,7 +16,7 @@
 	<section id="breadcrumbs" class="breadcrumbs">
 		<div class="container">
 			<ol>
-				<li><a href="<c:url value="${category_url }"/>">${category_main}</a></li>
+				<li><a href="<c:url value='${category_url }'/>">${category_main}</a></li>
 				<li>${category_sub}</li>
 			</ol>
 			<h2>${category_sub}</h2>
@@ -167,7 +167,14 @@
 									name="goods_info" id="goods_info">${vo.goods_info}</textarea>
 							</div>
 
-
+		<div class="form-group my-4">
+				<h4>상태</h4>
+					<select class="form-control" name="goods_status" id="goods_status"
+					title="상태">
+					<option value="판매중">판매중</option>
+					<option value="품절">품절</option>
+				</select>
+	</div>
 							<div class="form-group my-4">
 								<h4>상품성별</h4>
 								<select class="form-control" name="goods_gender"
@@ -243,6 +250,7 @@
          		</section>
          			<input  type="hidden" name="goods_no" id="goods_no"
 						value="0" />
+					
          		 <a type="submit" class="btn text-white btn-success col-md-12" id="submit">입력완료</a> 
           </div>
 	
@@ -427,7 +435,39 @@ document.addEventListener("DOMContentLoaded", function() {
     const catesubSelect = document.getElementById("item_catesub");
     const calculated_price = document.getElementById("calculated_price");
 	
+    const mainCategories ={
+			"상의",
+			"아우터",
+			"하의",
+			"원피스",
+			"스커트",
+			"신발",
+			"가방",
+			"악세사리",
+			"양말",
+			"시계",
+			"모자"
+    		
+    }
     
+    const styleCategories ={
+	"캐쥬얼",
+	"스트릿",
+	"댄디",
+	"아메카지",
+	"고프코어",
+	"스포츠",
+	"로맨틱",
+	"걸리쉬",
+	"시크"
+    };
+    
+    function getMainCategory(no) {
+		return mainCategories[no];
+	}
+    function getStyleCategory(no) {
+		return styleCategories[no];
+	}
     
     const subCategories = {
         1: ["니트/스웨터","후드 티셔츠", "맨투맨/스웨트셔츠", "긴소매 티셔츠", "셔츠/블라우스", "피케/카라티셔츠", "반소매 티셔츠", "민소매 티셔츠", "기타 상의"], // 예시: 각 대분류에 맞는 소분류들

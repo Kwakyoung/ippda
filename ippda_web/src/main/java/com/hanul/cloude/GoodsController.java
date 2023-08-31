@@ -35,6 +35,12 @@ public class GoodsController {
 	
 	@RequestMapping("/basicinfo")
 	public String basicinfo(HttpSession session, Model model) {
+		session.setAttribute("category", "goods");
+		session.setAttribute("category_main", "상품");
+		session.setAttribute("category_sub", "상품등록");
+		session.setAttribute("category_url", "/goods/list");
+		
+		
 		MemberVO loginInfo = (MemberVO) session.getAttribute("loginInfo");
 		model.addAttribute("loginInfo", loginInfo);
 		System.out.println(loginInfo);
@@ -47,7 +53,7 @@ public class GoodsController {
 		vo.setGoods_sub_image( common.fileUpload("goods", file[1], request) );
 		vo.setFile_main_name(file[0].getOriginalFilename());
 		vo.setFile_sub_name(file[1].getOriginalFilename());
-		
+		vo.setStore_no( ((MemberVO) session.getAttribute("loginInfo")).getStore_no() );
 		int insert = sql.insert("goods.insert", vo);
 		if( insert==1  ) {
 //			sql.insert("goods.fileRegister", vo);

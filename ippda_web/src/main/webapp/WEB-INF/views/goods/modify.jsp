@@ -17,8 +17,11 @@
 	display: flex;
 }
 
+
+
 img {
 	max-width: 70px;
+	max-height: 100px;
 	display: flex;
 }
 </style>
@@ -244,17 +247,39 @@ img {
             <div class="portfolio-info">
               <h3>${vo.goods_info }</h3>
               <ul>
-                <li><strong>분류</strong>:<span class="badge badge-primary">New</span> 
-                	<span class="badge badge-primary">New</span>
-                	<span class="badge badge-primary">New</span>
+                <li><strong>분류</strong>:<a id="categorys"></a>
                 </li>
-                <li><strong>상품명</strong>:상품이름</li>
-                <li><strong>가격정보</strong>: 판매가 할인율 <del>판매가</del></li>
-                <li><strong>성별</strong>:성별 </li>
-                <li><strong>상세정보</strong>:상세정보다 </li>
-                <li><strong>메인이미지</strong>:상세정보다 </li>
-                <li><strong>서브이미지</strong>:상세정보다 </li>
-           
+                <li><strong>상품명</strong>:<a id="goods_info_name">${vo.goods_name}</a></li>
+               
+          <li><strong>가격정보</strong>: <del>${vo.goods_price} ( ${vo.goods_sale_percent} )</del>  ${vo.goods_sale_price}</li>
+                <li><strong>성별</strong>:${vo.goods_gender} </li>
+                <li><strong>상세정보</strong>:${vo.goods_info} </li>
+                <li>
+                이미지
+                <div class="row">
+                	<div class="col-４">
+                		 <strong>메인</strong>:
+                		  <img
+  src="${vo.goods_main_image}"
+  
+  class="img-thumbnail"
+  alt="상품 이미지"
+  onerror="this.onerror=null; this.src='<c:url value="/img/error_img.gif"/>;'"/>
+                	</div>
+                	<div class="col-４">
+                	   <strong>서브</strong>:    <img
+  src="${vo.goods_sub_image}"
+  
+  class="img-thumbnail"
+  alt="상품 이미지"
+  onerror="this.onerror=null; this.src='<c:url value="/img/error_img.gif"/>;'"/>
+                	</div>
+                </div>
+               
+                
+                  
+                 </li>
+            
               </ul>
             </div>
          		</section>
@@ -265,168 +290,6 @@ img {
 	
 		</div>
 		</form>
-		
-
-
-	<!-- 		<ul class="nav nav-tabs">
-				<li class="nav-item"><a class="nav-link text-dark active fs-5"
-					data-tab="basicInfo">기본정보</a></li>
-			</ul> -->
-
-		<%-- 	<form action="update" method="post" enctype="multipart/form-data" id="update">
-
-
-				<div class="form-group my-4" style="display: none;">
-					<!--style="display: none;"-->
-					<h4>상품번호</h4>
-					<input class="form-control input-lg" type="number"
-						placeholder="상품번호" name="goods_no" id="goods_no"
-						value="${vo.goods_no}" />
-			
-
-				<div class="form-group my-3" style="">
-					<h4>대분류</h4>
-					<select class="form-control" name="goods_middle_category"
-						id="item_catemain" title="상품 대분류">
-						<option value="">(선택)</option>
-						<option value="1">상의</option>
-						<option value="2">아우터</option>
-						<option value="3">하의</option>
-						<option value="4">원피스</option>
-						<option value="5">스커트</option>
-						<option value="6">신발</option>
-						<option value="7">가방</option>
-						<option value="8">악세사리</option>
-						<option value="9">양말</option>
-						<option value="10">시계</option>
-						<option value="11">모자</option>
-					</select>
-
-					<hr class="divider-w mt-10 mb-20">
-					<h4 class="my-2">소분류</h4>
-					<select class="form-control" name="goods_sub_category"
-						id="item_catesub" title="상품 소분류">
-						<option value="">(선택)</option>
-
-
-					</select>
-					<hr class="divider-w mt-10 mb-20">
-					<h4>스타일</h4>
-					<select class="form-control" name="goods_style" id="goods_style"
-						title="상품 스타일">
-						<option value="">(선택)</option>
-						<option value="201">캐쥬얼</option>
-						<option value="202">스트릿</option>
-						<option value="203">댄디</option>
-						<option value="204">아메카지</option>
-						<option value="205">고프코어</option>
-						<option value="206">스포츠</option>
-						<option value="207">로맨틱</option>
-						<option value="208">걸리쉬</option>
-						<option value="209">시크</option>
-					</select>
-				</div>
-
-				<hr class="divider-w mt-10 mb-20">
-
-				<div class="form-group my-4 ">
-					<h4>상품명</h4>
-					<input class="form-control input-lg" type="text" placeholder="상품명"
-						name="goods_name" id="goods_name" value="${vo.goods_name}" />
-				</div>
-				<hr class="divider-w mt-10 mb-20">
-				<div class="form-group">
-					<h4>판매가</h4>
-					<input class="form-control input-lg" type="number"
-						placeholder="판매가 / 단위 : 원" name="goods_price" id="goods_price"
-						value="${vo.goods_price}" />
-				</div>
-				<hr class="divider-w mt-10 mb-20">
-
-				<div class="form-group">
-
-					<h4>할인율</h4>
-					<select class="form-control" name="goods_sale_percent"
-						id="goods_sale_percent" title="할인율">
-						<option value="0">(없음)</option>
-						<option value="10">10%</option>
-						<option value="20">20%</option>
-						<option value="30">30%</option>
-						<option value="40">40%</option>
-						<option value="50">50%</option>
-						<option value="60">60%</option>
-						<option value="70">70%</option>
-						<option value="80">80%</option>
-						<option value="90">90%</option>
-						<option value="100">100%</option>
-					</select>
-				</div>
-
-				<button type="button" class="btn btn-secondary my-4"
-					id="checkPriceBtn">상품가격 확인하기</button>
-				<div class="form-group">
-					<h3 id="calculated_price_display"></h3>
-					<input id="calculated_price" name="goods_sale_price"
-						value="${vo.goods_sale_price}" style="display: none">
-				</div>
-
-				<div class="form-group">
-					<h4>상품내용</h4>
-					<textarea class="form-control input-lg" placeholder="내용을 입력하세요"
-						name="goods_info" id="goods_info">${vo.goods_info}</textarea>
-				</div>
-
-
-				<div class="form-group my-4">
-					<h4>상품성별</h4>
-					<select class="form-control" name="goods_gender" id="goods_gender"
-						title="상품성별">
-						<option value="남">남</option>
-						<option value="여">여</option>
-						<option value="남여공용">남녀공용</option>
-					</select>
-				</div>
-
-				<hr class="divider-w mt-10 mb-20">
-
-				<div class="form-group ">
-					<h3>메인이미지 ( 썸네일 )</h3>
-					<input class="form-control input-lg" type="file" name="file"
-						id="itemMainImg" />
-					<!-- 수정 화면에서 기존 이미지 및 파일 이름 표시 -->
-					<div class="image-info my-3">
-						<p>현재 메인 이미지: ${vo.file_main_name}</p>
-						<img src="${vo.goods_main_image}" alt="Main Image">
-					</div>
-					<input name="file_main_name" value="${vo.file_main_name}"
-						style="display: none"> <input name="goods_main_image"
-						value="${vo.goods_main_image}" style="display: none">
-				</div>
-
-
-				<hr class="divider-w mt-10 mb-20">
-
-				<div class="form-group ">
-					<h3>서브이미지 ( 상품설명 이미지 )</h3>
-					<input class="form-control input-lg" type="file" name="file"
-						id="itemSubImg" />
-					<div class="image-info my-3">
-						<p>현재 서브 이미지: ${vo.file_sub_name}</p>
-						<img src="${vo.goods_sub_image}" alt="Sub Image">
-					</div>
-					<input name="file_sub_name" value="${vo.file_sub_name}"
-						style="display: none"> <input name="goods_sub_image"
-						value="${vo.goods_sub_image}" style="display: none">
-				</div>
-
-
-
-
-
-
-				<a type="submit" class="btn btn-secondary my-4" id="submit">입력완료</a>
-			</form>
- --%>
 		</div>
 
 	</section>
@@ -439,23 +302,20 @@ var stepper2 = new Stepper(document.querySelector('#stepper2'), {
 	animation : true
 });
 
-	document
-			.addEventListener(
-					"DOMContentLoaded",
-					function() {
-						const catemainSelect = document
-								.getElementById("item_catemain");
-						const catesubSelect = document
-								.getElementById("item_catesub");
-						const goodsMiddleCategory = ${vo.goods_middle_category}
-						;
-						// 이 부분에 실제 값이 들어가야 합니다.
-						console.log(goodsMiddleCategory);
-
-						const subCategories = {
-							1 : [ "니트/스웨터", "후드 티셔츠", "맨투맨/스웨트셔츠", "긴소매 티셔츠",
+	const catemainSelect = document.getElementById("item_catemain");
+	const catesubSelect = document.getElementById("item_catesub");
+	const goodsMiddleCategory = ${vo.goods_middle_category};
+	const goodsSubCategory = ${vo.goods_sub_category};
+	const goodsStyleCategory = ${vo.goods_style};
+	const goodsSalepercent = "${vo.goods_sale_percent}";
+	const goodsGender = "${vo.goods_gender}"
+	
+	
+	const mainCategories =["상의","아우터","하의","원피스","스커트","신발","가방","악세사리","양말","시계","모자"];
+	const styleCategories =["캐쥬얼","스트릿","댄디","아메카지","고프코어","스포츠","로맨틱","걸리쉬","시크"];
+	const subCategories = {1 : [ "니트/스웨터", "후드 티셔츠", "맨투맨/스웨트셔츠", "긴소매 티셔츠",
 									"셔츠/블라우스", "피케/카라티셔츠", "반소매 티셔츠",
-									"민소매 티셔츠", "기타 상의" ], // 예시: 각 대분류에 맞는 소분류들
+									"민소매 티셔츠", "기타 상의" ], 
 							2 : [ "후드 집업", "블루종/MA-1", "레더/라이더스 재킷", "무스탕/퍼",
 									"트러커 재킷", "슈트/블레이저 재킷", "카디건", "아노락 재킷",
 									"플리스/뽀글이", "트레이닝 재킷", "환절기 코트", "겨울 싱글 코트",
@@ -483,24 +343,9 @@ var stepper2 = new Stepper(document.querySelector('#stepper2'), {
 									"비니", "트루퍼", "기타 모자" ],
 
 						};
+						
 
-						catemainSelect.addEventListener("change", function() {
-							change_catemainSelect();
-						});
 
-						function change_catemainSelect() {
-							const selectedCatemain = catemainSelect.value;
-							catesubSelect.innerHTML = ""; // 먼저 기존의 소분류 옵션들을 지웁니다.
-
-							const subCats = subCategories[selectedCatemain];
-							for (let i = 0; i < subCats.length; i++) {
-								const subCat = subCats[i];
-								const option = document.createElement("option");
-								option.value = i + 1;
-								option.textContent = subCat;
-								catesubSelect.appendChild(option);
-							}
-						}
 
 						$(document).ready(function() {
 							const catemainSelect = $("#item_catemain");
@@ -509,11 +354,7 @@ var stepper2 = new Stepper(document.querySelector('#stepper2'), {
 							const SlaePercent = $("#goods_sale_percent");
 							const Gender = $("#goods_gender");
 
-							const goodsMiddleCategory = "${vo.goods_middle_category}";
-							const goodsSubCategory = "${vo.goods_sub_category}";
-							const goodsStyleCategory = "${vo.goods_style}";
-							const goodsSalepercent = "${vo.goods_sale_percent}";
-							const goodsGender = "${vo.goods_gender}"
+
 
 							catestyleSelect.val(goodsStyleCategory);
 							catemainSelect.val(goodsMiddleCategory);
@@ -522,10 +363,16 @@ var stepper2 = new Stepper(document.querySelector('#stepper2'), {
 							catesubSelect.val(goodsSubCategory);
 							SlaePercent.val(goodsSalepercent);
 							Gender.val(goodsGender);
-						});
+							
+							
+							
+							
+							
+							setCategorys();
 
-						$("#checkPriceBtn")
-								.click(
+						});//document ready func
+
+						$("#checkPriceBtn").click(
 										function() {
 											const goodsPriceInput = document
 													.getElementById("goods_price");
@@ -558,8 +405,66 @@ var stepper2 = new Stepper(document.querySelector('#stepper2'), {
 											}
 
 										});
+						
+						
+						
+					
 
-					});
+						
+	function getCategories(no1 , no2) {
+		return subCategories[no1][no2-1];
+	}
+	
+	function getMainCategory(no) {
+		return mainCategories[no-1];
+	}
+	function getStyleCategory(no) {
+		return styleCategories[no-1];
+	}
+
+	function setCategorys() {
+		$('#categorys').empty();
+		$('#categorys').append('<a  class="badge badge-primary text-white m-1">' + $('#item_catemain option:checked').text() + '</a>');
+		$('#categorys').append('<a  class="badge badge-info text-white m-1">' +$('#item_catesub option:checked').text() + '</a>');
+		$('#categorys').append('<a  class="badge badge-success text-white m-1">' + $('#goods_style option:checked').text() + '</a>');
+			
+	}	
+	
+	$('#goods_name').blur(function() {
+		  $('#goods_info_name').hide();
+	});
+	
+	$('#item_catesub').change(function() {
+		if( this.selectedIndex != 0){
+		setCategorys();
+		}
+	});			
+	
+	$('#goods_style').change(function() {
+		if( this.selectedIndex != 0){
+		setCategorys();
+		}
+	});			
+	
+	function change_catemainSelect() {
+		const selectedCatemain = catemainSelect.value;
+		catesubSelect.innerHTML = ""; // 먼저 기존의 소분류 옵션들을 지웁니다.
+
+		const subCats = subCategories[selectedCatemain];
+		for (let i = 0; i < subCats.length; i++) {
+			const subCat = subCats[i];
+			const option = document.createElement("option");
+			option.value = i + 1;
+			option.textContent = subCat;
+			catesubSelect.appendChild(option);
+		}
+	}					
+					
+	catemainSelect.addEventListener("change", function() {
+			change_catemainSelect();
+			setCategorys();
+	});			
+
 
 	// 등록완료 버튼 눌렀을 때 처리
 	$("#submit").click(function() {
@@ -596,7 +501,5 @@ var stepper2 = new Stepper(document.querySelector('#stepper2'), {
 		}
 
 	});
-
-
 </script>
 </html>

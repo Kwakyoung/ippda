@@ -9,6 +9,6 @@
 					<!-- <context:component-scan 
 			base-package="customer,member,common"/> -->
 			<context:component-scan 
-			base-package="coupon,member,store,goods,delivery_address,common,order"/> 
+			base-package="coupon,member,store,goods,delivery_address,common,order,data"/> 
 			<import resource="classpath:data/default.xml"/>
 </beans>

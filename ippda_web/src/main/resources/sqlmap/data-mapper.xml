@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data">
+
+	<!-- 월별 사원수 조회 -->
+<select id="Month" resultType="hashmap">
+select to_char(order_date,'mm')||'월' unit, count(goods_no) count
+from order_ing
+group by to_char(order_date,'mm')
+order by unit
+</select>
+
+<select id="Year" resultType="hashmap">
+select to_char(order_date,'YY')||'년' unit, count(goods_no) count
+from order_ing
+group by to_char(order_date,'YY')
+order by unit
+</select>
+
+</mapper>

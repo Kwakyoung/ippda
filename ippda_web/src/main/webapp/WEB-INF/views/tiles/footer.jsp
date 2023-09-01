@@ -25,24 +25,24 @@
           </div>
 
           <div class="col-lg-2 col-md-6 footer-links">
-            <h4>Useful Links</h4>
+            <h4>이동하기</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">메인 화면</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">상품</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">장바구니</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">배송확인</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
             </ul>
           </div>
 
           <div class="col-lg-2 col-md-6 footer-links">
-            <h4>Our Services</h4>
+            <h4>제공 서비스</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">배달/포장</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">입점문의</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">채팅상담</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">공지사항</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">일단 공란</a></li>
             </ul>
           </div>
 

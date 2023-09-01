@@ -1,13 +1,12 @@
 package review;
 
-import java.sql.Date;
-
 import member.MemberVO;
 
 public class ReviewVO extends MemberVO{
+
 	private int review_no, goods_no, store_no;
 	private float rating;
-	private String content;
+	private String content, member_no;
 	private String insert_date;
 	public int getReview_no() {
 		return review_no;
@@ -21,8 +20,6 @@ public class ReviewVO extends MemberVO{
 	public void setGoods_no(int goods_no) {
 		this.goods_no = goods_no;
 	}
-
-
 	public String getContent() {
 		return content;
 	}
@@ -47,7 +44,11 @@ public class ReviewVO extends MemberVO{
 	public void setStore_no(int store_no) {
 		this.store_no = store_no;
 	}
-	
-	
+	public String getMember_no() {
+		return member_no;
+	}
+	public void setMember_no(String member_no) {
+		this.member_no = member_no;
+	}
 	
 }

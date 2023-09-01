@@ -23,7 +23,8 @@
         android:layout_height="wrap_content"
         android:background="#353535"
         app:labelVisibilityMode="unlabeled"
-        app:menu="@menu/btm_mainact_menu" />
+        app:menu="@menu/btm_mainact_menu"
+        tools:ignore="MissingClass" />
 
 
 </LinearLayout>

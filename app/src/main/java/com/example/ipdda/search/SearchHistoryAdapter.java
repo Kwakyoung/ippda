@@ -53,9 +53,11 @@ public class SearchHistoryAdapter extends RecyclerView.Adapter<SearchHistoryAdap
                         if (searchlist.size()==0){
                             fragment.binding.tvSearchNothing.setVisibility(View.VISIBLE);
                             fragment.binding.imvArrow.setVisibility(View.GONE);
+                            fragment.binding.recvSearchList.setVisibility(View.GONE);
                         }else{
                             fragment.binding.tvSearchNothing.setVisibility(View.GONE);
                             fragment.binding.imvArrow.setVisibility(View.VISIBLE);
+                            fragment.binding.recvSearchList.setVisibility(View.VISIBLE);
                             fragment.binding.recvSearchList.setLayoutManager(new LinearLayoutManager(fragment.getContext()));
                             fragment.binding.recvSearchList.setAdapter(new SearchListAdapter(searchlist, fragment.getContext()));
                         }

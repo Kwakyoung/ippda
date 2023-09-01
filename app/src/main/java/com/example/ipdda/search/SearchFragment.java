@@ -82,9 +82,11 @@ public class SearchFragment extends DialogFragment {
                             if (searchlist.size()==0){
                                 binding.tvSearchNothing.setVisibility(View.VISIBLE);
                                 binding.imvArrow.setVisibility(View.GONE);
+                                fragment.binding.recvSearchList.setVisibility(View.GONE);
                             }else{
                                 binding.tvSearchNothing.setVisibility(View.GONE);
                                 binding.imvArrow.setVisibility(View.VISIBLE);
+                                fragment.binding.recvSearchList.setVisibility(View.VISIBLE);
                                 binding.recvSearchList.setLayoutManager(new LinearLayoutManager(getContext()));
                                 binding.recvSearchList.setAdapter(new SearchListAdapter(searchlist, getContext()));
                             }

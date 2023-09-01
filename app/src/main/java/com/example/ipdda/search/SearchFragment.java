@@ -1,5 +1,6 @@
 package com.example.ipdda.search;
 
+import android.app.Activity;
 import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 
@@ -31,12 +32,12 @@ public class SearchFragment extends DialogFragment {
     FragmentSearchBinding binding;
     ArrayList<SearchHistoryDTO> list ;
     private SimpleDateFormat mFormat = new SimpleDateFormat("MM.dd");
+    SearchFragment fragment = this;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentSearchBinding.inflate(inflater,container,false);
-
 
 
 
@@ -66,26 +67,37 @@ public class SearchFragment extends DialogFragment {
         binding.edtSearch.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
+                String key;
                 if (keyCode == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_UP) {
                     // 엔터 키가 눌렸을 때 클릭 이벤트를 처리
+                    binding.tvSearchlist.setVisibility(View.VISIBLE);
                     CommonConn conn = new CommonConn(getContext(), "goods/search");
-                    String search = binding.edtSearch.getText().toString().substring(0, binding.edtSearch.getText().toString().length() - 1);
-                    Log.d("search", "onKey: "+search);
-                    conn.addParamMap("keyword",search);
-                    conn.onExcute((isResult, data) -> {
-                        ArrayList<GoodsVO> searchlist = new Gson().fromJson(data , new TypeToken<ArrayList<GoodsVO>>(){}.getType());
-                        binding.containerSearch.setVisibility(View.VISIBLE);
-                        binding.recvSearchList.setLayoutManager(new LinearLayoutManager(getContext()));
-                        binding.recvSearchList.setAdapter(new SearchListAdapter(searchlist, getContext()));
-                    });
-
-                        v.performClick();
-                        if(!binding.edtSearch.getText().toString().trim().isEmpty()) {
-                            list.add(new SearchHistoryDTO(binding.edtSearch.getText().toString()));
+                    if (!binding.edtSearch.getText().toString().isEmpty()) {
+                        key= binding.edtSearch.getText().toString();
+                        key=key.replace("\n", "").trim();
+                        Log.d("search", "onKey: "+key);
+                        conn.addParamMap("keyword",key);
+                        conn.onExcute((isResult, data) -> {
+                            ArrayList<GoodsVO> searchlist = new Gson().fromJson(data , new TypeToken<ArrayList<GoodsVO>>(){}.getType());
+                            if (searchlist.size()==0){
+                                binding.tvSearchNothing.setVisibility(View.VISIBLE);
+                                binding.imvArrow.setVisibility(View.GONE);
+                            }else{
+                                binding.tvSearchNothing.setVisibility(View.GONE);
+                                binding.imvArrow.setVisibility(View.VISIBLE);
+                                binding.recvSearchList.setLayoutManager(new LinearLayoutManager(getContext()));
+                                binding.recvSearchList.setAdapter(new SearchListAdapter(searchlist, getContext()));
+                            }
+                        });
+                        if(!key.isEmpty() && !listContainsKey(list, key)) {
+                            list.add(new SearchHistoryDTO(key));
                             binding.recvSearchHistory.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-                            binding.recvSearchHistory.setAdapter(new SearchHistoryAdapter(list, getContext()));
+                            binding.recvSearchHistory.setAdapter(new SearchHistoryAdapter(list, getContext(),fragment));
                             binding.edtSearch.setText("");
                         }
+                    }else {
+                        return true ;
+                    }
 
                     return true;
                 }
@@ -97,6 +109,16 @@ public class SearchFragment extends DialogFragment {
 
         return binding.getRoot();
     }
+
+    private boolean listContainsKey(ArrayList<SearchHistoryDTO> list, String key) {
+        for (SearchHistoryDTO item : list) {
+            if (item.getTxt().equals(key)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     ArrayList<SearchHistoryDTO> getlist(){
         ArrayList<SearchHistoryDTO> list = new ArrayList<>();

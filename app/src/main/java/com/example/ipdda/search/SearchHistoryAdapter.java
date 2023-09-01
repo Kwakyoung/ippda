@@ -51,13 +51,13 @@ public class SearchHistoryAdapter extends RecyclerView.Adapter<SearchHistoryAdap
                     conn.onExcute((isResult, data) -> {
                         ArrayList<GoodsVO> searchlist = new Gson().fromJson(data , new TypeToken<ArrayList<GoodsVO>>(){}.getType());
                         if (searchlist.size()==0){
-                            binding.tvSearchNothing.setVisibility(View.VISIBLE);
-                            binding.imvArrow.setVisibility(View.GONE);
+                            fragment.binding.tvSearchNothing.setVisibility(View.VISIBLE);
+                            fragment.binding.imvArrow.setVisibility(View.GONE);
                         }else{
-                            binding.tvSearchNothing.setVisibility(View.GONE);
-                            binding.imvArrow.setVisibility(View.VISIBLE);
-                            binding.recvSearchList.setLayoutManager(new LinearLayoutManager(getContext()));
-                            binding.recvSearchList.setAdapter(new SearchListAdapter(searchlist, getContext()));
+                            fragment.binding.tvSearchNothing.setVisibility(View.GONE);
+                            fragment.binding.imvArrow.setVisibility(View.VISIBLE);
+                            fragment.binding.recvSearchList.setLayoutManager(new LinearLayoutManager(fragment.getContext()));
+                            fragment.binding.recvSearchList.setAdapter(new SearchListAdapter(searchlist, fragment.getContext()));
                         }
                     });
 

@@ -6,88 +6,40 @@
 	<c:when test="${category eq 'login'}"><c:set var="title" value="로그인"/></c:when>
 </c:choose>
     
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>IPPDA</title>
+<c:set var="now" value="<%=new java.util.Date() %>"/> 
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="<c:url value='/img/logo.png' />" />
+        
+        
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" >
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  
+<!--  cdnjs.com > fontawesome 검색 > styling, javascript 선언문 복사해서 넣기 -->        
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" ></script>
+<!--  //fontawesome -->
+		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+        <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+		<script src="<c:url value='/js/common.js?${now }'/>"></script>
+    </head>
 
-<meta charset="utf-8">
-<title>Colorlib | Free Bootstrap Website Template</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-<meta name="robots" content="noindex, nofollow" />
+<body class="bg-light">
 
-<link href="assets/css/bootstrap.min.css" rel="stylesheet" media="screen">
-<link href="assets/css/template.css" rel="stylesheet" media="screen">
-<link href="assets/css/fa.min.css" rel="stylesheet" media="screen">
-<link href="assets/css/gfonts.min.css" rel="stylesheet" media="screen">
-<script>if ( top !== self ) top.location.replace( self.location.href );// Hey, don't iframe my iframe!</script>
-
-
-<!--[if lt IE 9]>
-		<script>/*@cc_on'abbr article aside audio canvas details figcaption figure footer header hgroup mark meter nav output progress section summary subline time video'.replace(/\w+/g,function(n){document.createElement(n)})@*/</script>
-	<![endif]-->
-
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
-<script>
-	  window.dataLayer = window.dataLayer || [];
-	  function gtag(){dataLayer.push(arguments);}
-	  gtag('js', new Date());
-
-	  gtag('config', 'UA-23581568-13');
-	</script>
-<script nonce="9f017cf6-592c-4eb2-8977-18a7b2a7dab6">(function(w,d){!function(db,dc,dd,de){db[dd]=db[dd]||{};db[dd].executed=[];db.zaraz={deferred:[],listeners:[]};db.zaraz.q=[];db.zaraz._f=function(df){return async function(){var dg=Array.prototype.slice.call(arguments);db.zaraz.q.push({m:df,a:dg})}};for(const dh of["track","set","debug"])db.zaraz[dh]=db.zaraz._f(dh);db.zaraz.init=()=>{var di=dc.getElementsByTagName(de)[0],dj=dc.createElement(de),dk=dc.getElementsByTagName("title")[0];dk&&(db[dd].t=dc.getElementsByTagName("title")[0].text);db[dd].x=Math.random();db[dd].w=db.screen.width;db[dd].h=db.screen.height;db[dd].j=db.innerHeight;db[dd].e=db.innerWidth;db[dd].l=db.location.href;db[dd].r=dc.referrer;db[dd].k=db.screen.colorDepth;db[dd].n=dc.characterSet;db[dd].o=(new Date).getTimezoneOffset();if(db.dataLayer)for(const dp of Object.entries(Object.entries(dataLayer).reduce(((dq,dr)=>({...dq[1],...dr[1]})),{})))zaraz.set(dp[0],dp[1],{scope:"page"});db[dd].q=[];for(;db.zaraz.q.length;){const ds=db.zaraz.q.shift();db[dd].q.push(ds)}dj.defer=!0;for(const dt of[localStorage,sessionStorage])Object.keys(dt||{}).filter((dv=>dv.startsWith("_zaraz_"))).forEach((du=>{try{db[dd]["z_"+du.slice(7)]=JSON.parse(dt.getItem(du))}catch{db[dd]["z_"+du.slice(7)]=dt.getItem(du)}}));dj.referrerPolicy="origin";dj.src="/cdn-cgi/zaraz/s.js?z="+btoa(encodeURIComponent(JSON.stringify(db[dd])));di.parentNode.insertBefore(dj,di)};["complete","interactive"].includes(dc.readyState)?zaraz.init():db.addEventListener("DOMContentLoaded",zaraz.init)}(w,d,"zarazData","script");})(window,document);</script></head>
-<body>
-
-<header class="switcher-bar ssss clearfix">
-
-<div class="logo textual pull-left">
-<a href="https://colorlib.com/wp/templates/" title="Switcher">
-<img src="assets/img/logo.png" alt="Colorlib logo">
-</a>
-</div>
-
-<div class="product-switcher pull-left">
-<a href="#" title="Select a Product">
-Select a Product <span>+</span>
-</a>
-</div>
-
-<div class="remove-btn header-btn pull-right">
-<a href="#" title="Close this bar" class="icon-remove"></a>
-</div>
-
-<div class="purchase-btn header-btn pull-right">
-<a href="#" title="Buy now" class="icon-shopping-cart"></a>
-</div>
-
-<div class="mobile-btn header-btn pull-right hidden-xs">
-<a href="#" title="Smartphone View" class="icon-mobile-phone"></a>
-</div>
-
-<div class="tablet-btn header-btn pull-right hidden-xs">
-<a href="#" title="Tablet View" class="icon-tablet"></a>
-</div>
-
-<div class="desktop-btn header-btn pull-right hidden-xs">
-<a href="#" title="Desktop View" class="icon-desktop"></a>
-</div>
-</header>
-
-<section class="switcher-body">
-<a href="#" title="Prev" class="icon-chevron-left products-prev"></a>
-<div class="products-wrapper">
-<div class="products-list clearfix">
-</div>
-</div>
-<a href="#" title="Next" class="icon-chevron-right products-next"></a>
-</section>
-
-<iframe class="product-iframe" frameborder="0" border="0"></iframe>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="assets/js/products.js"></script>
-<script src="assets/js/application.min.js"></script>
-
-</div>
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8b253dfea2ab4077af8c6f58422dfbfd1689876627854" integrity="sha512-bjgnUKX4azu3dLTVtie9u6TKqgx29RBwfj3QXYt5EKfWM/9hPSAI/4qcV5NACjwAo8UtTeWefx6Zq5PHcMm7Tg==" data-cf-beacon='{"rayId":"7ff6230378a4dfe5","token":"cd0b4b3a733644fc843ef0b185f98241","version":"2023.8.0","si":100}' crossorigin="anonymous"></script>
+   	<!-- Page content-->
+    <div class="container">
+        <tiles:insertAttribute name="container"/>
+    </div>
+    
+	<!-- Bootstrap core JS-->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+	<!-- Core theme JS-->
+	<script src="<c:url value='/js/scripts.js'/>"></script>
 </body>
 </html>

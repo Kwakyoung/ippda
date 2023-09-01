@@ -65,7 +65,7 @@ https://templatemo.com/tm-583-festava-live
 
                         <h1 class="text-white mb-5">머 좋은 문구 없나..</h1>
 
-                        <a class="btn custom-btn smoothscroll" href="#section_2">관리자용 접속하기</a>
+                        <a class="btn custom-btn smoothscroll" href="login">관리자용 접속하기</a>
                     </div>
 
                     <div class="col-lg-12 col-12 mt-auto d-flex flex-column flex-lg-row text-center">

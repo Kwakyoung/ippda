@@ -33,7 +33,7 @@
 
                 <ImageView
                     android:id="@+id/imgv_goods_img"
-                    android:src="@drawable/test"
+                    android:src="@drawable/outer"
                     android:layout_width="100dp"
                     android:layout_height="100dp"/>
             </androidx.cardview.widget.CardView>

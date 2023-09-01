@@ -85,7 +85,7 @@ public class CommonUtility {
 		//D:\Study_Spring\Workspace\.metadata\.plugins\org.eclipse.wst.server.core
 		// \tmp0\wtpwebapps\02.smart\resources
 		//String path = request.getSession().getServletContext().getRealPath("resources");
-
+		if(file == null) return "";
 		// d:\\app\smart
 		String path = "D:\\app"+ request.getContextPath(); // /smart
 //		String path = "D:/app/smart";

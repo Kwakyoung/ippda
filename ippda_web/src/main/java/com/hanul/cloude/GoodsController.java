@@ -35,11 +35,20 @@ public class GoodsController {
 	
 	@RequestMapping("/basicinfo")
 	public String basicinfo(HttpSession session, Model model) {
+		session.setAttribute("category", "goods");
+		session.setAttribute("category_main", "상품");
+		session.setAttribute("category_sub", "상품등록");
+		session.setAttribute("category_url", "/goods/list");
+		
+		
 		MemberVO loginInfo = (MemberVO) session.getAttribute("loginInfo");
 		model.addAttribute("loginInfo", loginInfo);
 		System.out.println(loginInfo);
 		return"goods/basicinfo";
 	}
+	
+	
+	
 	
 	@RequestMapping("/insert")
 	public String insert(GoodsVO vo, MultipartFile file[] , HttpServletRequest request ,HttpSession session) {
@@ -47,7 +56,7 @@ public class GoodsController {
 		vo.setGoods_sub_image( common.fileUpload("goods", file[1], request) );
 		vo.setFile_main_name(file[0].getOriginalFilename());
 		vo.setFile_sub_name(file[1].getOriginalFilename());
-		
+		vo.setStore_no( ((MemberVO) session.getAttribute("loginInfo")).getStore_no() );
 		int insert = sql.insert("goods.insert", vo);
 		if( insert==1  ) {
 //			sql.insert("goods.fileRegister", vo);
@@ -59,7 +68,10 @@ public class GoodsController {
 	
 	@RequestMapping("/option")
 	public String option(@RequestParam("goods_no") int goods_no , Model model , HttpSession session) {
-	
+		session.setAttribute("category", "goods");
+		session.setAttribute("category_main", "상품");
+		session.setAttribute("category_sub", "옵션 등록");
+		session.setAttribute("category_url", "/goods/list");
 		
 		MemberVO loginInfo = (MemberVO) session.getAttribute("loginInfo");
 		GoodsVO vo = sql.selectOne("goods.info" , goods_no);
@@ -76,6 +88,9 @@ public class GoodsController {
 							, String goods_option_cnt
 							, String goods_option_color
 							, HttpSession session) {
+		
+		
+		
 		String size[] = goods_option_size.split(",");
 		String cnt[] = goods_option_cnt.split(",");
 		String color[] = goods_option_color.split(",");
@@ -98,17 +113,14 @@ public class GoodsController {
 	}
 
 	@RequestMapping("/list")
-	public String goodsList(HttpSession session, Model model, PageVO page ) {
+	public String goodsList(HttpSession session, Model model, PageVO page , String test ) {
 		session.setAttribute("category", "goods");
 		session.setAttribute("category_main", "상품");
 		session.setAttribute("category_sub", "상품목록");
 		session.setAttribute("category_url", "/goods/list");
 		
-//		MemberVO loginInfo = (MemberVO) session.getAttribute("loginInfo");
-		
-		int store_no = 1; //loginInfo.getStore_no();
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("store_no", store_no);
+		map.put("store_no", 		 ((MemberVO) session.getAttribute("loginInfo")).getStore_no() );
 		map.put("page", page);
 		int totalList =  sql.selectOne( "goods.total", map );
 		page.setTotalList(totalList );
@@ -121,6 +133,13 @@ public class GoodsController {
 	
 	@RequestMapping("/modify")
 	public String modify(@RequestParam("goods_no") int goods_no , Model model , HttpSession session , MultipartFile file[]) {
+		session.setAttribute("category", "goods");
+		session.setAttribute("category_main", "상품");
+		session.setAttribute("category_sub", "상품 수정");
+		session.setAttribute("category_url", "/goods/list");
+		
+		
+		
 		GoodsVO vo = sql.selectOne("goods.modify", goods_no);
 			
 		model.addAttribute("vo", vo);
@@ -163,6 +182,11 @@ public class GoodsController {
 	
 	@RequestMapping("/modify/option")
 	public String modifyOption(int goods_no, Model model , HttpSession session) {
+		session.setAttribute("category", "goods");
+		session.setAttribute("category_main", "상품");
+		session.setAttribute("category_sub", "옵션 수정");
+		session.setAttribute("category_url", "/goods/list");
+		
 		List<GoodsOptionVO> vo = sql.selectList("goods.goodsOption" , goods_no);
 		MemberVO loginInfo = (MemberVO) session.getAttribute("loginInfo");
 		int store_no = loginInfo.getStore_no();

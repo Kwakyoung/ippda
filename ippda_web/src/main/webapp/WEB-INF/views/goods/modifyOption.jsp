@@ -20,19 +20,25 @@ select#goods_size { width: 100px }
 </style>
 </head>
 <body>
-	<h3 class="my-4">옵션 수정</h3>
+	<!-- ======= Breadcrumbs ======= -->
+	<section id="breadcrumbs" class="breadcrumbs">
+		<div class="container">
+			<ol>
+				<li><a href="<c:url value="${category_url }"/>">${category_main}</a></li>
+				<li>${category_sub}</li>
+			</ol>
+			<h2>${category_sub}</h2>
 
-	<ul class="nav nav-tabs">
-		<li class="nav-item"><a class="nav-link text-dark fs-5 active"
-			data-tab="optionSettings">옵션설정</a></li>
-	</ul>
+		</div>
+	</section>
+	<!-- End Breadcrumbs -->
 
-
-
+	<section class="inner-page">
+		<div class="container ">
 	<form action="option/update" method="post" name="itemInsertForm"
 		id="itemInsertForm" enctype="multipart/form-data">
 
-<div class="form-group my-4" style="display: none;"> <!--style="display: none;"--> 
+		<div class="form-group my-4" style="display: none;"> <!--style="display: none;"--> 
 			<h4>상품번호</h4>
 			<input class="form-control input-lg" type="number" placeholder="상품번호"
 				name="goods_no" id="goods_no" value="${goods_no} "  />
@@ -91,44 +97,13 @@ select#goods_size { width: 100px }
 
 				</div>
 			</c:forEach>
-			<div id="options-container"></div>
-<!--  
-			<h4>사이즈</h4>
-			<select class="form-control" id="goods_size"
-				title="상품 사이즈">
-				<option value="">(선택)</option>
-				<option value="2XS">2XS</option>
-				<option value="XS">XS</option>
-				<option value="S">S</option>
-				<option value="M">M</option>
-				<option value="L">L</option>
-				<option value="XL">XL</option>
-				<option value="2XL">2XL</option>
-				<option value="3XL">3XL</option>
-				<option value="FREE">FREE</option>
-			</select>
-
-			<hr class="divider-w mt-10 mb-20">
-			<div class="form-group">
-				<h4>색상</h4>
-				<input class="form-control input-lg" type="text" placeholder="색상"
-					 id="goods_color"/>
-			</div>
-			<hr class="divider-w mt-10 mb-20">
-
-			<div class="form-group">
-				<h4>수량</h4>
-				<input class="form-control input-lg" type="number" placeholder="수량"
-				 id="goods_cnt" />
-			</div>
-			<hr class="divider-w mt-10 mb-20">
--->			
+			<div id="options-container"></div>x
 		
 		</div>
-<!-- 		<button type="button" class="btn btn-secondary" id="regist">등록완료</button> -->
 		<button type="submit" class="btn btn-secondary" >수정완료</button>
 	</form>
-	
+	</div>
+	</section>
 	<jsp:include page="/WEB-INF/views/include/modal_alert.jsp"/>
 </body>
 

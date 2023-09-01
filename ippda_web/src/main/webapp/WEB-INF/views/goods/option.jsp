@@ -22,14 +22,21 @@
 
 <body>
 
-	<h3 class="my-4">옵션 등록</h3>
+<!-- ======= Breadcrumbs ======= -->
+	<section id="breadcrumbs" class="breadcrumbs">
+		<div class="container">
+			<ol>
+				<li><a href="<c:url value="${category_url }"/>">${category_main}</a></li>
+				<li>${category_sub}</li>
+			</ol>
+			<h2>${category_sub}</h2>
 
-	<ul class="nav nav-tabs">
-		<li class="nav-item"><a class="nav-link text-dark fs-5 active"
-			data-tab="optionSettings">옵션설정</a></li>
-	</ul>
+		</div>
+	</section>
+	<!-- End Breadcrumbs -->
 
-
+	<section class="inner-page">
+		<div class="container ">
 
 	<form action="option/insert" method="post" name="itemInsertForm"
 		id="itemInsertForm" enctype="multipart/form-data">
@@ -93,6 +100,8 @@
 	</form>
 
 
+</div>
+</section>
 
 </body>
 

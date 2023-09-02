@@ -161,7 +161,7 @@
             android:layout_gravity="center"
             android:background="@drawable/button_radius"
             android:textColor="#0E0E0E"
-            android:text="로그인 하러가기"
+            android:text="비밀번호 변경하기"
             android:layout_width="320dp"
             android:layout_height="50dp"/>
 

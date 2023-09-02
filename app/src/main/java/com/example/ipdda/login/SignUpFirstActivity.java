@@ -61,6 +61,8 @@ public class SignUpFirstActivity extends AppCompatActivity {
                 binding.edtCheck.setEnabled(false);
                 binding.btnPhonecheck.setEnabled(false);
                 binding.btnPhonecheckLast.setEnabled(false);
+            }else {
+                Toast.makeText(this, "인증번호가 맞지 않습니다. 다시 입력해주세요.", Toast.LENGTH_SHORT).show();
             }
         });
 

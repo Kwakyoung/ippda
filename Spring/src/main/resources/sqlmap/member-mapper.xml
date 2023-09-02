@@ -11,10 +11,27 @@
 
 <!-- id 중복체크 -->
 <select id="idcheck" resultType="member.MemberVO">
-	SELECT member_id 
+	SELECT * 
 	FROM member 
 	where member_id = #{member_id} 
 </select>
+
+<!-- 주문 배송지정보 -->
+<select id="order" resultType="member.MemberVO">
+	SELECT 	member_name, member_phone, member_address 
+	FROM 	member 
+	where 	member_id = #{member_id}
+	and		member_pw = #{member_pw} 
+</select>
+
+
+<select id="check" resultType="member.MemberVO">
+	SELECT 	member_id, member_name
+	FROM 	member 
+	WHERE	member_id = #{member_id}
+	AND		member_name= #{member_name} 
+</select>
+
 
 <!-- 폰으로 아이디찾기 -->
 <select id="findid" resultType="member.MemberVO">
@@ -26,7 +43,7 @@
 
 
 
-<!-- 폰으로 비밀번호 찾기 -->
+<!-- 폰으로 비밀번호 찾고 비번변경 -->
 <update id="resetPw">
 UPDATE 	member 
 SET 	member_pw = #{member_pw} 

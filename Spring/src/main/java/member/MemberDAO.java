@@ -35,6 +35,17 @@ public class MemberDAO {
 		return sql.selectOne("member.idcheck",member_id);
 	}
 	
+	public MemberVO	check(MemberVO vo) {
+		return sql.selectOne("member.check",vo);
+	}
+	
+	
+	
+	public MemberVO	order(MemberVO vo) {
+		return sql.selectOne("member.order",vo);
+	}
+	
+
 	
 	public MemberVO findid(MemberVO vo) {
 		return sql.selectOne("member.findid",vo);

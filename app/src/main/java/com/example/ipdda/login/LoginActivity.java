@@ -39,7 +39,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        FragmentManager manager = getSupportFragmentManager();
 
 
 
@@ -85,9 +84,9 @@ public class LoginActivity extends AppCompatActivity {
 
 
         getHashKey();
-        binding.kakaoLogin.setOnClickListener(v -> {
-            kakaoLogin(this);
-        });
+//        binding.kakaoLogin.setOnClickListener(v -> {
+//            kakaoLogin(this);
+//        });
 
 
 

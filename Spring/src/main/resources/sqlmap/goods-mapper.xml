@@ -3,44 +3,48 @@
 <mapper namespace="goods">
 
 <select id="list" resultType="goods.GoodsVO">
-select G.* , GO.*, S.STORE_NAME
-from 
-GOODS G INNER JOIN GOODS_OPTION GO 
-ON G.GOODS_NO = GO.GOODS_NO 
-INNER JOIN STORE S
-ON S.STORE_NO = G.STORE_NO
-WHERE GOODS_MIDDLE_CATEGORY = #{GOODS_MIDDLE_CATEGORY}
+select rownum, g.*, s.store_name
+from goods g
+inner join store s on s.store_no = g.store_no
+where g.goods_middle_category = #{goods_middle_category}
+<!-- select G.* , GO.*, S.STORE_NAME -->
+<!-- from  -->
+<!-- GOODS G INNER JOIN GOODS_OPTION GO  -->
+<!-- ON G.GOODS_NO = GO.GOODS_NO  -->
+<!-- INNER JOIN STORE S -->
+<!-- ON S.STORE_NO = G.STORE_NO -->
+<!-- WHERE GOODS_MIDDLE_CATEGORY = #{GOODS_MIDDLE_CATEGORY} -->
 </select>
 	
 <select id="stylelist" resultType="goods.GoodsVO">
-select G.* , GO.*, S.STORE_NAME
-from 
-GOODS G INNER JOIN GOODS_OPTION GO 
-ON G.GOODS_NO = GO.GOODS_NO 
-INNER JOIN STORE S
-ON S.STORE_NO = G.STORE_NO
-WHERE GOODS_STYLE = #{GOODS_STYLE}
+select rownum, g.*, s.store_name
+from goods g
+inner join store s on s.store_no = g.store_no
+where g.goods_style = #{goods_style}
 </select>	
 	
 <select id="subcategorylist" resultType="goods.GoodsVO">
-select G.* , GO.*, S.STORE_NAME
-from 
-GOODS G INNER JOIN GOODS_OPTION GO 
-ON G.GOODS_NO = GO.GOODS_NO 
-INNER JOIN STORE S
-ON S.STORE_NO = G.STORE_NO
-WHERE GOODS_MIDDLE_CATEGORY = #{GOODS_MIDDLE_CATEGORY} AND GOODS_SUB_CATEGORY = #{GOODS_SUB_CATEGORY}
+SELECT ROWNUM, g.*, s.store_name
+FROM goods g
+INNER JOIN store s ON s.store_no = g.store_no
+WHERE g.goods_middle_category = #{goods_middle_category} AND g.goods_sub_category = #{goods_sub_category}
 </select>	
 
 <select id="goodsboard" resultType="goods.GoodsVO">
-select G.* , GO.*, S.STORE_NAME
+select g.*, s.store_name , s.store_delivery_tip
 from 
-GOODS G INNER JOIN GOODS_OPTION GO 
-ON G.GOODS_NO = GO.GOODS_NO 
-INNER JOIN STORE S
-ON S.STORE_NO = G.STORE_NO
-WHERE G.GOODS_NO =#{GOODS_NO}
+goods g inner join store s
+on s.store_no = g.store_no
+where g.goods_no = #{goods_no}
 </select>	
+
+
+<select id="search" resultType="goods.GoodsVO">
+    SELECT *
+     FROM GOODS 
+     WHERE GOODS_NAME LIKE '%' || #{keyword} || '%'
+</select>	
+
 
 
 </mapper>

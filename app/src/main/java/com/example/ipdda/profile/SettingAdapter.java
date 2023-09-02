@@ -14,6 +14,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.example.ipdda.MainActivity;
 import com.example.ipdda.common.CommonConn;
 import com.example.ipdda.common.CommonVar;
 import com.example.ipdda.databinding.ItemSettingRecvBinding;
@@ -60,8 +61,14 @@ public class SettingAdapter extends RecyclerView.Adapter<SettingAdapter.ViewHold
             h.binding.tvToggle.setOnClickListener(v -> {
                 if(h.binding.tvToggle.getText().equals("ON")) {
                     h.binding.tvToggle.setText("OFF");
+                    CommonConn conn = new CommonConn(context,"member/popup_on");
+                    conn.addParamMap("member_no", CommonVar.loginInfo.getMember_no());
+                    context.startService(new Intent(context, NotificationService.class));
                 }else if(h.binding.tvToggle.getText().equals("OFF")) {
                     h.binding.tvToggle.setText("ON");
+                    CommonConn conn = new CommonConn(context,"member/popup_off");
+                    conn.addParamMap("member_no", CommonVar.loginInfo.getMember_no());
+                    context.stopService(new Intent(context, NotificationService.class)); // 알림 중단
                 }
 
             });
@@ -70,6 +77,7 @@ public class SettingAdapter extends RecyclerView.Adapter<SettingAdapter.ViewHold
             h.binding.tvToggle.setOnClickListener(v -> {
                 if(h.binding.tvToggle.getText().equals("ON")) {
                     h.binding.tvToggle.setText("OFF");
+
                 }else if(h.binding.tvToggle.getText().equals("OFF")) {
                     h.binding.tvToggle.setText("ON");
                 }

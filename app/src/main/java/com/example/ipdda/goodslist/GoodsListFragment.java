@@ -5,11 +5,13 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridView;
 
 import com.example.ipdda.R;
 import com.example.ipdda.common.CommonConn;
@@ -52,7 +54,7 @@ public class GoodsListFragment extends Fragment {
 
         //goods_list에서 클릭한 값으로 첫화면 조회
         CommonConn conn = new CommonConn(getContext(), "goods/categorylist");
-        conn.addParamMap("GOODS_MIDDLE_CATEGORY", key);
+        conn.addParamMap("goods_middle_category", key);
         conn.onExcute((isResult, data) -> {
             ArrayList<GoodsVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<GoodsVO>>(){}.getType());
             GoodsListAdapter adapter = new GoodsListAdapter(list, getContext());
@@ -141,7 +143,6 @@ public class GoodsListFragment extends Fragment {
             list.add(new GoodsListSubCategoryDTO("플리스/뽀글이"));
             list.add(new GoodsListSubCategoryDTO("트레이닝 재킷"));
             list.add(new GoodsListSubCategoryDTO("환절기 코트"));
-            list.add(new GoodsListSubCategoryDTO("트레이닝 재킷"));
             list.add(new GoodsListSubCategoryDTO("겨울 싱글 코트"));
             list.add(new GoodsListSubCategoryDTO("겨울 더블 코트"));
             list.add(new GoodsListSubCategoryDTO("겨울 기타 코트"));
@@ -216,17 +217,7 @@ public class GoodsListFragment extends Fragment {
             list.add(new GoodsListSubCategoryDTO("브로치/배지"));
             list.add(new GoodsListSubCategoryDTO("헤어 악세사리"));
             list.add(new GoodsListSubCategoryDTO("기타 악세사리"));
-        }else if (goodsListMainCategoryDTO.getGoodsMainCategory().equals("악세사리")) {
-            list.add(new GoodsListSubCategoryDTO("전체"));
-            list.add(new GoodsListSubCategoryDTO("팔찌"));
-            list.add(new GoodsListSubCategoryDTO("반지"));
-            list.add(new GoodsListSubCategoryDTO("목걸이/펜던트"));
-            list.add(new GoodsListSubCategoryDTO("귀걸이"));
-            list.add(new GoodsListSubCategoryDTO("발찌"));
-            list.add(new GoodsListSubCategoryDTO("브로치/배지"));
-            list.add(new GoodsListSubCategoryDTO("헤어 악세사리"));
-            list.add(new GoodsListSubCategoryDTO("기타 악세사리"));
-        }else if (goodsListMainCategoryDTO.getGoodsMainCategory().equals("양말")) {
+        } else if (goodsListMainCategoryDTO.getGoodsMainCategory().equals("양말")) {
             list.add(new GoodsListSubCategoryDTO("전체"));
             list.add(new GoodsListSubCategoryDTO("양말"));
             list.add(new GoodsListSubCategoryDTO("스타킹"));
@@ -272,12 +263,15 @@ public class GoodsListFragment extends Fragment {
     //main카테고리 클릭시 조회
     public void CategoryConn(int localkey) {
         CommonConn conn = new CommonConn(getContext(), "goods/categorylist");
-        conn.addParamMap("GOODS_MIDDLE_CATEGORY", localkey);
+        conn.addParamMap("goods_middle_category", localkey);
         conn.onExcute((isResult, data) -> {
             ArrayList<GoodsVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<GoodsVO>>() {}.getType());
             GoodsListAdapter adapter = new GoodsListAdapter(list, getContext());
+
+            GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
             binding.recvGoodsList.setAdapter(adapter);
-            binding.recvGoodsList.setLayoutManager(new LinearLayoutManager(getContext()));
+            binding.recvGoodsList.setLayoutManager(layoutManager);
+
         });
     }
 
@@ -286,14 +280,15 @@ public class GoodsListFragment extends Fragment {
     //sub카테고리 클릭시 조회
     public void SubCategoryConn(int subCategoryKey){
         CommonConn conn = new CommonConn(getContext(), "goods/subcategorylist");
-        conn.addParamMap("GOODS_MIDDLE_CATEGORY", localkey);
-        conn.addParamMap("GOODS_SUB_CATEGORY", subCategoryKey);
+        conn.addParamMap("goods_middle_category", localkey);
+        conn.addParamMap("goods_sub_category", subCategoryKey);
         conn.onExcute((isResult, data) -> {
             ArrayList<GoodsVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<GoodsVO>>() {}.getType());
             GoodsListAdapter adapter = new GoodsListAdapter(list, getContext());
 
+            GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
             binding.recvGoodsList.setAdapter(adapter);
-            binding.recvGoodsList.setLayoutManager(new LinearLayoutManager(getContext()));
+            binding.recvGoodsList.setLayoutManager(layoutManager);
         });
     }
 

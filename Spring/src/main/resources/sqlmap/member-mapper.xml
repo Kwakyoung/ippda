@@ -74,5 +74,53 @@ values ( seq_member_no.NEXTVAL, #{member_id}, #{member_nickname}, #{member_pw}, 
 
 
 
+<select id="address" resultType="String">
+SELECT 
+    CASE 
+        WHEN member_address IS NULL THEN '주소를 입력하세요'
+        ELSE member_address
+    END AS member_address
+FROM member
+WHERE member_no = #{member_no}
+</select>
+
+<update id="charge">
+update member
+set
+member_money = nvl(member_money, 0) + #{member_money}
+where
+member_no = #{member_no}
+</update>
+
+<select id="money" resultType="Integer">
+SELECT 
+    CASE 
+        WHEN member_money IS NULL THEN 0
+        ELSE member_money
+    END AS member_money
+FROM member
+WHERE member_no = #{member_no}
+</select>
+
+<update id="payment">
+update member
+set
+member_money = #{member_money}
+where
+member_no = #{member_no}
+</update>
+
+<update id="popup_on">
+UPDATE MEMBER
+SET POPUP = 'Y'
+WHERE MEMBER_NO = #{member_no} AND POPUP = 'N'
+</update>
+
+<update id="popup_off">
+UPDATE MEMBER
+SET POPUP = 'N'
+WHERE MEMBER_NO = #{member_no} AND POPUP = 'Y'
+</update>
+
 </mapper>
 	

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -44,6 +45,16 @@ public class DeliveryGoodsCategoryAdapter extends RecyclerView.Adapter<DeliveryG
     public void onBindViewHolder(@NonNull DeliveryGoodsCategoryAdapter.ViewHolder h, int i) {
 
 
+        //list 이미지가 없어 0으로 처리할 때 안보이게
+        if(list.get(i).getImgRes1() == 0){
+            h.binding.imgvGoodsCategory1.setVisibility(View.GONE);
+        }else if (list.get(i).getImgRes2() == 0){
+            h.binding.imgvGoodsCategory2.setVisibility(View.GONE);
+        }else if (list.get(i).getImgRes3() == 0){
+            h.binding.imgvGoodsCategory3.setVisibility(View.GONE);
+        }else if (list.get(i).getImgRes4() == 0){
+            h.binding.imgvGoodsCategory4.setVisibility(View.GONE);
+        }
 
         h.binding.imgvGoodsCategory1.setImageResource(list.get(i).getImgRes1());
         h.binding.imgvGoodsCategory2.setImageResource(list.get(i).getImgRes2());
@@ -72,13 +83,6 @@ public class DeliveryGoodsCategoryAdapter extends RecyclerView.Adapter<DeliveryG
         h.binding.imgvGoodsCategory4.setOnClickListener(v -> {
             deliveryFragment.onClickCategory(list.get(i).getCategoryName4()+"");
         });
-
-
-
-
-
-
-
 
 
 

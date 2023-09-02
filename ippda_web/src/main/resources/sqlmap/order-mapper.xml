@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="order">
+
+<update id="orderStatusCancel">
+update order_ing set order_status = '취소' where order_no in ( ${orderNo} ) 
+</update>
+<update id="orderStatusIng">
+update order_ing set order_status = '배송준비중' where order_no in ( ${orderNo} ) 
+</update>
+	
+
+<select id="alarm" resultType="order.OrderVO">
+select * from order_ing where store_no = #{store_no} and order_status=#{order_status} 
+</select>
+
+<select id="total" resultType="integer">
+select count(*)  from order_ing where store_no = #{store_no}
+</select>
+
+<select id="list" resultType="order.OrderVO">
+select * from 
+(select  row_number() over(order by order_date ) no, g.* from order_ing g where store_no = #{store_no} 
+order by no desc) g
+where no between #{page.beginList} and #{page.endList}
+</select>
+
+<select id="info" resultType="order.OrderVO">
+select *
+from order_ing
+where order_no = #{order_no}
+
+</select>
+
+<update id="update">
+update order_ing
+set order_status = #{order_status}
+where order_no = #{order_no}
+
+</update>
+	
+</mapper>

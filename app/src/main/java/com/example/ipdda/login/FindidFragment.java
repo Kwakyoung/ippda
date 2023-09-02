@@ -58,6 +58,7 @@ public class FindidFragment extends Fragment {
                         result = data;
                         Toast.makeText(getContext(), "인증번호가 전송되었습니다.", Toast.LENGTH_SHORT).show();
                         Log.d(TAG, "onCreate: "+data);
+                        binding.btnPhonecheckLast.setEnabled(true);
                     }
                 });
             }else{

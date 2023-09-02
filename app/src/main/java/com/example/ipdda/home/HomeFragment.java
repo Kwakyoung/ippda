@@ -14,10 +14,13 @@ import android.widget.Toast;
 
 import com.example.ipdda.R;
 import com.example.ipdda.common.CommonConn;
+import com.example.ipdda.common.CommonVar;
 import com.example.ipdda.databinding.FragmentHomeBinding;
 import com.example.ipdda.delivery.DeliveryFragment;
+import com.example.ipdda.member.MemberVO;
 import com.example.ipdda.packaging.PackagingFragment;
 import com.example.ipdda.search.SearchFragment;
+import com.google.android.gms.common.internal.service.Common;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -35,12 +38,13 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
 
+
+
         binding.recvGoodsRecommendCategory.setAdapter(new HomeGoodsRecommendCategoryAdapter(GetGoodsCategoryList(), getContext() , this));
         binding.recvGoodsRecommendCategory.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
 
         binding.recvStyleRecommendCategory.setAdapter(new HomeStyleRecommendCategoryAdapter(GetStyleCategoryList(), getContext(), this));
         binding.recvStyleRecommendCategory.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL , false));
-
 
 
         binding.lnSearch.setOnClickListener(v -> {
@@ -76,6 +80,14 @@ public class HomeFragment extends Fragment {
 
 
 
+            //유저 현재주소 조회
+            CommonConn conn = new CommonConn(getContext(), "member/address");
+            conn.addParamMap("member_no", CommonVar.loginInfo.getMember_no());
+            conn.onExcute((isResult, data) -> {
+                String cleanedData = data.replaceAll("\"", ""); // 더블 쿼테이션 제거
+                binding.tvLocation.setText(cleanedData);
+            });
+
         return binding.getRoot();
     }
 
@@ -83,17 +95,17 @@ public class HomeFragment extends Fragment {
 
     public ArrayList<HomeGoodsRecommendCategoryDTO> GetGoodsCategoryList(){
         ArrayList<HomeGoodsRecommendCategoryDTO> list = new ArrayList<>();
-        list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.clothes_top, "상의"));
-        list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.img_setting, "아우터"));
-        list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.img_setting, "하의"));
-        list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.img_setting, "원피스"));
-        list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.img_setting, "스커트"));
-        list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.img_setting, "신발"));
-        list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.img_setting, "가방"));
-        list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.img_setting, "악세사리"));
-        list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.img_setting, "양말"));
-        list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.img_setting, "시계"));
-        list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.img_setting, "모자"));
+        list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.top1, "상의"));
+        list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.outer, "아우터"));
+        list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.pants, "하의"));
+        list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.onepeecs, "원피스"));
+        list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.skirt, "스커트"));
+        list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.shoes, "신발"));
+        list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.backpack, "가방"));
+        list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.accessory, "악세사리"));
+        list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.socks, "양말"));
+        list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.watch, "시계"));
+        list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.cap, "모자"));
         return list;
     }
 
@@ -172,7 +184,7 @@ public class HomeFragment extends Fragment {
 
     public void CategoryConn(int i){
         CommonConn conn = new CommonConn(getContext(), "goods/categorylist");
-        conn.addParamMap("GOODS_MIDDLE_CATEGORY", i);
+        conn.addParamMap("goods_middle_category", i);
         conn.onExcute((isResult, data) -> {
             ArrayList<GoodsVO> arrayList = new Gson().fromJson(data, new TypeToken<ArrayList<GoodsVO>>(){}.getType());
             HomeGoodsRecommendAdapter adapter = new HomeGoodsRecommendAdapter(arrayList, getContext());
@@ -184,7 +196,7 @@ public class HomeFragment extends Fragment {
 
     public void StyleConn(int i){
         CommonConn conn = new CommonConn(getContext(), "goods/stylelist");
-        conn.addParamMap("GOODS_STYLE", i);
+        conn.addParamMap("goods_style", i);
         conn.onExcute((isResult, data) -> {
             ArrayList<GoodsVO> arrayList = new Gson().fromJson(data, new TypeToken<ArrayList<GoodsVO>>(){}.getType());
             HomeGoodsRecommendAdapter adapter = new HomeGoodsRecommendAdapter(arrayList, getContext());

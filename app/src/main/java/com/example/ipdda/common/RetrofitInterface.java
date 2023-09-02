@@ -2,6 +2,8 @@ package com.example.ipdda.common;
 
 import androidx.core.view.accessibility.AccessibilityEventCompat;
 
+import com.google.gson.JsonObject;
+
 import java.util.HashMap;
 
 import okhttp3.MultipartBody;
@@ -41,6 +43,11 @@ public interface RetrofitInterface {
     Call<String> KakaoMethod(@Header("Authorization")String appkey, @Header("Content-type")String type, @FieldMap HashMap<String , Object> parmamMap);
 
 
+    @GET("/v2/local/search/address.json")
+    Call<JsonObject> getAddressSearch(
+            @Header("Authorization") String apiKey,
+            @Query("query") String query
+    );
 
 
 }

@@ -4,17 +4,29 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.app.Notification;
+import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Base64;
+import android.util.Log;
 import android.widget.Toast;
 
+import com.example.ipdda.common.CommonVar;
 import com.example.ipdda.databinding.ActivityMainBinding;
 import com.example.ipdda.delivery.DeliveryFragment;
 import com.example.ipdda.home.HomeFragment;
 import com.example.ipdda.like.LikeFragment;
 import com.example.ipdda.packaging.PackagingFragment;
+import com.example.ipdda.profile.NotificationService;
 import com.example.ipdda.profile.ProfileFragment;
 import com.example.ipdda.search.SearchFragment;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,11 +41,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
         FragmentManager manager = getSupportFragmentManager();
         manager.beginTransaction().replace(R.id.container, new HomeFragment()).commit();
 
-
+        if (CommonVar.loginInfo != null && "Y".equals(CommonVar.loginInfo.getPopup())) {
+            startService(new Intent(MainActivity.this, NotificationService.class));
+        }
 
         binding.bottomNavigation.setOnItemSelectedListener(item -> {
             Fragment fragment = null;
@@ -58,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
         }
         return true;
         });
+
 
     }
 

@@ -1,7 +1,9 @@
 package com.hanul.cloude;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +24,8 @@ import net.nurigo.sdk.message.service.DefaultMessageService;
 @RestController
 @RequestMapping("/member")
 public class MemeberController {
-
+	
+	
 	@Autowired
 	@Qualifier("ippda")
 	SqlSession sql;
@@ -102,16 +105,55 @@ public class MemeberController {
 
 		try {
 			// send 메소드로 ArrayList<Message> 객체를 넣어도 동작합니다!
+			System.out.println(" 인증번호는 : " + resultNum);
 			messageService.send(message);
 		} catch (NurigoMessageNotReceivedException exception) {
 			// 발송에 실패한 메시지 목록을 확인할 수 있습니다!
+			System.out.println(" 인증번호는 : " + resultNum);
 			System.out.println(exception.getFailedMessageList());
 			System.out.println(exception.getMessage());
 		} catch (Exception exception) {
+			System.out.println(" 인증번호는 : " + resultNum);
 			System.out.println(exception.getMessage());
+			
 		}
 
 		return resultNum;
 	}
 
+	
+	@RequestMapping(value = "/address" , produces = "text/html;charset=utf-8")
+	public String address(int member_no) {
+		String address = sql.selectOne("member.address", member_no);
+		return new Gson().toJson(address);
+	}
+	
+	
+	@RequestMapping(value = "/charge" , produces = "text/html;charset=utf-8")
+	public void charge(MemberVO vo) {
+		sql.update("member.charge", vo);
+	}
+	
+	@RequestMapping(value = "/money" , produces = "text/html;charset=utf-8")
+	public String money(int member_no) {
+		int money = sql.selectOne("member.money", member_no);
+		return new Gson().toJson(money);
+	}
+	
+	@RequestMapping(value = "/payment" , produces = "text/html;charset=utf-8")
+	public void payment(MemberVO vo) {
+		sql.update("member.payment", vo);
+	}
+	
+	@RequestMapping(value = "/popup_on" , produces = "text/html;charset=utf-8")
+	public void popup_on(MemberVO vo) {
+		sql.update("member.popup_on", vo);
+	}
+	
+	@RequestMapping(value = "/popup_off" , produces = "text/html;charset=utf-8")
+	public void popup_off(MemberVO vo) {
+		sql.update("member.popup_off", vo);
+	}
+	
+	
 }

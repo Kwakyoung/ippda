@@ -8,18 +8,21 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ipdda.databinding.ItemReviewBinding;
+import com.example.ipdda.review.ReviewVO;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class GoodsBoardReviewAdapter extends RecyclerView.Adapter<GoodsBoardReviewAdapter.ViewHolder> {
 
     ItemReviewBinding binding;
 
-    ArrayList<GoodsBoardReviewDTO> list;
+    ArrayList<ReviewVO> list;
 
     Context context;
 
-    public GoodsBoardReviewAdapter(ArrayList<GoodsBoardReviewDTO> list, Context context) {
+    public GoodsBoardReviewAdapter(ArrayList<ReviewVO> list, Context context) {
         this.list = list;
         this.context = context;
     }
@@ -34,9 +37,15 @@ public class GoodsBoardReviewAdapter extends RecyclerView.Adapter<GoodsBoardRevi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder h, int i) {
-            h.binding.imgvProfile.setImageResource(list.get(i).getImgProfile());
-            h.binding.imgvGoods.setImageResource(list.get(i).getImgProfile());
-            h.binding.tvMemberNickname.setText(list.get(i).getMemberNickName());
+
+
+
+            h.binding.rbRating.setRating(list.get(i).getRating());
+
+            h.binding.tvMemberNickname.setText(list.get(i).getMember_nickname());
+            h.binding.tvStarCnt.setText(list.get(i).getRating()+"");
+            h.binding.tvGender.setText(list.get(i).getMember_gender());
+            h.binding.tvReviewContext.setText(list.get(i).getContent());
 
 
     }

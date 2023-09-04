@@ -99,6 +99,16 @@ public class MemberController {
 		}
 		
 		
+
+		//로그아웃 처리 요청
+		@RequestMapping("/logout")
+		public String logout(HttpSession session, HttpServletRequest request) {
+			MemberVO login = (MemberVO)session.getAttribute("loginInfo");
+			session.removeAttribute("loginInfo");
+			
+				return "redirect:/";
+		}
+		
 		
 		
 		//회원가입 화면 요청
@@ -226,7 +236,7 @@ public class MemberController {
 		
 		
 		@RequestMapping("findingpw")
-		@ResponseBody // 결과를 문자열로 반환
+		@ResponseBody 
 		public String findingpw(String store_id, String store_phone, Model model) {
 		    HashMap<String, String> params = new HashMap<String, String>();
 		    params.put("store_id", store_id);

@@ -39,8 +39,9 @@
                 android:text="닉네임"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
+
             <TextView
-                android:id="@+id/tv_member_body"
+                android:id="@+id/tv_gender"
                 android:layout_marginLeft="10dp"
                 android:layout_gravity="center_vertical"
                 android:text="성별/체형정보"
@@ -50,148 +51,115 @@
 
         </LinearLayout>
         <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1.2">
-
-            <TextView
-                android:id="@+id/tv_insert_date"
-                android:layout_gravity="center_vertical"
-                android:text="2023.02.01"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-            <ImageView
-                android:layout_gravity="center_vertical"
-                android:src="@drawable/ic_menu"
-                android:layout_width="20dp"
-                android:layout_height="20dp"/>
-
-
-
-        </LinearLayout>
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="80dp">
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-
-            <ImageView
-                android:id="@+id/imgv_goods"
-                android:layout_marginLeft="10dp"
-                android:background="@drawable/button_radius"
-                android:layout_gravity="center_vertical"
-                android:layout_width="60dp"
-                android:layout_height="60dp"/>
-
-
-        </LinearLayout>
-
-        <LinearLayout
             android:orientation="vertical"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="3">
+            android:layout_weight="1.5">
 
-            <TextView
-                android:id="@+id/tv_goods_name"
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="10dp"
-                android:text="상품명"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
 
-            <TextView
-                android:id="@+id/tv_goods_option"
-                android:layout_marginLeft="10dp"
-                android:layout_gravity="center_vertical"
-                android:text="M"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+
+                <TextView
+                    android:layout_marginLeft="20dp"
+                    android:id="@+id/tv_insert_date"
+                    android:layout_gravity="bottom"
+                    android:text="2023.02.01"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <ImageView
+                    android:layout_gravity="bottom"
+                    android:src="@drawable/ic_menu"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+                    <RatingBar
+                        android:layout_centerVertical="true"
+                        android:id="@+id/rb_rating"
+                        android:layout_gravity="top"
+                        style="?android:ratingBarStyleSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:layout_alignParentRight="true"
+                         android:layout_centerVertical="true"
+                        android:id="@+id/tv_star_cnt"
+                        android:layout_gravity="top"
+                        android:text="4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+
+
+
+            </LinearLayout>
 
 
 
 
         </LinearLayout>
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1.2">
 
-            <TextView
-                android:id="@+id/tv_star"
-                android:layout_gravity="center_vertical"
-                android:text="★★★★ "
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-
-            <TextView
-                android:id="@+id/tv_star_cnt"
-                android:layout_gravity="center_vertical"
-                android:text="4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-
-
-
-
-        </LinearLayout>
-
-
-    </LinearLayout>
 
 
     <LinearLayout
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/tv_review_context"
-            android:text="구매할까말까 하다가 예뻐서 삽니다"
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent">
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_weight="4"
+            android:layout_width="0dp"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/tv_review_context"
+                android:text="구매할까말까 하다가 예뻐서 삽니다"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+        <View
+            android:background="@color/gray"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="1dp"/>
 
-        <ImageView
-            android:id="@+id/imgv_review"
-            android:src="@drawable/ic_home"
-            android:layout_width="100dp"
-            android:layout_height="100dp"/>
-
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_marginLeft="10dp"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:text="댓글 "
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:id="@+id/tv_reply_cnt"
-            android:text="5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -199,7 +167,8 @@
 
 
     </LinearLayout>
+    </LinearLayout>
 
 
 
-</LinearLayout>
+

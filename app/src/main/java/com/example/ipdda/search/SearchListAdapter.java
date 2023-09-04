@@ -1,6 +1,7 @@
 package com.example.ipdda.search;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.ipdda.databinding.ItemSearchHistoryBinding;
 import com.example.ipdda.databinding.ItemSearchListBinding;
 import com.example.ipdda.databinding.ItemSubRecvBinding;
+import com.example.ipdda.goodsboard.GoodsBoardActivity;
 import com.example.ipdda.home.GoodsVO;
 import com.squareup.picasso.Picasso;
 
@@ -48,6 +50,12 @@ public class SearchListAdapter  extends RecyclerView.Adapter<SearchListAdapter.V
             h.binding.price.setText(list.get(i).getGoods_price()+"");
             h.binding.goodsSale.setVisibility(View.GONE);
         }
+        h.binding.container.setOnClickListener(v -> {
+            Intent intent = new Intent(context, GoodsBoardActivity.class);
+            intent.putExtra("goods_no", list.get(i).getGoods_no());
+
+            context.startActivity(intent);
+        });
     }
 
     @Override

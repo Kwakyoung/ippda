@@ -31,12 +31,11 @@ public class NotificationService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        Log.d(TAG, "Background service onCreate");
+        Log.d(TAG, "Ippda");
         handler = new Handler();
         runnable = new Runnable() {
             @Override
             public void run() {
-                makeNotification();
                 Log.d(TAG, "Background task is running.");
                 handler.postDelayed(this, 24 * 60 * 60 * 1000); // 하루마다 작업을 실행 (24시간 * 60분 * 60초 * 1000밀리초)
             }

@@ -46,12 +46,12 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager manager = getSupportFragmentManager();
         manager.beginTransaction().replace(R.id.container, new HomeFragment()).commit();
 
-        if (CommonVar.loginInfo != null && "Y".equals(CommonVar.loginInfo.getPopup())) {
+        if ("Y".equals(CommonVar.loginInfo.getPopup())) {
             startService(new Intent(MainActivity.this, NotificationService.class));
         }
 
         binding.bottomNavigation.setOnItemSelectedListener(item -> {
-            Fragment fragment = null;
+            Fragment fragment;
         if(item.getItemId() == R.id.page_1){
             fragment = homeFragment;
             backPressed=1;
@@ -79,20 +79,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     int backPressed = 0;
-    public void changeFragment(int backPressed, Fragment fragment){
-        this.backPressed = backPressed;
-        getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
-    }
-//    @Override
-//    public void onBackPressed() {
-//        if(backPressed==1){
-//            changeFragment(0 , homeFragment );
-//        }else if (backPressed==2){
-//            changeFragment(1 , searchFragment );
-//        }else {
-//            finish();
-//        }
-//    }
 
 
     @Override

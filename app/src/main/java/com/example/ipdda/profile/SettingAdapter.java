@@ -58,17 +58,22 @@ public class SettingAdapter extends RecyclerView.Adapter<SettingAdapter.ViewHold
 
         if (h.binding.tvText.getText().equals("팝업 알림 설정")) {
             h.binding.tvToggle.setVisibility(View.VISIBLE);
+            if (CommonVar.loginInfo.getPopup() == "N") {
+                h.binding.tvToggle.setText("OFF");
+            }else{
+                h.binding.tvToggle.setText("ON");
+            }
             h.binding.tvToggle.setOnClickListener(v -> {
                 if(h.binding.tvToggle.getText().equals("ON")) {
                     h.binding.tvToggle.setText("OFF");
                     CommonConn conn = new CommonConn(context,"member/popup_on");
                     conn.addParamMap("member_no", CommonVar.loginInfo.getMember_no());
-                    context.startService(new Intent(context, NotificationService.class));
+                    context.stopService(new Intent(context, NotificationService.class));
                 }else if(h.binding.tvToggle.getText().equals("OFF")) {
                     h.binding.tvToggle.setText("ON");
                     CommonConn conn = new CommonConn(context,"member/popup_off");
                     conn.addParamMap("member_no", CommonVar.loginInfo.getMember_no());
-                    context.stopService(new Intent(context, NotificationService.class)); // 알림 중단
+                    context.startService(new Intent(context, NotificationService.class)); // 알림 중단
                 }
 
             });

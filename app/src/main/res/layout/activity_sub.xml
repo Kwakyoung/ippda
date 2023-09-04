@@ -93,14 +93,7 @@
             android:text="좋아요 1개"
             android:textSize="12dp"
             />
-        <TextView
-            android:id="@+id/tv_see"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="보기 방식 변경"
-            android:textSize="12dp"
-            style="@style/Hyperlink"
-            />
+
 
     </LinearLayout>
         <LinearLayout

@@ -25,11 +25,9 @@ public class SubActivity extends AppCompatActivity {
         int receivedValue = getIntent().getIntExtra("key", 0);
         if(receivedValue==0){
             binding.tvTitle.setText("장바구니");
-
             binding.tvTitle.setVisibility(View.VISIBLE);
             binding.tvNum.setText("");
             binding.tvNum.setVisibility(View.VISIBLE);
-            binding.tvSee.setVisibility(View.VISIBLE);
             binding.recvTransaction.setVisibility(View.GONE);
             binding.layoutReview.setVisibility(View.GONE);
             binding.layout.setVisibility(View.GONE);
@@ -44,25 +42,11 @@ public class SubActivity extends AppCompatActivity {
 
                 binding.gridv.setAdapter(new LikeAdapter(getLayoutInflater(),getLikeList()));
             }
-
-            binding.tvSee.setOnClickListener(v -> {
-                toglerecv = !toglerecv;
-                if (toglerecv) {
-                    binding.recv.setVisibility(View.VISIBLE);
-                    binding.gridv.setVisibility(View.GONE);
-
-                } else {
-                    binding.recv.setVisibility(View.GONE);
-                    binding.gridv.setVisibility(View.VISIBLE);
-                }
-            });
-
         }else if(receivedValue==1){
             binding.tvTitle.setText("좋아요");
             binding.tvTitle.setVisibility(View.VISIBLE);
             binding.tvNum.setText("좋아요 1개");
             binding.tvNum.setVisibility(View.VISIBLE);
-            binding.tvSee.setVisibility(View.VISIBLE);
             binding.recvTransaction.setVisibility(View.GONE);
             binding.layoutReview.setVisibility(View.GONE);
             binding.layout.setVisibility(View.GONE);
@@ -77,23 +61,12 @@ public class SubActivity extends AppCompatActivity {
                 binding.gridv.setVisibility(View.VISIBLE);
                 binding.gridv.setAdapter(new LikeAdapter(getLayoutInflater(),getLikeList()));
             }
-            binding.tvSee.setOnClickListener(v -> {
-                toglerecv = !toglerecv; // 클릭할 때마다 상태를 토글 (보이기 <-> 숨기기)
-                if (toglerecv) {
-                    binding.recv.setVisibility(View.VISIBLE);
-                    binding.gridv.setVisibility(View.GONE);
 
-                } else {
-                    binding.recv.setVisibility(View.GONE);
-                    binding.gridv.setVisibility(View.VISIBLE);
-                }
-            });
         }else if(receivedValue==2){
             binding.tvTitle.setText("즐겨찾기");
             binding.tvTitle.setVisibility(View.VISIBLE);
             binding.tvNum.setText("즐겨찾기 1개");
             binding.tvNum.setVisibility(View.VISIBLE);
-            binding.tvSee.setVisibility(View.VISIBLE);
             binding.recvTransaction.setVisibility(View.GONE);
             binding.layoutReview.setVisibility(View.GONE);
             binding.layout.setVisibility(View.GONE);
@@ -108,23 +81,12 @@ public class SubActivity extends AppCompatActivity {
                 binding.gridv.setVisibility(View.VISIBLE);
                 binding.gridv.setAdapter(new LikeAdapter(getLayoutInflater(),getLikeList()));
             }
-            binding.tvSee.setOnClickListener(v -> {
-                toglerecv = !toglerecv; // 클릭할 때마다 상태를 토글 (보이기 <-> 숨기기)
-                if (toglerecv) {
-                    binding.recv.setVisibility(View.VISIBLE);
-                    binding.gridv.setVisibility(View.GONE);
 
-                } else {
-                    binding.recv.setVisibility(View.GONE);
-                    binding.gridv.setVisibility(View.VISIBLE);
-                }
-            });
 
 
         }else if(receivedValue==3){
             binding.tvTitle.setText("리뷰");
             binding.layoutText.setVisibility(View.GONE);
-            binding.tvSee.setVisibility(View.VISIBLE);
             binding.recvTransaction.setVisibility(View.GONE);
             binding.layoutReview.setVisibility(View.VISIBLE);
             binding.layout.setVisibility(View.GONE);

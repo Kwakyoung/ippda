@@ -60,7 +60,7 @@
 
             <TextView
                 android:id="@+id/goodsName"
-                android:layout_width="73dp"
+                android:layout_width="match_parent"
                 android:layout_height="31dp"
                 android:fontFamily="@font/pretendard_bold"
                 android:text="입다 맨투맨"

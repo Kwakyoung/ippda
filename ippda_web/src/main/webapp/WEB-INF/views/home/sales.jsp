@@ -17,7 +17,7 @@
     
       <h1>여기서 부터 필요없는 부분지우고 꾸며야함</h1>
       <h2>We are team of talented designers making websites with Bootstrap</h2>
-      <a href="#about" class="btn-get-started scrollto">Get Started</a>
+      <a href="#about" class="btn-get-started scrollto">의류 둘러보기</a>
     </div>
   </section><!-- End Hero -->
 

@@ -1,8 +1,8 @@
 package store;
 
 public class StoreVO {
-	private int STORE_NO, STORE_REGISTRATION_NO;
-	private String STORE_ID, SOTRE_PW, STORE_NAME, STORE_EMAIL, STORE_MAIN_IMAGE, STORE_SUB_IMAGE, STORE_INFO, STORE_ADDRESS;
+	private int STORE_NO, STORE_REGISTRATION_NO, STORE_DELIVERY_TIP;
+	private String STORE_ID, STORE_PW, STORE_NAME, STORE_EMAIL, STORE_MAIN_IMAGE, STORE_SUB_IMAGE, STORE_INFO, STORE_ADDRESS;
 	
 	public int getSTORE_NO() {
 		return STORE_NO;
@@ -22,11 +22,11 @@ public class StoreVO {
 	public void setSTORE_ID(String sTORE_ID) {
 		STORE_ID = sTORE_ID;
 	}
-	public String getSOTRE_PW() {
-		return SOTRE_PW;
+	public String getSTORE_PW() {
+		return STORE_PW;
 	}
-	public void setSOTRE_PW(String sOTRE_PW) {
-		SOTRE_PW = sOTRE_PW;
+	public void setSTORE_PW(String sTORE_PW) {
+		STORE_PW = sTORE_PW;
 	}
 	public String getSTORE_NAME() {
 		return STORE_NAME;
@@ -64,6 +64,13 @@ public class StoreVO {
 	public void setSTORE_ADDRESS(String sTORE_ADDRESS) {
 		STORE_ADDRESS = sTORE_ADDRESS;
 	}
+	public int getSTORE_DELIVERY_TIP() {
+		return STORE_DELIVERY_TIP;
+	}
+	public void setSTORE_DELIVERY_TIP(int sTORE_DELIVERY_TIP) {
+		STORE_DELIVERY_TIP = sTORE_DELIVERY_TIP;
+	}
+		
 	
 	
 }

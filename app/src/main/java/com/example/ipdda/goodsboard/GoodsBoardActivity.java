@@ -19,16 +19,13 @@ import android.widget.Toast;
 import com.example.ipdda.MainActivity;
 import com.example.ipdda.R;
 import com.example.ipdda.common.CommonConn;
+import com.example.ipdda.common.CommonVar;
 import com.example.ipdda.databinding.ActivityGoodsBoardBinding;
 import com.example.ipdda.databinding.ActivityGoodsboardBuyBinding;
 import com.example.ipdda.home.GoodsVO;
-<<<<<<< HEAD
 import com.example.ipdda.order.OrderActivity;
 import com.example.ipdda.pay.TossPayActivity;
-=======
-import com.example.ipdda.like.LikeDTO;
 import com.example.ipdda.order.OrderActivity;
->>>>>>> edf1687fd3d4f6af4382da51ca4c43285ed71d75
 import com.example.ipdda.profile.SubActivity;
 import com.example.ipdda.review.ReviewActivity;
 import com.example.ipdda.review.ReviewVO;
@@ -37,15 +34,12 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.squareup.picasso.Picasso;
 
-
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class GoodsBoardActivity extends AppCompatActivity {
 
     Dialog write_dialog;
-    boolean like = false;
     ActivityGoodsBoardBinding binding;
     ActivityGoodsboardBuyBinding dialogBinding;
     int totalPrice = 0, totalCnt = 0;
@@ -53,18 +47,18 @@ public class GoodsBoardActivity extends AppCompatActivity {
 
 
     static String select_size;
+
+    ArrayList<GoodsVO> lst;
     ArrayList<GoodsBoardBuyCheckDTO> getBuyCheck = new ArrayList<>();
 
-    OrderActivity orderActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityGoodsBoardBinding.inflate(getLayoutInflater());
 
-
-        //리뷰 리사이클러
-
+        goods_no = getIntent().getIntExtra("goods_no", 0);
+        selectLike();
 
         binding.imgvHome.setOnClickListener(v -> {
             Intent intent = new Intent(this, MainActivity.class);
@@ -96,7 +90,6 @@ public class GoodsBoardActivity extends AppCompatActivity {
             finish();
         });
 
-        goods_no = getIntent().getIntExtra("goods_no", 0);
         Log.d("goods_no", "onCreate: " + goods_no);
         CommonConn conn = new CommonConn(this, "goods/goodsboard");
         conn.addParamMap("goods_no", goods_no);
@@ -130,17 +123,18 @@ public class GoodsBoardActivity extends AppCompatActivity {
 
 
             binding.btnBuy.setOnClickListener(v -> {
-//                Intent intent = new Intent(this, OrderActivity.class);
-//                startActivity(intent);
                 showDialog_buy();
             });
 
             binding.tvStoreName.setText(storeName);
+
             binding.tvStarCnt.setText(starCnt + "");
             binding.tvGoodsName.setText(goodsName);
             binding.tvGoodsContext.setText(goodsContext);
             binding.tvSalePercent.setText(SalePercent + "");
             binding.tvDeliveryTip.setText(goodsVO.getStore_delivery_tip() + " 원");
+
+
             String mainImageUrl = goodsVO.getGoods_main_image(); // 이미지의 실제 URL을 입력해주세요
             String subImageUrl = goodsVO.getGoods_sub_image();
 
@@ -154,48 +148,39 @@ public class GoodsBoardActivity extends AppCompatActivity {
 
         });
 
-
-        // 테스트용 추가한 부분
         binding.imgvLike.setOnClickListener(v -> {
-            if (like) {
-                binding.imgvLike.setImageResource(R.drawable.ic_like_blank);
-                like = false;
-            } else {
-                binding.imgvLike.setImageResource(R.drawable.ic_like_green);
+            //
+            if (lst.size() == 0 || lst.get(0).getGoods_no() == 0) {
+                CommonConn conn3 = new CommonConn(this, "goods_like/add");
+                conn3.addParamMap("goods_no", goods_no);
+                conn3.addParamMap("member_no", CommonVar.loginInfo.getMember_no());
+                conn3.onExcute((isResult, data) -> {
+                    selectLike();
+                });
                 Toast.makeText(this, "찜목록에 추가되었습니다.", Toast.LENGTH_SHORT).show();
-                LikeDTO likeDTO = new LikeDTO(
-                        binding.imgvMainGoods.getImageAlpha(),
-                        R.drawable.ic_like_green, // 좋아요 이미지 (또는 R.drawable.ic_like_blank)
-                        binding.tvStoreName.getText().toString(), // 상점 이름
-                        binding.tvGoodsPrice.getText().toString() // 상품 가격
-                );
-
-                ArrayList<LikeDTO> likelist = new ArrayList<>();
-                likelist.add(likeDTO);
-
-                like = true;
+            } else {
+                CommonConn conn2 = new CommonConn(this, "goods_like/delete");
+                conn2.addParamMap("goods_no", goods_no);
+                conn2.addParamMap("member_no", CommonVar.loginInfo.getMember_no());
+                conn2.onExcute((isResult, data) -> {
+                    selectLike();
+                });
             }
         });
 
 
 //        //리뷰 불러오기
         CommonConn reviewConn = new CommonConn(this, "review/list");
-        reviewConn.addParamMap("goods_no" , goods_no);
+        reviewConn.addParamMap("goods_no", goods_no);
         reviewConn.onExcute((isResult, data) -> {
-            ArrayList<ReviewVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<ReviewVO>>() {}.getType());
+            ArrayList<ReviewVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<ReviewVO>>() {
+            }.getType());
 
-            binding.recvReview.setAdapter(new GoodsBoardReviewAdapter(list,this));
+            binding.recvReview.setAdapter(new GoodsBoardReviewAdapter(list, this));
             binding.recvReview.setLayoutManager(new LinearLayoutManager(this));
         });
 
         setContentView(binding.getRoot());
-    }
-
-
-    public ArrayList<GoodsBoardReviewDTO> GetGoodsBoardReview() {
-        ArrayList<GoodsBoardReviewDTO> list = new ArrayList<>();
-        list.add(new GoodsBoardReviewDTO(R.drawable.ic_profile, R.drawable.ic_home, R.drawable.ic_home, 3, 5, "입다 스웨터", "남 180cm 85kg ", "옷이 정말 예쁘네염", "우랑우탄", "L", "20230207"));
-        return list;
     }
 
 
@@ -224,18 +209,25 @@ public class GoodsBoardActivity extends AppCompatActivity {
             }
         });
 
+        size_click(dialogBinding.btn2XS, dialogBinding.btnSelectSize, dialogBinding.linSize);
         size_click(dialogBinding.btnXS, dialogBinding.btnSelectSize, dialogBinding.linSize);
         size_click(dialogBinding.btnS, dialogBinding.btnSelectSize, dialogBinding.linSize);
         size_click(dialogBinding.btnM, dialogBinding.btnSelectSize, dialogBinding.linSize);
         size_click(dialogBinding.btnL, dialogBinding.btnSelectSize, dialogBinding.linSize);
         size_click(dialogBinding.btnXL, dialogBinding.btnSelectSize, dialogBinding.linSize);
-        size_click(dialogBinding.btnXXL, dialogBinding.btnSelectSize, dialogBinding.linSize);
+        size_click(dialogBinding.btn2XL, dialogBinding.btnSelectSize, dialogBinding.linSize);
+        size_click(dialogBinding.btn3XL, dialogBinding.btnSelectSize, dialogBinding.linSize);
+        size_click(dialogBinding.btnFree, dialogBinding.btnSelectSize, dialogBinding.linSize);
+
+        size(dialogBinding.btn2XS);
         size(dialogBinding.btnXS);
         size(dialogBinding.btnS);
         size(dialogBinding.btnM);
         size(dialogBinding.btnL);
         size(dialogBinding.btnXL);
-        size(dialogBinding.btnXXL);
+        size(dialogBinding.btn2XL);
+        size(dialogBinding.btn3XL);
+        size(dialogBinding.btnFree);
 
         dialogBinding.btnSelectSize.setOnClickListener(v -> {
             if (dialogBinding.linSize.getVisibility() == View.GONE) {
@@ -315,22 +307,28 @@ public class GoodsBoardActivity extends AppCompatActivity {
 
     public void size_click(Button btn, Button select, LinearLayout ln) {
         btn.setOnClickListener(v -> {
-            select.setText(btn.getText().toString());
+            String sizeText = btn.getText().toString();
+            select.setText(sizeText);
             ln.setVisibility(View.GONE);
-            if (btn == dialogBinding.btnXS) {
-                select_size = "XS";
-            } else if (btn == dialogBinding.btnS) {
-                select_size = "S";
-            } else if (btn == dialogBinding.btnM) {
-                select_size = "M";
-            } else if (btn == dialogBinding.btnL) {
-                select_size = "L";
-            } else if (btn == dialogBinding.btnXL) {
-                select_size = "XL";
-            } else if (btn == dialogBinding.btnXXL) {
-                select_size = "XXL";
+
+            switch (sizeText) {
+                case "2XS":
+                case "XS":
+                case "S":
+                case "M":
+                case "L":
+                case "XL":
+                case "2XL":
+                case "3XL":
+                case "FREE":
+                    select_size = sizeText;
+                    break;
+                default:
+                    // 다른 사이즈에 대한 처리
+                    break;
             }
         });
+
     }
 
     public void color() {
@@ -346,6 +344,27 @@ public class GoodsBoardActivity extends AppCompatActivity {
 
             dialogBinding.recvColor.setAdapter(new GoodsBoardbuyAdapter(this, list, dialogBinding, getBuyCheck, goods_sale_price));
             dialogBinding.recvColor.setLayoutManager(new LinearLayoutManager(this));
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+    }
+
+    public void selectLike() {
+        lst = new ArrayList<>();
+        CommonConn conn1 = new CommonConn(this, "goods_like/list");
+        conn1.addParamMap("goods_no", goods_no);
+        conn1.addParamMap("member_no", CommonVar.loginInfo.getMember_no());
+        conn1.onExcute((isResult, data) -> {
+            lst = new Gson().fromJson(data, new TypeToken<ArrayList<GoodsVO>>() {}.getType());
+            if (lst.size() == 0) {
+                binding.imgvLike.setImageResource(R.drawable.ic_like_blank);
+            } else {
+                binding.imgvLike.setImageResource(R.drawable.ic_like_green);
+            }
         });
     }
 

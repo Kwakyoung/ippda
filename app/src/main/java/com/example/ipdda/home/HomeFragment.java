@@ -65,12 +65,12 @@ public class HomeFragment extends Fragment {
         });
 
         binding.imgvPackaging.setOnClickListener(v -> {
-            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-            PackagingFragment packagingFragment = new PackagingFragment();
-            transaction.replace(R.id.container , packagingFragment);
-            transaction.addToBackStack(null); // 백 스택에 추가
-            transaction.commit();
-
+//            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+//            PackagingFragment packagingFragment = new PackagingFragment();
+//            transaction.replace(R.id.container , packagingFragment);
+//            transaction.addToBackStack(null); // 백 스택에 추가
+//            transaction.commit();
+            Toast.makeText(getContext(), "서비스 준비중입니다.", Toast.LENGTH_SHORT).show();
         });
 
         binding.relativeLocation.setOnClickListener(v -> {
@@ -140,15 +140,15 @@ public class HomeFragment extends Fragment {
 
     public ArrayList<HomeGoodsRecommendCategoryDTO> GetStyleCategoryList(){
         ArrayList<HomeGoodsRecommendCategoryDTO> list = new ArrayList<>();
-        list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.img_setting, "캐쥬얼"));
-        list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.img_setting, "스트릿"));
-        list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.img_setting, "댄디"));
-        list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.img_setting, "아메카지"));
-        list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.img_setting, "고프코어"));
-        list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.img_setting, "스포츠"));
-        list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.img_setting, "로맨틱"));
-        list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.img_setting, "걸리쉬"));
-        list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.img_setting, "시크"));
+        list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.casual, "캐쥬얼"));
+        list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.street, "스트릿"));
+        list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.dandy1, "댄디"));
+        list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.amecaji, "아메카지"));
+        list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.core, "고프코어"));
+        list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.sports, "스포츠"));
+        list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.romentic, "로맨틱"));
+        list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.girl, "걸리쉬"));
+        list.add(new HomeGoodsRecommendCategoryDTO(R.drawable.sic, "시크"));
 
 
         return list;

@@ -49,22 +49,28 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1">
-
+            android:layout_weight="1"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/tv_recommend_goods1"
                 android:layout_gravity="center_vertical"
                 android:text="상품명"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+            <ImageView
+                android:visibility="gone"
+                android:src="@drawable/ic_like_green"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
-
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:orientation="horizontal">
 
 
             <TextView
@@ -73,25 +79,30 @@
                 android:textSize="20dp"
                 android:layout_gravity="center_vertical"
                 android:text="49,000"
-                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"/>
 
-            <TextView
-                android:textColor="@color/pink"
-                android:layout_marginLeft="30dp"
-                android:textSize="15dp"
-                android:text="50"
-                android:id="@+id/tv_sale_percent"
+            <LinearLayout
+                android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:textColor="@color/pink"
-                android:textSize="15dp"
-                android:text="% sale"
-                android:id="@+id/tv_sale"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textColor="@color/pink"
+                    android:layout_marginLeft="30dp"
+                    android:textSize="15dp"
+                    android:text="50"
+                    android:id="@+id/tv_sale_percent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:textColor="@color/pink"
+                    android:textSize="15dp"
+                    android:text="% sale"
+                    android:id="@+id/tv_sale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
         </LinearLayout>
 
 

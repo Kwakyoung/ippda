@@ -12,8 +12,8 @@
 <table class="table align-middle mb-0 bg-white">
   <thead class="bg-light">
     <tr>
-      <th>상품번호</th>
-      <th>유저번호</th>
+      <th>상품명</th>
+      <th>닉네임</th>
       <th>리뷰작성일</th>
       <th>내용</th>
       <th>별점</th>
@@ -28,20 +28,12 @@
   			<c:forEach items="${page.list}" var="vo">
     <tr>
       <td>
-        <div class="d-flex align-items-center">
-          <img
-              src="https://mdbootstrap.com/img/new/avatars/8.jpg"
-              alt=""
-              style="width: 45px; height: 45px"
-              class="rounded-circle"
-              />
-          <div class="ms-3">
-            <p class="fw-bold mb-1">${vo.goods_no}</p>
-          </div>
-        </div>
+  
+            <p class="fw-bold mb-1">${vo.goods_name}</p>
+      
       </td>
       <td>
-        <p class="fw-normal mb-1">${vo.member_no}</p>
+        <p class="fw-normal mb-1">${vo.member_nickname}</p>
       </td>
     
       <td>${vo.insert_date}</td>
@@ -52,12 +44,7 @@
       	${vo.rating }
       </td>
   
-      <td>
-        <button type="button" id="modify" class="btn-outline-primary btn-sm"onclick="location='info?order_no=${vo.review_no}'" >
-  <i class="fas fa-magic"></i>
-  주문정보
-</button>
-</td>
+
     </tr>
    	
     </c:forEach>

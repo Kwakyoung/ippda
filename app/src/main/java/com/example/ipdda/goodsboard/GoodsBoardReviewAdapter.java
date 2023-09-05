@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ipdda.databinding.ItemReviewBinding;
 import com.example.ipdda.review.ReviewVO;
+import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -41,12 +42,15 @@ public class GoodsBoardReviewAdapter extends RecyclerView.Adapter<GoodsBoardRevi
 
 
             h.binding.rbRating.setRating(list.get(i).getRating());
-
             h.binding.tvMemberNickname.setText(list.get(i).getMember_nickname());
             h.binding.tvStarCnt.setText(list.get(i).getRating()+"");
             h.binding.tvGender.setText(list.get(i).getMember_gender());
             h.binding.tvReviewContext.setText(list.get(i).getContent());
 
+            String mainImageUrl = list.get(i).getMember_profile_image();
+            Picasso.get()
+                .load(mainImageUrl)
+                .into(h.binding.imgvProfile);
 
     }
 

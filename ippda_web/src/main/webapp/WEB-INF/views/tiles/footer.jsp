@@ -27,8 +27,7 @@
 		<!-- 카카오톡 상담하기 이미지 및 링크 -->
 		<div class="text-center">
 			<a href="https://talk.tokao.com/channel" target="_blank">
-				<img src='https://i.postimg.cc/dtYgYfHL/cap.png' border='0'
-				alt="카카오톡 상담하기">
+				<img src='https://i.postimg.cc/dtYgYfHL/cap.png' border='0'alt="카카오톡 상담하기">
 			</a>
 		</div>
 	</div>

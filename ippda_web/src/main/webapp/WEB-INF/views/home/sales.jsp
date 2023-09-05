@@ -11,9 +11,9 @@
 
 
   <!-- ======= Hero Section ======= -->
-  <section id="hero" class="d-flex align-items-center">
+  <section id="hero" class="d-flex align-items-center" style="background-image: url('https://i.postimg.cc/ZCD6ngzW/img1.png');">>
     <div class="container position-relative" data-aos="fade-up" data-aos-delay="500">
-        <img src=https://ibb.co/wcbX7nx alt="https://ibb.co/wcbX7nx">
+       
     
       <h1>여기서 부터 필요없는 부분지우고 꾸며야함</h1>
       <h2>We are team of talented designers making websites with Bootstrap</h2>

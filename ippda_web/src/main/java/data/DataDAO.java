@@ -20,9 +20,9 @@ public class DataDAO implements DataService{
 	}
 
 	@Override
-	public List<HashMap<String, Object>> sell_year() {
+	public List<HashMap<String, Object>> mprice() {
 	
-		return sql.selectList("data.Year");
+		return sql.selectList("data.mprice");
 	}
 
 	@Override

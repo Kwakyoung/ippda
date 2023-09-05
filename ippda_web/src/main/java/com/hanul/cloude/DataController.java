@@ -32,8 +32,8 @@ public class DataController {
 	}
 	
 	@ResponseBody
-	@RequestMapping("/sell/year")
-	public Object sell_year() {
-		return service.sell_year();
+	@RequestMapping("/sell/mprice")
+	public Object mprice() {
+		return service.mprice();
 	}
 }

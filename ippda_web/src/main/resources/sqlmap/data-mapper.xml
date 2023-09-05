@@ -10,10 +10,10 @@ group by to_char(order_date,'mm')
 order by unit
 </select>
 
-<select id="Year" resultType="hashmap">
-select to_char(order_date,'YY')||'년' unit, count(goods_no) count
+<select id="mprice" resultType="hashmap">
+select to_char(order_date,'mm')||'월' unit, sum(order_price) price
 from order_ing
-group by to_char(order_date,'YY')
+group by to_char(order_date,'mm')
 order by unit
 </select>
 

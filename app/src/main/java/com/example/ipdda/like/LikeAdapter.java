@@ -73,7 +73,8 @@ public class LikeAdapter extends BaseAdapter {
         imgv_like.setVisibility(View.VISIBLE);
 
         tv_shop = v.findViewById(R.id.tv_recommend_store1);
-        tv_shop.setText(list.get(position).getStore_name()+"");
+        
+        tv_shop.setText("입다 STORE");
 
         tv_price = v.findViewById(R.id.tv_recommend_price1);
         tv_price.setText(list.get(position).getGoods_sale_price()+"원");
@@ -81,6 +82,7 @@ public class LikeAdapter extends BaseAdapter {
         imgv_img.setOnClickListener(v1 -> {
             Intent intent = new Intent(context, GoodsBoardActivity.class);
             intent.putExtra("goods_no",  list.get(position).getGoods_no());
+
 
             context.startActivity(intent);
         });

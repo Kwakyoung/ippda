@@ -65,12 +65,12 @@ public class HomeFragment extends Fragment {
         });
 
         binding.imgvPackaging.setOnClickListener(v -> {
-            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-            PackagingFragment packagingFragment = new PackagingFragment();
-            transaction.replace(R.id.container , packagingFragment);
-            transaction.addToBackStack(null); // 백 스택에 추가
-            transaction.commit();
-
+//            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+//            PackagingFragment packagingFragment = new PackagingFragment();
+//            transaction.replace(R.id.container , packagingFragment);
+//            transaction.addToBackStack(null); // 백 스택에 추가
+//            transaction.commit();
+            Toast.makeText(getContext(), "서비스 준비중입니다.", Toast.LENGTH_SHORT).show();
         });
 
         binding.relativeLocation.setOnClickListener(v -> {

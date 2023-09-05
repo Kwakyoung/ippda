@@ -64,18 +64,20 @@ public class LikeAdapter extends BaseAdapter {
         ImageView imgv_img, imgv_like;
         TextView tv_shop, tv_price;
 
-        imgv_img = v.findViewById(R.id.imgv_img);
+        imgv_img = v.findViewById(R.id.imgv_recommend_goods1);
         Picasso.get()
                 .load(list.get(position).getGoods_main_image())
                 .into(imgv_img);
 
         imgv_like = v.findViewById(R.id.imgv_like);
+        imgv_like.setVisibility(View.VISIBLE);
 
-        tv_shop = v.findViewById(R.id.tv_shop);
-        tv_shop.setText(list.get(position).getStore_name());
+        tv_shop = v.findViewById(R.id.tv_recommend_store1);
+        tv_shop.setText(list.get(position).getStore_name()+"");
 
-        tv_price = v.findViewById(R.id.tv_price);
-        tv_price.setText(list.get(position).getGoods_price()+"");
+        tv_price = v.findViewById(R.id.tv_recommend_price1);
+        tv_price.setText(list.get(position).getGoods_sale_price()+"원");
+
         imgv_img.setOnClickListener(v1 -> {
             Intent intent = new Intent(context, GoodsBoardActivity.class);
             intent.putExtra("goods_no",  list.get(position).getGoods_no());

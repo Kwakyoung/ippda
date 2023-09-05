@@ -1,6 +1,7 @@
 package com.example.ipdda.profile;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 import com.example.ipdda.R;
 import com.example.ipdda.common.CommonConn;
 import com.example.ipdda.common.CommonVar;
+import com.example.ipdda.common.RetrofitClient;
 import com.example.ipdda.databinding.FragmentProfileBinding;
 import com.example.ipdda.goodslist.GoodsListDTO;
 import com.example.ipdda.member.MemberVO;
@@ -71,6 +73,12 @@ public class ProfileFragment extends Fragment {
             Intent intent =new Intent(requireContext(), CouponActivity.class);
             startActivity(intent);
         });
+        binding.btnWeb.setOnClickListener(v -> {
+            String websiteUrl = RetrofitClient.ip+"/ippda/";
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(websiteUrl));
+            startActivity(intent);
+        });
+
         return binding.getRoot();
     }
 

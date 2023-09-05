@@ -83,7 +83,6 @@ public class LikeAdapter extends BaseAdapter {
             context.startActivity(intent);
         });
 
-        View finalV = v;
         imgv_like.setOnClickListener(v1 -> {
 
                 CommonConn conn2 = new CommonConn(parent.getContext(), "goods_like/delete");

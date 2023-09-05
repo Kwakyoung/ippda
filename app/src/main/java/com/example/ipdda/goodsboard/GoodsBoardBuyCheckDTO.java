@@ -7,10 +7,8 @@ import java.io.Serializable;
 
 public class GoodsBoardBuyCheckDTO implements Parcelable, Serializable {
      private String check_goods_name,check_goods_size,check_goods_color ;
-     //추가함:23.08.29 수봉 -------------
      private int member_no, goods_no;
      private String order_status;
-     //----------------------------------
 
      private int check_goods_cnt, check_goods_price;
 

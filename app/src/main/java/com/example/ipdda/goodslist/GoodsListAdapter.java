@@ -21,15 +21,12 @@ import java.util.ArrayList;
 
 public class GoodsListAdapter extends RecyclerView.Adapter<GoodsListAdapter.ViewHolder> {
 
-    int key;
 
     ItemGoodsListBinding binding;
 
     ArrayList<GoodsVO> list;
 
     Context context;
-
-    GoodsListFragment goodsListFragment;
 
     public GoodsListAdapter(ArrayList<GoodsVO> list, Context context) {
         this.list = list;

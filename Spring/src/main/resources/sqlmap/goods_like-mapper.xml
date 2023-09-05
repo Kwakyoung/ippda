@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="goods_like">
+
+<select id="list" resultType="goods.GoodsVO">
+     	SELECT U.*
+	FROM GOODS_LIKE F
+    INNER JOIN GOODS U ON U.GOODS_NO = F.GOODS_NO
+	WHERE F.MEMBER_NO = #{member_no}
+	AND F.GOODS_NO = #{goods_no}
+
+</select>
+<select id="alllist" resultType="goods.GoodsVO">
+     	SELECT U.*
+	FROM GOODS_LIKE F
+    INNER JOIN GOODS U ON U.GOODS_NO = F.GOODS_NO
+	WHERE F.MEMBER_NO = #{member_no}
+</select>
+<insert id="add">
+	INSERT INTO GOODS_LIKE (MEMBER_NO, GOODS_NO)
+	VALUES (#{member_no}, #{goods_no})
+</insert>
+<delete id="delete">
+	DELETE FROM GOODS_LIKE
+	WHERE MEMBER_NO = #{member_no} AND GOODS_NO =#{goods_no}
+</delete>
+
+
+
+</mapper>

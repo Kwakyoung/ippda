@@ -6,7 +6,7 @@
 <select id="list" resultType="review.ReviewVO">
 select * from 
 (select  row_number() over(order by insert_date ) no, g.* from review g where store_no = #{store_no} 
-order by no desc) g
+order by no desc) g inner join goods go on g.goods_no = go.goods_no inner join member m on m.member_no = g.member_no
 where no between #{page.beginList} and #{page.endList}
 </select>
 

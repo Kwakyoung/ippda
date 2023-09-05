@@ -13,8 +13,12 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.ipdda.R;
+import com.example.ipdda.common.CommonConn;
 import com.example.ipdda.databinding.FragmentDeliveryBinding;
 import com.example.ipdda.goodslist.GoodsListFragment;
+import com.example.ipdda.store.StoreVO;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 
 import java.util.ArrayList;
@@ -38,8 +42,17 @@ public class DeliveryFragment extends Fragment {
         binding.recvDeliveryGoodsCategory.setAdapter(new DeliveryGoodsCategoryAdapter(GetGoodsCategoryList(), getContext(), this));
         binding.recvDeliveryGoodsCategory.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        binding.recvDeliveryStoreCategory.setAdapter(new DeliveryStoreCategoryAdapter(GetStoreCategoryList(), getContext()));
-        binding.recvDeliveryStoreCategory.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        CommonConn conn = new CommonConn(getContext(), "store/list");
+        conn.onExcute((isResult, data) -> {
+            ArrayList<StoreVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<StoreVO>>() {}.getType());
+
+
+            binding.recvDeliveryStoreCategory.setAdapter(new DeliveryStoreCategoryAdapter(list, getContext()));
+            binding.recvDeliveryStoreCategory.setLayoutManager(new LinearLayoutManager(getContext()));
+        });
+
+
 
 
         return binding.getRoot();
@@ -59,6 +72,7 @@ public class DeliveryFragment extends Fragment {
     }
 
     public ArrayList<DeliveryGoodsCategoryDTO> GetGoodsCategoryList(){
+
         ArrayList<DeliveryGoodsCategoryDTO> list = new ArrayList<>();
         list.add(new DeliveryGoodsCategoryDTO(R.drawable.top, R.drawable.outer , R.drawable.pants, R.drawable.onepeecs , "상의" , "아우터", "하의", "원피스"));
         list.add(new DeliveryGoodsCategoryDTO(R.drawable.skirt, R.drawable.shoes , R.drawable.backpack, R.drawable.accessory , "스커트" , "신발", "가방", "악세사리"));

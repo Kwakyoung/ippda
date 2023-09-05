@@ -24,6 +24,9 @@ import com.example.ipdda.databinding.ActivityGoodsBoardBinding;
 import com.example.ipdda.databinding.ActivityGoodsboardBuyBinding;
 import com.example.ipdda.home.GoodsVO;
 import com.example.ipdda.order.OrderActivity;
+import com.example.ipdda.pay.TossPayActivity;
+import com.example.ipdda.like.LikeDTO;
+import com.example.ipdda.order.OrderActivity;
 import com.example.ipdda.profile.SubActivity;
 import com.example.ipdda.review.ReviewActivity;
 import com.example.ipdda.review.ReviewVO;
@@ -125,11 +128,14 @@ public class GoodsBoardActivity extends AppCompatActivity {
             });
 
             binding.tvStoreName.setText(storeName);
+
             binding.tvStarCnt.setText(starCnt + "");
             binding.tvGoodsName.setText(goodsName);
             binding.tvGoodsContext.setText(goodsContext);
             binding.tvSalePercent.setText(SalePercent + "");
             binding.tvDeliveryTip.setText(goodsVO.getStore_delivery_tip() + " 원");
+
+
             String mainImageUrl = goodsVO.getGoods_main_image(); // 이미지의 실제 URL을 입력해주세요
             String subImageUrl = goodsVO.getGoods_sub_image();
 

@@ -61,9 +61,9 @@ https://templatemo.com/tm-583-festava-live
                 <div class="row">
 
                     <div class="col-12 mt-auto mb-5 text-center">
-                        <small>머 좋은 문구 없나..</small>
+                        <small>상품정보는 자세하게!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;배송은 하루안에!</small>
 
-                        <h1 class="text-white mb-5">머 좋은 문구 없나..</h1>
+                        <h1 class="text-white mb-5">나에게 맞는 옷을 IPPDA</h1>
 
                         <a class="btn custom-btn smoothscroll" href="login">관리자용 접속하기</a>
                     </div>

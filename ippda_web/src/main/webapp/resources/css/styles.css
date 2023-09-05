@@ -1310,8 +1310,11 @@ section {
   margin-bottom: 0;
   font-family: "Raleway", sans-serif;
 }
-
+.social-links{
+	z-index: 30;
+}
 #footer .footer-top .social-links a {
+
   font-size: 18px;
   display: inline-block;
   background: #262626;

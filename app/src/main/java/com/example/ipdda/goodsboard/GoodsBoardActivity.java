@@ -22,8 +22,13 @@ import com.example.ipdda.common.CommonConn;
 import com.example.ipdda.databinding.ActivityGoodsBoardBinding;
 import com.example.ipdda.databinding.ActivityGoodsboardBuyBinding;
 import com.example.ipdda.home.GoodsVO;
+<<<<<<< HEAD
+import com.example.ipdda.order.OrderActivity;
+import com.example.ipdda.pay.TossPayActivity;
+=======
 import com.example.ipdda.like.LikeDTO;
 import com.example.ipdda.order.OrderActivity;
+>>>>>>> edf1687fd3d4f6af4382da51ca4c43285ed71d75
 import com.example.ipdda.profile.SubActivity;
 import com.example.ipdda.review.ReviewActivity;
 import com.example.ipdda.review.ReviewVO;

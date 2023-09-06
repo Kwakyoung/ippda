@@ -49,6 +49,16 @@
             android:orientation="vertical"
             android:visibility="gone">
             <Button
+                android:id="@+id/btn_2XS"
+                android:gravity="left"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:backgroundTint="@color/white"
+                android:text="2XS"
+                android:textColor="@color/black"
+                android:textSize="13dp"
+                />
+            <Button
                 android:id="@+id/btn_XS"
                 android:gravity="left"
                 android:layout_width="match_parent"
@@ -99,12 +109,32 @@
                 android:textSize="13dp"
                 />
             <Button
-                android:id="@+id/btn_XXL"
+                android:id="@+id/btn_2XL"
                 android:gravity="left"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
                 android:backgroundTint="@color/white"
-                android:text="XXL"
+                android:text="2XL"
+                android:textColor="@color/black"
+                android:textSize="13dp"
+                />
+            <Button
+                android:id="@+id/btn_3XL"
+                android:gravity="left"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:backgroundTint="@color/white"
+                android:text="3XL"
+                android:textColor="@color/black"
+                android:textSize="13dp"
+                />
+            <Button
+                android:id="@+id/btn_Free"
+                android:gravity="left"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:backgroundTint="@color/white"
+                android:text="FREE"
                 android:textColor="@color/black"
                 android:textSize="13dp"
                 />

@@ -25,7 +25,6 @@ import com.example.ipdda.databinding.ActivityGoodsboardBuyBinding;
 import com.example.ipdda.home.GoodsVO;
 import com.example.ipdda.order.OrderActivity;
 import com.example.ipdda.pay.TossPayActivity;
-
 import com.example.ipdda.order.OrderActivity;
 import com.example.ipdda.profile.SubActivity;
 import com.example.ipdda.review.ReviewActivity;
@@ -210,18 +209,25 @@ public class GoodsBoardActivity extends AppCompatActivity {
             }
         });
 
+        size_click(dialogBinding.btn2XS, dialogBinding.btnSelectSize, dialogBinding.linSize);
         size_click(dialogBinding.btnXS, dialogBinding.btnSelectSize, dialogBinding.linSize);
         size_click(dialogBinding.btnS, dialogBinding.btnSelectSize, dialogBinding.linSize);
         size_click(dialogBinding.btnM, dialogBinding.btnSelectSize, dialogBinding.linSize);
         size_click(dialogBinding.btnL, dialogBinding.btnSelectSize, dialogBinding.linSize);
         size_click(dialogBinding.btnXL, dialogBinding.btnSelectSize, dialogBinding.linSize);
-        size_click(dialogBinding.btnXXL, dialogBinding.btnSelectSize, dialogBinding.linSize);
+        size_click(dialogBinding.btn2XL, dialogBinding.btnSelectSize, dialogBinding.linSize);
+        size_click(dialogBinding.btn3XL, dialogBinding.btnSelectSize, dialogBinding.linSize);
+        size_click(dialogBinding.btnFree, dialogBinding.btnSelectSize, dialogBinding.linSize);
+
+        size(dialogBinding.btn2XS);
         size(dialogBinding.btnXS);
         size(dialogBinding.btnS);
         size(dialogBinding.btnM);
         size(dialogBinding.btnL);
         size(dialogBinding.btnXL);
-        size(dialogBinding.btnXXL);
+        size(dialogBinding.btn2XL);
+        size(dialogBinding.btn3XL);
+        size(dialogBinding.btnFree);
 
         dialogBinding.btnSelectSize.setOnClickListener(v -> {
             if (dialogBinding.linSize.getVisibility() == View.GONE) {
@@ -301,22 +307,28 @@ public class GoodsBoardActivity extends AppCompatActivity {
 
     public void size_click(Button btn, Button select, LinearLayout ln) {
         btn.setOnClickListener(v -> {
-            select.setText(btn.getText().toString());
+            String sizeText = btn.getText().toString();
+            select.setText(sizeText);
             ln.setVisibility(View.GONE);
-            if (btn == dialogBinding.btnXS) {
-                select_size = "XS";
-            } else if (btn == dialogBinding.btnS) {
-                select_size = "S";
-            } else if (btn == dialogBinding.btnM) {
-                select_size = "M";
-            } else if (btn == dialogBinding.btnL) {
-                select_size = "L";
-            } else if (btn == dialogBinding.btnXL) {
-                select_size = "XL";
-            } else if (btn == dialogBinding.btnXXL) {
-                select_size = "XXL";
+
+            switch (sizeText) {
+                case "2XS":
+                case "XS":
+                case "S":
+                case "M":
+                case "L":
+                case "XL":
+                case "2XL":
+                case "3XL":
+                case "FREE":
+                    select_size = sizeText;
+                    break;
+                default:
+                    // 다른 사이즈에 대한 처리
+                    break;
             }
         });
+
     }
 
     public void color() {

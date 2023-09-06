@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,17 +10,42 @@
 <body>
 
 
-  <!-- ======= Hero Section ======= -->
-  <section id="hero" class="d-flex align-items-center" style="background-image: url('https://i.postimg.cc/ZCD6ngzW/img1.png');">>
-    <div class="container position-relative" data-aos="fade-up" data-aos-delay="500">
-       
-    
-      <h1>여기서 부터 필요없는 부분지우고 꾸며야함</h1>
-      <h2>We are team of talented designers making websites with Bootstrap</h2>
-      <a href="#about" class="btn-get-started scrollto">의류 둘러보기</a>
-    </div>
-  </section><!-- End Hero -->
+	<!-- ======= Hero Section ======= -->
+	<section id="hero" class="d-flex align-items-center"
+		style="background-image: url('https://i.postimg.cc/ZCD6ngzW/img1.png');">
+		>
+		<div class="container position-relative text-center" data-aos="fade-up"
+			data-aos-delay="500">
+			<a href='https://i.postimg.cc/BvJSMGV3/cap3.png' target='_blank'>
+				<img src='https://i.postimg.cc/BvJSMGV3/cap3.png' border='0'
+				alt='img1' style='width: 300px; height: 200px;' />
+			</a> <a href='https://i.postimg.cc/QCT0Fvs9/cap2.png' target='_blank'>
+				<img src='https://i.postimg.cc/QCT0Fvs9/cap2.png' border='0'
+				alt='img2' style='width: 300px; height: 200px;' />
+			</a> <a href='https://i.postimg.cc/MTzcjj87/cap4.png' target='_blank'>
+				<img src='https://i.postimg.cc/MTzcjj87/cap4.png' border='0'
+				alt='img3' style='width: 300px; height: 200px;' />
+			</a> <a href='https://i.postimg.cc/8Pvy1jTp/cap5.png'   target='_blank'>
+				<img src= 'https://i.postimg.cc/8Pvy1jTp/cap5.png' border='0' 
+				alt='img4' style='width: 300px; height: 200px;' />
+			</a>
+			<a href='https://i.postimg.cc/y8HXTjc9/cap6.png'    target='_blank'>
+				<img src= 'https://i.postimg.cc/y8HXTjc9/cap6.png'  border='0' 
+				alt='img5' style='width: 300px; height: 200px;' />
+			</a><a href= 'https://i.postimg.cc/zBv2C7K5/cap7.png'    target='_blank'>
+				<img src= 'https://i.postimg.cc/zBv2C7K5/cap7.png'   border='0' 
+				alt='img6' style='width: 300px; height: 200px;' />
+			</a>
 
-	
+			<h1 style="text-align: center;">금주 베스트 상품</h1>
+
+			<a href="#about" class="btn-get-started scrollto"
+				style="float: right;">다른 상품 둘러보기</a>
+
+		</div>
+	</section>
+	<!-- End Hero -->
+
+
 </body>
 </html>

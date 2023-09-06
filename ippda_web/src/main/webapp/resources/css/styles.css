@@ -421,7 +421,7 @@ h6 {
 #hero {
   width: 100%;
   height: calc(100vh - 110px);
-  background: url("../img/img1.png") top center;
+  background: url("../img/back1.jpg") top center;
   background-size: cover;
   position: relative;
 }
@@ -435,7 +435,19 @@ h6 {
   left: 0;
   right: 0;
 }
-
+.search-container {
+            display: flex;
+            justify-content: flex-end; /* 우측 정렬을 위한 스타일 */
+            align-items: center; /* 수직 가운데 정렬을 위한 스타일 */
+            height: 50px; /* 원하는 높이 설정 */
+            margin-right : 340px;
+            
+        }
+.search-form {
+            background: transparent;
+            border: none;
+        }        
+        
 #hero h1 {
   margin: 0 0 10px 0;
   font-size: 48px;

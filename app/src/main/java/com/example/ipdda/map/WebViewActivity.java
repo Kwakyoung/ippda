@@ -33,7 +33,7 @@ public class WebViewActivity extends AppCompatActivity {
         });
 
 
-        webView.loadUrl("http://192.168.0.43:8080/cloude/map/");
+        webView.loadUrl("http://192.168.0.10:8080/cloude/map/");
     }
 
     private class BridgeInterface {

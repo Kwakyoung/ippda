@@ -40,6 +40,7 @@ public class LikeFragment extends Fragment {
             ArrayList<GoodsVO> list = new Gson().fromJson(data , new TypeToken<ArrayList<GoodsVO>>(){}.getType());
             if (list.size()!=0) {
                 binding.grid.setAdapter(new LikeAdapter(inflater, list,getContext(),binding));
+
             }
             binding.tvLikeCount.setText(list.size() + "");
         });

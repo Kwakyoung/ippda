@@ -37,7 +37,7 @@
 				alt='img6' style='width: 300px; height: 200px;' />
 			</a>
 
-			<h1 style="text-align: center;">금주 베스트 상품</h1>
+			<h2 style="text-align: center; text-decoration: underline;">IPPDA에서 인기 많은 상품</h2>
 
 			<a href="#about" class="btn-get-started scrollto"
 				style="float: right;">다른 상품 둘러보기</a>

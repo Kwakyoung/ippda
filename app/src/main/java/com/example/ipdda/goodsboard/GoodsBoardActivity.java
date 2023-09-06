@@ -30,6 +30,7 @@ import com.example.ipdda.profile.SubActivity;
 import com.example.ipdda.review.ReviewActivity;
 import com.example.ipdda.review.ReviewVO;
 import com.example.ipdda.search.SearchFragment;
+import com.google.android.gms.common.internal.service.Common;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.squareup.picasso.Picasso;
@@ -58,6 +59,8 @@ public class GoodsBoardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityGoodsBoardBinding.inflate(getLayoutInflater());
+
+
 
 
         //리뷰 리사이클러
@@ -94,6 +97,24 @@ public class GoodsBoardActivity extends AppCompatActivity {
         });
 
         goods_no = getIntent().getIntExtra("goods_no", 0);
+
+        //리뷰 갯수
+        CommonConn reviewconn = new CommonConn(this, "review/count");
+        reviewconn.addParamMap("goods_no", goods_no);
+        reviewconn.onExcute((isResult, data) -> {
+            binding.tvReviewCnt1.setText(data+"");
+            binding.tvReviewCnt.setText(data+"");
+        });
+
+        //평점 평균
+        CommonConn ratingconn = new CommonConn(this, "review/rating");
+        ratingconn.addParamMap("goods_no", goods_no);
+        ratingconn.onExcute((isResult, data) -> {
+            binding.tvRatingCnt.setText(data+"");
+        });
+
+
+
         Log.d("goods_no", "onCreate: " + goods_no);
         CommonConn conn = new CommonConn(this, "goods/goodsboard");
         conn.addParamMap("goods_no", goods_no);
@@ -108,7 +129,6 @@ public class GoodsBoardActivity extends AppCompatActivity {
             goodsPrice = goodsVO.getGoods_price();
             int SalePercent = goodsVO.getGoods_sale_percent();
             String storeName = goodsVO.getStore_name() + "";
-            String starCnt = goodsVO.getGoods_star() + "";
             String goodsContext = goodsVO.getGoods_info() + "";
             goods_sale_price = goodsVO.getGoods_sale_price();
 
@@ -134,7 +154,6 @@ public class GoodsBoardActivity extends AppCompatActivity {
 
             binding.tvStoreName.setText(storeName);
 
-            binding.tvStarCnt.setText(starCnt + "");
             binding.tvGoodsName.setText(goodsName);
             binding.tvGoodsContext.setText(goodsContext);
             binding.tvSalePercent.setText(SalePercent + "");

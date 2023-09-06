@@ -38,4 +38,24 @@ public class ReviewController {
 		return new Gson().toJson(list);
 	}
 	
+	//리뷰갯수
+	@RequestMapping( value = "/count" , produces = "text/html;charset=utf-8")
+	public String count(int goods_no) {
+		
+		int reviewCnt = sql.selectOne("review.count", goods_no);
+		
+		return new Gson().toJson(reviewCnt);
+	}
+	
+	//평점 평균
+	@RequestMapping( value = "/rating" , produces = "text/html;charset=utf-8")
+	public String rating(int goods_no) {
+		
+		int reviewCnt = sql.selectOne("review.rating", goods_no);
+		
+		return new Gson().toJson(reviewCnt);
+	}
+	
+	
+	
 }

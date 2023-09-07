@@ -277,12 +277,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
 
-
-
-
-
-
-
             </LinearLayout>
 
 
@@ -290,7 +284,7 @@
         </LinearLayout>
 
         <View
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="30dp"
             android:background="@color/white"
             android:layout_width="match_parent"
             android:layout_height="1dp"/>
@@ -299,10 +293,11 @@
             android:orientation="vertical"
             android:layout_margin="10dp"
             android:layout_width="match_parent"
-            android:layout_height="50dp">
+            android:layout_height="wrap_content">
 
 
             <LinearLayout
+                android:visibility="gone"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -331,6 +326,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1">
@@ -356,37 +352,40 @@
 
 
         <LinearLayout
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_margin="10dp"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <TextView
-                android:textSize="20dp"
+                android:fontFamily="@font/pretendard_bold"
+                android:textSize="25dp"
                 android:text="상품설명"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
 
             <TextView
+                android:layout_marginTop="10dp"
                 android:id="@+id/tv_goods_context"
                 android:textSize="15dp"
                 android:text="스부레 겁나 힘드네 빵빵아 옥지얌~ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
-
         </LinearLayout>
 
-
+        <View
+            android:layout_marginTop="20dp"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
 
         <LinearLayout
-
+            android:layout_marginTop="10dp"
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="50dp">
+            android:layout_height="0dp">
 
             <RelativeLayout
                 android:layout_width="0dp"
@@ -469,6 +468,7 @@
         </LinearLayout>
         
         <LinearLayout
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -481,21 +481,12 @@
         </LinearLayout>
         
         
+
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp">
-            
-            <TextView
-                android:layout_gravity="center_vertical"
-                android:text="사이즈"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            
-        </LinearLayout>
-        <LinearLayout
+            android:visibility="gone"
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="250dp">
+            android:layout_height="wrap_content">
         
             <LinearLayout
                 android:orientation="horizontal"

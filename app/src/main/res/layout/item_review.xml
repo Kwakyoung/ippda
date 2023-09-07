@@ -1,36 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:layout_height="100dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_marginHorizontal="10dp"
+    android:layout_marginBottom="20dp">
+
+        <androidx.cardview.widget.CardView
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="15dp">
+
+        <ImageView
+            android:scaleType="centerCrop"
+            android:id="@+id/imgv_profile"
+            android:src="@drawable/test"
+            android:layout_width="80dp"
+            android:layout_height="80dp"/>
+        </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="80dp">
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-
-        <ImageView
-            android:id="@+id/imgv_profile"
-            android:layout_marginLeft="10dp"
-            android:background="@drawable/button_radius"
-            android:layout_gravity="center_vertical"
-            android:layout_width="60dp"
-            android:layout_height="60dp"/>
+        android:layout_height="70dp">
 
 
-        </LinearLayout>
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="3">
+            android:layout_weight="2">
 
             <TextView
                 android:id="@+id/tv_member_nickname"
@@ -65,18 +72,12 @@
                 android:layout_height="0dp">
 
                 <TextView
-                    android:layout_marginLeft="20dp"
                     android:id="@+id/tv_insert_date"
                     android:layout_gravity="bottom"
                     android:text="2023.02.01"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
 
-                <ImageView
-                    android:layout_gravity="bottom"
-                    android:src="@drawable/ic_menu"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"/>
             </LinearLayout>
 
             <LinearLayout
@@ -109,39 +110,20 @@
 
                 </RelativeLayout>
 
-
             </LinearLayout>
 
-
-
-
             </LinearLayout>
-
-
-
 
         </LinearLayout>
 
 
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_margin="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-
         <LinearLayout
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent">
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
 
-        </LinearLayout>
-        <LinearLayout
-            android:layout_weight="4"
-            android:layout_width="0dp"
-            android:layout_height="match_parent">
             <TextView
                 android:id="@+id/tv_review_context"
                 android:text="구매할까말까 하다가 예뻐서 삽니다"
@@ -150,23 +132,11 @@
 
         </LinearLayout>
 
-
-
-
     </LinearLayout>
 
-        <View
-            android:background="@color/gray"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"/>
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
-
-    </LinearLayout>
     </LinearLayout>
 
 

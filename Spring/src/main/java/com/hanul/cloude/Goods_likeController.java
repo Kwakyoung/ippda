@@ -50,6 +50,7 @@ public class Goods_likeController {
 	    params.put("goods_no", goods_no);
 	    dao.delete(params);
 	}
+	
 	@RequestMapping(value = "/alllist" , produces = "text/html;charset=utf-8")
 	public String allist(String member_no) {
 		HashMap<String, Object> params = new HashMap<String, Object>();

@@ -36,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
     SearchFragment searchFragment = new SearchFragment();
     LikeFragment likeFragment = new LikeFragment();
     ProfileFragment profileFragment = new ProfileFragment();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

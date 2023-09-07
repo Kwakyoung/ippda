@@ -7,8 +7,8 @@
     android:layout_height="match_parent"
     tools:context=".login.FindActivity"
     android:layout_gravity="center"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
+
 
     <RelativeLayout
         android:layout_marginTop="60dp"

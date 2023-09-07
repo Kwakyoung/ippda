@@ -73,7 +73,7 @@ public class LikeAdapter extends BaseAdapter {
         imgv_like.setVisibility(View.VISIBLE);
 
         tv_shop = v.findViewById(R.id.tv_recommend_store1);
-        tv_shop.setText(list.get(position).getStore_name()+"");
+        tv_shop.setText("입다 STORE");
 
         tv_price = v.findViewById(R.id.tv_recommend_price1);
         tv_price.setText(list.get(position).getGoods_sale_price()+"원");
@@ -95,6 +95,7 @@ public class LikeAdapter extends BaseAdapter {
                         // 아이템을 삭제하고 어댑터에게 알림
                         list.remove(position);
                         binding.tvLikeCount.setText(list.size()+"");
+
                         notifyDataSetChanged(); // 어댑터에게 데이터셋이 변경되었음을 알려줌
                     } else {
                         // 삭제 실패 시 사용자에게 알림

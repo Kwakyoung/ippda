@@ -43,6 +43,7 @@ public class LikeFragment extends Fragment {
 
             }
             binding.tvLikeCount.setText(list.size() + "");
+
         });
 
 

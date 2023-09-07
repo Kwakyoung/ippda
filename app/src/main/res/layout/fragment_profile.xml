@@ -197,29 +197,7 @@
                     android:backgroundTint="@color/green"/>
             </LinearLayout>
 
-            <TextView
-                android:layout_marginTop="15dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="최근 본 상품"
-                android:textColor="@color/gray"
-                android:textSize="14dp"
-                android:layout_marginRight="15dp"/>
-            <com.example.ipdda.CustomRecyclerView
-                android:id="@+id/gridv_viewed"
-                android:layout_width="match_parent"
-                android:layout_height="900dp"
-                android:orientation="vertical"/>
 
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="더보기"
-                android:textColor="@color/gray"
-                android:textSize="11dp"
-                android:layout_gravity="right"
-                android:layout_marginRight="15dp"/>
             <TextView
                 android:layout_margin="50dp"
                 android:layout_width="wrap_content"

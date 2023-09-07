@@ -11,6 +11,8 @@ import android.webkit.WebViewClient;
 
 
 import com.example.ipdda.R;
+import com.example.ipdda.common.CommonVar;
+import com.example.ipdda.common.RetrofitClient;
 
 
 public class WebViewActivity extends AppCompatActivity {
@@ -33,7 +35,7 @@ public class WebViewActivity extends AppCompatActivity {
         });
 
 
-        webView.loadUrl("http://192.168.0.43:8080/cloude/map/");
+        webView.loadUrl(RetrofitClient.ip+"/cloude/map/");
     }
 
     private class BridgeInterface {

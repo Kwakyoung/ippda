@@ -38,8 +38,8 @@ public class ProfileFragment extends Fragment {
         binding.recvUserActions.setAdapter(new UserActionAdepter(getUserAction(),getContext()));
         binding.recvUserActions.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL , false));
 
-        binding.gridvViewed.setAdapter(new ViewedAdepter(GoodsList(),getContext()));
-        binding.recvUserActions.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL , false));
+//        binding.gridvViewed.setAdapter(new ViewedAdepter(GoodsList(),getContext()));
+//        binding.recvUserActions.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL , false));
 
         binding.user.setText(CommonVar.loginInfo.getMember_nickname());
         binding.userEmail.setText(CommonVar.loginInfo.getMember_email());

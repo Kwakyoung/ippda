@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.ipdda.MainActivity;
 import com.example.ipdda.R;
 import com.example.ipdda.common.CommonConn;
 import com.example.ipdda.common.CommonVar;
@@ -15,7 +16,7 @@ import com.example.ipdda.home.HomeFragment;
 import com.example.ipdda.login.FindidFragment;
 
 public class OrderCompleteActivity extends AppCompatActivity {
-
+    Intent intent;
     ActivityOrderCompleteBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +25,7 @@ public class OrderCompleteActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
 
-        Intent intent = getIntent();
+        intent = getIntent();
         //binding.tvOrderNum.setText();
         binding.tvPayPrice.setText(intent.getExtras().getInt("holdingAmount")+" 원");
         binding.tvGoodsPrice.setText(intent.getExtras().getInt("totalprice")+ " 원");
@@ -39,7 +40,8 @@ public class OrderCompleteActivity extends AppCompatActivity {
 
 
         binding.tvLogo.setOnClickListener(v -> {
-
+            intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
         });
 
     }

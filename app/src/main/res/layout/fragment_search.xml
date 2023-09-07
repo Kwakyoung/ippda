@@ -34,7 +34,7 @@
     </LinearLayout>
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:scrollbars="vertical">
         <LinearLayout
             android:layout_width="match_parent"
@@ -74,6 +74,49 @@
 
     </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/container_search"
+                android:layout_marginVertical="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:visibility="gone"
+                        android:id="@+id/tv_searchlist"
+                        android:textSize="25dp"
+                        android:text="검색 목록"
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <ImageView
+                        android:visibility="gone"
+                        android:id="@+id/imv_arrow"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/arrow_down"/>
+                </LinearLayout>
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/tv_search_nothing"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="15dp"
+                    android:text="해당되는 제품이 없습니다."
+                    />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recv_search_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none"/>
+            </LinearLayout>
+
 
     <LinearLayout
         android:layout_marginVertical="30dp"
@@ -93,48 +136,7 @@
             android:layout_height="wrap_content"/>
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/container_search"
-        android:layout_marginVertical="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:visibility="gone"
-                android:id="@+id/tv_searchlist"
-                android:textSize="25dp"
-                android:text="검색 목록"
-                android:layout_weight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <ImageView
-                android:visibility="gone"
-                android:id="@+id/imv_arrow"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_marginRight="10dp"
-                android:src="@drawable/arrow_down"/>
-        </LinearLayout>
-        <TextView
-            android:visibility="gone"
-            android:id="@+id/tv_search_nothing"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="15dp"
-            android:text="해당되는 제품이 없습니다."
-            />
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recv_search_list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scrollbars="none"/>
-    </LinearLayout>
+
 
 
     <LinearLayout
@@ -171,7 +173,7 @@
             android:id="@+id/grid"
             android:numColumns="2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="250dp"/>
 
     </LinearLayout>
         </LinearLayout>

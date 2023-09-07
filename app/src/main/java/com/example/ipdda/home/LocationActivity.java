@@ -13,6 +13,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Build;
@@ -65,6 +66,7 @@ public class LocationActivity extends AppCompatActivity  {
                         String data = result.getData().getStringExtra("data");
                         address = data+"";
                         binding.edtSearch.setText(data);
+                        binding.edtSearch.setTextColor(Color.WHITE);
                     }
                 }
             }

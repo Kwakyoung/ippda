@@ -55,10 +55,10 @@
 
 
         <EditText
+            android:paddingStart="10dp"
+            android:background="@drawable/radius"
             android:id="@+id/edt_subAddress"
             android:layout_gravity="center_vertical"
-            android:textColor="@color/gray"
-            android:textColorHint="@color/white"
             android:hint="상세 주소 입력"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>

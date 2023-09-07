@@ -19,7 +19,7 @@ ul.nav-tabs li {
 
 canvas#chart {
             width: 1050px; /* 원하는 너비로 설정 */
- 
+ 			margin: 0 auto;
         }
 
 </style>

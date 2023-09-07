@@ -58,7 +58,8 @@ public class GoodsBoardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityGoodsBoardBinding.inflate(getLayoutInflater());
 
-
+        goods_no = getIntent().getIntExtra("goods_no",0);
+        selectLike();
 
 
         //리뷰 리사이클러
@@ -170,7 +171,6 @@ public class GoodsBoardActivity extends AppCompatActivity {
         });
 
         binding.imgvLike.setOnClickListener(v -> {
-            //
             if (lst.size() == 0 || lst.get(0).getGoods_no() == 0) {
                 CommonConn conn3 = new CommonConn(this, "goods_like/add");
                 conn3.addParamMap("goods_no", goods_no);

@@ -51,6 +51,9 @@ body {
         <p class="fw-normal mb-1">${vo.order_date}</p>
       </td>
       <c:choose>
+      	<c:when test="${vo.order_status eq '결제완료'}">
+ 			<td><span class="badge badge-success rounded-pill d-inline" style="padding: 5px;">결제완료</span></td>
+      	</c:when>
       	<c:when test="${vo.order_status eq '배송준비중'}">
  			<td><span class="badge badge-success rounded-pill d-inline" style="padding: 5px;">배송준비중</span></td>
       	</c:when>

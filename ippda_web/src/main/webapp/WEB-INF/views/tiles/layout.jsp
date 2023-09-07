@@ -10,7 +10,7 @@
          <meta content="" name="description">
  	 <meta content="" name="keywords">
  	 <title>IPPDA</title>
- 	
+ 		
      <c:set var="now" value="<%=new java.util.Date() %>"/>
     <link href="<c:url value='/css/styles.css?${now}'/>" rel="stylesheet" />
          <!-- Favicon-->
@@ -34,7 +34,7 @@
      <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
      <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" ></script>
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" ></script>
-     
+     <script type="text/javascript" src="<c:url value='/js/common.js'/>"></script>
      
      <script src="<c:url value='/js/main.js'/>"></script>
     </head>
@@ -45,8 +45,8 @@
      	</main>
      <tiles:insertAttribute name="footer" />
      
-     
-        <script>
+   	<jsp:include page="/WEB-INF/views/include/modal_alert.jsp"></jsp:include>
+     <script>
      const intervalID = setInterval(popAlarm, 5000);
 function orderNo(){
 	var orderNo = '';

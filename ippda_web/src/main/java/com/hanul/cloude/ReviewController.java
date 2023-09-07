@@ -32,6 +32,7 @@ public class ReviewController {
 		page.setList( sql.selectList("review.list", map) );
 		model.addAttribute("page", page); 
 		
+
 		
 		return "review/list";
 	}

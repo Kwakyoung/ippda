@@ -1,6 +1,8 @@
 package com.hanul.cloude;
 
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,8 +21,8 @@ public class DataController {
 	
 	
 	@RequestMapping("/list")
-	public String basicinfo() {
-	
+	public String basicinfo(HttpSession session) {
+		session.setAttribute("category", "datas");
 		return"data/list";
 	}
 	

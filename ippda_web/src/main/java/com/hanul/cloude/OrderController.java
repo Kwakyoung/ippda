@@ -48,6 +48,7 @@ public class OrderController {
 	public String orderList(HttpSession session, Model model , PageVO page) {
 //		MemberVO member = (MemberVO)session.getAttribute("loginInfo");
 		HashMap<String, Object> map = new HashMap<String, Object>();
+		session.setAttribute("category", "order");
 		map.put("store_no", 1); //member.getStore_no()
 		map.put("page", page);
 		int totalList = sql.selectOne("order.total", 1);

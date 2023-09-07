@@ -108,6 +108,7 @@ public class GoodsBoardActivity extends AppCompatActivity {
             String goodsContext = goodsVO.getGoods_info() + "";
             goods_sale_price = goodsVO.getGoods_sale_price();
 
+
             if (SalePercent == 0) {
                 binding.tvGoodsPrice.setText(goodsPrice + " 원");
                 binding.tvGoodsOriginalPrice.setVisibility(View.GONE);

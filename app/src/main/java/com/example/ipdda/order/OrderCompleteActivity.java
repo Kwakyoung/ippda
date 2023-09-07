@@ -39,8 +39,7 @@ public class OrderCompleteActivity extends AppCompatActivity {
 
 
         binding.tvLogo.setOnClickListener(v -> {
-            FragmentManager manager = getSupportFragmentManager();
-            manager.beginTransaction().replace(R.id.container, new HomeFragment()).commit();
+
         });
 
     }

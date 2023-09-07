@@ -138,7 +138,7 @@
                             android:layout_height="wrap_content"/>
 
                         <TextView
-                            android:id="@+id/tv_rating_cnt"
+                            android:id="@+id/tv_star_cnt"
                             android:textColor="@color/green"
                             android:layout_marginLeft="5dp"
                             android:layout_gravity="bottom"
@@ -165,7 +165,6 @@
                             android:layout_height="wrap_content"/>
 
                         <TextView
-                            android:id="@+id/tv_review_cnt"
                             android:layout_marginLeft="5dp"
                             android:layout_gravity="top"
                             android:gravity="right"
@@ -432,7 +431,6 @@
                     android:layout_height="wrap_content"/>
 
                 <TextView
-                    android:id="@+id/tv_review_cnt1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"

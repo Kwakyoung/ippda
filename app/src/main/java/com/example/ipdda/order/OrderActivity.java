@@ -362,7 +362,6 @@ public class OrderActivity extends AppCompatActivity {
                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.POST_NOTIFICATIONS}, 101);
             }
         }
-
             binding.btnPayment.setOnClickListener(v -> {
                 if( 0 < holdingAmount-(goodsPrice + goodsVO.getStore_delivery_tip())){
                     if(binding.radioIppdapay.isChecked()){

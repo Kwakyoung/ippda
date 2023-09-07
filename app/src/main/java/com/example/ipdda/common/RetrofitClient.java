@@ -4,7 +4,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class RetrofitClient {
-    public static String ip="http://211.223.59.99:3303";
+    public static String ip="http://192.168.0.10:8080";
     public Retrofit getRetrofit() {
 
         Retrofit retrofit = new Retrofit.Builder()

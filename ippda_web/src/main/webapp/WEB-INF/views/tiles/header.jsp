@@ -32,8 +32,8 @@
               <li><a   href="<c:url value="/goods/basicinfo"/>">상품 등록</a></li> 
              </ul>
               
-          <li><a class="nav-link ${category eq 'order' ? 'active' : '' }" href="<c:url value='/order/list'/>">주문</a></li>
-          <li><a class="nav-link ${category eq 'datas' ? 'active' : '' }"href="<c:url value='/data/list'/>" >데이터</a></li>
+          <li><a class="nav-link" href="<c:url value='/order/list'/>">주문</a></li>
+          <li><a class="nav-link"href="<c:url value='/data/list'/>">데이터</a></li>
          <!--  <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="#">Drop Down 1</a></li>
@@ -51,7 +51,7 @@
               <li><a href="#">Drop Down 4</a></li>
             </ul>
           </li> -->
-          <li><a class="nav-link scrollto ${category eq 'review' ? 'active' : '' }" href="<c:url value='/review/list'/>">리뷰관리</a></li>
+          <li><a class="nav-link scrollto" href="<c:url value='/review/list'/>">리뷰관리</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->

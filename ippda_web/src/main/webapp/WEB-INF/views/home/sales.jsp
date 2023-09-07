@@ -9,6 +9,15 @@
 </head>
 <body>
 
+<div class="search-container">
+    <!-- 검색 폼 시작 -->
+    <form class="search-form" action="/search" method="GET">
+        <label class="search-label" for="searchInput"></label>
+        <input class="search-input" type="text" id="searchInput" name="q" placeholder="검색어를 입력하세요...">
+        <input class="search-button" type="submit" value="검색">
+    </form>
+    <!-- 검색 폼 끝 -->
+</div>
 	<!-- ======= Hero Section ======= -->
 	<section id="hero" class="d-flex align-items-center";">
 

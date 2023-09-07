@@ -30,6 +30,17 @@
 	JOIN member m ON r.member_no = m.member_no
 	WHERE r.goods_no = #{goods_no}
 	</select>
+	
+	<select id="count" resultType="Integer">
+	select count(*)
+	from review	
+	where goods_no = #{goods_no}
+	</select>
+	
+	<select id="rating" resultType="Integer">
+		select nvl(round(avg(rating), 1),0) from review where goods_no = #{goods_no}
+	</select>
+	
 
 
 </mapper>

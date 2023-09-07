@@ -11,6 +11,7 @@ import com.example.ipdda.databinding.ActivityOrderBinding;
 import com.example.ipdda.databinding.ItemOrderGoodsBinding;
 import com.example.ipdda.goodsboard.GoodsBoardBuyCheckDTO;
 import com.example.ipdda.home.GoodsVO;
+import com.squareup.picasso.Picasso;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -50,6 +51,10 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder>{
             h.binding.tvPayPrice.setText(""+((arrayList.get(0).getGoods_price()-arrayList.get(0).getGoods_sale_price())*list.get(i).getCheck_goods_cnt()));
 
         }
+
+        Picasso.get()
+                .load(arrayList.get(i).getGoods_main_image())
+                .into(h.binding.imgvGoodsImg);
 
         h.binding.tvStore.setText(arrayList.get(0).getStore_name()+"");
         h.binding.tvGoods.setText(arrayList.get(0).getGoods_name()+"");

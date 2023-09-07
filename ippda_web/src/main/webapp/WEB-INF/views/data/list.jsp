@@ -19,7 +19,7 @@ ul.nav-tabs li {
 
 canvas#chart {
             width: 1050px; /* 원하는 너비로 설정 */
- 
+ 			margin: 0 auto;
         }
 
 </style>
@@ -38,7 +38,7 @@ canvas#chart {
 	    <a class="nav-link">월별 주문 건수</a>
 	  </li>
 	  <li class="nav-item">
-	    <a class="nav-link">월별 판매 금액</a>
+	    <a class="nav-link">월별 매출 금액</a>
 	  </li>
 	</ul>
 
@@ -201,7 +201,7 @@ function barChart( info ){
 	      	scales: {
 		        y: {
 		          beginAtZero: true,
-		          title: { text: '월별 판매 개수 ', display: true }
+		          title: { text: '월별 주문 건수', display: false }
 		        }
 		    },
 	    }
@@ -244,13 +244,17 @@ function lineChart( info ){
 	      	scales: {
 		        y: {
 		          beginAtZero: true,
-		          title: { text: '월별 판매 금액', display: true }
+		          title: { text: '월별 매출 금액', display: false }
 		        }
 		    },
 	    }
 	});
 	$('#legend').remove();
 }
+
+
+
+
 
 
 //데이터수치범위에 해당하는 범례 만들기

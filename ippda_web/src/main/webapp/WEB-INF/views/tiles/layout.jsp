@@ -45,5 +45,54 @@
      	</main>
      <tiles:insertAttribute name="footer" />
      
+     
+<script>
+    	 const intervalID = setInterval(popAlarm, 5000);
+		function orderNo(){
+			var orderNo = '';
+				 $('#modal-alert table tbody tr').each(function(){
+				orderNo += (orderNo=='' ? '' : ',') + $(this).data('order');
+				 })
+			return orderNo;
+		}
+
+var modalTitle = document.getElementById('confirmModalLabel');
+modalTitle.innerText = '주문내역';
+
+$(function(){
+	popAlarm();
+
+	
+	$('#modal-alert  #confirmButton').click(function(){
+		$(this).attr( 'data-bs-dismiss',"modal"); 
+		
+		$.ajax({
+    		url: '<c:url value="/order/status/ing" />',
+    		data: { orderNo: orderNo() }
+    	}).done(function( ){
+    		$(this).attr( 'data-bs-dismiss',"");
+    	})
+	})
+	
+	$('#modal-alert  #cancel').click(function(){
+		$.ajax({
+    		url: '<c:url value="/order/status/cancel" />',
+    		data: { orderNo: orderNo() }
+    	}).done(function( ){
+    	})
+	})
+	
+})
+     function popAlarm(){
+    	$.ajax({
+    		url: '<c:url value="/order/alarm" />',
+    	}).done(function( response ){
+    		$('#modal-alert .modal-body').html(response)
+    		if( $('#modal-alert .modal-body table tbody tr').length > 0 ){
+    			new bootstrap.Modal( $('#modal-alert') ).show();
+    		}
+    	})
+     }
+     </script>
     </body>
 </html>

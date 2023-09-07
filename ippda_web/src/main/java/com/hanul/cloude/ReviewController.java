@@ -23,6 +23,7 @@ public class ReviewController {
 	@RequestMapping("/list")
 	public String reviewList(HttpSession session, Model model, PageVO page) {//int store_no
 		MemberVO vo = (MemberVO) session.getAttribute("loginInfo");
+		session.setAttribute("category", "review");
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("store_no", 1); //member.getStore_no()
 		map.put("page", page);

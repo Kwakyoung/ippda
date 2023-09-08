@@ -56,9 +56,6 @@ public class OrderController {
 		page.setList( sql.selectList("order.list", map) );
 		model.addAttribute("page", page); 
 		
-		
-		
-		
 		return "order/list";
 	}
 	

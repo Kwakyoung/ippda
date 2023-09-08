@@ -11,6 +11,7 @@ import com.example.ipdda.databinding.ActivityOrderBinding;
 import com.example.ipdda.databinding.ItemOrderGoodsBinding;
 import com.example.ipdda.goodsboard.GoodsBoardBuyCheckDTO;
 import com.example.ipdda.home.GoodsVO;
+import com.squareup.picasso.Picasso;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -34,17 +35,28 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder>{
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         binding = ItemOrderGoodsBinding.inflate(inflater,parent,false);
         return new ViewHolder(binding);
+
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder h, int i) {
         int SalePercent = arrayList.get(0).getGoods_sale_percent();
+        GoodsVO goodsVO = arrayList.get(0);
+        String mainImageUrl = goodsVO.getGoods_main_image(); // 이미지의 실제 URL을 입력해주세요
+
+
 
         if(SalePercent == 0){
             h.binding.tvOriginalPrice.setText(""+arrayList.get(0).getGoods_price()*list.get(i).getCheck_goods_cnt());
             h.binding.tvSalePrice.setVisibility(View.GONE);
             h.binding.tvPayPrice.setVisibility(View.GONE);
+            Picasso.get()
+                    .load(mainImageUrl)
+                    .into(binding.imgvGoodsImg);
         }else {
+            Picasso.get()
+                    .load(mainImageUrl)
+                    .into(binding.imgvGoodsImg);
             h.binding.tvGoods.setText(arrayList.get(0).getGoods_name());
             h.binding.tvOriginalPrice.setText(""+arrayList.get(0).getGoods_price()*list.get(i).getCheck_goods_cnt());
             h.binding.tvPayPrice.setText(""+((arrayList.get(0).getGoods_price()-arrayList.get(0).getGoods_sale_price())*list.get(i).getCheck_goods_cnt()));
